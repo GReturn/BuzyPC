@@ -142,6 +142,8 @@ We will follow the coding style guide provided by Android:
 ## Contributing
 1. Clone the repository.
 2. Create a feature branch (`dev/feature/your-feature`).
-3. Commit changes with clear messages.
-4. Push and create a pull request.
+3. Fragment your code changes into specific purposes. 
+Avoid making a large commit that span across multiple files with different purposes.
+4. Commit changes with clear messages.
+5. Push and create a pull request.
 
