@@ -25,7 +25,7 @@ XML is used for UI layouts and Kotlin for logic. Jetpack Compose is **not** used
 - **UI Framework**: XML-based layouts
 - **Architecture**: MVVM (Model-View-ViewModel)
 - **Dependency Injection**: Hilt
-- **Networking**: OkHttp
+- **Networking**: Retrofit
 - **Testing**: JUnit
 
 ## Project Structure
@@ -115,7 +115,7 @@ We will follow the coding style guide provided by Android:
   ```
 
 ## API Integration
-- Use **Okhttp** for HTTP requests.
+- Use **Retrofit** for HTTP requests.
 - Use **Gson** for JSON parsing.
 - Handle errors properly with **sealed classes**.
 - Example:
