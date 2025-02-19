@@ -43,6 +43,12 @@ class ProfileViewActivity : AppCompatActivity() {
             val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
         }
+
+        val buttonAboutDevelopers = findViewById<Button>(R.id.btn_aboutDevelopers)
+        buttonAboutDevelopers.setOnClickListener {
+            val intent = Intent(this, AboutDevelopersActivity::class.java)
+            startActivity(intent)
+        }
     }
 
 }

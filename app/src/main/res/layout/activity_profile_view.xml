@@ -63,10 +63,23 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/btn_faqs"
         android:layout_marginHorizontal="50dp"
-        android:layout_marginTop="8dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
         android:backgroundTint="#E4B363"
         android:fontFamily="sans-serif-black"
         android:text="Settings" />
+
+    <Button
+        android:id="@+id/btn_aboutDevelopers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_settings"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#E4B363"
+        android:fontFamily="sans-serif-black"
+        android:text="About Developers" />
 
     <Button
         android:id="@+id/btn_logout"

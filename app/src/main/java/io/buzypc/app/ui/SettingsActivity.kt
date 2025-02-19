@@ -9,6 +9,7 @@ import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import io.buzypc.app.R
@@ -38,8 +39,9 @@ class SettingsActivity : AppCompatActivity() {
                 radioButtonCreamMode.isChecked = false
                 radioButtonDarkMode.isChecked = false
 
-                setTheme(R.style.Theme_Light)
-                recreate()
+//                setTheme(R.style.Base_Theme_BuzyPC_Light)
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+//                recreate()
             }
         }
         radioButtonDarkMode.setOnClickListener {
@@ -47,8 +49,9 @@ class SettingsActivity : AppCompatActivity() {
                 radioButtonLightMode.isChecked = false
                 radioButtonCreamMode.isChecked = false
 
-                setTheme(R.style.Theme_Dark)
-                recreate()
+//                setTheme(R.style.Base_Theme_BuzyPC_Dark)
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+//                recreate()
             }
         }
         radioButtonCreamMode.setOnClickListener {
@@ -56,7 +59,7 @@ class SettingsActivity : AppCompatActivity() {
                 radioButtonLightMode.isChecked = false
                 radioButtonDarkMode.isChecked = false
 
-                setTheme(R.style.Theme_Cream)
+                setTheme(R.style.Base_Theme_BuzyPC_Cream)
                 recreate()
             }
         }
