@@ -1,71 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/profileView"
-    android:backgroundTint="#E8E9EB"
-    >
+    android:backgroundTint="#E8E9EB">
 
     <ImageView
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:id="@+id/backButton"
-        android:layout_marginTop="50dp"
-        android:src="@drawable/back"
-        android:layout_marginLeft="20dp"
-        >
-    </ImageView>
+        android:id="@+id/image_backNavigation"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/back"/>
 
     <ImageView
+        android:id="@+id/image_profilePicture"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:id="@+id/profilePicture"
         android:layout_marginTop="100dp"
         android:src="@drawable/profilepic"
-        android:layout_centerHorizontal="true"
-        >
-    </ImageView>
+        android:layout_centerHorizontal="true" />
 
     <TextView
+        android:id="@+id/textView_usernameDisplay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/usernameDisplay"
         android:textStyle="bold"
         android:text="Username"
-        android:layout_below="@id/profilePicture"
+        android:layout_below="@id/image_profilePicture"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp" />
 
     <Button
+        android:id="@+id/btn_edit_account"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
         android:layout_marginHorizontal="50dp"
         android:backgroundTint="#E4B363"
-        android:id="@+id/changePassword"
         android:text="Edit Account Details"
-
-        android:layout_below="@id/usernameDisplay"
+        android:layout_below="@id/textView_usernameDisplay"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        >
-
-    </Button>
+        android:layout_marginTop="20dp" />
 
     <Button
-        android:id="@+id/faqs"
+        android:id="@+id/btn_faqs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
         android:layout_marginHorizontal="50dp"
         android:backgroundTint="#E4B363"
         android:text="FAQs"
-        android:layout_below="@id/changePassword"
+        android:layout_below="@id/btn_edit_account"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        >
-
-    </Button>
+        android:layout_marginTop="10dp"/>
 
     <Button
         android:id="@+id/logout"
@@ -73,15 +63,18 @@
         android:layout_height="wrap_content"
         android:textColor="@color/white"
         android:fontFamily="sans-serif-black"
-        android:layout_marginHorizontal="50dp"
-        android:backgroundTint="#313638"
-        android:text="Logout"
-        android:layout_below="@id/faqs"
+
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_settings"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="200dp"
-        >
-
-    </Button>
-
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginTop="144dp"
+        android:backgroundTint="#313638"
+        android:fontFamily="sans-serif-black"
+        android:text="Logout"
+        android:textColor="@color/white" />
 
 </RelativeLayout>
