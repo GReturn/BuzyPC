@@ -2,7 +2,75 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="bz_white">#E8E9EB</color>
-    <color name="bz_yellow">#E4B363</color>
-    <color name="bz_black">#313638</color>
+
+    <color name="bz_softGray">#E8E9EB</color>
+    <color name="bz_honeyYellow">#E4B363</color>
+    <color name="bz_darkGray">#313638</color>
+    <color name="bz_warmBrown">#854836</color>
+    <color name="bz_brightGold">#F7D488</color>
+
+    <color name="bz_creamyBeige">#F5E8C7</color>
+    <color name="bz_richGoldenYellow">#D9982E</color>
+    <color name="bz_deepCharcoal">#2A2D32</color>
+    <color name="bz_earthyBrown">#6A3B2E</color>
+    <color name="bz_honeyDrizzle">#F0C66E</color>
+
+    <color name="bz_almostBlack">#1B1D1F</color>
+    <color name="bz_goldenAmber">#B8860B</color>
+    <color name="bz_slateGray">#3F3F46</color>
+    <color name="bz_deepReddishBrown">#5A2C2C</color>
+    <color name="bz_warmYellow">#FFD862</color>
+
+
+    <style name="Theme.Light" parent="Theme.Material3.Light">
+        <item name="colorPrimary">@color/bz_honeyYellow</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorSecondary">@color/bz_brightGold</item>
+        <item name="colorOnSecondary">@color/bz_darkGray</item>
+        <item name="colorTertiary">@color/bz_warmBrown</item>
+        <item name="colorOnTertiary">@color/white</item>
+        <item name="background">@color/bz_softGray</item>
+    </style>
+
+    <style name="Theme.Dark" parent="Theme.Material3.Dark">
+        <item name="colorPrimary">@color/bz_goldenAmber</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorSecondary">@color/bz_warmYellow</item>
+        <item name="colorOnSecondary">@color/bz_slateGray</item>
+        <item name="colorTertiary">@color/bz_deepReddishBrown</item>
+        <item name="colorOnTertiary">@color/bz_warmYellow</item>
+        <item name="background">@color/bz_almostBlack</item>
+    </style>
+
+    <style name="Theme.Cream" parent="Theme.Material3.Light">
+        <item name="colorPrimary">@color/bz_richGoldenYellow</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/bz_honeyDrizzle</item>
+        <item name="colorOnSecondary">@color/bz_deepCharcoal</item>
+        <item name="colorTertiary">@color/bz_earthyBrown</item>
+        <item name="colorOnTertiary">@color/white</item>
+        <item name="background">@color/bz_creamyBeige</item>
+    </style>
 </resources>
+
+<!--
+#E8E9EB – Soft Gray (Wings)
+#E4B363 – Honey Yellow (Body)
+#313638 – Dark Gray (Legs, Stripes)
+#854836 – Warm Brown (Accents)
+#F7D488 – Bright Gold (Bee fuzz)
+
+Cream:
+#F5E8C7 – Creamy Beige (Sunlit Wings)
+#D9982E – Rich Golden Yellow (Bee body)
+#2A2D32 – Deep Charcoal (Stripes)
+#6A3B2E – Earthy Brown (Legs & Details)
+#F0C66E – Honey Drizzle (Warm highlight)
+
+Dark:
+#1B1D1F – Almost Black (Background)
+#B8860B – Golden Amber (Bee Glow)
+#3F3F46 – Slate Gray (Soft Accents)
+#5A2C2C – Deep Reddish Brown (Subtle Highlights)
+#FFD862 – Warm Yellow (Honey Accent)
+-->

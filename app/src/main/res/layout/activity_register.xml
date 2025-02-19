@@ -5,6 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/main"
     >
     <ImageView
         android:layout_width="75dp"
@@ -82,7 +83,7 @@
         android:fontFamily="sans-serif-black"
         android:textColor="#ffffff"
         android:layout_marginHorizontal="50dp"
-        android:backgroundTint="@color/bz_yellow"
+        android:backgroundTint="@color/bz_honeyYellow"
         />
 
     <Button
@@ -93,7 +94,7 @@
         android:textColor="#ffffff"
         android:layout_marginHorizontal="50dp"
         android:fontFamily="sans-serif-black"
-        android:backgroundTint="@color/bz_yellow"
+        android:backgroundTint="@color/bz_honeyYellow"
         android:layout_below="@id/registerButton"
         />
 

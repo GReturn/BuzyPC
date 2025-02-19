@@ -16,7 +16,7 @@
         android:layout_marginTop="150dp"
         android:textSize="25dp"
         android:textStyle="bold"
-        android:textColor="@color/bz_yellow"
+        android:textColor="@color/bz_honeyYellow"
 
         />
 
@@ -38,7 +38,7 @@
         android:textStyle="bold"
         android:layout_below="@id/promptText"
         android:layout_marginHorizontal="50dp"
-        android:backgroundTint="@color/bz_yellow"
+        android:backgroundTint="@color/bz_honeyYellow"
         android:layout_marginTop="250dp"
         />
     <Button
@@ -49,7 +49,7 @@
         android:textStyle="bold"
         android:layout_below="@id/confirmLogoutButton"
         android:layout_marginHorizontal="50dp"
-        android:backgroundTint="@color/bz_black"
+        android:backgroundTint="@color/bz_darkGray"
         />
 
 

@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:text="BuzyPC"
         android:layout_below="@id/welcome_text"
-        android:textColor="@color/bz_yellow"
+        android:textColor="@color/bz_honeyYellow"
         android:textStyle="bold"
         android:textSize="75dp"
         android:layout_marginLeft="50dp"

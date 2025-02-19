@@ -65,7 +65,7 @@
         android:layout_marginHorizontal="50dp"
         android:layout_marginTop="100dp"
         android:fontFamily="sans-serif-black"
-        android:backgroundTint="@color/bz_yellow"
+        android:backgroundTint="@color/bz_honeyYellow"
         android:layout_below="@id/forgot_password"
     />
 
@@ -74,7 +74,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/register"
-        android:backgroundTint="@color/bz_yellow"
+        android:backgroundTint="@color/bz_honeyYellow"
         android:layout_marginHorizontal="50dp"
         android:textAlignment="center"
         android:textStyle="bold"
