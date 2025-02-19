@@ -3,4 +3,12 @@
     <string name="forgot_password">Forgot Password?</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
+    <string name="dev1">Austine John P. Lomocso</string>
+    <string name="dev1_occupation">F1 Student | Rockstar Student</string>
+    <string name="dev1_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum.</string>
+    <string name="dev2">Rafael A. Mendoza</string>
+    <string name="dev2_occupation">F1 Student | Final Fantasy Enjoyer</string>
+    <string name="dev2_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla scelerisque, libero at convallis convallis.</string>
+    <string name="dev_vision">We aim to create seamless and innovative mobile experiences that redefine how people budget their PC builds.</string>
+    <string name="dev_skills">✔ Android Development\n ✔ UI/UX Design and Prototyping\n ✔ Backend and API Integration\n ✔ Fun Fact: Kotlin > Java! 🤯</string>
 </resources>
