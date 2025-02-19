@@ -1,0 +1,66 @@
+package io.buzypc.app.ui
+
+import android.content.Intent
+import android.os.Bundle
+import android.util.Log
+import android.widget.ImageView
+import android.widget.RadioButton
+import android.widget.RadioGroup
+import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import io.buzypc.app.R
+
+class SettingsActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_settings)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+        val btnBackNavigation = findViewById<ImageView>(R.id.image_backNavigation)
+        btnBackNavigation.setOnClickListener {
+            val intent = Intent(this, ProfileViewActivity::class.java)
+            startActivity(intent)
+        }
+
+        val radioButtonLightMode = findViewById<RadioButton>(R.id.rb_lightMode)
+        val radioButtonDarkMode = findViewById<RadioButton>(R.id.rb_darkMode)
+        val radioButtonCreamMode = findViewById<RadioButton>(R.id.rb_creamMode)
+
+        radioButtonLightMode.setOnClickListener {
+            if(radioButtonLightMode.isChecked) {
+                radioButtonCreamMode.isChecked = false
+                radioButtonDarkMode.isChecked = false
+
+                setTheme(R.style.Theme_Light)
+                recreate()
+            }
+        }
+        radioButtonDarkMode.setOnClickListener {
+            if(radioButtonDarkMode.isChecked) {
+                radioButtonLightMode.isChecked = false
+                radioButtonCreamMode.isChecked = false
+
+                setTheme(R.style.Theme_Dark)
+                recreate()
+            }
+        }
+        radioButtonCreamMode.setOnClickListener {
+            if(radioButtonCreamMode.isChecked) {
+                radioButtonLightMode.isChecked = false
+                radioButtonDarkMode.isChecked = false
+
+                setTheme(R.style.Theme_Cream)
+                recreate()
+            }
+        }
+
+
+    }
+}
