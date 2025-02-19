@@ -3,12 +3,10 @@ package io.buzypc.app.ui
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.text.SpannableString
-import android.text.style.UnderlineSpan
 import android.util.Log
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -25,12 +23,24 @@ class ProfileViewActivity : AppCompatActivity() {
             insets
         }
 
-        val buttonLogout = findViewById<Button>(R.id.logout)
-        buttonLogout.setOnClickListener{
-            Log.e("Mob Dev","Logout button is clicked")
+        val btnBackNavigation = findViewById<ImageView>(R.id.image_backNavigation)
+        btnBackNavigation.setOnClickListener {
+            val intent = Intent(this, LandingPageActivity::class.java)
+            startActivity(intent)
+        }
+
+        val buttonLogout = findViewById<Button>(R.id.btn_logout)
+        buttonLogout.setOnClickListener {
+            Log.e("USER_LOGOUT","Logout button is clicked")
             Toast.makeText(this, "Logout button is clicked", Toast.LENGTH_LONG).show()
 
             val intent = Intent(this, LogoutPromptActivity::class.java)
+            startActivity(intent)
+        }
+
+        val buttonSettings = findViewById<Button>(R.id.btn_settings)
+        buttonSettings.setOnClickListener {
+            val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
         }
     }

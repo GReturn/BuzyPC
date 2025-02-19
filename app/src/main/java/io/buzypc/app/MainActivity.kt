@@ -8,6 +8,9 @@ import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        applyTheme()
+
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         //hello first comment
@@ -18,5 +21,9 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+    }
+    fun applyTheme() {
+        // well handle some stuff for changing themes based on saved file; for now, this will do
+        setTheme(R.style.Theme_Light)
     }
 }

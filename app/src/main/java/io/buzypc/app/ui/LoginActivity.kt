@@ -3,13 +3,17 @@ package io.buzypc.app.ui
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.CompoundButton
 import android.widget.EditText
+import android.widget.Switch
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import io.buzypc.app.R
+
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +31,23 @@ class LoginActivity : AppCompatActivity() {
 
         val button_login = findViewById<Button>(R.id.loginButton)
         val button_register = findViewById<Button>(R.id.registerButton)
+
+        // TODO DELETE
+        val switchNightMode = findViewById<Switch>(R.id.switch1)
+        switchNightMode.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+            // checking if the switch is turned on
+            if (isChecked) {
+
+                // setting theme to night mode
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                buttonView.text = "Night Mode"
+            } else {
+
+                // setting theme to light theme
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                buttonView.text = "Light Mode"
+            }
+        })
 
         button_login.setOnClickListener(){
             if(edittext_username.text.isNullOrEmpty() || edittext_password.text.isNullOrEmpty()){
