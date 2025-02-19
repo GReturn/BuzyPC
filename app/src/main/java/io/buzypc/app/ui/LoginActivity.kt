@@ -1,0 +1,48 @@
+package io.buzypc.app.ui
+
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import io.buzypc.app.R
+
+class LoginActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_login)
+
+        val edittext_username = findViewById<EditText>(R.id.username)
+        val edittext_password = findViewById<EditText>(R.id.password)
+
+        val button_login = findViewById<Button>(R.id.loginButton)
+        val button_register = findViewById<Button>(R.id.registerButton)
+
+        button_login.setOnClickListener(){
+            if(edittext_username.text.isNullOrEmpty() || edittext_password.text.isNullOrEmpty()){
+                Toast.makeText(this,"Username and Password must not be empty",Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+
+            if(edittext_username.text.contentEquals("csit", true) && edittext_password.text.contentEquals("1234",false)){
+                val intent = Intent(this, LandingPageActivity::class.java)
+                startActivity(intent)
+            }
+            else{
+                Toast.makeText(this, "Invalid credentials", Toast.LENGTH_LONG).show()
+            }
+        }
+
+        button_register.setOnClickListener(){
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
+
+
+    }
+}
