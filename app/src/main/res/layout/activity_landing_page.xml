@@ -47,26 +47,24 @@
         android:gravity="center"
 
         >
-        <ImageButton
+        <ImageView
             android:id="@+id/add_build"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/plus"
+            android:src="@drawable/add_circle_24px"
             android:layout_below="@id/buzyPC_title"
-            android:scaleType="fitStart"
-            android:background="@color/white"
+            android:scaleType="centerCrop"
             android:layout_marginHorizontal="50dp"
         />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/view_cart"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/cart"
+            android:src="@drawable/shopping_cart_24px"
             android:scaleType="fitStart"
             android:layout_toRightOf="@id/add_build"
             android:layout_below="@id/buzyPC_title"
-            android:background="@color/white"
             android:layout_marginHorizontal="50dp"
             />
     </LinearLayout>

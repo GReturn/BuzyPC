@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -23,17 +24,17 @@
         android:orientation="horizontal"
         android:background="@drawable/rounded_card"
         android:padding="16dp"
+        android:layout_marginHorizontal="10dp"
         android:layout_marginBottom="12dp"
         android:elevation="6dp">
 
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/fb"
             android:scaleType="centerCrop"
             android:layout_marginEnd="16dp"
             android:contentDescription="Profile Image"
-            android:background="@drawable/circle"/>
+            android:background="@drawable/devaus"/>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -46,19 +47,25 @@
                 android:layout_height="wrap_content"
                 android:text="@string/dev1"
                 android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:textColor="@color/bz_almostBlack"
+                />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/dev1_occupation"
-                android:textSize="14sp"/>
+                android:textSize="14sp"
+                android:textColor="@color/bz_almostBlack"
+                />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/dev1_desc"
-                android:textSize="12sp"/>
+                android:textSize="12sp"
+                android:textColor="@color/bz_almostBlack"
+                />
         </LinearLayout>
     </LinearLayout>
 
@@ -67,6 +74,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginHorizontal="10dp"
+
         android:background="@drawable/rounded_card"
         android:padding="16dp"
         android:elevation="6dp">
@@ -74,11 +83,10 @@
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/fb"
             android:scaleType="centerCrop"
             android:layout_marginEnd="16dp"
             android:contentDescription="Profile Image"
-            android:background="@drawable/circle"/>
+            android:background="@drawable/devraf"/>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -91,19 +99,25 @@
                 android:layout_height="wrap_content"
                 android:text="@string/dev2"
                 android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:textColor="@color/bz_almostBlack"
+                />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/dev2_occupation"
-                android:textSize="14sp"/>
+                android:textSize="14sp"
+                android:textColor="@color/bz_almostBlack"
+                />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/dev2_desc"
-                android:textSize="12sp"/>
+                android:textSize="12sp"
+                android:textColor="@color/bz_almostBlack"
+                />
         </LinearLayout>
     </LinearLayout>
 
@@ -147,5 +161,6 @@
         android:text="Back"
         android:textSize="16sp"
         android:layout_marginTop="24dp"
+        android:layout_marginHorizontal="10dp"
         android:padding="12dp"/>
 </LinearLayout>

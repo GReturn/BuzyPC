@@ -9,7 +9,7 @@
 
     <ImageView
         android:id="@+id/image_backNavigation"
-        android:src="@drawable/back"
+        android:src="@drawable/arrow_back_24px"
 
         android:layout_width="35dp"
         android:layout_height="35dp"
@@ -20,10 +20,9 @@
 
     <TextView
         android:id="@+id/textView"
-
         android:text="SETTINGS"
         android:textSize="25sp"
-
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -44,7 +43,7 @@
         <!-- Change theme-->
         <TextView
             android:text="Change Theme"
-
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:layout_editor_absoluteX="173dp"
@@ -61,7 +60,8 @@
             app:layout_constraintTop_toBottomOf="@id/textView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:paddingTop="10dp">
+            android:paddingTop="10dp"
+            >
 
             <!-- Light Mode -->
             <androidx.cardview.widget.CardView
@@ -71,7 +71,8 @@
                 app:cardCornerRadius="10dp"
                 app:cardBackgroundColor="@color/bz_softGray"
                 android:elevation="4dp"
-                android:layout_marginEnd="8dp">
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -80,6 +81,7 @@
                     android:gravity="center">
 
                     <RadioButton
+                        android:textStyle="bold"
                         android:id="@+id/rb_lightMode"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -99,7 +101,8 @@
                 app:cardCornerRadius="10dp"
                 app:cardBackgroundColor="@color/bz_almostBlack"
                 android:elevation="4dp"
-                android:layout_marginEnd="8dp">
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -108,39 +111,14 @@
                     android:gravity="center">
 
                     <RadioButton
+                        android:textStyle="bold"
+
                         android:id="@+id/rb_darkMode"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Dark"
                         android:textColor="#FFFFFF"
                         android:buttonTint="@color/white" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <!-- Cream Mode -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_creamMode"
-                android:layout_width="120dp"
-                android:layout_height="60dp"
-                app:cardCornerRadius="10dp"
-                app:cardBackgroundColor="@color/bz_creamyBeige"
-                android:elevation="4dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:gravity="center">
-
-                    <RadioButton
-                        android:id="@+id/rb_creamMode"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Cream"
-                        android:textColor="#000000"
-                        android:buttonTint="@color/black" />
 
                 </LinearLayout>
 

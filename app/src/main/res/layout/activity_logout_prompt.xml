@@ -39,7 +39,6 @@
         android:textStyle="bold"
         android:layout_below="@id/promptText"
         android:layout_marginHorizontal="50dp"
-        android:backgroundTint="@color/bz_honeyYellow"
         android:layout_marginTop="250dp"
         />
     <Button
@@ -50,7 +49,6 @@
         android:textStyle="bold"
         android:layout_below="@id/confirmLogoutButton"
         android:layout_marginHorizontal="50dp"
-        android:backgroundTint="@color/bz_darkGray"
         />
 
 

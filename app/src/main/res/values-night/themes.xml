@@ -3,5 +3,13 @@
     <style name="Base.Theme.BuzyPC" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/bz_honeyYellow</item>
+        <item name="colorOnPrimary">@color/bz_almostBlack</item>
+        <item name="colorSecondary">@color/bz_warmYellow</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorTertiary">@color/bz_deepReddishBrown</item>
+        <item name="colorOnTertiary">@color/bz_warmYellow</item>
+        <item name="background">@color/bz_almostBlack</item>
+        <item name="colorControlNormal">@color/bz_honeyYellow</item>
     </style>
 </resources>

@@ -3,6 +3,7 @@ package io.buzypc.app.ui
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageButton
+import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -20,7 +21,7 @@ class LandingPageActivity : AppCompatActivity() {
             insets
         }
 
-        val add_button = findViewById<ImageButton>(R.id.add_build)
+        val add_button = findViewById<ImageView>(R.id.add_build)
         add_button.setOnClickListener(){
             val intent = Intent(this,ProfileViewActivity::class.java)
             startActivity(intent)
