@@ -11,4 +11,32 @@
     <string name="dev2_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla scelerisque, libero at convallis convallis.</string>
     <string name="dev_vision">We aim to create seamless and innovative mobile experiences that redefine how people budget their PC builds.</string>
     <string name="dev_skills">✔ Android Development\n ✔ UI/UX Design and Prototyping\n ✔ Backend and API Integration\n ✔ Fun Fact: Kotlin > Java! 🤯</string>
+
+
+    <string-array name="pc_builds">
+        <item>Gaming</item>
+        <item>Work</item>
+        <item>For Friend</item>
+        <item>For mi wif</item>
+        <item>Gaming</item>
+        <item>Work</item>
+        <item>For Friend</item>
+        <item>For mi wif</item>
+        <item>Gaming</item>
+        <item>Work</item>
+        <item>For Friend</item>
+        <item>For mi wif</item>
+        <item>Gaming</item>
+        <item>Work</item>
+        <item>For Friend</item>
+        <item>For mi wif</item>
+        <item>Gaming</item>
+        <item>Work</item>
+        <item>For Friend</item>
+        <item>For mi wif</item>
+        <item>Gaming</item>
+        <item>Work</item>
+        <item>For Friend</item>
+        <item>For mi wif</item>
+    </string-array>
 </resources>
