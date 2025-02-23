@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:backgroundTint="#E8E9EB">
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/image_backNavigation"
@@ -13,7 +12,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:src="@drawable/back"/>
+        android:src="@drawable/arrow_back_24px"/>
 
     <ImageView
         android:id="@+id/image_profilePicture"
@@ -39,7 +38,6 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
         android:layout_marginHorizontal="50dp"
-        android:backgroundTint="#E4B363"
         android:text="Edit Account Details"
         android:layout_below="@id/textView_usernameDisplay"
         android:layout_centerHorizontal="true"
@@ -51,7 +49,6 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
         android:layout_marginHorizontal="50dp"
-        android:backgroundTint="#E4B363"
         android:text="FAQs"
         android:layout_below="@id/btn_edit_account"
         android:layout_centerHorizontal="true"
@@ -65,7 +62,6 @@
         android:layout_marginHorizontal="50dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:backgroundTint="#E4B363"
         android:fontFamily="sans-serif-black"
         android:text="Settings" />
 
@@ -77,7 +73,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginHorizontal="50dp"
         android:layout_marginTop="10dp"
-        android:backgroundTint="#E4B363"
         android:fontFamily="sans-serif-black"
         android:text="About Developers" />
 

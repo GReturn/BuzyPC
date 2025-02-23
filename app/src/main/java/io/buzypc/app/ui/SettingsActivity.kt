@@ -32,11 +32,13 @@ class SettingsActivity : AppCompatActivity() {
 
         val radioButtonLightMode = findViewById<RadioButton>(R.id.rb_lightMode)
         val radioButtonDarkMode = findViewById<RadioButton>(R.id.rb_darkMode)
-        val radioButtonCreamMode = findViewById<RadioButton>(R.id.rb_creamMode)
 
+        radioButtonLightMode.isChecked = true;
+//        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO){
+//            radioButtonDarkMode.isChecked = true;
+//        }
         radioButtonLightMode.setOnClickListener {
             if(radioButtonLightMode.isChecked) {
-                radioButtonCreamMode.isChecked = false
                 radioButtonDarkMode.isChecked = false
 
 //                setTheme(R.style.Base_Theme_BuzyPC_Light)
@@ -47,22 +49,21 @@ class SettingsActivity : AppCompatActivity() {
         radioButtonDarkMode.setOnClickListener {
             if(radioButtonDarkMode.isChecked) {
                 radioButtonLightMode.isChecked = false
-                radioButtonCreamMode.isChecked = false
 
 //                setTheme(R.style.Base_Theme_BuzyPC_Dark)
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
 //                recreate()
             }
         }
-        radioButtonCreamMode.setOnClickListener {
-            if(radioButtonCreamMode.isChecked) {
-                radioButtonLightMode.isChecked = false
-                radioButtonDarkMode.isChecked = false
-
-                setTheme(R.style.Base_Theme_BuzyPC_Cream)
-                recreate()
-            }
-        }
+//        radioButtonCreamMode.setOnClickListener {
+//            if(radioButtonCreamMode.isChecked) {
+//                radioButtonLightMode.isChecked = false
+//                radioButtonDarkMode.isChecked = false
+//
+//                setTheme(R.style.Base_Theme_BuzyPC_Cream)
+//                recreate()
+//            }
+//        }
 
 
     }
