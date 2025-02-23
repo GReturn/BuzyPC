@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import io.buzypc.app.R
+import io.buzypc.app.data.BuzyUser
 
 class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +52,14 @@ class RegisterActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
             else{
-                intent = Intent(this, LandingPageActivity::class.java)
+                val userDetails = BuzyUser(this)
+
+                userDetails.saveProfile(
+                        edittext_username.text.toString(),
+                        edittext_email.text.toString(),
+                        edittext_password.text.toString()
+                )
+                intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
             }
         }
