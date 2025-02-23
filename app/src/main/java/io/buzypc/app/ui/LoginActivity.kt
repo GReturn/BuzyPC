@@ -1,6 +1,7 @@
 package io.buzypc.app.ui
 
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.widget.Button
 import android.widget.CompoundButton
@@ -39,6 +40,7 @@ class LoginActivity : AppCompatActivity() {
         button_login.setOnClickListener {
             if(!userDetails.isUserRegistered()) {
                 AlertDialog.Builder(this)
+                    .setIcon(R.drawable.bee)
                     .setTitle("Profile Not Found")
                     .setMessage("Uh-oh! It seems we didn't find an existing account. Create an account?")
                     .setPositiveButton("Register") { _,_ ->
