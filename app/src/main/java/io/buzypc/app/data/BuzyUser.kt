@@ -16,6 +16,15 @@ class BuzyUser(context: Context) {
 
     fun getEmail() : String? = sharedPreferences.getString("email", null)
 
+    fun setUsername(newName: String) = sharedPreferences.edit()
+        .putString("username", newName).apply()
+
+    fun setEmail(newEmail: String) = sharedPreferences.edit()
+        .putString("email", newEmail).apply()
+
+    fun setPassword(newPassword: String) = sharedPreferences.edit()
+        .putString("password", hashPassword(newPassword)).apply()
+
     fun validateLogin(inputUsername: String, inputPassword: String) : Boolean {
         val realUsername = getUsername()
         val realPassword = sharedPreferences.getString("password", null)
