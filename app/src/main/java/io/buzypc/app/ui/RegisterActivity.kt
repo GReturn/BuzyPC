@@ -26,10 +26,10 @@ class RegisterActivity : AppCompatActivity() {
         val button_login = findViewById<Button>(R.id.loginButton)
         val button_register = findViewById<Button>(R.id.registerButton)
 
-        val edittext_username = findViewById<EditText>(R.id.registerUsername)
-        val edittext_email = findViewById<EditText>(R.id.emailRegister)
-        val edittext_password = findViewById<EditText>(R.id.passwordRegister)
-        val edittext_confirmPassword = findViewById<EditText>(R.id.confirmPasswordRegister)
+        val edittext_username = findViewById<EditText>(R.id.edittext_username)
+        val edittext_email = findViewById<EditText>(R.id.edittext_email)
+        val edittext_password = findViewById<EditText>(R.id.edittext_password)
+        val edittext_confirmPassword = findViewById<EditText>(R.id.edittext_confirm_password)
 
         button_login.setOnClickListener(){
             val intent = Intent(this, LoginActivity::class.java)
