@@ -6,7 +6,6 @@ import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.RadioButton
-import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -32,16 +31,16 @@ class SettingsActivity : AppCompatActivity() {
         val btnBackNavigation = findViewById<ImageView>(R.id.image_backNavigation)
         val txtUsername = findViewById<TextView>(R.id.textView_usernameDisplay)
 
-        val buttonEditAccount = findViewById<Button>(R.id.btn_edit_account)
-        val buttonAboutDevelopers = findViewById<Button>(R.id.btn_about_developers)
+        val btnEditAccount = findViewById<Button>(R.id.btn_edit_account)
+        val btnAboutDevelopers = findViewById<Button>(R.id.btn_about_developers)
 
-        val radioButtonLightMode = findViewById<RadioButton>(R.id.rb_lightMode)
-        val radioButtonDarkMode = findViewById<RadioButton>(R.id.rb_darkMode)
+        val radioBtnLightMode = findViewById<RadioButton>(R.id.rb_lightMode)
+        val radioBtnDarkMode = findViewById<RadioButton>(R.id.rb_darkMode)
 
         val userSettings = BuzyUserSettings(this)
         if(userSettings.getTheme() == "light" || userSettings.getTheme() == null)
-            radioButtonLightMode.isChecked = true
-        else radioButtonDarkMode.isChecked = true
+            radioBtnLightMode.isChecked = true
+        else radioBtnDarkMode.isChecked = true
 
         val buttonLogout = findViewById<Button>(R.id.btn_logout)
 
@@ -52,26 +51,26 @@ class SettingsActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        buttonEditAccount.setOnClickListener {
+        btnEditAccount.setOnClickListener {
             val intent = Intent(this, ProfileViewActivity::class.java)
             startActivity(intent)
         }
 
-        buttonAboutDevelopers.setOnClickListener {
+        btnAboutDevelopers.setOnClickListener {
             val intent = Intent(this, AboutDevelopersActivity::class.java)
             startActivity(intent)
         }
 
-        radioButtonLightMode.setOnClickListener {
-            if(radioButtonLightMode.isChecked) {
-                radioButtonDarkMode.isChecked = false
+        radioBtnLightMode.setOnClickListener {
+            if(radioBtnLightMode.isChecked) {
+                radioBtnDarkMode.isChecked = false
                 userSettings.setTheme("light")
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
         }
-        radioButtonDarkMode.setOnClickListener {
-            if(radioButtonDarkMode.isChecked) {
-                radioButtonLightMode.isChecked = false
+        radioBtnDarkMode.setOnClickListener {
+            if(radioBtnDarkMode.isChecked) {
+                radioBtnLightMode.isChecked = false
                 userSettings.setTheme("dark")
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             }

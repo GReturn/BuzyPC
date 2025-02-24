@@ -22,6 +22,7 @@ class LogoutPromptActivity : AppCompatActivity() {
 
         val btnLogout = findViewById<Button>(R.id.confirmLogoutButton)
         val btnCancelLogout = findViewById<Button>(R.id.cancel_button)
+
         btnLogout.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)

@@ -23,31 +23,31 @@ class RegisterActivity : AppCompatActivity() {
             insets
         }
 
-        val button_login = findViewById<Button>(R.id.loginButton)
-        val button_register = findViewById<Button>(R.id.registerButton)
+        val btnLogin = findViewById<Button>(R.id.loginButton)
+        val btnRegister = findViewById<Button>(R.id.registerButton)
 
-        val edittext_username = findViewById<EditText>(R.id.edittext_username)
-        val edittext_email = findViewById<EditText>(R.id.edittext_email)
-        val edittext_password = findViewById<EditText>(R.id.edittext_password)
-        val edittext_confirmPassword = findViewById<EditText>(R.id.edittext_confirm_password)
+        val edittextUsername = findViewById<EditText>(R.id.edittext_username)
+        val edittextEmail = findViewById<EditText>(R.id.edittext_email)
+        val edittextPassword = findViewById<EditText>(R.id.edittext_password)
+        val edittextConfirmPassword = findViewById<EditText>(R.id.edittext_confirm_password)
 
-        button_login.setOnClickListener(){
+        btnLogin.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
 
-        button_register.setOnClickListener(){
-            if(edittext_username.text.isNullOrEmpty() || edittext_email.text.isNullOrEmpty() ||
-                edittext_password.text.isNullOrEmpty() || edittext_confirmPassword.text.isNullOrEmpty()){
+        btnRegister.setOnClickListener {
+            if(edittextUsername.text.isNullOrEmpty() || edittextEmail.text.isNullOrEmpty() ||
+                edittextPassword.text.isNullOrEmpty() || edittextConfirmPassword.text.isNullOrEmpty()){
                 Toast.makeText(this,"Fill out all fields", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
-            else if(!edittext_password.text.contentEquals(edittext_confirmPassword.text)){
+            else if(!edittextPassword.text.contentEquals(edittextConfirmPassword.text)){
                 Toast.makeText(this,"Passwords do not match", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
 
-            else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(edittext_email.text).matches()){
+            else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(edittextEmail.text).matches()){
                 Toast.makeText(this,"Invalid Email Address", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
@@ -55,9 +55,9 @@ class RegisterActivity : AppCompatActivity() {
                 val userDetails = BuzyUser(this)
 
                 userDetails.saveProfile(
-                        edittext_username.text.toString(),
-                        edittext_email.text.toString(),
-                        edittext_password.text.toString()
+                        edittextUsername.text.toString(),
+                        edittextEmail.text.toString(),
+                        edittextPassword.text.toString()
                 )
                 intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)

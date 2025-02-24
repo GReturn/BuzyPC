@@ -38,13 +38,13 @@ class LoginActivity : AppCompatActivity() {
 
         val userDetails = BuzyUser(this)
 
-        val edittext_username = findViewById<EditText>(R.id.username)
-        val edittext_password = findViewById<EditText>(R.id.password)
+        val edittextUsername = findViewById<EditText>(R.id.username)
+        val edittextPassword = findViewById<EditText>(R.id.password)
 
-        val button_login = findViewById<Button>(R.id.loginButton)
-        val button_register = findViewById<Button>(R.id.registerButton)
+        val btnLogin = findViewById<Button>(R.id.loginButton)
+        val btnRegister = findViewById<Button>(R.id.registerButton)
 
-        button_login.setOnClickListener {
+        btnLogin.setOnClickListener {
             if(!userDetails.isUserRegistered()) {
                 AlertDialog.Builder(this)
                     .setIcon(R.drawable.buzybee)
@@ -59,12 +59,12 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            if(edittext_username.text.isNullOrEmpty() || edittext_password.text.isNullOrEmpty()){
+            if(edittextUsername.text.isNullOrEmpty() || edittextPassword.text.isNullOrEmpty()){
                 Toast.makeText(this,"Username and Password must not be empty",Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
 
-            if(userDetails.validateLogin(edittext_username.text.toString(), edittext_password.text.toString())) {
+            if(userDetails.validateLogin(edittextUsername.text.toString(), edittextPassword.text.toString())) {
                 val intent = Intent(this, LandingPageActivity::class.java)
                 startActivity(intent)
             }
@@ -73,7 +73,7 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        button_register.setOnClickListener(){
+        btnRegister.setOnClickListener(){
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }

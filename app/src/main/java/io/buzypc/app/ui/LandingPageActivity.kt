@@ -24,9 +24,10 @@ class LandingPageActivity : AppCompatActivity() {
 
         val userDetails = BuzyUser(this)
         val txtHelloUser = findViewById<TextView>(R.id.hello_user)
+        val btnAdd = findViewById<ImageView>(R.id.add_build)
+
         txtHelloUser.text = getString(R.string.hello_user, userDetails.getUsername())
 
-        val btnAdd = findViewById<ImageView>(R.id.add_build)
         btnAdd.setOnClickListener {
             val intent = Intent(this,SettingsActivity::class.java)
             startActivity(intent)
