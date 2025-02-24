@@ -82,7 +82,6 @@
             android:id="@+id/btn_about_developers"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/btn_settings"
             android:layout_marginHorizontal="50dp"
             android:layout_marginTop="10dp"
             android:fontFamily="sans-serif-black"
