@@ -40,17 +40,14 @@ class SettingsActivity : AppCompatActivity() {
         radioButtonLightMode.setOnClickListener {
             if(radioButtonLightMode.isChecked) {
                 radioButtonDarkMode.isChecked = false
-
-//                setTheme(R.style.Base_Theme_BuzyPC_Light)
+                userSettings.setTheme("light")
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-//                recreate()
             }
         }
         radioButtonDarkMode.setOnClickListener {
             if(radioButtonDarkMode.isChecked) {
                 radioButtonLightMode.isChecked = false
-
-//                setTheme(R.style.Base_Theme_BuzyPC_Dark)
+                userSettings.setTheme("dark")
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
 //                recreate()
             }

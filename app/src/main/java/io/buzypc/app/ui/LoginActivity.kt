@@ -8,11 +8,13 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import io.buzypc.app.R
 import io.buzypc.app.data.BuzyUser
+import io.buzypc.app.data.BuzyUserSettings
 
 
 class LoginActivity : AppCompatActivity() {
@@ -26,6 +28,13 @@ class LoginActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        val userSettings = BuzyUserSettings(this)
+        if(userSettings.getTheme() == null || userSettings.getTheme() == "light") {
+            userSettings.setTheme("light")
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
+        else AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
 
         val userDetails = BuzyUser(this)
 
