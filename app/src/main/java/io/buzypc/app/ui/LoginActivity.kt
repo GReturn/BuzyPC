@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import io.buzypc.app.R
@@ -16,6 +17,7 @@ import io.buzypc.app.data.BuzyUser
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_login)
@@ -36,7 +38,7 @@ class LoginActivity : AppCompatActivity() {
         button_login.setOnClickListener {
             if(!userDetails.isUserRegistered()) {
                 AlertDialog.Builder(this)
-                    .setIcon(R.drawable.bee)
+                    .setIcon(R.drawable.buzybee)
                     .setTitle("Profile Not Found")
                     .setMessage("Uh-oh! It seems we didn't find an existing account. Create an account?")
                     .setPositiveButton("Register") { _,_ ->
