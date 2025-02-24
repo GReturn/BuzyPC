@@ -2,7 +2,6 @@ package io.buzypc.app.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -21,13 +20,13 @@ class LogoutPromptActivity : AppCompatActivity() {
             insets
         }
 
-        val button_logout = findViewById<Button>(R.id.confirmLogoutButton)
-        val button_cancel = findViewById<Button>(R.id.cancel_button)
-        button_logout.setOnClickListener(){
+        val btnLogout = findViewById<Button>(R.id.confirmLogoutButton)
+        val btnCancelLogout = findViewById<Button>(R.id.cancel_button)
+        btnLogout.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
-        button_cancel.setOnClickListener(){
+        btnCancelLogout.setOnClickListener {
             val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
         }
