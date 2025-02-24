@@ -28,7 +28,7 @@ class LogoutPromptActivity : AppCompatActivity() {
             startActivity(intent)
         }
         button_cancel.setOnClickListener(){
-            val intent = Intent(this, ProfileViewActivity::class.java)
+            val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
         }
     }

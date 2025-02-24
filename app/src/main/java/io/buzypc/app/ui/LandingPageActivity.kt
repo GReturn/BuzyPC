@@ -28,7 +28,7 @@ class LandingPageActivity : AppCompatActivity() {
 
         val btnAdd = findViewById<ImageView>(R.id.add_build)
         btnAdd.setOnClickListener {
-            val intent = Intent(this,ProfileViewActivity::class.java)
+            val intent = Intent(this,SettingsActivity::class.java)
             startActivity(intent)
         }
     }

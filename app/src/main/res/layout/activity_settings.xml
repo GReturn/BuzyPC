@@ -15,6 +15,7 @@
         android:layout_height="35dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,11 +27,37 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/image_profilePicture"
+        android:src="@drawable/profilepic"
+        android:layout_width="100dp"
+
+        android:layout_height="100dp"
+        android:layout_marginTop="40dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView_usernameDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/image_profilePicture"
+        android:text="Username"
+        android:textStyle="bold"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_profilePicture" />
+
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -38,56 +65,80 @@
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toBottomOf="@+id/textView_usernameDisplay">
+
+
+        <Button
+            android:id="@+id/btn_edit_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Edit Account Details" />
+
+
+        <Button
+            android:id="@+id/btn_about_developers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn_settings"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif-black"
+            android:text="About the Developers" />
 
         <!-- Change theme-->
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="30dp"
+
             android:text="Change Theme"
             android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:layout_editor_absoluteX="173dp"
-            tools:layout_editor_absoluteY="130dp" />
+            android:textSize="18sp"/>
 
         <RadioGroup
             android:id="@+id/radioGroup_themes"
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_marginHorizontal="50dp"
             android:gravity="center"
+            android:orientation="horizontal"
 
-            app:layout_constraintTop_toBottomOf="@id/textView"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:paddingTop="10dp"
-            >
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView">
 
             <!-- Light Mode -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_lightMode"
                 android:layout_width="120dp"
                 android:layout_height="60dp"
-                app:cardCornerRadius="10dp"
-                app:cardBackgroundColor="@color/bz_softGray"
-                android:elevation="4dp"
                 android:layout_marginEnd="8dp"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:elevation="4dp"
+                app:cardBackgroundColor="@color/bz_softGray"
+                app:cardCornerRadius="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
                     <RadioButton
-                        android:textStyle="bold"
                         android:id="@+id/rb_lightMode"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:buttonTint="@color/black"
                         android:text="Default"
                         android:textColor="#000000"
-                        android:buttonTint="@color/black" />
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -98,27 +149,27 @@
                 android:id="@+id/card_darkMode"
                 android:layout_width="120dp"
                 android:layout_height="60dp"
-                app:cardCornerRadius="10dp"
-                app:cardBackgroundColor="@color/bz_almostBlack"
-                android:elevation="4dp"
                 android:layout_marginEnd="8dp"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:elevation="4dp"
+                app:cardBackgroundColor="@color/bz_almostBlack"
+                app:cardCornerRadius="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
                     <RadioButton
-                        android:textStyle="bold"
-
                         android:id="@+id/rb_darkMode"
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:buttonTint="@color/white"
                         android:text="Dark"
                         android:textColor="#FFFFFF"
-                        android:buttonTint="@color/white" />
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -128,5 +179,21 @@
 
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginBottom="30dp"
+        android:backgroundTint="#313638"
+        android:fontFamily="sans-serif-black"
+        android:text="Logout"
+
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
