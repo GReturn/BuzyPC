@@ -37,6 +37,12 @@ class LoginActivity : AppCompatActivity() {
         else AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
 
         val userDetails = BuzyUser(this)
+        if(userDetails.isLoggedIn()) {
+            val intent = Intent(this, LandingPageActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
+        }
 
         val edittextUsername = findViewById<EditText>(R.id.username)
         val edittextPassword = findViewById<EditText>(R.id.password)
