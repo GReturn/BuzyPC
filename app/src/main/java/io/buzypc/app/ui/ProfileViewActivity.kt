@@ -78,6 +78,8 @@ class ProfileViewActivity : AppCompatActivity() {
                 editTextEmail.setBackgroundResource(R.drawable.edit_text_border)
                 btnEditProfile.text = "Save Profile"
 
+                btnBackNavigation.visibility = View.GONE
+
                 btnEditProfile.setCompoundDrawablesWithIntrinsicBounds( R.drawable.save_24px, 0, 0, 0)
                 Toast.makeText(this, "Now editing user profile", Toast.LENGTH_LONG).show()
             } else {
@@ -96,6 +98,8 @@ class ProfileViewActivity : AppCompatActivity() {
                     editTextUsername.setPadding(0,0,0,0)
                     editTextEmail.setPadding(0,0,0,0)
                     btnEditProfile.text = "Edit Profile"
+
+                    btnBackNavigation.visibility = View.VISIBLE
 
                     btnEditProfile.setCompoundDrawablesWithIntrinsicBounds( R.drawable.baseline_edit_24, 0, 0, 0)
 
