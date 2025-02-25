@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import io.buzypc.app.R
-import io.buzypc.app.data.BuzyUser
+import io.buzypc.app.data.user.BuzyUser
 
 class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
