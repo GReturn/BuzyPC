@@ -31,5 +31,11 @@ class LandingPageActivity : AppCompatActivity() {
             val intent = Intent(this,NewBuildActivity::class.java)
             startActivity(intent)
         }
+
+        val btnCartButton = findViewById<ImageView>(R.id.view_cart)
+        btnCartButton.setOnClickListener(){
+            val intent = Intent(this, BuildsListActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
