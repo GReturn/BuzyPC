@@ -10,6 +10,8 @@ class BuzyUser(context: Context) {
 
     fun logout() = sharedPreferences.edit().putBoolean("isLoggedIn", false).apply()
 
+    fun isLoggedIn() : Boolean = sharedPreferences.getBoolean("isLoggedIn", false)
+
     fun isUserRegistered() : Boolean =
         sharedPreferences.contains("username") &&
         sharedPreferences.contains("password")
