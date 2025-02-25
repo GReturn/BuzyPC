@@ -5,42 +5,68 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
-    android:gravity="center_horizontal">
-
+    android:layout_margin="32dp"
+    android:gravity="center_horizontal"
+    >
     <!-- Title -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Meet the\nDevelopers"
+            android:textSize="48sp"
+            android:textStyle="bold"
+            android:paddingBottom="16dp"/>
+        <!-- logo -->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/buzybee"
+            android:layout_marginTop="-30dp"
+            android:layout_marginBottom="-35dp"
+            />
+
+    </LinearLayout>
+
+
+    <!-- Developer 1 -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Meet the Developers"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:paddingBottom="16dp"/>
+        android:paddingBottom="16dp"
+        android:text="@string/about_dev_header"
+        android:gravity="center"
+        />
 
-    <!-- Developer 1 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="@drawable/rounded_card"
-        android:padding="16dp"
-        android:layout_marginHorizontal="10dp"
         android:layout_marginBottom="12dp"
         android:elevation="6dp">
 
         <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="493px"
+            android:layout_height="550px"
             android:scaleType="centerCrop"
-            android:layout_marginEnd="16dp"
             android:contentDescription="Profile Image"
-            android:background="@drawable/devaus"/>
+            android:background="@drawable/devaus"
+            android:layout_marginBottom="-32dp"
+            />
+
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginLeft="-50dp"
+            >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -56,6 +82,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/dev1_occupation"
                 android:textSize="14sp"
+                android:layout_marginTop="10dp"
                 android:textColor="@color/bz_almostBlack"
                 />
 
@@ -64,6 +91,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/dev1_desc"
                 android:textSize="12sp"
+                android:layout_marginTop="10dp"
+
                 android:textColor="@color/bz_almostBlack"
                 />
         </LinearLayout>
@@ -74,26 +103,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginHorizontal="10dp"
-
         android:background="@drawable/rounded_card"
-        android:padding="16dp"
-        android:elevation="6dp">
-
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:scaleType="centerCrop"
-            android:layout_marginEnd="16dp"
-            android:contentDescription="Profile Image"
-            android:background="@drawable/devraf"/>
-
+        android:layout_marginBottom="12dp"
+        android:elevation="6dp"
+        android:paddingLeft="25dp"
+        >
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical">
-
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            >
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -102,57 +123,32 @@
                 android:textStyle="bold"
                 android:textColor="@color/bz_almostBlack"
                 />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/dev2_occupation"
                 android:textSize="14sp"
+                android:layout_marginTop="10dp"
                 android:textColor="@color/bz_almostBlack"
                 />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/dev2_desc"
                 android:textSize="12sp"
+                android:layout_marginTop="10dp"
                 android:textColor="@color/bz_almostBlack"
                 />
         </LinearLayout>
+
+        <ImageView
+            android:layout_width="424px"
+            android:layout_height="500px"
+            android:background="@drawable/devraf"
+            android:contentDescription="Profile Image"
+            android:scaleType="centerCrop"
+            />
     </LinearLayout>
-
-    <!-- Cool Section -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="🌟 Our Team Vision 🌟"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:paddingTop="24dp"
-        android:paddingBottom="8dp"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/dev_vision"
-        android:textSize="14sp"
-        android:textAlignment="center"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="🛠️ Our Skills 🛠️"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:paddingTop="24dp"
-        android:paddingBottom="8dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/dev_skills"
-        android:textSize="14sp"/>
-
     <!-- BACK BUTTON -->
     <Button
         android:id="@+id/btn_backNavigation"
@@ -160,7 +156,5 @@
         android:layout_height="wrap_content"
         android:text="Back"
         android:textSize="16sp"
-        android:layout_marginTop="24dp"
-        android:layout_marginHorizontal="10dp"
-        android:padding="12dp"/>
+        />
 </LinearLayout>
