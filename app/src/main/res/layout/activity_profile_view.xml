@@ -1,92 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
 
     <ImageView
         android:id="@+id/image_backNavigation"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/arrow_back_24px"/>
+        android:layout_marginTop="40dp"
+        android:src="@drawable/arrow_back_24px"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="My Account"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/image_profilePicture"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="100dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="84dp"
+        android:background="@drawable/profile_picture_border"
+        android:scaleType="centerCrop"
         android:src="@drawable/profilepic"
-        android:layout_centerHorizontal="true" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView_usernameDisplay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
+        android:layout_marginTop="16dp"
         android:text="Username"
-        android:layout_below="@id/image_profilePicture"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp" />
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_profilePicture" />
 
-    <Button
-        android:id="@+id/btn_edit_account"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-black"
-        android:layout_marginHorizontal="50dp"
-        android:text="Edit Account Details"
-        android:layout_below="@id/textView_usernameDisplay"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp" />
 
-    <Button
-        android:id="@+id/btn_faqs"
-        android:layout_width="match_parent"
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-black"
-        android:layout_marginHorizontal="50dp"
-        android:text="FAQs"
-        android:layout_below="@id/btn_edit_account"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"/>
 
-    <Button
-        android:id="@+id/btn_settings"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_faqs"
-        android:layout_marginHorizontal="50dp"
-        android:layout_centerHorizontal="true"
+
         android:layout_marginTop="10dp"
-        android:fontFamily="sans-serif-black"
-        android:text="Settings" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_usernameDisplay">
 
-    <Button
-        android:id="@+id/btn_about_developers"
+        <View
+            android:id="@+id/view"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_gravity="center_vertical"
+
+            android:background="?attr/colorOnSecondary"
+
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button" />
+
+
+    </FrameLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_settings"
-        android:layout_centerHorizontal="true"
-        android:layout_marginHorizontal="50dp"
-        android:layout_marginTop="10dp"
-        android:fontFamily="sans-serif-black"
-        android:text="About Developers" />
+        android:orientation="vertical"
+
+        app:layout_constraintTop_toBottomOf="@id/frameLayout" >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textview_email_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:textStyle="bold"
+
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="{Email}@gmail.com"
+
+                app:layout_constraintTop_toBottomOf="@id/textview_email_title"
+                app:layout_constraintLeft_toLeftOf="parent"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textview_mobile_number_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mobile Number"
+                android:textStyle="bold"
+
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="{###}"
+
+                app:layout_constraintTop_toBottomOf="@id/textview_mobile_number_title"
+                app:layout_constraintLeft_toLeftOf="parent"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </LinearLayout>
 
     <Button
-        android:id="@+id/btn_logout"
-        android:layout_width="match_parent"
+        android:id="@+id/button"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_settings"
-        android:layout_centerHorizontal="true"
-        android:layout_marginHorizontal="50dp"
-        android:layout_marginTop="144dp"
-        android:backgroundTint="#313638"
-        android:fontFamily="sans-serif-black"
-        android:text="Logout"
-        android:textColor="@color/white" />
+        android:layout_gravity="center"
+        android:layout_marginTop="396dp"
 
-</RelativeLayout>
+        android:drawableLeft="@drawable/baseline_edit_24"
+        android:minHeight="48dp"
+        android:paddingLeft="80dp"
+
+        android:paddingRight="80dp"
+
+        android:text="Edit Profile"
+        android:textSize="16sp"
+
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_usernameDisplay"
+        app:strokeColor="?attr/colorOnSecondary"
+        app:strokeWidth="1dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
