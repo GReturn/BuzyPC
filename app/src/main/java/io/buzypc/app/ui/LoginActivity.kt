@@ -66,18 +66,18 @@ class LoginActivity : AppCompatActivity() {
 
             if(userDetails.validateLogin(edittextUsername.text.toString(), edittextPassword.text.toString())) {
                 val intent = Intent(this, LandingPageActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
+                finish()
             }
             else {
                 Toast.makeText(this, "Invalid credentials", Toast.LENGTH_LONG).show()
             }
         }
 
-        btnRegister.setOnClickListener(){
+        btnRegister.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
-
-
     }
 }
