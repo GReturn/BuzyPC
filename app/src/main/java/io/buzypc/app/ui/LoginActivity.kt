@@ -28,21 +28,9 @@ class LoginActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
         val userSettings = BuzyUserSettings(this)
-        if(userSettings.getTheme() == null || userSettings.getTheme() == "light") {
-            userSettings.setTheme("light")
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        }
-        else AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-
         val userDetails = BuzyUser(this)
-        if(userDetails.isLoggedIn()) {
-            val intent = Intent(this, LandingPageActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
-            finish()
-        }
+        handleStartup(userDetails, userSettings)
 
         val edittextUsername = findViewById<EditText>(R.id.username)
         val edittextPassword = findViewById<EditText>(R.id.password)
@@ -84,6 +72,21 @@ class LoginActivity : AppCompatActivity() {
         btnRegister.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
+        }
+    }
+
+    private fun handleStartup(userDetails: BuzyUser, userSettings: BuzyUserSettings) {
+        if(userSettings.getTheme() == null || userSettings.getTheme() == "light") {
+            userSettings.setTheme("light")
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
+        else AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+
+        if(userDetails.isLoggedIn()) {
+            val intent = Intent(this, LandingPageActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
         }
     }
 }
