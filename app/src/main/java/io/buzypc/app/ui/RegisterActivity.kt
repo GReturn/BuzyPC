@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import io.buzypc.app.R
+import io.buzypc.app.data.BuzyUser
 
 class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,10 +26,10 @@ class RegisterActivity : AppCompatActivity() {
         val button_login = findViewById<Button>(R.id.loginButton)
         val button_register = findViewById<Button>(R.id.registerButton)
 
-        val edittext_username = findViewById<EditText>(R.id.registerUsername)
-        val edittext_email = findViewById<EditText>(R.id.emailRegister)
-        val edittext_password = findViewById<EditText>(R.id.passwordRegister)
-        val edittext_confirmPassword = findViewById<EditText>(R.id.confirmPasswordRegister)
+        val edittext_username = findViewById<EditText>(R.id.edittext_username)
+        val edittext_email = findViewById<EditText>(R.id.edittext_email)
+        val edittext_password = findViewById<EditText>(R.id.edittext_password)
+        val edittext_confirmPassword = findViewById<EditText>(R.id.edittext_confirm_password)
 
         button_login.setOnClickListener(){
             val intent = Intent(this, LoginActivity::class.java)
@@ -51,7 +52,14 @@ class RegisterActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
             else{
-                intent = Intent(this, LandingPageActivity::class.java)
+                val userDetails = BuzyUser(this)
+
+                userDetails.saveProfile(
+                        edittext_username.text.toString(),
+                        edittext_email.text.toString(),
+                        edittext_password.text.toString()
+                )
+                intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
             }
         }
