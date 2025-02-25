@@ -65,7 +65,7 @@
         android:enabled="false"
         android:text="Username"
         android:inputType="text"
-        android:textSize="18sp"
+        android:textSize="24sp"
         android:maxLength="20"
         android:textStyle="bold"
 
