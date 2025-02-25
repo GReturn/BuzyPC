@@ -77,7 +77,6 @@ class SettingsActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
         radioBtnLightMode.setOnClickListener {
             if(radioBtnLightMode.isChecked) {
                 radioBtnDarkMode.isChecked = false
@@ -100,8 +99,6 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         buttonLogout.setOnClickListener {
-            Toast.makeText(this, "Logout button is clicked", Toast.LENGTH_LONG).show()
-
             val intent = Intent(this, LogoutPromptActivity::class.java)
             startActivity(intent)
         }
