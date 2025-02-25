@@ -13,8 +13,8 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import io.buzypc.app.R
-import io.buzypc.app.data.BuzyUser
-import io.buzypc.app.data.BuzyUserSettings
+import io.buzypc.app.data.user.BuzyUser
+import io.buzypc.app.data.user.BuzyUserSettings
 
 
 class LoginActivity : AppCompatActivity() {

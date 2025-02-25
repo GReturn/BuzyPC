@@ -1,4 +1,4 @@
-package io.buzypc.app.data
+package io.buzypc.app.data.user
 
 import android.content.Context
 import android.content.SharedPreferences
