@@ -2,26 +2,31 @@ package io.buzypc.app.data.user
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import java.io.File
+import java.io.FileOutputStream
 import java.security.MessageDigest
 
 class BuzyUser(context: Context) {
     private val sharedPreferences: SharedPreferences =
         context.getSharedPreferences("buzy-user-secrets", Context.MODE_PRIVATE)
 
-    fun logout() = sharedPreferences.edit().putBoolean("isLoggedIn", false).apply()
-
-    fun isLoggedIn() : Boolean = sharedPreferences.getBoolean("isLoggedIn", false)
+    // region Getters and Setters
 
     fun isUserRegistered() : Boolean =
         sharedPreferences.contains("username") &&
-        sharedPreferences.contains("password")
+                sharedPreferences.contains("password")
 
+    fun isLoggedIn() : Boolean = sharedPreferences.getBoolean("isLoggedIn", false)
 
     fun getUsername() : String? = sharedPreferences.getString("username", null)
 
     fun getEmail() : String? = sharedPreferences.getString("email", null)
 
     fun getContactNumber() : String? = sharedPreferences.getString("contactNumber", null)
+
+    fun getProfilePicture(filename: String) : Bitmap? = BitmapFactory.decodeFile(filename)
 
     fun setUsername(newName: String) = sharedPreferences.edit()
         .putString("username", newName).apply()
@@ -34,6 +39,10 @@ class BuzyUser(context: Context) {
 
     fun setPassword(newPassword: String) = sharedPreferences.edit()
         .putString("password", hashPassword(newPassword)).apply()
+
+    // endregion
+
+    fun logout() = sharedPreferences.edit().putBoolean("isLoggedIn", false).apply()
 
     fun validateLogin(inputUsername: String, inputPassword: String) : Boolean {
         val realUsername = getUsername()
@@ -54,6 +63,19 @@ class BuzyUser(context: Context) {
         }
     }
 
+    fun saveUserImageToInternalStorage(context: Context, bitmapImage: Bitmap, filename: String): String {
+        val file = File(context.filesDir, filename)
+        try {
+            FileOutputStream(file).use {
+                outputStream -> bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+            }
+            return file.absolutePath
+        } catch (e: Exception) {
+            e.printStackTrace()
+            return ""
+        }
+    }
+
     fun saveProfile(username: String, email: String, password: String) {
         val hashedPassword = hashPassword(password)
 
@@ -61,6 +83,12 @@ class BuzyUser(context: Context) {
             .putString("username", username)
             .putString("email", email)
             .putString("password", hashedPassword)
+            .apply()
+    }
+    fun saveProfile(username: String, email: String) {
+        sharedPreferences.edit()
+            .putString("username", username)
+            .putString("email", email)
             .apply()
     }
 
