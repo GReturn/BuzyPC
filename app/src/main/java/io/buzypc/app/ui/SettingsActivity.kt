@@ -30,6 +30,12 @@ class SettingsActivity : AppCompatActivity() {
         val btnBackNavigation = findViewById<ImageView>(R.id.image_backNavigation)
         val txtUsername = findViewById<TextView>(R.id.textView_usernameDisplay)
 
+        val imageProfilePicture = findViewById<ImageView>(R.id.image_profile_picture)
+        val imageBitmap = userDetails.getImageFromInternalStorage()
+        if(imageBitmap != null) imageProfilePicture.setImageBitmap(imageBitmap)
+        else imageProfilePicture.setImageResource(R.drawable.profilepic)
+
+
         val btnEditAccount = findViewById<Button>(R.id.btn_edit_account)
         val btnAboutDevelopers = findViewById<Button>(R.id.btn_about_developers)
 
