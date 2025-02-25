@@ -8,9 +8,12 @@ class BuzyUser(context: Context) {
     private val sharedPreferences: SharedPreferences =
         context.getSharedPreferences("buzy-user-secrets", Context.MODE_PRIVATE)
 
-    fun isUserRegistered() : Boolean {
-        return sharedPreferences.contains("username") && sharedPreferences.contains("password")
-    }
+    fun logout() = sharedPreferences.edit().putBoolean("isLoggedIn", false).apply()
+
+    fun isUserRegistered() : Boolean =
+        sharedPreferences.contains("username") &&
+        sharedPreferences.contains("password")
+
 
     fun getUsername() : String? = sharedPreferences.getString("username", null)
 
@@ -29,8 +32,19 @@ class BuzyUser(context: Context) {
         val realUsername = getUsername()
         val realPassword = sharedPreferences.getString("password", null)
 
-        return realUsername == inputUsername
-                && realPassword == hashPassword(inputPassword)
+        return if (realUsername == inputUsername && realPassword == hashPassword(inputPassword)) {
+            /*
+                commit() is synchronous, so it blocks the process (apply is async).
+                This is ideal for our use-case since we don't want the user to log in
+                before the login state of user is written to file. If commit() was
+                unsuccessful, it will return false.
+            */
+            sharedPreferences.edit().putBoolean("isLoggedIn", true).commit()
+            true
+        }
+        else {
+            false
+        }
     }
 
     fun saveProfile(username: String, email: String, password: String) {
