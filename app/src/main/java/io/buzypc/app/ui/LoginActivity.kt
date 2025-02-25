@@ -8,11 +8,13 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import io.buzypc.app.R
-import io.buzypc.app.data.BuzyUser
+import io.buzypc.app.data.user.BuzyUser
+import io.buzypc.app.data.user.BuzyUserSettings
 
 
 class LoginActivity : AppCompatActivity() {
@@ -26,16 +28,17 @@ class LoginActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
+        val userSettings = BuzyUserSettings(this)
         val userDetails = BuzyUser(this)
+        handleStartup(userDetails, userSettings)
 
-        val edittext_username = findViewById<EditText>(R.id.username)
-        val edittext_password = findViewById<EditText>(R.id.password)
+        val edittextUsername = findViewById<EditText>(R.id.username)
+        val edittextPassword = findViewById<EditText>(R.id.password)
 
-        val button_login = findViewById<Button>(R.id.loginButton)
-        val button_register = findViewById<Button>(R.id.registerButton)
+        val btnLogin = findViewById<Button>(R.id.loginButton)
+        val btnRegister = findViewById<Button>(R.id.registerButton)
 
-        button_login.setOnClickListener {
+        btnLogin.setOnClickListener {
             if(!userDetails.isUserRegistered()) {
                 AlertDialog.Builder(this)
                     .setIcon(R.drawable.buzybee)
@@ -50,25 +53,40 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            if(edittext_username.text.isNullOrEmpty() || edittext_password.text.isNullOrEmpty()){
+            if(edittextUsername.text.isNullOrEmpty() || edittextPassword.text.isNullOrEmpty()){
                 Toast.makeText(this,"Username and Password must not be empty",Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
 
-            if(userDetails.validateLogin(edittext_username.text.toString(), edittext_password.text.toString())) {
+            if(userDetails.validateLogin(edittextUsername.text.toString(), edittextPassword.text.toString())) {
                 val intent = Intent(this, LandingPageActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
+                finish()
             }
             else {
                 Toast.makeText(this, "Invalid credentials", Toast.LENGTH_LONG).show()
             }
         }
 
-        button_register.setOnClickListener(){
+        btnRegister.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
+    }
 
+    private fun handleStartup(userDetails: BuzyUser, userSettings: BuzyUserSettings) {
+        if(userSettings.getTheme() == null || userSettings.getTheme() == "light") {
+            userSettings.setTheme("light")
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
+        else AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
 
+        if(userDetails.isLoggedIn()) {
+            val intent = Intent(this, LandingPageActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
+        }
     }
 }

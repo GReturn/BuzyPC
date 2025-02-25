@@ -21,8 +21,9 @@ class AboutDevelopersActivity : AppCompatActivity() {
         }
 
         val buttonBack = findViewById<Button>(R.id.btn_backNavigation)
+
         buttonBack.setOnClickListener {
-            val intent = Intent(this, ProfileViewActivity::class.java)
+            val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
         }
     }

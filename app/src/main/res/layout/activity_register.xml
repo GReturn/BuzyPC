@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -42,7 +41,6 @@
         android:layout_below="@+id/logo"
         android:text="Register"
         android:textAlignment="center"
-        android:textColor="@color/bz_slateGray"
         android:textSize="25sp"
         android:textStyle="bold"
 
@@ -54,16 +52,18 @@
         android:id="@+id/edittext_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:minHeight="48dp"
         android:layout_below="@id/logo"
         android:layout_marginHorizontal="50dp"
         android:layout_marginTop="30dp"
         android:hint="Username"
+        android:inputType="text"
         android:textAlignment="center"
         android:textColor="#808080"
         android:textSize="15sp"
+        android:maxLength="20"
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtview_login" />
 
@@ -71,6 +71,7 @@
         android:id="@+id/edittext_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:minHeight="48dp"
         android:layout_below="@id/logo"
         android:layout_marginHorizontal="50dp"
         android:hint="Email"
@@ -80,7 +81,6 @@
         android:textSize="15sp"
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edittext_username" />
 
@@ -88,6 +88,7 @@
         android:id="@+id/edittext_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:minHeight="48dp"
         android:layout_marginHorizontal="50dp"
         android:hint="Password"
         android:inputType="textPassword"
@@ -103,6 +104,7 @@
         android:id="@+id/edittext_confirm_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:minHeight="48dp"
         android:layout_marginHorizontal="50dp"
         android:hint="Confirm Password"
         android:inputType="textPassword"
