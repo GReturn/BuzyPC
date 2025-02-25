@@ -1,14 +1,22 @@
 package io.buzypc.app.ui
 
+import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.ImageDecoder
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import io.buzypc.app.R
@@ -23,16 +31,37 @@ class ProfileViewActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
         val userDetails = BuzyUser(this)
+
         val editTextUsername = findViewById<EditText>(R.id.edittext_username)
         editTextUsername.setText(userDetails.getUsername())
+
         val editTextEmail = findViewById<EditText>(R.id.edittext_email)
         editTextEmail.setText(userDetails.getEmail())
+
+        val imageProfilePicture = findViewById<ImageView>(R.id.image_profile_picture)
+        val imageBitmap = userDetails.getImageFromInternalStorage()
+        if(imageBitmap != null) imageProfilePicture.setImageBitmap(imageBitmap)
+        else imageProfilePicture.setImageResource(R.drawable.profilepic)
 
         val editProfilePicButton = findViewById<ImageButton>(R.id.btn_edit_profile_picture)
         val btnBackNavigation = findViewById<ImageView>(R.id.image_backNavigation)
         val btnEditProfile = findViewById<Button>(R.id.btn_edit_profile)
 
+        val imagePickerLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) {
+            uri: Uri? ->
+            if(uri != null) {
+                val bitmap = uriToBitmap(this, uri)
+                userDetails.saveImageToInternalStorage(this, bitmap, "profile_pic.png")
+                imageProfilePicture.setImageBitmap(bitmap)
+
+            }
+        }
+
+        editProfilePicButton.setOnClickListener {
+            imagePickerLauncher.launch("image/*")
+        }
 
         btnBackNavigation.setOnClickListener {
             val intent = Intent(this, SettingsActivity::class.java)
@@ -74,6 +103,16 @@ class ProfileViewActivity : AppCompatActivity() {
                     Toast.makeText(this, "User profile has been saved", Toast.LENGTH_LONG).show()
                 }
             }
+        }
+    }
+
+    private fun uriToBitmap(context: Context, uri: Uri): Bitmap {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            val source = ImageDecoder.createSource(context.contentResolver, uri)
+            ImageDecoder.decodeBitmap(source)
+        } else {
+            @Suppress("DEPRECATION")
+            MediaStore.Images.Media.getBitmap(context.contentResolver, uri)
         }
     }
 
