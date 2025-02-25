@@ -26,8 +26,6 @@ class BuzyUser(context: Context) {
 
     fun getContactNumber() : String? = sharedPreferences.getString("contactNumber", null)
 
-    fun getProfilePicture(filename: String) : Bitmap? = BitmapFactory.decodeFile(filename)
-
     fun setUsername(newName: String) = sharedPreferences.edit()
         .putString("username", newName).apply()
 
@@ -63,17 +61,18 @@ class BuzyUser(context: Context) {
         }
     }
 
-    fun saveUserImageToInternalStorage(context: Context, bitmapImage: Bitmap, filename: String): String {
+    fun saveImageToInternalStorage(context: Context, bitmap: Bitmap, filename: String) {
         val file = File(context.filesDir, filename)
-        try {
-            FileOutputStream(file).use {
-                outputStream -> bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
-            }
-            return file.absolutePath
-        } catch (e: Exception) {
-            e.printStackTrace()
-            return ""
+        FileOutputStream(file).use { outputStream ->
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
         }
+        sharedPreferences.edit().putString("profile_pic", file.absolutePath).apply()
+    }
+
+    fun getImageFromInternalStorage(): Bitmap? {
+        val filename = sharedPreferences.getString("profile_pic", null)
+        if(filename != null) return BitmapFactory.decodeFile(filename)
+        return null
     }
 
     fun saveProfile(username: String, email: String, password: String) {
