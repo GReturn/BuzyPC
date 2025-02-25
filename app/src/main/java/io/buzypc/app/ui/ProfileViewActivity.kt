@@ -10,10 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import io.buzypc.app.R
-import io.buzypc.app.data.BuzyUser
+import io.buzypc.app.data.user.BuzyUser
 
 class ProfileViewActivity : AppCompatActivity() {
-    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_view)
@@ -32,11 +31,5 @@ class ProfileViewActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val buttonAboutDevelopers = findViewById<Button>(R.id.btn_about_developers)
-        buttonAboutDevelopers.setOnClickListener {
-            val intent = Intent(this, AboutDevelopersActivity::class.java)
-            startActivity(intent)
-        }
     }
-
 }
