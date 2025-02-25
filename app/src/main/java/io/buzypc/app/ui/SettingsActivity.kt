@@ -95,7 +95,6 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         buttonLogout.setOnClickListener {
-            Log.e("USER_LOGOUT","Logout button is clicked")
             Toast.makeText(this, "Logout button is clicked", Toast.LENGTH_LONG).show()
 
             val intent = Intent(this, LogoutPromptActivity::class.java)
