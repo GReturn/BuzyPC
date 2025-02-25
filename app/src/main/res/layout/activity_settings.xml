@@ -21,7 +21,7 @@
 
     <TextView
         android:id="@+id/textView"
-        android:text="SETTINGS"
+        android:text="Settings"
         android:textSize="25sp"
         android:textStyle="bold"
         android:layout_width="wrap_content"
@@ -33,7 +33,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/image_profilePicture"
+        android:id="@+id/image_profile_picture"
         android:src="@drawable/profilepic"
         android:layout_width="100dp"
 
@@ -48,13 +48,14 @@
         android:id="@+id/textView_usernameDisplay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/image_profilePicture"
+        android:layout_below="@id/image_profile_picture"
         android:text="Username"
         android:textStyle="bold"
+        android:layout_margin="16dp"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_profilePicture" />
+        app:layout_constraintTop_toBottomOf="@+id/image_profile_picture" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
