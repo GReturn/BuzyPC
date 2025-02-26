@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -16,9 +17,11 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.net.toUri
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.textfield.TextInputEditText
 import io.buzypc.app.R
 import io.buzypc.app.data.user.BuzyUser
 
@@ -40,6 +43,8 @@ class ProfileViewActivity : AppCompatActivity() {
         val editTextEmail = findViewById<EditText>(R.id.edittext_email)
         editTextEmail.setText(userDetails.getEmail())
 
+        val btnChangePassword = findViewById<MaterialButton>(R.id.btn_change_password)
+
         val imageProfilePicture = findViewById<ImageView>(R.id.image_profile_picture)
         val imageBitmap = userDetails.getImageFromInternalStorage()
         if(imageBitmap != null) imageProfilePicture.setImageBitmap(imageBitmap)
@@ -55,17 +60,22 @@ class ProfileViewActivity : AppCompatActivity() {
                 val bitmap = uriToBitmap(this, uri)
                 userDetails.saveImageToInternalStorage(this, bitmap, "profile_pic.png")
                 imageProfilePicture.setImageBitmap(bitmap)
-
             }
         }
 
         editProfilePicButton.setOnClickListener {
             imagePickerLauncher.launch("image/*")
+            return@setOnClickListener
         }
 
         btnBackNavigation.setOnClickListener {
             val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
+        }
+
+        btnChangePassword.setOnClickListener {
+            showChangePasswordDialog()
+            return@setOnClickListener
         }
 
         btnEditProfile.setOnClickListener {
@@ -107,7 +117,55 @@ class ProfileViewActivity : AppCompatActivity() {
                     Toast.makeText(this, "User profile has been saved", Toast.LENGTH_LONG).show()
                 }
             }
+            return@setOnClickListener
         }
+    }
+
+    private fun showChangePasswordDialog() {
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_change_password, null)
+        val currentPasswordInput = dialogView.findViewById<TextInputEditText>(R.id.edittext_old_password)
+        val newPasswordInput = dialogView.findViewById<TextInputEditText>(R.id.edittext_new_password)
+        val confirmNewPasswordInput = dialogView.findViewById<TextInputEditText>(R.id.edittext_confirm_password)
+
+        val btnConfirm = dialogView.findViewById<Button>(R.id.btnConfirm)
+        val btnCancel = dialogView.findViewById<Button>(R.id.btnCancel)
+
+        val dialog = MaterialAlertDialogBuilder(this)
+            .setView(dialogView)
+            .setCancelable(false)
+            .create()
+
+        btnConfirm.setOnClickListener {
+            val currentPassword = currentPasswordInput.text.toString()
+            val newPassword = newPasswordInput.text.toString()
+            val confirmPassword = confirmNewPasswordInput.text.toString()
+
+            if (validatePasswordChange(currentPassword, newPassword, confirmPassword)) {
+                val userDetails = BuzyUser(this)
+                userDetails.setPassword(newPassword)
+                Toast.makeText(this, "Password updated successfully!", Toast.LENGTH_SHORT).show()
+                dialog.dismiss()
+            }
+        }
+
+        btnCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
+    private fun validatePasswordChange(currentPassword: String, newPassword: String, confirmPassword: String): Boolean {
+        val userDetails = BuzyUser(this)
+        if(!userDetails.validatePassword(currentPassword)) {
+            Toast.makeText(this, "Incorrect current password!", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if(newPassword != confirmPassword) {
+            Toast.makeText(this, "New passwords do not match!", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        return true
     }
 
     private fun uriToBitmap(context: Context, uri: Uri): Bitmap {
