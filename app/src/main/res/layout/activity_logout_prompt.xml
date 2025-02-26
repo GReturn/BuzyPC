@@ -49,6 +49,11 @@
         android:textStyle="bold"
         android:layout_below="@id/confirmLogoutButton"
         android:layout_marginHorizontal="50dp"
+
+        android:backgroundTint="?attr/colorOnPrimary"
+        android:textColor="?attr/colorPrimary"
+        app:strokeWidth="1dp"
+        app:strokeColor="?attr/colorPrimary"
         />
 
 
