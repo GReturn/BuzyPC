@@ -80,7 +80,7 @@
             android:layout_marginTop="20dp"
             android:fontFamily="sans-serif-black"
 
-            android:text="Edit Account Details" />
+            android:text="Account Details" />
 
 
         <Button
@@ -92,7 +92,7 @@
             android:fontFamily="sans-serif-black"
             android:text="About the Developers" />
 
-        <!-- Change theme-->
+        <!-- Change theme here-->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
