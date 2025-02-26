@@ -16,10 +16,14 @@
 
         <TextView
             android:id="@+id/hello_user"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="20dp"
             android:layout_height="wrap_content"
+            android:padding="10dp"
             android:text="Hello, {username}"
+            android:background="@drawable/underline"
             android:layout_marginTop="100dp"
+            android:fontFamily="@font/ubuntu_mono"
             android:textSize="25dp"
             />
         <LinearLayout
@@ -27,6 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:layout_marginHorizontal="20dp"
             >
             <TextView
                 android:id="@+id/welcome_text"
@@ -34,7 +39,8 @@
                 android:layout_height="wrap_content"
                 android:text="Welcome to"
                 android:layout_below="@id/hello_user"
-                android:textSize="50dp"
+                android:textSize="50sp"
+                android:fontFamily="@font/ubuntu_medium"
                 />
             <TextView
                 android:id="@+id/buzyPC_title"
@@ -43,11 +49,10 @@
                 android:text="BuzyPC"
                 android:layout_below="@id/welcome_text"
                 android:textColor="@color/bz_honeyYellow"
-                android:textStyle="bold"
-                android:textSize="75dp"
+                android:textSize="75sp"
+                android:fontFamily="@font/ubuntu_bold"
                 />
 
         </LinearLayout>
-
     </RelativeLayout>
 </FrameLayout>

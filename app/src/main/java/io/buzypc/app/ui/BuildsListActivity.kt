@@ -10,7 +10,7 @@ import io.buzypc.app.R
 import io.buzypc.app.model.PCBuildAdapter
 import io.buzypc.app.data.PCModel
 
-class BuildsListActivity : BaseActivity() {
+class BuildsListActivity : AppCompatActivity() {
     val pcModelList = ArrayList<PCModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -60,11 +60,6 @@ class SettingsFragment : Fragment() {
         txtUsername.text = userDetails.getUsername()
 
         // Navigation Click Listeners
-        btnBackNavigation.setOnClickListener {
-            val intent = Intent(requireActivity(), LandingPageActivity::class.java)
-            startActivity(intent)
-        }
-
         btnEditAccount.setOnClickListener {
             val intent = Intent(requireActivity(), ProfileViewActivity::class.java)
             startActivity(intent)

@@ -13,18 +13,6 @@
         android:layout_height="match_parent"
         tools:context=".ui.SettingsActivity">
 
-        <ImageView
-            android:id="@+id/image_backNavigation"
-            android:src="@drawable/arrow_back_24px"
-
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
             android:id="@+id/textView"
             android:text="Settings"

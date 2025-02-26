@@ -153,14 +153,6 @@
                 android:layout_marginRight="-10dp"
                 />
         </LinearLayout>
-        <!-- BACK BUTTON -->
-        <Button
-            android:id="@+id/btn_backNavigation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Back"
-            android:textSize="16sp"
-            />
     </LinearLayout>
 
 </FrameLayout>

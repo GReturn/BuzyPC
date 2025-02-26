@@ -63,11 +63,6 @@ class ProfileViewActivity : AppCompatActivity() {
             imagePickerLauncher.launch("image/*")
         }
 
-        btnBackNavigation.setOnClickListener {
-            val intent = Intent(this, SettingsActivity::class.java)
-            startActivity(intent)
-        }
-
         btnEditProfile.setOnClickListener {
             val isEditing = editTextUsername.isEnabled
             if (!isEditing) {

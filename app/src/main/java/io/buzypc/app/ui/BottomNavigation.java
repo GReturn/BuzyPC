@@ -66,5 +66,6 @@ public class BottomNavigation extends AppCompatActivity {
         }
 
         transaction.commit();
+        recreate();
     }
 }
