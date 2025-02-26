@@ -21,10 +21,9 @@ class NewBuildActivity : AppCompatActivity() {
         }
         val profileViewButton = findViewById<ImageView>(R.id.image_profileButton)
 
-        profileViewButton.setOnClickListener(){
-            val intent = Intent(this, ProfileViewActivity::class.java)
+        profileViewButton.setOnClickListener {
+            val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
         }
-
     }
 }
