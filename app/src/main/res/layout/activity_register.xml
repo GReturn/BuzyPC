@@ -63,7 +63,10 @@
         android:textSize="15sp"
         android:maxLength="20"
 
+        android:singleLine="true"
         android:maxLines="1"
+        android:focusable="true"
+        android:imeOptions="actionNext"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -82,7 +85,10 @@
         android:textColor="#808080"
         android:textSize="15sp"
 
+        android:singleLine="true"
         android:maxLines="1"
+        android:focusable="true"
+        android:imeOptions="actionNext"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -100,7 +106,10 @@
         android:textColor="#808080"
         android:textSize="15sp"
 
+        android:singleLine="true"
         android:maxLines="1"
+        android:focusable="true"
+        android:imeOptions="actionNext"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -118,7 +127,10 @@
         android:textColor="#808080"
         android:textSize="15sp"
 
+        android:singleLine="true"
         android:maxLines="1"
+        android:focusable="true"
+        android:imeOptions="actionDone"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
