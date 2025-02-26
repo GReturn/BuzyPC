@@ -3,7 +3,7 @@
     <string name="forgot_password">Forgot Password?</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
-    <string name="about_dev_header">We, at BuzyPC, aim to make your PC Building Dreams more streamlined and efficient. Thank you for your support and we hope you enjoy our services!</string>
+    <string name="about_dev_header">We, at BuzyPC, aim to make your PC Building Dreams more streamlined and efficient. Thank you for your support and enjoy BuzyPC!</string>
     <string name="dev1">Austine John P. Lomocso</string>
     <string name="dev1_occupation">F1 Student | Tall Woman Lover</string>
     <string name="dev1_desc">Bringing you seamless and user-friendly interface for your PC Building Experience.</string>
@@ -13,31 +13,10 @@
     <string name="dev_vision">We aim to create seamless and innovative mobile experiences that redefine how people budget their PC builds.</string>
     <string name="dev_skills">✔ Android Development\n ✔ UI/UX Design and Prototyping\n ✔ Backend and API Integration\n ✔ Fun Fact: Kotlin > Java! 🤯</string>
     <string name="hello_user">Hello, %1$s</string>
-  
+
     <string-array name="pc_builds">
-        <item>Gaming</item>
-        <item>Work</item>
-        <item>For Friend</item>
-        <item>For mi wif</item>
-        <item>Gaming</item>
-        <item>Work</item>
-        <item>For Friend</item>
-        <item>For mi wif</item>
-        <item>Gaming</item>
-        <item>Work</item>
-        <item>For Friend</item>
-        <item>For mi wif</item>
-        <item>Gaming</item>
-        <item>Work</item>
-        <item>For Friend</item>
-        <item>For mi wif</item>
-        <item>Gaming</item>
-        <item>Work</item>
-        <item>For Friend</item>
-        <item>For mi wif</item>
-        <item>Gaming</item>
-        <item>Work</item>
-        <item>For Friend</item>
-        <item>For mi wif</item>
+
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

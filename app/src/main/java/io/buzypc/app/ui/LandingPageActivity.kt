@@ -11,7 +11,7 @@ import androidx.core.view.WindowInsetsCompat
 import io.buzypc.app.R
 import io.buzypc.app.data.user.BuzyUser
 
-class LandingPageActivity : AppCompatActivity() {
+class LandingPageActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

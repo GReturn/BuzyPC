@@ -59,7 +59,7 @@ class LoginActivity : AppCompatActivity() {
             }
 
             if(userDetails.validateLogin(edittextUsername.text.toString(), edittextPassword.text.toString())) {
-                val intent = Intent(this, LandingPageActivity::class.java)
+                val intent = Intent(this, BottomNavigation::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
                 finish()
@@ -83,7 +83,7 @@ class LoginActivity : AppCompatActivity() {
         else AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
 
         if(userDetails.isLoggedIn()) {
-            val intent = Intent(this, LandingPageActivity::class.java)
+            val intent = Intent(this, BottomNavigation::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
             finish()

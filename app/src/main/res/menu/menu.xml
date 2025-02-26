@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/landing_page"
+        android:title="Home"
+        android:icon="@drawable/baseline_home_24"
+        />
+
+    <item
+        android:id="@+id/about_devs"
+        android:title="About Developers"
+        android:icon="@drawable/gpu"
+        />
+
+    <item
+        android:id="@+id/faButton"
+        android:title=""
+        />
+
+    <item
+        android:id="@+id/build_list"
+        android:title="My Builds"
+        android:icon="@drawable/shopping_cart_24px"
+        />
+
+    <item
+        android:id="@+id/profile_view"
+        android:title="Profile"
+        android:icon="@drawable/account_circle_24px"
+        />
+</menu>
