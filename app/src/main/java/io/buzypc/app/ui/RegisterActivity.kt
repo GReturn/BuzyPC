@@ -61,7 +61,7 @@ class RegisterActivity : AppCompatActivity() {
             else{
                 val userDetails = BuzyUser(this)
 
-                userDetails.saveProfile(
+                userDetails.registerUser(
                         edittextUsername.text.toString(),
                         edittextEmail.text.toString(),
                         edittextPassword.text.toString()
