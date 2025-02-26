@@ -42,6 +42,11 @@ class BuzyUser(context: Context) {
 
     fun logout() = sharedPreferences.edit().putBoolean("isLoggedIn", false).apply()
 
+    fun validatePassword(inputPassword: String) : Boolean {
+        val realPassword = sharedPreferences.getString("password", null)
+        return realPassword == hashPassword(inputPassword)
+    }
+
     fun validateLogin(inputUsername: String, inputPassword: String) : Boolean {
         val realUsername = getUsername()
         val realPassword = sharedPreferences.getString("password", null)
@@ -73,6 +78,12 @@ class BuzyUser(context: Context) {
         val filename = sharedPreferences.getString("profile_pic", null)
         if(filename != null) return BitmapFactory.decodeFile(filename)
         return null
+    }
+
+    fun registerUser(username: String, email: String, password: String) {
+        sharedPreferences.edit().clear().apply()
+        saveProfile(username, email, password)
+        sharedPreferences.edit().putBoolean("isLoggedIn", true).apply()
     }
 
     fun saveProfile(username: String, email: String, password: String) {
