@@ -1,6 +1,5 @@
 package io.buzypc.app.ui.fragments
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -31,11 +30,9 @@ class SettingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Initial load of user data
         loadUserData()
 
         // Theme and Navigation Setup
-        val btnBackNavigation = view.findViewById<ImageView>(R.id.image_backNavigation)
         val btnEditAccount = view.findViewById<Button>(R.id.btn_edit_account)
         val btnAboutDevelopers = view.findViewById<Button>(R.id.btn_about_developers)
         val radioBtnLightMode = view.findViewById<RadioButton>(R.id.rb_lightMode)
@@ -99,23 +96,16 @@ class SettingsFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        // Reload the user data in case it was edited
         loadUserData()
     }
 
-    /**
-     * Reloads the user data from BuzyUser and updates the UI elements.
-     */
     private fun loadUserData() {
-        // Get the current view to access its child views
         val currentView = view ?: return
         val userDetails = BuzyUser(requireContext())
 
-        // Update the username display
         val txtUsername = currentView.findViewById<TextView>(R.id.textView_usernameDisplay)
         txtUsername.text = userDetails.getUsername()
 
-        // Update the profile picture
         val imageProfilePicture = currentView.findViewById<ImageView>(R.id.image_profile_picture)
         val imageBitmap = userDetails.getImageFromInternalStorage()
         if (imageBitmap != null)

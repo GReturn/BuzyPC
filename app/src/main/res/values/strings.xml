@@ -5,7 +5,7 @@
     <string name="register">Register</string>
     <string name="about_dev_header">We, at BuzyPC, aim to make your PC Building Dreams more streamlined and efficient. Thank you for your support and enjoy BuzyPC!</string>
     <string name="dev1">Austine John P. Lomocso</string>
-    <string name="dev1_occupation">F1 Student | Tall Woman Lover</string>
+    <string name="dev1_occupation">F1 Student | Elden Ring Admirer</string>
     <string name="dev1_desc">Bringing you seamless and user-friendly interface for your PC Building Experience.</string>
     <string name="dev2">Rafael A. Mendoza</string>
     <string name="dev2_occupation">F1 Student | Final Fantasy Enjoyer</string>
@@ -19,4 +19,8 @@
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="buzyPCSubheading">Get your personalized PC part recommendations tailored to your budget</string>
+    <string name="buzyPCHeading">Claim your dream PC build</string>
+    <string name="keyFeatures">Key Features</string>
+    <string name="keyFeaturesBody">\u2022 Real-time price tracking.\n\u2022 Automatic compatibility checks.\n\u2022 Suitable builds for gaming, editing, etc.\n\u2022 Flexible for different budgets.</string>
 </resources>

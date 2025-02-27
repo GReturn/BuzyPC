@@ -10,6 +10,7 @@
         <item name="colorTertiary">@color/bz_deepReddishBrown</item>
         <item name="colorOnTertiary">@color/bz_warmYellow</item>
         <item name="background">@color/bz_almostBlack</item>
+        <item name="backgroundTint">@color/bz_honeyYellow</item>
         <item name="colorControlNormal">@color/bz_honeyYellow</item>
     </style>
 </resources>

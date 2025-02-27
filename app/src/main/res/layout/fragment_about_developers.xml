@@ -44,6 +44,8 @@
             android:paddingBottom="16dp"
             android:text="@string/about_dev_header"
             android:gravity="center"
+            android:textSize="15sp"
+            android:fontFamily="@font/ubuntu_mono"
             />
 
         <LinearLayout
@@ -63,15 +65,14 @@
                 />
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:orientation="vertical"
                 android:layout_marginLeft="-50dp"
                 >
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/dev1"
                     android:textSize="20sp"
@@ -80,7 +81,7 @@
                     />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/dev1_occupation"
                     android:textSize="14sp"
@@ -90,7 +91,7 @@
                     />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/ubuntu_mono"
@@ -111,9 +112,8 @@
             android:paddingLeft="25dp"
             >
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:orientation="vertical"
                 android:layout_marginTop="10dp"
                 >
