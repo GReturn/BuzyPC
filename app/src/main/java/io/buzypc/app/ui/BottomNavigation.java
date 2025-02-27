@@ -26,36 +26,42 @@ public class BottomNavigation extends AppCompatActivity {
 
         // Restore or set default fragment
         if (savedInstanceState == null) {
-            replaceFragment(new LandingPageFragment(), false);
+            replaceFragment(new LandingPageFragment(), false, null);
         }
 
         // FAB launches a secondary screen, so we add it to the back stack
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(v -> replaceFragment(new NewBuildFragment(), true));
+        fab.setOnClickListener(v -> replaceFragment(new NewBuildFragment(), true, null));
 
         // Bottom navigation items are considered top-level destinations
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.landing_page) {
-                replaceFragment(new LandingPageFragment(), false);
+                replaceFragment(new LandingPageFragment(), false, null);
             } else if (itemId == R.id.about_devs) {
-                replaceFragment(new AboutDevelopersFragment(), false);
+                replaceFragment(new AboutDevelopersFragment(), false, null);
             } else if (itemId == R.id.build_list) {
-                replaceFragment(new BuildListFragment(), false);
+                replaceFragment(new BuildListFragment(), false, null);
             } else if (itemId == R.id.profile_view) {
-                replaceFragment(new SettingsFragment(), false);
+                Bundle args = new Bundle();
+                args.putBoolean("refresh", true); // Signal to refresh data
+                replaceFragment(new SettingsFragment(), false, args);
             }
             return true;
         });
     }
 
-    private void replaceFragment(Fragment fragment, boolean addToBackStack) {
+    private void replaceFragment(Fragment fragment, boolean addToBackStack, Bundle args) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         Fragment currentFragment = fragmentManager.findFragmentById(R.id.frame_layout);
 
         // Prevent reloading the same fragment
         if (currentFragment != null && currentFragment.getClass().equals(fragment.getClass())) {
             return;
+        }
+
+        if (args != null) {
+            fragment.setArguments(args);
         }
 
         FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -66,6 +72,5 @@ public class BottomNavigation extends AppCompatActivity {
         }
 
         transaction.commit();
-        recreate();
     }
 }

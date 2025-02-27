@@ -46,7 +46,6 @@ class ProfileViewActivity : AppCompatActivity() {
         else imageProfilePicture.setImageResource(R.drawable.profilepic)
 
         val editProfilePicButton = findViewById<ImageButton>(R.id.btn_edit_profile_picture)
-        val btnBackNavigation = findViewById<ImageView>(R.id.image_backNavigation)
         val btnEditProfile = findViewById<Button>(R.id.btn_edit_profile)
 
         val imagePickerLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) {
@@ -73,8 +72,6 @@ class ProfileViewActivity : AppCompatActivity() {
                 editTextEmail.setBackgroundResource(R.drawable.edit_text_border)
                 btnEditProfile.text = "Save Profile"
 
-                btnBackNavigation.visibility = View.GONE
-
                 btnEditProfile.setCompoundDrawablesWithIntrinsicBounds( R.drawable.save_24px, 0, 0, 0)
                 Toast.makeText(this, "Now editing user profile", Toast.LENGTH_LONG).show()
             } else {
@@ -94,7 +91,6 @@ class ProfileViewActivity : AppCompatActivity() {
                     editTextEmail.setPadding(0,0,0,0)
                     btnEditProfile.text = "Edit Profile"
 
-                    btnBackNavigation.visibility = View.VISIBLE
 
                     btnEditProfile.setCompoundDrawablesWithIntrinsicBounds( R.drawable.baseline_edit_24, 0, 0, 0)
 

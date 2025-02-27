@@ -1,9 +1,8 @@
 package io.buzypc.app.ui.fragments
 
+import android.content.Context
 import android.content.Intent
-import android.content.res.Configuration
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,32 +10,34 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.fragment.app.Fragment
 import io.buzypc.app.R
 import io.buzypc.app.data.user.BuzyUser
 import io.buzypc.app.data.user.BuzyUserSettings
 import io.buzypc.app.ui.AboutDevelopersActivity
-import io.buzypc.app.ui.LandingPageActivity
 import io.buzypc.app.ui.LogoutPromptActivity
 import io.buzypc.app.ui.ProfileViewActivity
 
 class SettingsFragment : Fragment() {
 
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_settings, container, false)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val userDetails = BuzyUser(requireContext())
+
+        // Initial load of user data
+        loadUserData()
+
+        // Theme and Navigation Setup
         val btnBackNavigation = view.findViewById<ImageView>(R.id.image_backNavigation)
-        val txtUsername = view.findViewById<TextView>(R.id.textView_usernameDisplay)
-
-        val imageProfilePicture = view.findViewById<ImageView>(R.id.image_profile_picture)
-        val imageBitmap = userDetails.getImageFromInternalStorage()
-        if(imageBitmap != null) imageProfilePicture.setImageBitmap(imageBitmap)
-        else imageProfilePicture.setImageResource(R.drawable.profilepic)
-
         val btnEditAccount = view.findViewById<Button>(R.id.btn_edit_account)
         val btnAboutDevelopers = view.findViewById<Button>(R.id.btn_about_developers)
-
         val radioBtnLightMode = view.findViewById<RadioButton>(R.id.rb_lightMode)
         val radioBtnDarkMode = view.findViewById<RadioButton>(R.id.rb_darkMode)
         val cardLightMode = view.findViewById<com.google.android.material.card.MaterialCardView>(R.id.card_lightMode)
@@ -57,8 +58,6 @@ class SettingsFragment : Fragment() {
 
         val buttonLogout = view.findViewById<Button>(R.id.btn_logout)
 
-        txtUsername.text = userDetails.getUsername()
-
         // Navigation Click Listeners
         btnEditAccount.setOnClickListener {
             val intent = Intent(requireActivity(), ProfileViewActivity::class.java)
@@ -75,9 +74,7 @@ class SettingsFragment : Fragment() {
             if (radioBtnLightMode.isChecked) {
                 radioBtnDarkMode.isChecked = false
                 userSettings.setTheme("light")
-
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-
                 cardLightMode.strokeWidth = 3
                 cardDarkMode.strokeWidth = 0
             }
@@ -87,9 +84,7 @@ class SettingsFragment : Fragment() {
             if (radioBtnDarkMode.isChecked) {
                 radioBtnLightMode.isChecked = false
                 userSettings.setTheme("dark")
-
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-
                 cardLightMode.strokeWidth = 0
                 cardDarkMode.strokeWidth = 3
             }
@@ -102,10 +97,30 @@ class SettingsFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_settings, container, false)
+    override fun onResume() {
+        super.onResume()
+        // Reload the user data in case it was edited
+        loadUserData()
+    }
+
+    /**
+     * Reloads the user data from BuzyUser and updates the UI elements.
+     */
+    private fun loadUserData() {
+        // Get the current view to access its child views
+        val currentView = view ?: return
+        val userDetails = BuzyUser(requireContext())
+
+        // Update the username display
+        val txtUsername = currentView.findViewById<TextView>(R.id.textView_usernameDisplay)
+        txtUsername.text = userDetails.getUsername()
+
+        // Update the profile picture
+        val imageProfilePicture = currentView.findViewById<ImageView>(R.id.image_profile_picture)
+        val imageBitmap = userDetails.getImageFromInternalStorage()
+        if (imageBitmap != null)
+            imageProfilePicture.setImageBitmap(imageBitmap)
+        else
+            imageProfilePicture.setImageResource(R.drawable.profilepic)
     }
 }
