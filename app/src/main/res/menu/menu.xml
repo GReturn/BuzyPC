@@ -13,7 +13,7 @@
         />
 
     <item
-        android:id="@+id/faButton"
+        android:id="@+id/add_build"
         android:title="Add Build"
         android:icon="@drawable/add_circle_24px"
         />

@@ -40,7 +40,11 @@ public class BottomNavigation extends AppCompatActivity {
                 replaceFragment(new AboutDevelopersFragment(), false, null);
             } else if (itemId == R.id.build_list) {
                 replaceFragment(new BuildListFragment(), false, null);
-            } else if (itemId == R.id.profile_view) {
+            }
+            else if(itemId == R.id.add_build){
+                replaceFragment(new NewBuildFragment(), false, null);
+            }
+            else if (itemId == R.id.profile_view) {
                 Bundle args = new Bundle();
                 args.putBoolean("refresh", true); // Signal to refresh data
                 replaceFragment(new SettingsFragment(), false, args);

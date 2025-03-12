@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.buzypc.app.R
@@ -21,6 +22,13 @@ class BuildListFragment : Fragment() {
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycleView_builds)
         setPCModelList()
+
+        val tvEmptyList = view.findViewById<TextView>(R.id.tvEmptyList)
+        if(pcModelList.isEmpty()){
+            tvEmptyList.visibility = View.VISIBLE
+            recyclerView.visibility = View.INVISIBLE
+        }
+
 
         val adapter = PCBuildAdapter(requireContext(), pcModelList)
         recyclerView.adapter = adapter
