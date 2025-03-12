@@ -14,7 +14,8 @@
 
     <item
         android:id="@+id/faButton"
-        android:title=""
+        android:title="Add Build"
+        android:icon="@drawable/add_circle_24px"
         />
 
     <item

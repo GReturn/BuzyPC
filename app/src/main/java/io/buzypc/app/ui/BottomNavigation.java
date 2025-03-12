@@ -30,8 +30,6 @@ public class BottomNavigation extends AppCompatActivity {
         }
 
         // FAB launches a secondary screen, so we add it to the back stack
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(v -> replaceFragment(new NewBuildFragment(), true, null));
 
         // Bottom navigation items are considered top-level destinations
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
