@@ -1,15 +1,20 @@
 package io.buzypc.app.model
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.startActivities
 import androidx.recyclerview.widget.RecyclerView
 import io.buzypc.app.R
 import io.buzypc.app.data.PCModel
+import io.buzypc.app.ui.SettingsActivity
+import io.buzypc.app.ui.fragments.NewBuildFragment
 
 class PCBuildAdapter(var context: Context, var pcModels: ArrayList<PCModel>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -36,11 +41,17 @@ class PCBuildAdapter(var context: Context, var pcModels: ArrayList<PCModel>) :
         if (holder is ItemViewHolder) {
             holder.textview.text = pcModels[position].pcName
         } else if (holder is ImageViewHolder) {
-            holder.button.setOnClickListener {
-                // Your button action here
+            holder.button.setOnClickListener { view ->
+                // Cast context to AppCompatActivity to get the supportFragmentManager
+                val activity = context as AppCompatActivity
+                activity.supportFragmentManager.beginTransaction()
+                    .replace(R.id.frame_layout, NewBuildFragment())
+                    .addToBackStack(null)
+                    .commit()
             }
         }
     }
+
 
     override fun getItemCount(): Int {
         return pcModels.size + 1

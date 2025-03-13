@@ -11,7 +11,8 @@
         android:id="@+id/new_build"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.NewBuildActivity">
+        tools:context=".ui.NewBuildActivity"
+        >
         <TextView
             android:id="@+id/textview_budgetPrompt"
             android:layout_width="wrap_content"
@@ -43,7 +44,7 @@
             android:text="Build"
             android:layout_marginHorizontal="50dp"
             android:layout_below="@id/edittext_budgetInput"
-            android:layout_marginTop="250dp"
+            android:layout_marginTop="200dp"
             android:textStyle="bold"
             />
     </RelativeLayout>

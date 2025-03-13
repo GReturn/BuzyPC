@@ -15,7 +15,8 @@
     <string name="hello_user">Hello, %1$s</string>
 
     <string-array name="pc_builds">
-
+        <item>Sheshable</item>
+        <item>Sheshable</item>
 
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
