@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.BuildSummary">
+    <TextView
+        android:id="@+id/tvBuildSummary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Build Summary"
+        android:textSize="30sp"
+        android:fontFamily="@font/ubuntu_bold"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        />
+    <include layout="@layout/performance_gauge" />
+    <include layout="@layout/view_component_grid"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cvSummaryCard"
+        android:layout_marginTop="30dp"
+        />
+    <Button
+        android:id="@+id/btnSaveBuild"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/svComponents"
+        android:text="Save Build"
+        android:fontFamily="@font/ubuntu_bold"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="50dp"
+        />
+</RelativeLayout>

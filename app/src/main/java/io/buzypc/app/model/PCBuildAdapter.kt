@@ -1,29 +1,24 @@
 package io.buzypc.app.model
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.startActivities
 import androidx.recyclerview.widget.RecyclerView
 import io.buzypc.app.R
-import io.buzypc.app.data.PCModel
-import io.buzypc.app.ui.SettingsActivity
+import io.buzypc.app.data.PCBuild
 import io.buzypc.app.ui.fragments.NewBuildFragment
 
-class PCBuildAdapter(var context: Context, var pcModels: ArrayList<PCModel>) :
+class PCBuildAdapter(var context: Context, var pcBuilds: ArrayList<PCBuild>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
     private val VIEW_TYPE_ITEM = 0
     private val VIEW_TYPE_BUTTON = 1
 
     override fun getItemViewType(position: Int): Int {
-        return if (position < pcModels.size) VIEW_TYPE_ITEM else VIEW_TYPE_BUTTON
+        return if (position < pcBuilds.size) VIEW_TYPE_ITEM else VIEW_TYPE_BUTTON
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -39,7 +34,7 @@ class PCBuildAdapter(var context: Context, var pcModels: ArrayList<PCModel>) :
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is ItemViewHolder) {
-            holder.textview.text = pcModels[position].pcName
+            holder.textview.text = pcBuilds[position].buildName
         } else if (holder is ImageViewHolder) {
             holder.button.setOnClickListener { view ->
                 // Cast context to AppCompatActivity to get the supportFragmentManager
@@ -54,7 +49,7 @@ class PCBuildAdapter(var context: Context, var pcModels: ArrayList<PCModel>) :
 
 
     override fun getItemCount(): Int {
-        return pcModels.size + 1
+        return pcBuilds.size + 1
     }
 
     class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

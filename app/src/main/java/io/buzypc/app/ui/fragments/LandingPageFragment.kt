@@ -17,10 +17,13 @@ import io.buzypc.app.data.user.BuzyUser
 
         val userDetails = BuzyUser(requireContext())  // Use requireContext() instead of 'this'
         val txtHelloUser = view.findViewById<TextView>(R.id.hello_user)
-        val btnAdd = view.findViewById<ImageView>(R.id.add_build)
-
         txtHelloUser.text = getString(R.string.hello_user, userDetails.getUsername())
     }
+
+     // - LayoutInflater converts xml file into a View object that the fragment displays
+     // - 'container' is the parent view where this fragment’s UI will be placed, passing false as the third parameter because the system
+     //    will handle attaching the fragment to the container automatically.
+     // - savedInstanceState contains any previously saved state, restores them upon recreating (updating) the fragment.
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

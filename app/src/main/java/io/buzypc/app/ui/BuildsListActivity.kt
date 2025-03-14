@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.buzypc.app.R
 import io.buzypc.app.model.PCBuildAdapter
-import io.buzypc.app.data.PCModel
+import io.buzypc.app.data.PCBuild
 
 class BuildsListActivity : AppCompatActivity() {
-    val pcModelList = ArrayList<PCModel>()
+    val pcBuildList = ArrayList<PCBuild>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_builds_list)
@@ -25,7 +25,7 @@ class BuildsListActivity : AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.recycleView_builds)
         setPCModelList()
 
-        val adapter = PCBuildAdapter(this, pcModelList)
+        val adapter = PCBuildAdapter(this, pcBuildList)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = GridLayoutManager(this,2)
 
@@ -34,7 +34,7 @@ class BuildsListActivity : AppCompatActivity() {
     private fun setPCModelList() {
         val pcModelNames = getResources().getStringArray(R.array.pc_builds)
         for (i in pcModelNames.indices) {
-            pcModelList.add(PCModel(pcModelNames[i]))
+            pcBuildList.add(PCBuild(pcModelNames[i], 1.0))
         }
     }
 

@@ -1,22 +1,19 @@
 package io.buzypc.app.ui.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.buzypc.app.R
-import io.buzypc.app.data.PCModel
+import io.buzypc.app.data.PCBuild
 import io.buzypc.app.model.PCBuildAdapter
-import io.buzypc.app.ui.ProfileViewActivity
 
 class BuildListFragment : Fragment() {
-    val pcModelList = ArrayList<PCModel>()
+    val pcBuildList = ArrayList<PCBuild>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -24,16 +21,21 @@ class BuildListFragment : Fragment() {
         setPCModelList()
 
         val tvEmptyList = view.findViewById<TextView>(R.id.tvEmptyList)
-        if(pcModelList.isEmpty()){
+        if(pcBuildList.isEmpty()){
             tvEmptyList.visibility = View.VISIBLE
             recyclerView.visibility = View.INVISIBLE
         }
 
 
-        val adapter = PCBuildAdapter(requireContext(), pcModelList)
+        val adapter = PCBuildAdapter(requireContext(), pcBuildList)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = GridLayoutManager(requireContext(),2)
     }
+
+    // - LayoutInflater converts xml file into a View object that the fragment displays
+    // - 'container' is the parent view where this fragment’s UI will be placed, passing false as the third parameter because the system
+    //    will handle attaching the fragment to the container automatically.
+    // - savedInstanceState contains any previously saved state, restores them upon recreating (updating) the fragment.
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,7 +47,7 @@ class BuildListFragment : Fragment() {
     private fun setPCModelList() {
         val pcModelNames = getResources().getStringArray(R.array.pc_builds)
         for (i in pcModelNames.indices) {
-            pcModelList.add(PCModel(pcModelNames[i]))
+            pcBuildList.add(PCBuild(pcModelNames[i],1.0))
         }
     }
 
