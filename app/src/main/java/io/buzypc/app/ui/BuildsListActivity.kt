@@ -33,8 +33,9 @@ class BuildsListActivity : AppCompatActivity() {
     }
     private fun setPCModelList() {
         val pcModelNames = getResources().getStringArray(R.array.pc_builds)
+        val pcBuildBudget = getResources().getStringArray(R.array.pc_budget)
         for (i in pcModelNames.indices) {
-            pcBuildList.add(PCBuild(pcModelNames[i], 1.0))
+            pcBuildList.add(PCBuild(pcModelNames[i],pcBuildBudget[i]))
         }
     }
 

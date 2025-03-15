@@ -9,7 +9,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.buzypc.app.R
+import io.buzypc.app.data.OurApplication
 import io.buzypc.app.data.PCBuild
+import io.buzypc.app.data.user.BuzyUser
 import io.buzypc.app.model.PCBuildAdapter
 
 class BuildListFragment : Fragment() {
@@ -45,9 +47,13 @@ class BuildListFragment : Fragment() {
     }
 
     private fun setPCModelList() {
-        val pcModelNames = getResources().getStringArray(R.array.pc_builds)
-        for (i in pcModelNames.indices) {
-            pcBuildList.add(PCBuild(pcModelNames[i],1.0))
+        val user = BuzyUser(requireContext())
+        user.retrieveBuilds()
+
+        val nameList = user.buildNameList
+        val budgetList = user.buildBudgetList
+        for (i in nameList.indices) {
+            pcBuildList.add(PCBuild(nameList[i], budgetList[i]))
         }
     }
 

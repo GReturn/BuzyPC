@@ -6,10 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".ui.BuildSummary">
     <TextView
-        android:id="@+id/tvBuildSummary"
+        android:id="@+id/tv_BuildSummary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Build Summary"
+        android:text="$buildName Summary"
         android:textSize="30sp"
         android:fontFamily="@font/ubuntu_bold"
         android:layout_marginTop="50dp"

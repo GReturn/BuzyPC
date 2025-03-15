@@ -10,6 +10,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import io.buzypc.app.R
+import io.buzypc.app.data.OurApplication
+import io.buzypc.app.data.user.BuzyUser
 import io.buzypc.app.ui.BuildSummary
 import io.buzypc.app.ui.ProfileViewActivity
 
@@ -17,13 +19,19 @@ class NewBuildFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val etBudgetInput = view.findViewById<EditText>(R.id.edittext_budgetInput)
-        val btnBuild = view.findViewById<Button>(R.id.build_button)
+        val etBudgetInput = view.findViewById<EditText>(R.id.et_budgetInput)
+        val etBuildName = view.findViewById<EditText>(R.id.et_buildName)
+
+        val btnBuild = view.findViewById<Button>(R.id.btn_build)
+
         btnBuild.setOnClickListener(){
             if(etBudgetInput.text.isNullOrEmpty()){
                 Toast.makeText(requireContext(), "Input your budget", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
+            if(etBuildName.text.isNullOrEmpty()) etBuildName.setText("New Build")
+            (requireActivity().application as OurApplication).buildName = etBuildName.text.toString()
+            (requireActivity().application as OurApplication).buildBudget = etBudgetInput.text.toString()
             val intent = Intent(requireActivity(), BuildSummary::class.java)
             startActivity(intent)
         }

@@ -34,7 +34,8 @@ class PCBuildAdapter(var context: Context, var pcBuilds: ArrayList<PCBuild>) :
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is ItemViewHolder) {
-            holder.textview.text = pcBuilds[position].buildName
+            holder.tvName.text = pcBuilds[position].buildName
+            holder.tvBudget.text = "PHP " + pcBuilds[position].buildBudget
         } else if (holder is ImageViewHolder) {
             holder.button.setOnClickListener { view ->
                 // Cast context to AppCompatActivity to get the supportFragmentManager
@@ -53,7 +54,9 @@ class PCBuildAdapter(var context: Context, var pcBuilds: ArrayList<PCBuild>) :
     }
 
     class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val textview: TextView = itemView.findViewById(R.id.textView_pcName)
+        val tvName: TextView = itemView.findViewById(R.id.textView_pcName)
+        val tvBudget: TextView = itemView.findViewById(R.id.textView_pcBudget)
+
     }
 
     class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

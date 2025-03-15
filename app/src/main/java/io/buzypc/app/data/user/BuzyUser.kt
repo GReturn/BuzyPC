@@ -9,6 +9,11 @@ import java.io.FileOutputStream
 import java.security.MessageDigest
 
 class BuzyUser(context: Context) {
+    var buildNameList = ArrayList<String>()
+    var buildBudgetList = ArrayList<String>()
+    var buildName: String = ""
+    var buildBudget: String = ""
+
     private val sharedPreferences: SharedPreferences =
         context.getSharedPreferences("buzy-user-secrets", Context.MODE_PRIVATE)
 
@@ -96,5 +101,26 @@ class BuzyUser(context: Context) {
         // List of algorithms: https://developer.android.com/reference/java/security/MessageDigest
         val bytes = MessageDigest.getInstance("SHA-256").digest(password.toByteArray())
         return bytes.joinToString("") { "%02x".format(it) }
+    }
+
+    fun saveBuilds() {
+        val editor = sharedPreferences.edit()
+        editor.putString("buildNameList", buildNameList.joinToString(separator = ","))
+        editor.putString("buildBudgetList", buildBudgetList.joinToString(separator = ","))
+        // Use commit() to ensure data is written before retrieval in another instance.
+        editor.commit()
+    }
+
+    fun retrieveBuilds() {
+        val savedNames = sharedPreferences.getString("buildNameList", "") ?: ""
+        val savedBudgets = sharedPreferences.getString("buildBudgetList", "") ?: ""
+        buildNameList.clear()
+        buildBudgetList.clear()
+        if (savedNames.isNotEmpty()) {
+            buildNameList.addAll(savedNames.split(","))
+        }
+        if (savedBudgets.isNotEmpty()) {
+            buildBudgetList.addAll(savedBudgets.split(","))
+        }
     }
 }

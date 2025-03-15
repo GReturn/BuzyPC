@@ -13,6 +13,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import io.buzypc.app.R
+import io.buzypc.app.data.OurApplication
 import io.buzypc.app.data.user.BuzyUser
 import io.buzypc.app.data.user.BuzyUserSettings
 
@@ -28,15 +29,17 @@ class LoginActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val userSettings = BuzyUserSettings(this)
-        val userDetails = BuzyUser(this)
-        handleStartup(userDetails, userSettings)
+
 
         val edittextUsername = findViewById<EditText>(R.id.username)
         val edittextPassword = findViewById<EditText>(R.id.password)
 
         val btnLogin = findViewById<Button>(R.id.loginButton)
         val btnRegister = findViewById<Button>(R.id.registerButton)
+
+        val userSettings = BuzyUserSettings(this)
+        val userDetails = BuzyUser(this)
+        handleStartup(userDetails, userSettings)
 
         btnLogin.setOnClickListener {
             if(!userDetails.isUserRegistered()) {

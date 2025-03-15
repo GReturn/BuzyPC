@@ -4,7 +4,7 @@
     android:id="@+id/cvSummaryCard"
     android:layout_width="300dp"
     android:layout_height="100dp"
-    android:layout_below="@id/tvBuildSummary"
+    android:layout_below="@id/tv_BuildSummary"
     android:backgroundTint="@color/bz_honeyYellow"
     android:layout_centerHorizontal="true"
     android:layout_marginTop="15dp"

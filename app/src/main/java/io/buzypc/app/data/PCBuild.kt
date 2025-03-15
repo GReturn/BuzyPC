@@ -1,3 +1,3 @@
 package io.buzypc.app.data
 
-class PCBuild(var buildName: String, var buildBudget : Double)
+class PCBuild(var buildName: String, var buildBudget: String?)

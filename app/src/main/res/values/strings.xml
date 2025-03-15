@@ -19,6 +19,12 @@
         <item>Sheshable</item>
 
     </string-array>
+
+    <string-array name ="pc_budget">
+        <item>10000.00</item>
+        <item>10000.00</item>
+
+    </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="buzyPCSubheading">Get your personalized PC part recommendations tailored to your budget</string>

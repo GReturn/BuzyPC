@@ -19,16 +19,28 @@
             android:layout_height="wrap_content"
             android:text="What's your budget?"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="250dp"
+            android:layout_marginTop="150dp"
             android:textSize="30sp"
             android:textStyle="bold"
             />
 
         <EditText
-            android:id="@+id/edittext_budgetInput"
+            android:id="@+id/et_buildName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="40dp"
             android:layout_below="@id/textview_budgetPrompt"
+            android:hint="Build Name"
+            android:fontFamily="@font/ubuntu_bold"
+            android:textAlignment="center"
+            />
+
+        <EditText
+            android:id="@+id/et_budgetInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/et_buildName"
             android:background="@drawable/round_edittext"
             android:layout_marginHorizontal="50dp"
             android:layout_marginTop="10dp"
@@ -38,12 +50,12 @@
             />
 
         <Button
-            android:id="@+id/build_button"
+            android:id="@+id/btn_build"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Build"
             android:layout_marginHorizontal="50dp"
-            android:layout_below="@id/edittext_budgetInput"
+            android:layout_below="@id/et_budgetInput"
             android:layout_marginTop="200dp"
             android:textStyle="bold"
             />
