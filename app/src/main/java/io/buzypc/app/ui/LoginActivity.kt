@@ -17,7 +17,6 @@ import io.buzypc.app.data.OurApplication
 import io.buzypc.app.data.user.BuzyUser
 import io.buzypc.app.data.user.BuzyUserSettings
 
-
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
@@ -30,24 +29,42 @@ class LoginActivity : AppCompatActivity() {
             insets
         }
 
+        val userSettings = BuzyUserSettings(this)
+        // Attempt auto-login if a last user exists
+        val lastUser = userSettings.getLastUser()
+        if (lastUser != null) {
+            (application as OurApplication).username = lastUser
+            val userDetails = BuzyUser(this, (application as OurApplication).username)
+            handleStartup(userDetails, userSettings)
+        }
 
         val edittextUsername = findViewById<EditText>(R.id.username)
         val edittextPassword = findViewById<EditText>(R.id.password)
-
         val btnLogin = findViewById<Button>(R.id.loginButton)
         val btnRegister = findViewById<Button>(R.id.registerButton)
 
-        val userSettings = BuzyUserSettings(this)
-        val userDetails = BuzyUser(this)
-        handleStartup(userDetails, userSettings)
-
         btnLogin.setOnClickListener {
-            if(!userDetails.isUserRegistered()) {
+            val enteredUsername = edittextUsername.text.toString()
+            val enteredPassword = edittextPassword.text.toString()
+
+            if (enteredUsername.isEmpty() || enteredPassword.isEmpty()) {
+                Toast.makeText(
+                    this,
+                    "Username and Password must not be empty",
+                    Toast.LENGTH_LONG
+                ).show()
+                return@setOnClickListener
+            }
+
+            // Create BuzyUser using the entered username.
+            val userDetails = BuzyUser(this, enteredUsername)
+
+            if (!userDetails.isUserRegistered()) {
                 AlertDialog.Builder(this)
                     .setIcon(R.drawable.buzybee)
                     .setTitle("Profile Not Found")
                     .setMessage("Uh-oh! It seems we didn't find an existing account. Create an account?")
-                    .setPositiveButton("Register") { _,_ ->
+                    .setPositiveButton("Register") { _, _ ->
                         val intent = Intent(this, RegisterActivity::class.java)
                         startActivity(intent)
                     }
@@ -56,18 +73,15 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            if(edittextUsername.text.isNullOrEmpty() || edittextPassword.text.isNullOrEmpty()){
-                Toast.makeText(this,"Username and Password must not be empty",Toast.LENGTH_LONG).show()
-                return@setOnClickListener
-            }
-
-            if(userDetails.validateLogin(edittextUsername.text.toString(), edittextPassword.text.toString())) {
+            if (userDetails.validateLogin(enteredUsername, enteredPassword)) {
+                (application as OurApplication).username = enteredUsername
+                // Save the last logged in user so that auto-login works next time.
+                userSettings.setLastUser(enteredUsername)
                 val intent = Intent(this, BottomNavigation::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
                 finish()
-            }
-            else {
+            } else {
                 Toast.makeText(this, "Invalid credentials", Toast.LENGTH_LONG).show()
             }
         }
@@ -79,13 +93,14 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun handleStartup(userDetails: BuzyUser, userSettings: BuzyUserSettings) {
-        if(userSettings.getTheme() == null || userSettings.getTheme() == "light") {
+        if (userSettings.getTheme() == null || userSettings.getTheme() == "light") {
             userSettings.setTheme("light")
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         }
-        else AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
 
-        if(userDetails.isLoggedIn()) {
+        if (userDetails.isLoggedIn()) {
             val intent = Intent(this, BottomNavigation::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)

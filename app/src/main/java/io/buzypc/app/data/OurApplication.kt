@@ -10,4 +10,6 @@ class OurApplication: Application() {
     // Global (non-user-specific) data
     var buildBudget: String = ""
     var buildName: String = ""
+    var username: String = ""
+    var theme: String = ""
 }

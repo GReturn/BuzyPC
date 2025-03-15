@@ -47,7 +47,7 @@ class BuildListFragment : Fragment() {
     }
 
     private fun setPCModelList() {
-        val user = BuzyUser(requireContext())
+        val user = BuzyUser(requireContext(), (requireActivity().application as OurApplication).username)
         user.retrieveBuilds()
 
         val nameList = user.buildNameList

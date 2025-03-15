@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import io.buzypc.app.R
+import io.buzypc.app.data.OurApplication
 import io.buzypc.app.data.user.BuzyUser
 
 class RegisterActivity : AppCompatActivity() {
@@ -30,7 +31,6 @@ class RegisterActivity : AppCompatActivity() {
         val edittextEmail = findViewById<EditText>(R.id.edittext_email)
         val edittextPassword = findViewById<EditText>(R.id.edittext_password)
         val edittextConfirmPassword = findViewById<EditText>(R.id.edittext_confirm_password)
-
         btnLogin.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
@@ -59,7 +59,7 @@ class RegisterActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
             else{
-                val userDetails = BuzyUser(this)
+                val userDetails = BuzyUser(this, edittextUsername.text.toString())
 
                 userDetails.saveProfile(
                         edittextUsername.text.toString(),

@@ -20,6 +20,7 @@ import androidx.core.net.toUri
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import io.buzypc.app.R
+import io.buzypc.app.data.OurApplication
 import io.buzypc.app.data.user.BuzyUser
 
 class ProfileViewActivity : AppCompatActivity() {
@@ -32,7 +33,7 @@ class ProfileViewActivity : AppCompatActivity() {
             insets
         }
 
-        val userDetails = BuzyUser(this)
+        val userDetails = BuzyUser(this,(application as OurApplication).username)
 
         val editTextUsername = findViewById<EditText>(R.id.edittext_username)
         editTextUsername.setText(userDetails.getUsername())

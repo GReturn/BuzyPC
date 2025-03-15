@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import io.buzypc.app.R
+import io.buzypc.app.data.OurApplication
 import io.buzypc.app.data.user.BuzyUser
 import io.buzypc.app.data.user.BuzyUserSettings
 import io.buzypc.app.ui.AboutDevelopersActivity
@@ -20,10 +21,6 @@ import io.buzypc.app.ui.ProfileViewActivity
 
 class SettingsFragment : Fragment() {
 
-    // - LayoutInflater converts xml file into a View object that the fragment displays
-    // - 'container' is the parent view where this fragment’s UI will be placed, passing false as the third parameter because the system
-    //    will handle attaching the fragment to the container automatically.
-    // - savedInstanceState contains any previously saved state, restores them upon recreating (updating) the fragment.
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,17 +44,16 @@ class SettingsFragment : Fragment() {
         cardDarkMode.strokeWidth = 0
 
         val userSettings = BuzyUserSettings(requireContext())
-        if (userSettings.getTheme() == "light" || userSettings.getTheme() == null) {
+
+        // Check current theme and update radio buttons + highlights
+        if (userSettings.getTheme() == "dark") {
+            radioBtnDarkMode.isChecked = true
+            cardDarkMode.strokeWidth = 3
+        } else {
+            // Default to light if theme is null or "light"
             radioBtnLightMode.isChecked = true
             cardLightMode.strokeWidth = 3
-            cardDarkMode.strokeWidth = 0
-        } else {
-            radioBtnDarkMode.isChecked = true
-            cardLightMode.strokeWidth = 0
-            cardDarkMode.strokeWidth = 3
         }
-
-        val buttonLogout = view.findViewById<Button>(R.id.btn_logout)
 
         // Navigation Click Listeners
         btnEditAccount.setOnClickListener {
@@ -92,7 +88,13 @@ class SettingsFragment : Fragment() {
         }
 
         // Logout Button
+        val buttonLogout = view.findViewById<Button>(R.id.btn_logout)
         buttonLogout.setOnClickListener {
+            // Clear the last logged-in user
+            userSettings.setLastUser(null)
+            // Store whichever theme the user had selected at logout
+            userSettings.setTheme(if (radioBtnDarkMode.isChecked) "dark" else "light")
+
             val intent = Intent(requireActivity(), LogoutPromptActivity::class.java)
             startActivity(intent)
         }
@@ -105,10 +107,11 @@ class SettingsFragment : Fragment() {
 
     private fun loadUserData() {
         val currentView = view ?: return
-        val userDetails = BuzyUser(requireContext())
+        val app = requireActivity().application as OurApplication
+        val userDetails = BuzyUser(requireContext(), app.username)
 
         val txtUsername = currentView.findViewById<TextView>(R.id.textView_usernameDisplay)
-        txtUsername.text = userDetails.getUsername()
+        txtUsername.text = userDetails.getUsername() ?: "Guest"
 
         val imageProfilePicture = currentView.findViewById<ImageView>(R.id.image_profile_picture)
         val imageBitmap = userDetails.getImageFromInternalStorage()

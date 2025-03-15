@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import io.buzypc.app.R
+import io.buzypc.app.data.OurApplication
 import io.buzypc.app.data.user.BuzyUser
 import io.buzypc.app.data.user.BuzyUserSettings
 
@@ -25,7 +26,7 @@ class SettingsActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val userDetails = BuzyUser(this)
+        val userDetails = BuzyUser(this, (application as OurApplication).username)
         val btnBackNavigation = findViewById<ImageView>(R.id.image_backNavigation)
         val txtUsername = findViewById<TextView>(R.id.textView_usernameDisplay)
 

@@ -26,7 +26,7 @@ class BuildSummary : AppCompatActivity() {
         }
         val tvBuildName = findViewById<TextView>(R.id.tv_BuildSummary)
         val btnSaveBuild = findViewById<Button>(R.id.btnSaveBuild)
-        val user = BuzyUser(this)
+        val user = BuzyUser(this, (application as OurApplication).username)
         user.retrieveBuilds()
         tvBuildName.text = "${(application as OurApplication).buildName}'s Summary"
 

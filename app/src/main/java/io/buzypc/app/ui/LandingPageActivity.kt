@@ -23,7 +23,7 @@ class LandingPageActivity : AppCompatActivity() {
             insets
         }
 
-        val userDetails = BuzyUser(this)
+        val userDetails = BuzyUser(this, (application as OurApplication).username)
         val txtHelloUser = findViewById<TextView>(R.id.hello_user)
         val btnAdd = findViewById<ImageView>(R.id.add_build)
 
