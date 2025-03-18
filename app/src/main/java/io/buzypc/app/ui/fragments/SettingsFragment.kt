@@ -12,12 +12,11 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import io.buzypc.app.R
-import io.buzypc.app.data.OurApplication
-import io.buzypc.app.data.user.BuzyUser
 import io.buzypc.app.data.user.BuzyUserSettings
 import io.buzypc.app.ui.AboutDevelopersActivity
 import io.buzypc.app.ui.LogoutPromptActivity
 import io.buzypc.app.ui.ProfileViewActivity
+import io.buzypc.app.ui.utils.loadCurrentUserDetails
 
 class SettingsFragment : Fragment() {
 
@@ -107,8 +106,8 @@ class SettingsFragment : Fragment() {
 
     private fun loadUserData() {
         val currentView = view ?: return
-        val app = requireActivity().application as OurApplication
-        val userDetails = BuzyUser(requireContext(), app.username)
+
+        val userDetails = loadCurrentUserDetails(requireContext())
 
         val txtUsername = currentView.findViewById<TextView>(R.id.textView_usernameDisplay)
         txtUsername.text = userDetails.getUsername() ?: "Guest"
