@@ -8,39 +8,45 @@ import java.io.File
 import java.io.FileOutputStream
 import java.security.MessageDigest
 
-class BuzyUser(context: Context) {
+class BuzyUser(context: Context, private var username: String) {
+    var buildNameList = ArrayList<String>()
+    var buildBudgetList = ArrayList<String>()
+
+    // Each user gets its own SharedPreferences file
     private val sharedPreferences: SharedPreferences =
-        context.getSharedPreferences("buzy-user-secrets", Context.MODE_PRIVATE)
+        context.getSharedPreferences("buzy-user-secrets_$username", Context.MODE_PRIVATE)
 
-    // region Getters and Setters
-
-    fun isUserRegistered() : Boolean =
+    fun isUserRegistered(): Boolean =
         sharedPreferences.contains("username") &&
                 sharedPreferences.contains("password")
 
-    fun isLoggedIn() : Boolean = sharedPreferences.getBoolean("isLoggedIn", false)
+    fun isLoggedIn(): Boolean = sharedPreferences.getBoolean("isLoggedIn", false)
 
-    fun getUsername() : String? = sharedPreferences.getString("username", null)
+    fun getUsername(): String? = sharedPreferences.getString("username", null)
 
-    fun getEmail() : String? = sharedPreferences.getString("email", null)
+    fun getEmail(): String? = sharedPreferences.getString("email", null)
 
-    fun getContactNumber() : String? = sharedPreferences.getString("contactNumber", null)
+    fun getContactNumber(): String? = sharedPreferences.getString("contactNumber", null)
 
-    fun setUsername(newName: String) = sharedPreferences.edit()
-        .putString("username", newName).apply()
+    fun setUsername(newName: String) {
+        sharedPreferences.edit().putString("username", newName).apply()
+    }
 
-    fun setEmail(newEmail: String) = sharedPreferences.edit()
-        .putString("email", newEmail).apply()
+    fun setEmail(newEmail: String) {
+        sharedPreferences.edit().putString("email", newEmail).apply()
+    }
 
-    fun setContactNumber(newContactNumber: String) = sharedPreferences.edit()
-        .putString("contactNumber", newContactNumber).apply()
+    fun setContactNumber(newContactNumber: String) {
+        sharedPreferences.edit().putString("contactNumber", newContactNumber).apply()
+    }
 
-    fun setPassword(newPassword: String) = sharedPreferences.edit()
-        .putString("password", hashPassword(newPassword)).apply()
+    fun setPassword(newPassword: String) {
+        sharedPreferences.edit().putString("password", hashPassword(newPassword)).apply()
+    }
 
-    // endregion
-
-    fun logout() = sharedPreferences.edit().putBoolean("isLoggedIn", false).apply()
+    fun logout() {
+        sharedPreferences.edit().putBoolean("isLoggedIn", false).apply()
+    }
 
     fun validatePassword(inputPassword: String) : Boolean {
         val realPassword = sharedPreferences.getString("password", null)
@@ -76,8 +82,7 @@ class BuzyUser(context: Context) {
 
     fun getImageFromInternalStorage(): Bitmap? {
         val filename = sharedPreferences.getString("profile_pic", null)
-        if(filename != null) return BitmapFactory.decodeFile(filename)
-        return null
+        return filename?.let { BitmapFactory.decodeFile(it) }
     }
 
     fun registerUser(username: String, email: String, password: String) {
@@ -88,13 +93,13 @@ class BuzyUser(context: Context) {
 
     fun saveProfile(username: String, email: String, password: String) {
         val hashedPassword = hashPassword(password)
-
         sharedPreferences.edit()
             .putString("username", username)
             .putString("email", email)
             .putString("password", hashedPassword)
             .apply()
     }
+
     fun saveProfile(username: String, email: String) {
         sharedPreferences.edit()
             .putString("username", username)
@@ -107,5 +112,25 @@ class BuzyUser(context: Context) {
         // List of algorithms: https://developer.android.com/reference/java/security/MessageDigest
         val bytes = MessageDigest.getInstance("SHA-256").digest(password.toByteArray())
         return bytes.joinToString("") { "%02x".format(it) }
+    }
+
+    fun saveBuilds() {
+        sharedPreferences.edit()
+            .putString("buildNameList", buildNameList.joinToString(separator = ","))
+            .putString("buildBudgetList", buildBudgetList.joinToString(separator = ","))
+            .apply()
+    }
+
+    fun retrieveBuilds() {
+        val savedNames = sharedPreferences.getString("buildNameList", "") ?: ""
+        val savedBudgets = sharedPreferences.getString("buildBudgetList", "") ?: ""
+        buildNameList.clear()
+        buildBudgetList.clear()
+        if (savedNames.isNotEmpty()) {
+            buildNameList.addAll(savedNames.split(","))
+        }
+        if (savedBudgets.isNotEmpty()) {
+            buildBudgetList.addAll(savedBudgets.split(","))
+        }
     }
 }

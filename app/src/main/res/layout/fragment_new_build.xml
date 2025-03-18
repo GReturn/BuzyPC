@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.NewBuildFragment">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/new_build"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.NewBuildActivity"
+        >
+        <TextView
+            android:id="@+id/textview_budgetPrompt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="What's your budget?"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="150dp"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:id="@+id/et_buildName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="40dp"
+            android:layout_below="@id/textview_budgetPrompt"
+            android:hint="Build Name"
+            android:fontFamily="@font/ubuntu_bold"
+            android:textAlignment="center"
+            />
+
+        <EditText
+            android:id="@+id/et_budgetInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/et_buildName"
+            android:background="@drawable/round_edittext"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="10dp"
+            android:hint="PHP"
+            android:padding="10dp"
+            android:inputType="number"
+            />
+
+        <Button
+            android:id="@+id/btn_build"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Build"
+            android:layout_marginHorizontal="50dp"
+            android:layout_below="@id/et_budgetInput"
+            android:layout_marginTop="200dp"
+            android:textStyle="bold"
+            />
+    </RelativeLayout>
+
+</FrameLayout>

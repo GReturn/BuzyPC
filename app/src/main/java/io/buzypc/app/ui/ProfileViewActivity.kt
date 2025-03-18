@@ -23,6 +23,7 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
 import io.buzypc.app.R
+import io.buzypc.app.data.OurApplication
 import io.buzypc.app.data.user.BuzyUser
 
 class ProfileViewActivity : AppCompatActivity() {
@@ -35,7 +36,7 @@ class ProfileViewActivity : AppCompatActivity() {
             insets
         }
 
-        val userDetails = BuzyUser(this)
+        val userDetails = BuzyUser(this,(application as OurApplication).username)
 
         val editTextUsername = findViewById<EditText>(R.id.edittext_username)
         editTextUsername.setText(userDetails.getUsername())
@@ -51,7 +52,6 @@ class ProfileViewActivity : AppCompatActivity() {
         else imageProfilePicture.setImageResource(R.drawable.profilepic)
 
         val editProfilePicButton = findViewById<ImageButton>(R.id.btn_edit_profile_picture)
-        val btnBackNavigation = findViewById<ImageView>(R.id.image_backNavigation)
         val btnEditProfile = findViewById<Button>(R.id.btn_edit_profile)
 
         val imagePickerLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) {

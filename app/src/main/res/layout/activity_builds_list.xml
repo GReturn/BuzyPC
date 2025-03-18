@@ -2,16 +2,27 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main"
+    android:id="@+id/build_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.BuildsListActivity">
 
+    <ImageView
+        android:id="@+id/button_profile_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/account_circle_24px"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="32dp"
+        android:layout_toEndOf="@id/textView_buildsHeader"
+        />
     <TextView
         android:id="@+id/textView_buildsHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="My Builds"
+        android:textSize="32sp"
+        android:fontFamily="@font/ubuntu_bold"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
         />
@@ -22,4 +33,5 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/textView_buildsHeader"
         />
+
 </RelativeLayout>
