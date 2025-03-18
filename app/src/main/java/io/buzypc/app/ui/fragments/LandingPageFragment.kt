@@ -5,18 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import io.buzypc.app.R
-import io.buzypc.app.data.OurApplication
-import io.buzypc.app.data.user.BuzyUser
+import io.buzypc.app.ui.utils.loadCurrentUserDetails
 
  class LandingPageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val userDetails = BuzyUser(requireContext(), (requireActivity().application as OurApplication).username)  // Use requireContext() instead of 'this'
+        val userDetails = loadCurrentUserDetails(requireContext())  // Use requireContext() instead of 'this'
         val txtHelloUser = view.findViewById<TextView>(R.id.hello_user)
         txtHelloUser.text = getString(R.string.hello_user, userDetails.getUsername())
     }
