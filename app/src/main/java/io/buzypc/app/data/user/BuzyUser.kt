@@ -165,7 +165,11 @@ class BuzyUser(private val context: Context) {
         FileOutputStream(file).use { outputStream ->
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
         }
-        sharedPreferences.edit().putString("profile_pic", file.absolutePath).apply()
+        sharedPreferences.edit().putString(
+            "profile_pic_${getUsername() + 
+                    sharedPreferences.getString("password", "")?.let { hashPassword(it) }}",
+            file.absolutePath
+        ).apply()
     }
 
     fun getImageFromInternalStorage(): Bitmap? {

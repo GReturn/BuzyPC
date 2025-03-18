@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import io.buzypc.app.R
-import io.buzypc.app.data.appsession.PCBuildingSession
+import io.buzypc.app.data.appsession.BuzyUserAppSession
 import io.buzypc.app.ui.utils.loadCurrentUserDetails
 
 class BuildSummary : AppCompatActivity() {
@@ -26,12 +26,12 @@ class BuildSummary : AppCompatActivity() {
         val btnSaveBuild = findViewById<Button>(R.id.btnSaveBuild)
         val user = loadCurrentUserDetails(this)
         user.retrieveBuilds()
-        tvBuildName.text = "${(application as PCBuildingSession).buildName}'s Summary"
+        tvBuildName.text = "${(application as BuzyUserAppSession).buildName}'s Summary"
 
         btnSaveBuild.setOnClickListener {
             // Add current build details to global lists (if needed)
-            user.buildNameList.add((application as PCBuildingSession).buildName)
-            user.buildBudgetList.add((application as PCBuildingSession).buildBudget)
+            user.buildNameList.add((application as BuzyUserAppSession).buildName)
+            user.buildBudgetList.add((application as BuzyUserAppSession).buildBudget)
 
             // Save build data into the user-specific SharedPreferences via BuzyUser
             user.saveBuilds()

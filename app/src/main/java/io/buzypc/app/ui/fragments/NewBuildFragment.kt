@@ -10,7 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import io.buzypc.app.R
-import io.buzypc.app.data.appsession.PCBuildingSession
+import io.buzypc.app.data.appsession.BuzyUserAppSession
 import io.buzypc.app.ui.BuildSummary
 
 class NewBuildFragment : Fragment() {
@@ -28,8 +28,9 @@ class NewBuildFragment : Fragment() {
                 return@setOnClickListener
             }
             if(etBuildName.text.isNullOrEmpty()) etBuildName.setText("New Build")
-            (requireActivity().application as PCBuildingSession).buildName = etBuildName.text.toString()
-            (requireActivity().application as PCBuildingSession).buildBudget = etBudgetInput.text.toString()
+            requireContext()
+            (context?.applicationContext as BuzyUserAppSession).buildName = etBuildName.text.toString()
+            (context?.applicationContext as BuzyUserAppSession).buildBudget = etBudgetInput.text.toString()
             val intent = Intent(requireActivity(), BuildSummary::class.java)
             startActivity(intent)
         }
