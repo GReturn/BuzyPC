@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import io.buzypc.app.R
 import io.buzypc.app.databinding.ActivityBottomNavigationBinding
-import io.buzypc.app.ui.fragments.AboutDevelopersFragment
+import io.buzypc.app.ui.fragments.TEMPORARY_AboutDevelopersFragment
 import io.buzypc.app.ui.fragments.BuildListFragment
 import io.buzypc.app.ui.fragments.LandingPageFragment
 import io.buzypc.app.ui.fragments.NewBuildFragment
@@ -29,7 +29,7 @@ class BottomNavigation : AppCompatActivity() {
             if (itemId == R.id.landing_page) {
                 replaceFragment(LandingPageFragment(), false, null)
             } else if (itemId == R.id.about_devs) {
-                replaceFragment(AboutDevelopersFragment(), false, null)
+                replaceFragment(TEMPORARY_AboutDevelopersFragment(), false, null)
             } else if (itemId == R.id.build_list) {
                 replaceFragment(BuildListFragment(), false, null)
             } else if (itemId == R.id.add_build) {
