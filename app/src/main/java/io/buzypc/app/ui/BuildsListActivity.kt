@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.buzypc.app.R
 import io.buzypc.app.model.PCBuildAdapter
-import io.buzypc.app.data.PCBuild
+import io.buzypc.app.data.pc.PCBuild
 
 class BuildsListActivity : AppCompatActivity() {
     val pcBuildList = ArrayList<PCBuild>()
@@ -17,7 +17,7 @@ class BuildsListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_builds_list)
 
         val btnProfileView = findViewById<ImageView>(R.id.button_profile_view)
-        btnProfileView.setOnClickListener(){
+        btnProfileView.setOnClickListener {
             val intent = Intent(this, ProfileViewActivity::class.java)
             startActivity(intent)
         }
