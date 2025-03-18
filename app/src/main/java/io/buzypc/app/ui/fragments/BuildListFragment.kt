@@ -9,10 +9,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.buzypc.app.R
-import io.buzypc.app.data.OurApplication
-import io.buzypc.app.data.PCBuild
-import io.buzypc.app.data.user.BuzyUser
+import io.buzypc.app.data.pc.PCBuild
 import io.buzypc.app.model.PCBuildAdapter
+import io.buzypc.app.ui.utils.loadCurrentUserDetails
 
 class BuildListFragment : Fragment() {
     val pcBuildList = ArrayList<PCBuild>()
@@ -27,7 +26,6 @@ class BuildListFragment : Fragment() {
             tvEmptyList.visibility = View.VISIBLE
             recyclerView.visibility = View.INVISIBLE
         }
-
 
         val adapter = PCBuildAdapter(requireContext(), pcBuildList)
         recyclerView.adapter = adapter
@@ -47,11 +45,11 @@ class BuildListFragment : Fragment() {
     }
 
     private fun setPCModelList() {
-        val user = BuzyUser(requireContext(), (requireActivity().application as OurApplication).username)
-        user.retrieveBuilds()
+        val userDetails = loadCurrentUserDetails(requireContext())
+        userDetails.retrieveBuilds()
 
-        val nameList = user.buildNameList
-        val budgetList = user.buildBudgetList
+        val nameList = userDetails.buildNameList
+        val budgetList = userDetails.buildBudgetList
         for (i in nameList.indices) {
             pcBuildList.add(PCBuild(nameList[i], budgetList[i]))
         }

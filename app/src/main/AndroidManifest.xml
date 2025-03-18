@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
-        android:name=".data.OurApplication"
+        android:name=".data.appsession.BuzyUserAppSession"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -33,9 +33,6 @@
             android:exported="false" />
         <activity
             android:name=".ui.AboutDevelopersActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.LandingPageActivity"
             android:exported="false" />
         <activity
             android:name=".ui.LogoutPromptActivity"

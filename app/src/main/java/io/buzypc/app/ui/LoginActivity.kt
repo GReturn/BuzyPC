@@ -13,9 +13,10 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import io.buzypc.app.R
-import io.buzypc.app.data.OurApplication
+import io.buzypc.app.data.appsession.BuzyUserAppSession
 import io.buzypc.app.data.user.BuzyUser
 import io.buzypc.app.data.user.BuzyUserSettings
+import io.buzypc.app.ui.utils.loadCurrentUserDetails
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,8 +34,8 @@ class LoginActivity : AppCompatActivity() {
         // Attempt auto-login if a last user exists
         val lastUser = userSettings.getLastUser()
         if (lastUser != null) {
-            (application as OurApplication).username = lastUser
-            val userDetails = BuzyUser(this, (application as OurApplication).username)
+            (application as BuzyUserAppSession).username = lastUser
+            val userDetails = loadCurrentUserDetails(this)
             handleStartup(userDetails, userSettings)
         }
 
