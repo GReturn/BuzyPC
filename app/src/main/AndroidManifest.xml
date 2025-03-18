@@ -35,9 +35,6 @@
             android:name=".ui.AboutDevelopersActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.SettingsActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.LandingPageActivity"
             android:exported="false" />
         <activity
