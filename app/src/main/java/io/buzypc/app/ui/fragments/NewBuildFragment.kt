@@ -10,10 +10,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import io.buzypc.app.R
-import io.buzypc.app.data.OurApplication
-import io.buzypc.app.data.user.BuzyUser
+import io.buzypc.app.data.appsession.PCBuildingSession
 import io.buzypc.app.ui.BuildSummary
-import io.buzypc.app.ui.ProfileViewActivity
 
 class NewBuildFragment : Fragment() {
 
@@ -24,7 +22,7 @@ class NewBuildFragment : Fragment() {
 
         val btnBuild = view.findViewById<Button>(R.id.btn_build)
 
-        btnBuild.setOnClickListener(){
+        btnBuild.setOnClickListener {
             if(etBudgetInput.text.isNullOrEmpty()){
                 Toast.makeText(requireContext(), "Input your budget", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
@@ -32,6 +30,8 @@ class NewBuildFragment : Fragment() {
             if(etBuildName.text.isNullOrEmpty()) etBuildName.setText("New Build")
             (requireActivity().application as OurApplication).buildName = etBuildName.text.toString()
             (requireActivity().application as OurApplication).buildBudget = etBudgetInput.text.toString()
+            (requireActivity().application as PCBuildingSession).buildName = etBuildName.text.toString()
+            (requireActivity().application as PCBuildingSession).buildBudget = etBudgetInput.text.toString()
             val intent = Intent(requireActivity(), BuildSummary::class.java)
             startActivity(intent)
         }

@@ -23,8 +23,7 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
 import io.buzypc.app.R
-import io.buzypc.app.data.OurApplication
-import io.buzypc.app.data.user.BuzyUser
+import io.buzypc.app.ui.utils.loadCurrentUserDetails
 
 class ProfileViewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +35,7 @@ class ProfileViewActivity : AppCompatActivity() {
             insets
         }
 
-        val userDetails = BuzyUser(this,(application as OurApplication).username)
+        val userDetails = loadCurrentUserDetails(this)
 
         val editTextUsername = findViewById<EditText>(R.id.edittext_username)
         editTextUsername.setText(userDetails.getUsername())

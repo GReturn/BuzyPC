@@ -58,9 +58,10 @@ class LoginActivity : AppCompatActivity() {
             }
 
             // Create BuzyUser using the entered username.
-            val userDetails = BuzyUser(this, enteredUsername)
+            val userDetails = loadCurrentUserDetails(this)
+            userDetails.loadUser(enteredUsername)
 
-            if (!userDetails.isUserRegistered()) {
+            if (!userDetails.isUserRegistered(enteredUsername)) {
                 AlertDialog.Builder(this)
                     .setIcon(R.drawable.buzybee)
                     .setTitle("Profile Not Found")
@@ -74,38 +75,76 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            if (userDetails.validateLogin(enteredUsername, enteredPassword)) {
-                (application as OurApplication).username = enteredUsername
+            if (!userDetails.validateLogin(enteredUsername, enteredPassword)) {
+                Toast.makeText(this, "Invalid credentials", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            } else {
+                (application as BuzyUserAppSession).username = enteredUsername
                 // Save the last logged in user so that auto-login works next time.
                 userSettings.setLastUser(enteredUsername)
+                setAppTheme(userSettings)
+
                 val intent = Intent(this, BottomNavigation::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
                 finish()
-            } else {
-                Toast.makeText(this, "Invalid credentials", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
             }
         }
 
         btnRegister.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
+            return@setOnClickListener
         }
     }
 
+    /**
+     * Handles the application's startup logic based on user details and settings.
+     *
+     * This function determines the initial state of the application after it's launched.
+     * It sets the application's theme based on the user's preferences and checks if the user is logged in.
+     * If the user is logged in, it navigates them to the main application screen (BottomNavigation).
+     * Otherwise, the application will remain on the current screen, likely a login or onboarding screen.
+     *
+     * @param userDetails An object containing details about the user, including their login status.
+     * @param userSettings An object containing the user's application settings, such as the preferred theme.
+     */
     private fun handleStartup(userDetails: BuzyUser, userSettings: BuzyUserSettings) {
-        if (userSettings.getTheme() == null || userSettings.getTheme() == "light") {
-            userSettings.setTheme("light")
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        }
-
+        setAppTheme(userSettings)
         if (userDetails.isLoggedIn()) {
             val intent = Intent(this, BottomNavigation::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
             finish()
+        }
+    }
+
+    /**
+     * Sets the application's theme based on the user's settings.
+     *
+     * This function checks the user's preferred theme stored in `BuzyUserSettings`.
+     * If the theme is not set or is set to "light", it sets the application theme to light mode.
+     * Otherwise, it sets the application theme to dark mode.
+     *
+     * @param userSettings An instance of `BuzyUserSettings` containing the user's theme preference.
+     *                     This object is used to both retrieve and update the user's theme setting.
+     * @throws IllegalArgumentException if the theme stored in `userSettings` is neither "light" nor null, it implies an invalid configuration.
+     *
+     * Usage Example :
+     *
+     * ```kotlin
+     * val userSettings = BuzyUserSettings(context)
+     * setAppTheme(userSettings)
+     * ```
+     */
+    private fun setAppTheme(userSettings: BuzyUserSettings) {
+        if (userSettings.getTheme() == null || userSettings.getTheme() == "light") {
+            userSettings.setTheme("light")
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
+        else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         }
     }
 }

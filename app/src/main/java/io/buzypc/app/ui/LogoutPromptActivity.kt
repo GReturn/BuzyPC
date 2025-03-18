@@ -8,8 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import io.buzypc.app.R
-import io.buzypc.app.data.OurApplication
-import io.buzypc.app.data.user.BuzyUser
+import io.buzypc.app.ui.utils.loadCurrentUserDetails
 
 class LogoutPromptActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +21,7 @@ class LogoutPromptActivity : AppCompatActivity() {
             insets
         }
 
-        val userDetails = BuzyUser(this, (application as OurApplication).username)
+        val userDetails = loadCurrentUserDetails(this)
         val btnLogout = findViewById<Button>(R.id.confirmLogoutButton)
         val btnCancelLogout = findViewById<Button>(R.id.cancel_button)
 

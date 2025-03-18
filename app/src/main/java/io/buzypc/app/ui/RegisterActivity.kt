@@ -10,8 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import io.buzypc.app.R
-import io.buzypc.app.data.OurApplication
-import io.buzypc.app.data.user.BuzyUser
+import io.buzypc.app.ui.utils.loadCurrentUserDetails
 
 class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,7 +58,7 @@ class RegisterActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
             else{
-                val userDetails = BuzyUser(this, edittextUsername.text.toString())
+                val userDetails = loadCurrentUserDetails(this)
 
                 userDetails.registerUser(
                         edittextUsername.text.toString(),
