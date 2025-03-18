@@ -28,8 +28,6 @@ class NewBuildFragment : Fragment() {
                 return@setOnClickListener
             }
             if(etBuildName.text.isNullOrEmpty()) etBuildName.setText("New Build")
-            (requireActivity().application as OurApplication).buildName = etBuildName.text.toString()
-            (requireActivity().application as OurApplication).buildBudget = etBudgetInput.text.toString()
             (requireActivity().application as PCBuildingSession).buildName = etBuildName.text.toString()
             (requireActivity().application as PCBuildingSession).buildBudget = etBudgetInput.text.toString()
             val intent = Intent(requireActivity(), BuildSummary::class.java)
