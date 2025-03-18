@@ -14,11 +14,13 @@ class NewBuildActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_new_build)
+
+        // TODO: Perhaps we can change this to a back navigation?
         val profileViewButton = findViewById<ImageView>(R.id.image_profileButton)
 
-        profileViewButton.setOnClickListener(){
-            val intent = Intent(this, SettingsActivity::class.java)
-            startActivity(intent)
+        profileViewButton.setOnClickListener {
+//            val intent = Intent(this, SettingsActivity::class.java)
+//            startActivity(intent)
         }
     }
 }
