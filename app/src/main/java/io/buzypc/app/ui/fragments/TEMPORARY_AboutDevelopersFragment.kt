@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import io.buzypc.app.R
 
-class AboutDevelopersFragment : Fragment() {
+class TEMPORARY_AboutDevelopersFragment : Fragment() {
 
     // - LayoutInflater converts xml file into a View object that the fragment displays
     // - 'container' is the parent view where this fragment’s UI will be placed, passing false as the third parameter because the system
