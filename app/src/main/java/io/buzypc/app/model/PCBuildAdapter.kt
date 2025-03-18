@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import io.buzypc.app.R
-import io.buzypc.app.data.PCBuild
+import io.buzypc.app.data.pc.PCBuild
 import io.buzypc.app.ui.fragments.NewBuildFragment
 
 class PCBuildAdapter(var context: Context, var pcBuilds: ArrayList<PCBuild>) :
