@@ -161,15 +161,14 @@ class BuzyUser(private val context: Context) {
     }
 
     fun saveImageToInternalStorage(context: Context, bitmap: Bitmap, filename: String) {
-        val file = File(context.filesDir, filename)
+        // let's personalize each profile image file name for easier identification
+        val trueImageFilename = filename + getUsername()
+
+        val file = File(context.filesDir, trueImageFilename)
         FileOutputStream(file).use { outputStream ->
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
         }
-        sharedPreferences.edit().putString(
-            "profile_pic_${getUsername() + 
-                    sharedPreferences.getString("password", "")?.let { hashPassword(it) }}",
-            file.absolutePath
-        ).apply()
+        sharedPreferences.edit().putString("profile_pic",file.absolutePath).apply()
     }
 
     fun getImageFromInternalStorage(): Bitmap? {
@@ -183,6 +182,8 @@ class BuzyUser(private val context: Context) {
         val bytes = MessageDigest.getInstance("SHA-256").digest(password.toByteArray())
         return bytes.joinToString("") { "%02x".format(it) }
     }
+
+   // TODO: Temporary; we should store build information as a JSON or XML string
 
     fun saveBuilds() {
         sharedPreferences.edit()
