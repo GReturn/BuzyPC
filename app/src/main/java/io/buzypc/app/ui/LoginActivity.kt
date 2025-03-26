@@ -65,7 +65,7 @@ class LoginActivity : AppCompatActivity() {
                 AlertDialog.Builder(this)
                     .setIcon(R.drawable.buzybee)
                     .setTitle("Profile Not Found")
-                    .setMessage("Uh-oh! It seems we didn't find an existing account. Create an account?")
+                    .setMessage("Uh-oh! It seems we didn't find an existing account with this username. Create an account?")
                     .setPositiveButton("Register") { _, _ ->
                         val intent = Intent(this, RegisterActivity::class.java)
                         startActivity(intent)
