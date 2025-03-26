@@ -31,12 +31,14 @@ class LoginActivity : AppCompatActivity() {
         }
 
         val userSettings = BuzyUserSettings(this)
+        setAppTheme(userSettings)
+
         // Attempt auto-login if a last user exists
         val lastUser = userSettings.getLastUser()
         if (lastUser != null) {
             (application as BuzyUserAppSession).username = lastUser
             val userDetails = loadCurrentUserDetails(this)
-            handleStartup(userDetails, userSettings)
+            handleStartup(userDetails)
         }
 
         val edittextUsername = findViewById<EditText>(R.id.username)
@@ -110,8 +112,7 @@ class LoginActivity : AppCompatActivity() {
      * @param userDetails An object containing details about the user, including their login status.
      * @param userSettings An object containing the user's application settings, such as the preferred theme.
      */
-    private fun handleStartup(userDetails: BuzyUser, userSettings: BuzyUserSettings) {
-        setAppTheme(userSettings)
+    private fun handleStartup(userDetails: BuzyUser) {
         if (userDetails.isLoggedIn()) {
             val intent = Intent(this, BottomNavigation::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -139,11 +140,13 @@ class LoginActivity : AppCompatActivity() {
      * ```
      */
     private fun setAppTheme(userSettings: BuzyUserSettings) {
-        if (userSettings.getTheme() == null || userSettings.getTheme() == "light") {
+        val theme = userSettings.getTheme()
+        if (theme == null || theme == "light") {
             userSettings.setTheme("light")
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
         else {
+            userSettings.setTheme("dark")
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         }
     }
