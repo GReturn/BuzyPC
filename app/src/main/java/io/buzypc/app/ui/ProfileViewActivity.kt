@@ -69,8 +69,7 @@ class ProfileViewActivity : AppCompatActivity() {
         }
 
         btnBackNavigation.setOnClickListener {
-            val intent = Intent(this, BottomNavigation::class.java)
-            startActivity(intent)
+            finish()
             return@setOnClickListener
         }
 

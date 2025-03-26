@@ -33,8 +33,7 @@ class LogoutPromptActivity : AppCompatActivity() {
             finish()
         }
         btnCancelLogout.setOnClickListener {
-            val intent = Intent(this, BottomNavigation::class.java)
-            startActivity(intent)
+            finish()
         }
     }
 }

@@ -19,5 +19,9 @@ class AboutDevelopersActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val btnBack = findViewById<Button>(R.id.btn_back_navigation)
+        btnBack.setOnClickListener {
+            finish()
+        }
     }
 }
