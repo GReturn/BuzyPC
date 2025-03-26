@@ -18,6 +18,6 @@ class TEMPORARY_AboutDevelopersFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_about_developers, container, false)
+        return inflater.inflate(R.layout.fragment_screen_not_implemented, container, false)
     }
 }
