@@ -29,9 +29,9 @@ class BottomNavigation : AppCompatActivity() {
             if (itemId == R.id.landing_page) {
                 replaceFragment(LandingPageFragment(), false, null)
             } else if (itemId == R.id.about_devs) {
-                replaceFragment(TEMPORARY_AboutDevelopersFragment(), false, null)
-            } else if (itemId == R.id.build_list) {
                 replaceFragment(BuildListFragment(), false, null)
+            } else if (itemId == R.id.build_list) {
+                replaceFragment(TEMPORARY_AboutDevelopersFragment(), false, null)
             } else if (itemId == R.id.add_build) {
                 replaceFragment(NewBuildFragment(), false, null)
             } else if (itemId == R.id.profile_view) {
