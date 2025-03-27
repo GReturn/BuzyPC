@@ -34,6 +34,12 @@
             android:hint="Build Name"
             android:fontFamily="@font/ubuntu_bold"
             android:textAlignment="center"
+
+            android:maxLength="20"
+            android:singleLine="true"
+            android:maxLines="1"
+            android:focusable="true"
+            android:imeOptions="actionNext"
             />
 
         <EditText

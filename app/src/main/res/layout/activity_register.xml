@@ -61,8 +61,8 @@
         android:textAlignment="center"
         android:textColor="#808080"
         android:textSize="15sp"
-        android:maxLength="20"
 
+        android:maxLength="20"
         android:singleLine="true"
         android:maxLines="1"
         android:focusable="true"
