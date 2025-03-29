@@ -7,12 +7,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavOptions
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.RecyclerView
 import io.buzypc.app.R
 import io.buzypc.app.data.pc.PCBuild
-import io.buzypc.app.ui.fragments.NewBuildFragment
 
-class PCBuildAdapter(var context: Context, var pcBuilds: ArrayList<PCBuild>) :
+class PCBuildRecyclerViewAdapter(var context: Context, var pcBuilds: ArrayList<PCBuild>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val VIEW_TYPE_ITEM = 0
     private val VIEW_TYPE_BUTTON = 1
@@ -37,13 +38,27 @@ class PCBuildAdapter(var context: Context, var pcBuilds: ArrayList<PCBuild>) :
             holder.tvName.text = pcBuilds[position].buildName
             holder.tvBudget.text = "PHP " + pcBuilds[position].buildBudget
         } else if (holder is ImageViewHolder) {
-            holder.button.setOnClickListener { view ->
+            holder.button.setOnClickListener {
                 // Cast context to AppCompatActivity to get the supportFragmentManager
                 val activity = context as AppCompatActivity
-                activity.supportFragmentManager.beginTransaction()
-                    .replace(R.id.frame_layout, NewBuildFragment())
-                    .addToBackStack(null)
-                    .commit()
+                val navHostFragment = activity.supportFragmentManager
+                                .findFragmentById(R.id.navController) as NavHostFragment
+                val navController = navHostFragment.navController
+
+                // Normally using NavController.navigate() erases the current fragment
+                // In our context, we are in the 'My Builds' fragment, which is erased when
+                // we use navigate(). To counter this, we add a setting to our navOptions,
+                // that is we add setPopUp(navController.graph.startDestinationId, false)
+                // setting `true` in the second argument  will remove the previous fragment
+                navController.navigate(
+                    R.id.newBuildFragment,
+                    null,
+                    NavOptions.Builder()
+                        .setLaunchSingleTop(true)
+                        .setRestoreState(true)
+                        .setPopUpTo(navController.graph.startDestinationId, false)
+                        .build()
+                )
             }
         }
     }
