@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/transparent"
-    tools:context=".ui.BottomNavigation"
+    tools:context=".ui.navigation.BottomNavigation"
     >
 
     <FrameLayout
@@ -19,6 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
@@ -28,14 +29,16 @@
         app:layout_constraintStart_toStartOf="parent"
 
         app:menu="@menu/menu"
-        android:backgroundTint="?attr/colorOnPrimary"
-
+        android:background="?attr/colorPrimary"
+        app:itemIconTint="@color/bz_darkGray"
+        app:itemTextColor="@color/bz_darkGray"
+        app:itemActiveIndicatorStyle="?attr/colorPrimary"
         />
 
     <fragment
         android:id="@+id/navController"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
 
         android:name="androidx.navigation.fragment.NavHostFragment"
         app:defaultNavHost="true"
@@ -45,5 +48,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+    <io.buzypc.app.ui.widget.NewBuildCircleRevealView
+        android:id="@+id/circleRevealView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
