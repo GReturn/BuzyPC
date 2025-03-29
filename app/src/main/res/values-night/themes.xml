@@ -11,5 +11,7 @@
         <item name="colorOnTertiary">@color/bz_warmYellow</item>
         <item name="background">@color/bz_almostBlack</item>
         <item name="colorControlNormal">@color/bz_honeyYellow</item>
+
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
     </style>
 </resources>

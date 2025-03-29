@@ -1,6 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+
     <!-- Base application theme. -->
     <style name="Base.Theme.BuzyPC.Dark" parent="Theme.Material3.DayNight.NoActionBar">
+
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="colorPrimary">@color/bz_honeyYellow</item>
@@ -11,6 +13,8 @@
         <item name="colorOnTertiary">@color/white</item>
         <item name="background">@color/bz_softGray</item>
         <item name="colorControlNormal">@color/bz_honeyYellow</item>
+
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
     </style>
 
     <style name="Theme.BuzyPC" parent="Base.Theme.BuzyPC.Dark" />
