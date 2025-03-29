@@ -7,9 +7,9 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/buzybee"
+        android:icon="@drawable/mascot_buzybee"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/buzybee"
+        android:roundIcon="@drawable/mascot_buzybee"
         android:supportsRtl="true"
         android:theme="@style/Theme.BuzyPC"
         tools:targetApi="31">
