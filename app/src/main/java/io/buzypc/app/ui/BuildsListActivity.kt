@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.buzypc.app.R
-import io.buzypc.app.model.PCBuildAdapter
+import io.buzypc.app.model.PCBuildRecyclerViewAdapter
 import io.buzypc.app.data.pc.PCBuild
 
 class BuildsListActivity : AppCompatActivity() {
@@ -25,7 +25,7 @@ class BuildsListActivity : AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.recycleView_builds)
         setPCModelList()
 
-        val adapter = PCBuildAdapter(this, pcBuildList)
+        val adapter = PCBuildRecyclerViewAdapter(this, pcBuildList)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = GridLayoutManager(this,2)
 

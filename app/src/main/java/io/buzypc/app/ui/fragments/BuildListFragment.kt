@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.buzypc.app.R
 import io.buzypc.app.data.pc.PCBuild
-import io.buzypc.app.model.PCBuildAdapter
+import io.buzypc.app.model.PCBuildRecyclerViewAdapter
 import io.buzypc.app.ui.utils.loadCurrentUserDetails
 
 class BuildListFragment : Fragment() {
@@ -27,7 +27,7 @@ class BuildListFragment : Fragment() {
             recyclerView.visibility = View.INVISIBLE
         }
 
-        val adapter = PCBuildAdapter(requireContext(), pcBuildList)
+        val adapter = PCBuildRecyclerViewAdapter(requireContext(), pcBuildList)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = GridLayoutManager(requireContext(),2)
     }

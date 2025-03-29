@@ -35,7 +35,6 @@ class BuildSummary : AppCompatActivity() {
 
             // Save build data into the user-specific SharedPreferences via BuzyUser
             user.saveBuilds()
-            // Redirect to BottomNavigation (or another activity) as desired
             startActivity(Intent(this, BottomNavigation::class.java))
             finish()
         }
