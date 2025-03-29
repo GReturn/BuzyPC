@@ -3,11 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.NewBuildFragment">
+    tools:context=".ui.fragments.NewBuildFragment"
+    android:id="@+id/fragment_new_build">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <RelativeLayout
         android:id="@+id/new_build"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,7 +16,7 @@
             android:id="@+id/textview_budgetPrompt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="What's your budget?"
+            android:text="Create a new build"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="150dp"
             android:textSize="30sp"
@@ -53,6 +52,9 @@
             android:hint="PHP"
             android:padding="10dp"
             android:inputType="number"
+            android:textColor="?attr/colorOnSecondary"
+            android:backgroundTint="?attr/background"
+
             />
 
         <Button

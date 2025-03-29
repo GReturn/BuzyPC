@@ -4,13 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.BuildListFragment">
+    tools:context=".ui.fragments.BuildListFragment"
+    android:id="@+id/fragment_build_list">
 
     <RelativeLayout
         android:id="@+id/build_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.BuildsListActivity">
+        tools:context=".ui.BuildsListActivity"
+        android:paddingBottom="56dp"
+        >
         <TextView
             android:id="@+id/textView_buildsHeader"
             android:layout_width="wrap_content"
