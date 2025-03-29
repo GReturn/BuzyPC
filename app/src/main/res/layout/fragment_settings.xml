@@ -5,14 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.SettingsFragment"
-    android:id="@+id/fragment_settings">
+    tools:context=".ui.navigation.fragments.SettingsFragment"
+    android:id="@+id/fragment_settings"
+    >
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
-    >
+    android:padding="20dp">
 
     <TextView
         android:id="@+id/textView"
@@ -66,6 +66,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
 
+        android:layout_marginHorizontal="50dp"
+
         android:fontFamily="sans-serif-black"
         android:text="Edit Account Details"
         app:layout_constraintEnd_toEndOf="parent"
@@ -77,6 +79,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+
+        android:layout_marginHorizontal="50dp"
+
         android:fontFamily="sans-serif-black"
         android:text="About the Developers"
         app:layout_constraintEnd_toEndOf="parent"
@@ -87,6 +92,8 @@
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
+        android:layout_marginHorizontal="50dp"
 
         android:layout_marginTop="19dp"
         android:text="Change Theme"
@@ -102,6 +109,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+
+        android:layout_marginHorizontal="50dp"
 
         android:orientation="horizontal"
         android:paddingTop="10dp"
@@ -183,6 +192,8 @@
         android:id="@+id/btn_logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
+        android:layout_marginHorizontal="50dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:backgroundTint="?attr/colorOnSecondary"

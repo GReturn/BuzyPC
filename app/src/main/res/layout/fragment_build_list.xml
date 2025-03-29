@@ -4,8 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.BuildListFragment"
-    android:id="@+id/fragment_build_list">
+    tools:context=".ui.navigation.fragments.BuildListFragment"
+    android:id="@+id/fragment_build_list"
+    android:backgroundTint="?android:attr/colorBackground"
+    >
 
     <RelativeLayout
         android:id="@+id/build_list"

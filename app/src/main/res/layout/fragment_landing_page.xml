@@ -4,8 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.LandingPageFragment"
-    android:id="@+id/fragment_landing_page">
+    tools:context=".ui.navigation.fragments.LandingPageFragment"
+    android:id="@+id/fragment_landing_page"
+    android:backgroundTint="?android:attr/colorBackground"
+    >
 
     <RelativeLayout
         android:id="@+id/main"

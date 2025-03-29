@@ -13,19 +13,21 @@ import androidx.recyclerview.widget.RecyclerView
 import io.buzypc.app.R
 import io.buzypc.app.data.pc.PCBuild
 
-class PCBuildRecyclerViewAdapter(var context: Context, var pcBuilds: ArrayList<PCBuild>) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private val VIEW_TYPE_ITEM = 0
-    private val VIEW_TYPE_BUTTON = 1
+class PCBuildRecyclerViewAdapter(
+    var context: Context,
+    var pcBuilds: ArrayList<PCBuild>
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    private val VIEW_TYPE_BUILD_ITEM = 0
+    private val VIEW_TYPE_ADD_BUILD = 1
 
     override fun getItemViewType(position: Int): Int {
-        return if (position < pcBuilds.size) VIEW_TYPE_ITEM else VIEW_TYPE_BUTTON
+        return if (position < pcBuilds.size) VIEW_TYPE_BUILD_ITEM else VIEW_TYPE_ADD_BUILD
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(context)
-        return if (viewType == VIEW_TYPE_ITEM) {
-            val view = inflater.inflate(R.layout.activity_build_card, parent, false)
+        return if (viewType == VIEW_TYPE_BUILD_ITEM) {
+            val view = inflater.inflate(R.layout.buildlist_build_card, parent, false)
             ItemViewHolder(view)
         } else {
             val view = inflater.inflate(R.layout.footer_button, parent, false)
@@ -35,8 +37,13 @@ class PCBuildRecyclerViewAdapter(var context: Context, var pcBuilds: ArrayList<P
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is ItemViewHolder) {
+            // populate each item of PC build here with corresponding fields
+
             holder.tvName.text = pcBuilds[position].buildName
             holder.tvBudget.text = "PHP " + pcBuilds[position].buildBudget
+
+            // TODO add onclick listener here
+
         } else if (holder is ImageViewHolder) {
             holder.button.setOnClickListener {
                 // Cast context to AppCompatActivity to get the supportFragmentManager

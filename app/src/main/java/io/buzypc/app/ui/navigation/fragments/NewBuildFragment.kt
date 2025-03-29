@@ -1,4 +1,4 @@
-package io.buzypc.app.ui.fragments
+package io.buzypc.app.ui.navigation.fragments
 
 import android.content.Intent
 import android.os.Bundle

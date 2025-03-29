@@ -3,8 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.fragments.TEMPORARY_AboutDevelopersFragment"
-    android:id="@+id/fragment_cart_view">
+    tools:context=".ui.navigation.fragments.TEMPORARY_AboutDevelopersFragment"
+    android:id="@+id/fragment_cart_view"
+    android:backgroundTint="?android:attr/colorBackground"
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:app="http://schemas.android.com/apk/res-auto"

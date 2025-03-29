@@ -16,6 +16,7 @@ import io.buzypc.app.R
 import io.buzypc.app.data.appsession.BuzyUserAppSession
 import io.buzypc.app.data.user.BuzyUser
 import io.buzypc.app.data.user.BuzyUserSettings
+import io.buzypc.app.ui.navigation.BottomNavigation
 import io.buzypc.app.ui.utils.loadCurrentUserDetails
 
 class LoginActivity : AppCompatActivity() {

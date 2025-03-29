@@ -3,8 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.NewBuildFragment"
-    android:id="@+id/fragment_new_build">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.navigation.fragments.NewBuildFragment"
+    android:id="@+id/fragment_new_build"
+    android:background="?attr/colorPrimary">
 
     <RelativeLayout
         android:id="@+id/new_build"
@@ -21,6 +23,7 @@
             android:layout_marginTop="150dp"
             android:textSize="30sp"
             android:textStyle="bold"
+            android:textColor="?attr/colorOnPrimary"
             />
 
         <EditText
@@ -33,6 +36,9 @@
             android:hint="Build Name"
             android:fontFamily="@font/ubuntu_bold"
             android:textAlignment="center"
+            android:textColor="?attr/colorOnPrimary"
+            android:textColorHint="?attr/colorOnPrimary"
+            android:shadowColor="?attr/colorOnPrimary"
 
             android:maxLength="10"
             android:singleLine="true"
@@ -57,7 +63,7 @@
 
             />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_build"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -66,6 +72,13 @@
             android:layout_below="@id/et_budgetInput"
             android:layout_marginTop="200dp"
             android:textStyle="bold"
+
+            app:strokeWidth="3dp"
+            app:strokeColor="?attr/colorOnPrimary"
+
+            android:backgroundTint="?attr/colorOnPrimary"
+            android:textColor="?attr/colorPrimary"
+
             />
     </RelativeLayout>
 
