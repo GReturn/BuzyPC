@@ -114,7 +114,7 @@ class ProfileViewActivity : AppCompatActivity() {
                     btnEditProfile.setCompoundDrawablesWithIntrinsicBounds( R.drawable.baseline_edit_24, 0, 0, 0)
 
                     userDetails.saveProfile(updatedUsername, updatedEmail)
-                    Toast.makeText(this, "User profile has been saved", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "User profile has been saved", Toast.LENGTH_SHORT).show()
                 }
             }
             return@setOnClickListener
