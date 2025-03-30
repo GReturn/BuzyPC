@@ -3,7 +3,6 @@ package io.buzypc.app.ui.widget
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
-import android.graphics.Path
 import android.util.AttributeSet
 import android.view.View
 import androidx.core.animation.doOnEnd
