@@ -36,7 +36,19 @@ class BuildSummary : AppCompatActivity() {
 
             // Save build data into the user-specific SharedPreferences via BuzyUser
             user.saveBuilds()
-            startActivity(Intent(this, BottomNavigation::class.java))
+            val intent = Intent(this, BottomNavigation::class.java)
+
+            /*
+                we set these flags to fix the issue of erratic screen flickering produced by
+                doing the following procedures:
+                 1. change the theme to dark mode to light mode or vice versa
+                 2. add a build
+                 3. save the build
+                 4. change the theme again
+            */
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+            startActivity(intent)
             finish()
         }
     }
