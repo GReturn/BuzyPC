@@ -28,9 +28,6 @@
             android:name=".ui.BuildCard"
             android:exported="false" />
         <activity
-            android:name=".ui.BuildsListActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.NewBuildActivity"
             android:exported="false" />
         <activity
