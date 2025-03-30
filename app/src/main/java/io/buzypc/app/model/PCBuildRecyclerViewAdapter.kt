@@ -15,7 +15,8 @@ import io.buzypc.app.data.pc.PCBuild
 
 class PCBuildRecyclerViewAdapter(
     var context: Context,
-    var pcBuilds: ArrayList<PCBuild>
+    var pcBuilds: ArrayList<PCBuild>,
+    var onNavigateToNewBuild: () -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val VIEW_TYPE_BUILD_ITEM = 0
     private val VIEW_TYPE_ADD_BUILD = 1
@@ -46,26 +47,29 @@ class PCBuildRecyclerViewAdapter(
 
         } else if (holder is ImageViewHolder) {
             holder.button.setOnClickListener {
+                onNavigateToNewBuild()
                 // Cast context to AppCompatActivity to get the supportFragmentManager
-                val activity = context as AppCompatActivity
-                val navHostFragment = activity.supportFragmentManager
-                                .findFragmentById(R.id.navController) as NavHostFragment
-                val navController = navHostFragment.navController
-
-                // Normally using NavController.navigate() erases the current fragment
-                // In our context, we are in the 'My Builds' fragment, which is erased when
-                // we use navigate(). To counter this, we add a setting to our navOptions,
-                // that is we add setPopUp(navController.graph.startDestinationId, false)
-                // setting `true` in the second argument  will remove the previous fragment
-                navController.navigate(
-                    R.id.newBuildFragment,
-                    null,
-                    NavOptions.Builder()
-                        .setLaunchSingleTop(true)
-                        .setRestoreState(true)
-                        .setPopUpTo(navController.graph.startDestinationId, false)
-                        .build()
-                )
+//                val activity = context as AppCompatActivity
+//                val navHostFragment = activity.supportFragmentManager
+//                                .findFragmentById(R.id.navController) as NavHostFragment
+//                val navController = navHostFragment.navController
+//
+//
+//
+//                // Normally using NavController.navigate() erases the current fragment
+//                // In our context, we are in the 'My Builds' fragment, which is erased when
+//                // we use navigate(). To counter this, we add a setting to our navOptions,
+//                // that is we add setPopUp(navController.graph.startDestinationId, false)
+//                // setting `true` in the second argument  will remove the previous fragment
+//                navController.navigate(
+//                    R.id.newBuildFragment,
+//                    null,
+//                    NavOptions.Builder()
+//                        .setLaunchSingleTop(true)
+//                        .setRestoreState(true)
+//                        .setPopUpTo(navController.graph.startDestinationId, false)
+//                        .build()
+//                )
             }
         }
     }

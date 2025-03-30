@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import io.buzypc.app.R
 import io.buzypc.app.data.pc.PCBuild
 import io.buzypc.app.model.PCBuildRecyclerViewAdapter
+import io.buzypc.app.ui.navigation.BottomNavigation
 import io.buzypc.app.ui.utils.loadCurrentUserDetails
 
 class BuildListFragment : Fragment() {
@@ -27,7 +28,10 @@ class BuildListFragment : Fragment() {
             recyclerView.visibility = View.INVISIBLE
         }
 
-        val adapter = PCBuildRecyclerViewAdapter(requireContext(), pcBuildList)
+        val adapter = PCBuildRecyclerViewAdapter(requireContext(), pcBuildList, {
+            val activity = requireActivity() as BottomNavigation
+            activity.handleNavigateToNewBuild()
+        })
         recyclerView.adapter = adapter
         recyclerView.layoutManager = GridLayoutManager(requireContext(),2)
     }

@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewTreeObserver
+import android.view.animation.DecelerateInterpolator
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -54,7 +55,8 @@ class BottomNavigation : AppCompatActivity() {
                     Log.d("BottomNavigation", "NEW BUILD Page Selected")
                     // we won't normally just navigate; check the function on how the
                     // navigation is handled
-                    showCircle(item)
+//                    showCircle(item)
+                    handleNavigateToNewBuild()
                 }
                 R.id.TEMPORARY_AboutDevelopersFragment2 -> {
                     Log.d("BottomNavigation", "TEMP Page Selected")
@@ -77,6 +79,11 @@ class BottomNavigation : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    fun handleNavigateToNewBuild() {
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        showCircle(item = bottomNavigationView.menu.findItem(R.id.newBuildFragment))
     }
 
     private fun navigateToFragment(fragmentId: Int) {
@@ -122,11 +129,12 @@ class BottomNavigation : AppCompatActivity() {
 
         circleRevealView.startAnimation(centerX, centerY, maxRadius) {
                 circleRevealView.visibility = View.GONE
-            navigateToFragment(R.id.newBuildFragment)
+                navigateToFragment(R.id.newBuildFragment)
 
+            val fragmentContainer = findViewById<View>(R.id.navController)
                 // to prevent showing the previous screen after animating, we hide the current
-                // screen then show it after it has navigated
-                window.decorView.alpha = 0f
+                // screen then show it after it has navigated ( after calling navigateToFragment() )
+                fragmentContainer.translationY = window.decorView.height.toFloat()
 
                 val typedArray = theme.obtainStyledAttributes(intArrayOf(com.google.android.material.R.attr.colorPrimary))
                 window.decorView.setBackgroundColor(typedArray.getColor(0, R.color.bz_honeyYellow.toInt()))
@@ -138,13 +146,14 @@ class BottomNavigation : AppCompatActivity() {
                 navigateToFragment(R.id.newBuildFragment)
 
                 // show after navigation
-                window.decorView.viewTreeObserver.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
+                fragmentContainer.viewTreeObserver.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
                     override fun onPreDraw(): Boolean {
-                        window.decorView.viewTreeObserver.removeOnPreDrawListener(this)
+                        fragmentContainer.viewTreeObserver.removeOnPreDrawListener(this)
 
-                        window.decorView.animate()
-                            .alpha(1f)
-                            .setDuration(250)
+                        fragmentContainer.animate()
+                            .translationY(0f)
+                            .setDuration(400)
+                            .setInterpolator(DecelerateInterpolator())
                             .start()
 
                         return true
