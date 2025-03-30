@@ -23,11 +23,16 @@ class NewBuildFragment : Fragment() {
         val btnBuild = view.findViewById<Button>(R.id.btn_build)
 
         btnBuild.setOnClickListener {
-            if(etBudgetInput.text.isNullOrEmpty()){
-                Toast.makeText(requireContext(), "Input your budget", Toast.LENGTH_LONG).show()
+            if(etBuildName.text.isNullOrEmpty()) etBuildName.setText("New Build")
+
+            if(etBudgetInput.text.isNullOrEmpty()) {
+                Toast.makeText(requireContext(), "Input your budget.", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
-            if(etBuildName.text.isNullOrEmpty()) etBuildName.setText("New Build")
+            if(etBudgetInput.text.toString().toInt() < 20_000) {
+                Toast.makeText(requireContext(), "You can only place a budget of PHP 20,000 or above.", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
             requireContext()
             (context?.applicationContext as BuzyUserAppSession).buildName = etBuildName.text.toString()
             (context?.applicationContext as BuzyUserAppSession).buildBudget = etBudgetInput.text.toString()
