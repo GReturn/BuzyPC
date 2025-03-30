@@ -22,16 +22,13 @@ import io.buzypc.app.ui.utils.loadCurrentUserDetails
 class SettingsFragment : Fragment() {
     private val viewModel: StyleViewModel by activityViewModels()
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_settings, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-//        val viewModel = ViewModelProvider(requireActivity()).get(ThemeViewModel::class.java)
 
         loadUserData()
 
@@ -57,7 +54,6 @@ class SettingsFragment : Fragment() {
             cardLightMode.strokeWidth = 3
         }
 
-        // Navigation Click Listeners
         btnEditAccount.setOnClickListener {
             val intent = Intent(requireActivity(), ProfileViewActivity::class.java)
             startActivity(intent)
