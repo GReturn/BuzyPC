@@ -15,15 +15,16 @@ class PCBuildRecyclerViewAdapter(
     var pcBuilds: ArrayList<PCBuild>,
     var onNavigateToNewBuild: () -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private val VIEW_TYPE_BUILD_ITEM = 0
-    private val VIEW_TYPE_ADD_BUILD = 1
+    private val VIEW_TYPE_ADD_BUILD = 0
+    private val VIEW_TYPE_BUILD_ITEM = 1
 
     override fun getItemViewType(position: Int): Int {
-        return if (position < pcBuilds.size) VIEW_TYPE_BUILD_ITEM else VIEW_TYPE_ADD_BUILD
+        return if (position == 0) VIEW_TYPE_ADD_BUILD else VIEW_TYPE_BUILD_ITEM
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(context)
+
         return if (viewType == VIEW_TYPE_BUILD_ITEM) {
             val view = inflater.inflate(R.layout.card_build_item, parent, false)
             ItemViewHolder(view)
@@ -35,9 +36,10 @@ class PCBuildRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is ItemViewHolder) {
+            val pcBuild = pcBuilds[position-1]
             // populate each item of PC build here with corresponding fields
-            holder.tvName.text = pcBuilds[position].buildName
-            holder.tvBudget.text = "PHP " + pcBuilds[position].buildBudget
+            holder.tvName.text = pcBuild.buildName
+            holder.tvBudget.text = "PHP " + pcBuild.buildBudget
 
             // TODO add onclick listener here
 
@@ -47,7 +49,6 @@ class PCBuildRecyclerViewAdapter(
             }
         }
     }
-
 
     override fun getItemCount(): Int {
         return pcBuilds.size + 1
