@@ -65,6 +65,8 @@ class BottomNavigation : AppCompatActivity() {
                     navigateToFragment(R.id.settingsFragment)
                 }
             }
+            resetFragmentBackground(item.itemId)
+
             true
         }
 
@@ -92,6 +94,16 @@ class BottomNavigation : AppCompatActivity() {
         )
     }
 
+    private fun resetFragmentBackground(fragmentId: Int) {
+        if(fragmentId != R.id.newBuildFragment) {
+            val typedValue = this.obtainStyledAttributes(intArrayOf(com.google.android.material.R.attr.background))
+            window.decorView.setBackgroundColor(typedValue.getColor(0, R.color.bz_honeyYellow.toInt()))
+            // it's deprecated but it's the easiest way I can set the gesture navigation bar colors
+            window.navigationBarColor = typedValue.getColor(0, R.color.bz_honeyYellow.toInt())
+            typedValue.recycle()
+        }
+    }
+
     private fun showCircle(item: MenuItem) {
         val menuItemView = findViewById<View>(item.itemId)
         val circleRevealView = findViewById<NewBuildCircleRevealView>(R.id.circleRevealView)
@@ -109,12 +121,18 @@ class BottomNavigation : AppCompatActivity() {
         circleRevealView.visibility = View.VISIBLE
 
         circleRevealView.startAnimation(centerX, centerY, maxRadius) {
-            circleRevealView.postDelayed({
                 circleRevealView.visibility = View.GONE
+            navigateToFragment(R.id.newBuildFragment)
 
                 // to prevent showing the previous screen after animating, we hide the current
                 // screen then show it after it has navigated
                 window.decorView.alpha = 0f
+
+                val typedArray = theme.obtainStyledAttributes(intArrayOf(com.google.android.material.R.attr.colorPrimary))
+                window.decorView.setBackgroundColor(typedArray.getColor(0, R.color.bz_honeyYellow.toInt()))
+                // it's deprecated but it's the easiest way I can set the gesture navigation bar colors
+                window.navigationBarColor = typedArray.getColor(0, R.color.bz_honeyYellow.toInt())
+                typedArray.recycle()
 
                 //IMPORTANT: ONLY NAVIGATE TO ADD BUILD AFTER ANIMATION IS FINISHED!
                 navigateToFragment(R.id.newBuildFragment)
@@ -124,18 +142,14 @@ class BottomNavigation : AppCompatActivity() {
                     override fun onPreDraw(): Boolean {
                         window.decorView.viewTreeObserver.removeOnPreDrawListener(this)
 
-                        window.decorView.postDelayed({
-                            window.decorView.animate()
-                                .alpha(1f)
-                                .setDuration(300)
-                                .start()
-                        }, 200)
+                        window.decorView.animate()
+                            .alpha(1f)
+                            .setDuration(250)
+                            .start()
 
                         return true
                     }
                 })
-
-            }, 50)
         }
     }
 
