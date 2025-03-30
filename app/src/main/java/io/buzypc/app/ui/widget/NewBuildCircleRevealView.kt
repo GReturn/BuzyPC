@@ -27,7 +27,7 @@ class NewBuildCircleRevealView @JvmOverloads constructor(
         centerX = fromX
         centerY = fromY
         val animator = android.animation.ValueAnimator.ofFloat(0f, maxRadius).apply {
-            // TODO(adjust this dude if to change the speed/duration of the circle)
+            // TODO (adjust this dude if to change the speed/duration of the circle)
             duration = 600
             addUpdateListener {
                 radius = it.animatedValue as Float
