@@ -23,7 +23,7 @@
             android:layout_marginTop="150dp"
             android:textSize="30sp"
             android:textStyle="bold"
-            android:textColor="?attr/colorOnPrimary"
+            android:textColor="@color/bz_darkGray"
             />
 
         <EditText
@@ -36,9 +36,10 @@
             android:hint="Build Name"
             android:fontFamily="@font/ubuntu_bold"
             android:textAlignment="center"
-            android:textColor="?attr/colorOnPrimary"
-            android:textColorHint="?attr/colorOnPrimary"
+            android:textColor="@color/bz_darkGray"
+            android:textColorHint="@color/bz_darkGray"
             android:shadowColor="?attr/colorOnPrimary"
+            android:backgroundTint="@color/bz_darkGray"
 
             android:maxLength="10"
             android:singleLine="true"
@@ -74,10 +75,10 @@
             android:textStyle="bold"
 
             app:strokeWidth="3dp"
-            app:strokeColor="?attr/colorOnPrimary"
+            app:strokeColor="@color/bz_darkGray"
 
-            android:backgroundTint="?attr/colorOnPrimary"
-            android:textColor="?attr/colorPrimary"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/bz_darkGray"
 
             />
     </RelativeLayout>
