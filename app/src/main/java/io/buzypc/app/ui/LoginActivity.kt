@@ -65,7 +65,7 @@ class LoginActivity : AppCompatActivity() {
             userDetails.loadUser(enteredUsername)
 
             if (!userDetails.isUserRegistered(enteredUsername)) {
-                AlertDialog.Builder(this)
+                android.app.AlertDialog.Builder(this)
                     .setIcon(R.drawable.mascot_buzybee)
                     .setTitle("Profile Not Found")
                     .setMessage("Uh-oh! It seems we didn't find an existing account with this username. Create an account?")
