@@ -20,16 +20,6 @@
     <color name="bz_slateGray">#3F3F46</color>
     <color name="bz_deepReddishBrown">#5A2C2C</color>
     <color name="bz_warmYellow">#FFD862</color>
-
-<!--    <style name="Base.Theme.BuzyPC.Cream" parent="Theme.Material3.Light">-->
-<!--        <item name="colorPrimary">@color/bz_richGoldenYellow</item>-->
-<!--        <item name="colorOnPrimary">@color/white</item>-->
-<!--        <item name="colorSecondary">@color/bz_honeyDrizzle</item>-->
-<!--        <item name="colorOnSecondary">@color/bz_deepCharcoal</item>-->
-<!--        <item name="colorTertiary">@color/bz_earthyBrown</item>-->
-<!--        <item name="colorOnTertiary">@color/white</item>-->
-<!--        <item name="background">@color/bz_creamyBeige</item>-->
-<!--    </style>-->
 </resources>
 
 <!--
