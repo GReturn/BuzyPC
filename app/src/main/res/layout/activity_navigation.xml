@@ -29,16 +29,18 @@
         app:layout_constraintStart_toStartOf="parent"
 
         app:menu="@menu/menu"
-        android:background="?attr/colorPrimary"
-        app:itemIconTint="@color/bz_darkGray"
-        app:itemTextColor="@color/bz_darkGray"
+        app:itemIconTint="?attr/colorOnSecondary"
+        app:itemTextColor="?attr/colorOnSecondary"
         app:itemActiveIndicatorStyle="?attr/colorPrimary"
+        app:itemRippleColor="?attr/colorPrimary"
+
+        android:background="@android:color/transparent"
         />
 
     <fragment
         android:id="@+id/navController"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
 
         android:name="androidx.navigation.fragment.NavHostFragment"
         app:defaultNavHost="true"

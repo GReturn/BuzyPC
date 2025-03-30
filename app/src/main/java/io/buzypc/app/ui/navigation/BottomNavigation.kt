@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import android.view.ViewTreeObserver
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -119,12 +120,20 @@ class BottomNavigation : AppCompatActivity() {
                 navigateToFragment(R.id.newBuildFragment)
 
                 // show after navigation
-                window.decorView.postDelayed({
-                    window.decorView.animate()
-                        .alpha(1f)
-                        .setDuration(300)
-                        .start()
-                }, 200)
+                window.decorView.viewTreeObserver.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
+                    override fun onPreDraw(): Boolean {
+                        window.decorView.viewTreeObserver.removeOnPreDrawListener(this)
+
+                        window.decorView.postDelayed({
+                            window.decorView.animate()
+                                .alpha(1f)
+                                .setDuration(300)
+                                .start()
+                        }, 200)
+
+                        return true
+                    }
+                })
 
             }, 50)
         }
