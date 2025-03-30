@@ -6,9 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.NavOptions
-import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.RecyclerView
 import io.buzypc.app.R
 import io.buzypc.app.data.pc.PCBuild
@@ -28,10 +25,10 @@ class PCBuildRecyclerViewAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(context)
         return if (viewType == VIEW_TYPE_BUILD_ITEM) {
-            val view = inflater.inflate(R.layout.buildlist_build_card, parent, false)
+            val view = inflater.inflate(R.layout.card_build_item, parent, false)
             ItemViewHolder(view)
         } else {
-            val view = inflater.inflate(R.layout.footer_button, parent, false)
+            val view = inflater.inflate(R.layout.card_add_build_button, parent, false)
             ImageViewHolder(view)
         }
     }
@@ -39,7 +36,6 @@ class PCBuildRecyclerViewAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is ItemViewHolder) {
             // populate each item of PC build here with corresponding fields
-
             holder.tvName.text = pcBuilds[position].buildName
             holder.tvBudget.text = "PHP " + pcBuilds[position].buildBudget
 
@@ -48,28 +44,6 @@ class PCBuildRecyclerViewAdapter(
         } else if (holder is ImageViewHolder) {
             holder.button.setOnClickListener {
                 onNavigateToNewBuild()
-                // Cast context to AppCompatActivity to get the supportFragmentManager
-//                val activity = context as AppCompatActivity
-//                val navHostFragment = activity.supportFragmentManager
-//                                .findFragmentById(R.id.navController) as NavHostFragment
-//                val navController = navHostFragment.navController
-//
-//
-//
-//                // Normally using NavController.navigate() erases the current fragment
-//                // In our context, we are in the 'My Builds' fragment, which is erased when
-//                // we use navigate(). To counter this, we add a setting to our navOptions,
-//                // that is we add setPopUp(navController.graph.startDestinationId, false)
-//                // setting `true` in the second argument  will remove the previous fragment
-//                navController.navigate(
-//                    R.id.newBuildFragment,
-//                    null,
-//                    NavOptions.Builder()
-//                        .setLaunchSingleTop(true)
-//                        .setRestoreState(true)
-//                        .setPopUpTo(navController.graph.startDestinationId, false)
-//                        .build()
-//                )
             }
         }
     }
