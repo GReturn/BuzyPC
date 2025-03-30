@@ -1,7 +1,6 @@
 package io.buzypc.app.ui
 
 import android.content.Context
-import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.net.Uri
@@ -137,7 +136,7 @@ class ProfileViewActivity : AppCompatActivity() {
      *
      */
     private fun showChangePasswordDialog() {
-        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_change_password, null)
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.profile_view_dialog_change_password, null)
         val currentPasswordInput = dialogView.findViewById<TextInputEditText>(R.id.edittext_old_password)
         val newPasswordInput = dialogView.findViewById<TextInputEditText>(R.id.edittext_new_password)
         val confirmNewPasswordInput = dialogView.findViewById<TextInputEditText>(R.id.edittext_confirm_password)
