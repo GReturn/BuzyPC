@@ -90,7 +90,7 @@ class BottomNavigation : AppCompatActivity() {
                 if (backPressedTime + 2000 > System.currentTimeMillis()) {
                     finish()
                 } else {
-                    Toast.makeText(this@BottomNavigation, "Press back again to close the app.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@BottomNavigation, "Press back again to close the app", Toast.LENGTH_SHORT).show()
                     backPressedTime = System.currentTimeMillis()
                 }
             }
