@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="125dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:backgroundTint="@color/bz_darkGray"
+    app:cardCornerRadius="25dp"
+    android:id="@+id/build_card"
+    android:layout_margin="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout
+        android:id="@+id/rlCard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        >
+        <ImageView
+            android:id="@+id/image_devicesImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/devices_24px"
+            android:layout_centerHorizontal="true"
+            />
+        <TextView
+            android:id="@+id/textView_pcName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PC Name"
+            android:layout_below="@id/image_devicesImage"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/bz_honeyYellow"
+            android:fontFamily="@font/ubuntu_bold"
+            />
+        <TextView
+            android:id="@+id/textView_pcBudget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$budget"
+            android:layout_below="@id/textView_pcName"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/bz_honeyYellow"
+            android:fontFamily="@font/ubuntu_bold"
+            />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
