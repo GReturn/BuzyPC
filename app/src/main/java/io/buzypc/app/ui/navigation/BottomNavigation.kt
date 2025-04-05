@@ -6,6 +6,8 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewTreeObserver
 import android.view.animation.DecelerateInterpolator
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -20,12 +22,14 @@ import kotlin.math.hypot
 
 class BottomNavigation : AppCompatActivity() {
     private val viewModel: StyleViewModel by viewModels()
+    private var backPressedTime = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_navigation)
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        handleOnBackPress()
 
         // We'll let the BottomNavigation Activity handle the theme change instead of the
         // Settings Fragment
@@ -55,7 +59,6 @@ class BottomNavigation : AppCompatActivity() {
                     Log.d("BottomNavigation", "NEW BUILD Page Selected")
                     // we won't normally just navigate; check the function on how the
                     // navigation is handled
-//                    showCircle(item)
                     handleNavigateToNewBuild()
                 }
                 R.id.TEMPORARY_AboutDevelopersFragment2 -> {
@@ -81,9 +84,22 @@ class BottomNavigation : AppCompatActivity() {
         }
     }
 
+    private fun handleOnBackPress() {
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (backPressedTime + 2000 > System.currentTimeMillis()) {
+                    finish()
+                } else {
+                    Toast.makeText(this@BottomNavigation, "Press back again to close the app.", Toast.LENGTH_SHORT).show()
+                    backPressedTime = System.currentTimeMillis()
+                }
+            }
+        })
+    }
+
     fun handleNavigateToNewBuild() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-        showCircle(item = bottomNavigationView.menu.findItem(R.id.newBuildFragment))
+        showCircle(bottomNavigationView.menu.findItem(R.id.newBuildFragment))
     }
 
     private fun navigateToFragment(fragmentId: Int) {
@@ -129,9 +145,8 @@ class BottomNavigation : AppCompatActivity() {
 
         circleRevealView.startAnimation(centerX, centerY, maxRadius) {
                 circleRevealView.visibility = View.GONE
-                navigateToFragment(R.id.newBuildFragment)
 
-            val fragmentContainer = findViewById<View>(R.id.navController)
+                val fragmentContainer = findViewById<View>(R.id.navController)
                 // to prevent showing the previous screen after animating, we hide the current
                 // screen then show it after it has navigated ( after calling navigateToFragment() )
                 fragmentContainer.translationY = window.decorView.height.toFloat()
