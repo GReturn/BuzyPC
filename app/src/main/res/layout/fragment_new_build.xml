@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.navigation.fragments.NewBuildFragment"
+    android:id="@+id/fragment_new_build"
+    android:background="?attr/colorPrimary">
+
+    <RelativeLayout
+        android:id="@+id/new_build"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.NewBuildActivity">
+
+        <TextView
+            android:id="@+id/textview_budgetPrompt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="80dp"
+            android:text="Create a new build"
+            android:textColor="@color/bz_darkGray"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/et_buildName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textview_budgetPrompt"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="80dp"
+            android:backgroundTint="@color/bz_darkGray"
+            android:focusable="true"
+            android:fontFamily="@font/ubuntu_bold"
+            android:hint="Build Name"
+            android:imeOptions="actionNext"
+            android:maxLength="10"
+            android:maxLines="1"
+
+            android:shadowColor="?attr/colorOnPrimary"
+            android:singleLine="true"
+            android:textAlignment="center"
+            android:textColor="@color/bz_darkGray"
+            android:textColorHint="@color/bz_darkGray" />
+
+        <EditText
+            android:id="@+id/et_budgetInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/et_buildName"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/round_edittext"
+            android:backgroundTint="?attr/background"
+            android:hint="PHP"
+            android:inputType="number"
+            android:padding="10dp"
+            android:textColor="?attr/colorOnSecondary"
+
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_build"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/et_budgetInput"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="180dp"
+            android:backgroundTint="@color/white"
+            android:text="Build"
+
+            android:textColor="@color/bz_darkGray"
+            android:textStyle="bold"
+
+            app:strokeColor="@color/bz_darkGray"
+            app:strokeWidth="3dp"
+
+            />
+    </RelativeLayout>
+
+</FrameLayout>

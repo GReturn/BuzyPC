@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="bz_font_custom_small" parent="android:style/TextAppearance.Small">
+        <item name="android:fontFamily">@font/ubuntu_medium</item>
+    </style>
+<!--    <style name="bz_font_custom_textview" parent="android:style/Base.Theme.BuzyPC">-->
+<!--        <item name="android:fontFamily">@font/ubuntu_medium</item>-->
+<!--    </style>-->
+<!--    <item name="android:textViewStyle">@font/ubuntu_medium</item>-->
+
+</resources>
