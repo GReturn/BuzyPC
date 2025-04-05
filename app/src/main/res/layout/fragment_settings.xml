@@ -1,205 +1,208 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.SettingsFragment">
+    tools:context=".ui.navigation.fragments.SettingsFragment"
+    android:id="@+id/fragment_settings"
+    >
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/main"
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/textView"
+        android:text="Settings"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/image_profile_picture"
+        android:layout_width="100dp"
+        android:scaleType="centerCrop"
+        app:shapeAppearanceOverlay="@style/circular_image_view"
+        android:src="@drawable/profilepic"
+
+        android:layout_height="100dp"
+        android:layout_marginTop="40dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView_usernameDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/image_profile_picture"
+        android:text="Username"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:layout_margin="16dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_profile_picture" />
+
+
+    <!-- Change theme-->
+
+    <Button
+        android:id="@+id/btn_edit_account"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.fragments.SettingsFragment">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
 
-        <TextView
-            android:id="@+id/textView"
-            android:text="Settings"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="50dp"
 
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintStart_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:fontFamily="sans-serif-black"
+        android:text="Edit Account Details"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_usernameDisplay" />
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/image_profile_picture"
-            android:layout_width="100dp"
-            android:scaleType="centerCrop"
-            app:shapeAppearanceOverlay="@style/circular_image_view"
-            android:src="@drawable/profilepic"
+    <Button
+        android:id="@+id/btn_about_developers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
 
-            android:layout_height="100dp"
-            android:layout_marginTop="40dp"
+        android:layout_marginHorizontal="50dp"
 
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintStart_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+        android:fontFamily="sans-serif-black"
+        android:text="About the Developers"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_edit_account" />
 
-        <TextView
-            android:id="@+id/textView_usernameDisplay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/image_profile_picture"
-            android:text="Username"
-            android:textStyle="bold"
-            android:textSize="24sp"
-            android:layout_margin="16dp"
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
 
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/image_profile_picture" />
+        android:layout_marginHorizontal="50dp"
 
-        <LinearLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
+        android:layout_marginTop="19dp"
+        android:text="Change Theme"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_about_developers" />
 
-            android:padding="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_usernameDisplay">
+    <RadioGroup
+        android:id="@+id/radioGroup_themes"
 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
 
-            <Button
-                android:id="@+id/btn_edit_account"
+        android:layout_marginHorizontal="50dp"
+
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3">
+
+        <!-- Light Mode -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_lightMode"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:elevation="4dp"
+
+            app:cardBackgroundColor="@color/bz_softGray"
+            app:cardCornerRadius="10dp"
+
+            app:strokeColor="@color/bz_richGoldenYellow"
+            app:strokeWidth="2dp">
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="50dp"
-                android:layout_marginTop="20dp"
-                android:fontFamily="sans-serif-black"
-
-                android:text="Edit Account Details" />
-
-
-            <Button
-                android:id="@+id/btn_about_developers"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="50dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="sans-serif-black"
-                android:text="About the Developers" />
-
-            <!-- Change theme-->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="50dp"
-                android:layout_marginTop="30dp"
-
-                android:text="Change Theme"
-                android:textStyle="bold"
-                android:textSize="18sp"/>
-
-            <RadioGroup
-                android:id="@+id/radioGroup_themes"
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="50dp"
+                android:layout_height="match_parent"
                 android:gravity="center"
-                android:orientation="horizontal"
+                android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/rb_lightMode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/black"
+                    android:text="Default"
+                    android:textColor="#000000"
+                    android:textStyle="bold" />
 
-                android:paddingTop="10dp"
-                android:padding="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textView">
 
-                <!-- Light Mode -->
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/card_lightMode"
-                    android:layout_width="120dp"
-                    android:layout_height="60dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_weight="1"
-                    android:elevation="4dp"
+            </LinearLayout>
 
-                    app:strokeWidth="2dp"
-                    app:strokeColor="@color/bz_richGoldenYellow"
+        </com.google.android.material.card.MaterialCardView>
 
-                    app:cardBackgroundColor="@color/bz_softGray"
-                    app:cardCornerRadius="10dp">
+        <!-- Dark Mode -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_darkMode"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:elevation="4dp"
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="horizontal">
+            app:cardBackgroundColor="@color/bz_almostBlack"
+            app:cardCornerRadius="10dp"
 
-                        <RadioButton
-                            android:id="@+id/rb_lightMode"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:buttonTint="@color/black"
-                            android:text="Default"
-                            android:textColor="#000000"
-                            android:textStyle="bold" />
+            app:strokeColor="@color/bz_richGoldenYellow"
+            app:strokeWidth="2dp">
 
-                    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-                </com.google.android.material.card.MaterialCardView>
+                <RadioButton
+                    android:id="@+id/rb_darkMode"
 
-                <!-- Dark Mode -->
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/card_darkMode"
-                    android:layout_width="120dp"
-                    android:layout_height="60dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_weight="1"
-                    android:elevation="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/white"
+                    android:text="Dark"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
 
-                    app:strokeWidth="2dp"
-                    app:strokeColor="@color/bz_richGoldenYellow"
+            </LinearLayout>
 
-                    app:cardBackgroundColor="@color/bz_almostBlack"
-                    app:cardCornerRadius="10dp">
+        </com.google.android.material.card.MaterialCardView>
+    </RadioGroup>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="horizontal">
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
 
-                        <RadioButton
-                            android:id="@+id/rb_darkMode"
+        android:layout_marginHorizontal="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="?attr/colorOnSecondary"
+        android:fontFamily="sans-serif-black"
 
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:buttonTint="@color/white"
-                            android:text="Dark"
-                            android:textColor="#FFFFFF"
-                            android:textStyle="bold" />
+        android:text="Logout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup_themes" />
 
-                    </LinearLayout>
-
-                </com.google.android.material.card.MaterialCardView>
-            </RadioGroup>
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/btn_logout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginHorizontal="50dp"
-            android:layout_marginBottom="80dp"
-            android:backgroundTint="?attr/colorOnSecondary"
-            android:fontFamily="sans-serif-black"
-            android:text="Logout"
-
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+</androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

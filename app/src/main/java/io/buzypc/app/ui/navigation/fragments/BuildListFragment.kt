@@ -1,4 +1,4 @@
-package io.buzypc.app.ui.fragments
+package io.buzypc.app.ui.navigation.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,7 +10,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.buzypc.app.R
 import io.buzypc.app.data.pc.PCBuild
-import io.buzypc.app.model.PCBuildAdapter
+import io.buzypc.app.model.PCBuildRecyclerViewAdapter
+import io.buzypc.app.ui.navigation.BottomNavigation
 import io.buzypc.app.ui.utils.loadCurrentUserDetails
 
 class BuildListFragment : Fragment() {
@@ -24,12 +25,16 @@ class BuildListFragment : Fragment() {
         val tvEmptyList = view.findViewById<TextView>(R.id.tvEmptyList)
         if(pcBuildList.isEmpty()){
             tvEmptyList.visibility = View.VISIBLE
-            recyclerView.visibility = View.INVISIBLE
+            recyclerView.visibility = View.VISIBLE
         }
 
-        val adapter = PCBuildAdapter(requireContext(), pcBuildList)
+        val adapter = PCBuildRecyclerViewAdapter(requireContext(), pcBuildList) {
+            // we handle the click event here when user clicks on the plus button inside the buildlist fragment
+            val activity = requireActivity() as BottomNavigation
+            activity.handleNavigateToNewBuild()
+        }
         recyclerView.adapter = adapter
-        recyclerView.layoutManager = GridLayoutManager(requireContext(),2)
+        recyclerView.layoutManager = GridLayoutManager(requireContext(),1)
     }
 
     // - LayoutInflater converts xml file into a View object that the fragment displays
@@ -50,7 +55,8 @@ class BuildListFragment : Fragment() {
 
         val nameList = userDetails.buildNameList
         val budgetList = userDetails.buildBudgetList
-        for (i in nameList.indices) {
+        val size = nameList.size
+        for (i in size-1 downTo 0) {
             pcBuildList.add(PCBuild(nameList[i], budgetList[i]))
         }
     }

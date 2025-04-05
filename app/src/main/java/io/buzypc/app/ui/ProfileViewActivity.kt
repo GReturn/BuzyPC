@@ -1,7 +1,6 @@
 package io.buzypc.app.ui
 
 import android.content.Context
-import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.net.Uri
@@ -14,6 +13,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -26,6 +26,8 @@ import io.buzypc.app.R
 import io.buzypc.app.ui.utils.loadCurrentUserDetails
 
 class ProfileViewActivity : AppCompatActivity() {
+    private var isEditing = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_view)
@@ -37,8 +39,8 @@ class ProfileViewActivity : AppCompatActivity() {
 
         val userDetails = loadCurrentUserDetails(this)
 
-        val editTextUsername = findViewById<EditText>(R.id.edittext_username)
-        editTextUsername.setText(userDetails.getUsername())
+        val tvUsername = findViewById<TextView>(R.id.textview_username)
+        tvUsername.text = userDetails.getUsername()
 
         val editTextEmail = findViewById<EditText>(R.id.edittext_email)
         editTextEmail.setText(userDetails.getEmail())
@@ -79,12 +81,11 @@ class ProfileViewActivity : AppCompatActivity() {
         }
 
         btnEditProfile.setOnClickListener {
-            val isEditing = editTextUsername.isEnabled
-            if (!isEditing) {
-                editTextUsername.isEnabled = true
+            isEditing = !isEditing
+
+            if (isEditing) {
                 editTextEmail.isEnabled = true
                 editProfilePicButton.visibility = View.VISIBLE
-                editTextUsername.setBackgroundResource(R.drawable.edit_text_border)
                 editTextEmail.setBackgroundResource(R.drawable.edit_text_border)
                 btnEditProfile.text = "Save Profile"
 
@@ -93,19 +94,14 @@ class ProfileViewActivity : AppCompatActivity() {
                 btnEditProfile.setCompoundDrawablesWithIntrinsicBounds( R.drawable.save_24px, 0, 0, 0)
                 Toast.makeText(this, "Now editing user profile", Toast.LENGTH_LONG).show()
             } else {
-                val updatedUsername = editTextUsername.text.toString().trim()
                 val updatedEmail = editTextEmail.text.toString().trim()
 
-                if(validate(updatedUsername, updatedEmail, editTextUsername, editTextEmail)) {
-                    editTextUsername.setText(updatedUsername)
+                if(validate(updatedEmail, editTextEmail)) {
                     editTextEmail.setText(updatedEmail)
 
-                    editTextUsername.isEnabled = false
                     editTextEmail.isEnabled = false
                     editProfilePicButton.visibility = View.GONE
-                    editTextUsername.background = null
                     editTextEmail.background = null
-                    editTextUsername.setPadding(0,0,0,0)
                     editTextEmail.setPadding(0,0,0,0)
                     btnEditProfile.text = "Edit Profile"
 
@@ -113,8 +109,10 @@ class ProfileViewActivity : AppCompatActivity() {
 
                     btnEditProfile.setCompoundDrawablesWithIntrinsicBounds( R.drawable.baseline_edit_24, 0, 0, 0)
 
-                    userDetails.saveProfile(updatedUsername, updatedEmail)
-                    Toast.makeText(this, "User profile has been saved", Toast.LENGTH_LONG).show()
+                    userDetails.saveProfile(updatedEmail)
+                    Toast.makeText(this, "User profile has been saved", Toast.LENGTH_SHORT).show()
+
+                    isEditing = false
                 }
             }
             return@setOnClickListener
@@ -137,7 +135,7 @@ class ProfileViewActivity : AppCompatActivity() {
      *
      */
     private fun showChangePasswordDialog() {
-        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_change_password, null)
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.profile_view_dialog_change_password, null)
         val currentPasswordInput = dialogView.findViewById<TextInputEditText>(R.id.edittext_old_password)
         val newPasswordInput = dialogView.findViewById<TextInputEditText>(R.id.edittext_new_password)
         val confirmNewPasswordInput = dialogView.findViewById<TextInputEditText>(R.id.edittext_confirm_password)
@@ -255,20 +253,11 @@ class ProfileViewActivity : AppCompatActivity() {
      * @param editTextEmail The EditText field associated with the email, used for displaying error messages.
      * @return `true` if both the name and email are valid, `false` otherwise.
      */
-    private fun validate(name: String, email: String, editTextUsername: EditText, editTextEmail: EditText) : Boolean {
-        val nameRegex = "^[A-Za-z ]+$".toRegex()
+    private fun validate(email: String, editTextEmail: EditText) : Boolean {
         val emailPattern = android.util.Patterns.EMAIL_ADDRESS
 
         return when {
             // isBlank() returns true if the string is empty or only contains whitespace characters
-            name.isBlank() -> {
-                editTextUsername.error = "Name cannot be empty"
-                false
-            }
-            !name.matches(nameRegex) -> {
-                editTextUsername.error = "Name can only contain letters and spaces"
-                false
-            }
             email.isBlank() -> {
                 editTextEmail.error = "Email cannot be empty"
                 false

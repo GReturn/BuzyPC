@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/buzy_app_navigator"
+    app:startDestination="@id/landingPageFragment">
+
+    <fragment
+        android:id="@+id/landingPageFragment"
+        android:name="io.buzypc.app.ui.navigation.fragments.LandingPageFragment"
+        android:label="fragment_landing_page"
+        tools:layout="@layout/fragment_landing_page" >
+    </fragment>
+    <fragment
+        android:id="@+id/buildListFragment"
+        android:name="io.buzypc.app.ui.navigation.fragments.BuildListFragment"
+        android:label="fragment_build_list"
+        tools:layout="@layout/fragment_build_list" >
+    </fragment>
+    <fragment
+        android:id="@+id/newBuildFragment"
+        android:name="io.buzypc.app.ui.navigation.fragments.NewBuildFragment"
+        android:label="fragment_new_build"
+        tools:layout="@layout/fragment_new_build" />
+    <fragment
+        android:id="@+id/TEMPORARY_AboutDevelopersFragment2"
+        android:name="io.buzypc.app.ui.navigation.fragments.TEMPORARY_AboutDevelopersFragment"
+        android:label="fragment_screen_not_implemented"
+        tools:layout="@layout/fragment_screen_not_implemented" />
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="io.buzypc.app.ui.navigation.fragments.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+</navigation>

@@ -2,6 +2,6 @@
 <ImageView android:id="@+id/footerButton"
     android:layout_width="match_parent"
     android:layout_height="100dp"
-    android:src="@drawable/add_circle_24px"
+    android:src="@drawable/nav_add_circle"
     xmlns:android="http://schemas.android.com/apk/res/android"
     />

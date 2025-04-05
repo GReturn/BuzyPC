@@ -2,7 +2,7 @@
 <resources>
     <style name="Theme.AnimatedSplash.MySplash" parent="Theme.SplashScreen">
         <item name="windowSplashScreenAnimatedIcon">@drawable/animated_buzypc</item>
-        <item name="windowSplashScreenBackground">@color/bz_honeyDrizzle</item>
+        <item name="windowSplashScreenBackground">@color/bz_almostBlack</item>"
 
         <item name="postSplashScreenTheme">@style/Theme.BuzyPC</item>
     </style>

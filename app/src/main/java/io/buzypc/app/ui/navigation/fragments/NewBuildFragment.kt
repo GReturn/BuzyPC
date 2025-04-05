@@ -1,4 +1,4 @@
-package io.buzypc.app.ui.fragments
+package io.buzypc.app.ui.navigation.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -23,11 +23,16 @@ class NewBuildFragment : Fragment() {
         val btnBuild = view.findViewById<Button>(R.id.btn_build)
 
         btnBuild.setOnClickListener {
-            if(etBudgetInput.text.isNullOrEmpty()){
-                Toast.makeText(requireContext(), "Input your budget", Toast.LENGTH_LONG).show()
+            if(etBuildName.text.isNullOrEmpty()) etBuildName.setText("New Build")
+
+            if(etBudgetInput.text.isNullOrEmpty()) {
+                Toast.makeText(requireContext(), "Input your budget.", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
-            if(etBuildName.text.isNullOrEmpty()) etBuildName.setText("New Build")
+            if(etBudgetInput.text.toString().toInt() < 20_000) {
+                Toast.makeText(requireContext(), "You can only place a budget of PHP 20,000 or above.", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
             requireContext()
             (context?.applicationContext as BuzyUserAppSession).buildName = etBuildName.text.toString()
             (context?.applicationContext as BuzyUserAppSession).buildBudget = etBudgetInput.text.toString()
@@ -36,12 +41,7 @@ class NewBuildFragment : Fragment() {
         }
     }
 
-    // - LayoutInflater converts xml file into a View object that the fragment displays
-    // - 'container' is the parent view where this fragment’s UI will be placed, passing false as the third parameter because the system
-    //    will handle attaching the fragment to the container automatically.
-    // - savedInstanceState contains any previously saved state, restores them upon recreating (updating) the fragment.
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_new_build, container, false)
     }
 }

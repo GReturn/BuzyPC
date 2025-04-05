@@ -1,4 +1,4 @@
-package io.buzypc.app.ui.fragments
+package io.buzypc.app.ui.navigation.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,20 +9,20 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import io.buzypc.app.R
 import io.buzypc.app.data.user.BuzyUserSettings
 import io.buzypc.app.ui.AboutDevelopersActivity
 import io.buzypc.app.ui.LogoutPromptActivity
 import io.buzypc.app.ui.ProfileViewActivity
+import io.buzypc.app.ui.navigation.StyleViewModel
 import io.buzypc.app.ui.utils.loadCurrentUserDetails
 
 class SettingsFragment : Fragment() {
-
+    private val viewModel: StyleViewModel by activityViewModels()
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_settings, container, false)
     }
@@ -54,7 +54,6 @@ class SettingsFragment : Fragment() {
             cardLightMode.strokeWidth = 3
         }
 
-        // Navigation Click Listeners
         btnEditAccount.setOnClickListener {
             val intent = Intent(requireActivity(), ProfileViewActivity::class.java)
             startActivity(intent)
@@ -69,20 +68,22 @@ class SettingsFragment : Fragment() {
         radioBtnLightMode.setOnClickListener {
             if (radioBtnLightMode.isChecked) {
                 radioBtnDarkMode.isChecked = false
-                userSettings.setTheme("light")
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 cardLightMode.strokeWidth = 3
                 cardDarkMode.strokeWidth = 0
+
+                userSettings.setTheme("light")
+                viewModel.setDarkMode(false)
             }
         }
 
         radioBtnDarkMode.setOnClickListener {
             if (radioBtnDarkMode.isChecked) {
                 radioBtnLightMode.isChecked = false
-                userSettings.setTheme("dark")
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 cardLightMode.strokeWidth = 0
                 cardDarkMode.strokeWidth = 3
+
+                userSettings.setTheme("dark")
+                viewModel.setDarkMode(true)
             }
         }
 

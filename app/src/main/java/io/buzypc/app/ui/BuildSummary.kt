@@ -10,6 +10,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import io.buzypc.app.R
 import io.buzypc.app.data.appsession.BuzyUserAppSession
+import io.buzypc.app.ui.navigation.BottomNavigation
 import io.buzypc.app.ui.utils.loadCurrentUserDetails
 
 class BuildSummary : AppCompatActivity() {
@@ -35,8 +36,19 @@ class BuildSummary : AppCompatActivity() {
 
             // Save build data into the user-specific SharedPreferences via BuzyUser
             user.saveBuilds()
-            // Redirect to BottomNavigation (or another activity) as desired
-            startActivity(Intent(this, BottomNavigation::class.java))
+            val intent = Intent(this, BottomNavigation::class.java)
+
+            /*
+                we set these flags to fix the issue of erratic screen flickering produced by
+                doing the following procedures:
+                 1. change the theme to dark mode to light mode or vice versa
+                 2. add a build
+                 3. save the build
+                 4. change the theme again
+            */
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+            startActivity(intent)
             finish()
         }
     }
