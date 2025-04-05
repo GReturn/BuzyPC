@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Hello, ensure that the id of each item reflects the id of the root layout of the
+    fragments found in res/layout  -->
+    <item
+        android:id="@+id/landingPageFragment"
+        android:title="Home"
+        android:icon="@drawable/nav_baseline_home"
+        />
+
+    <item
+        android:id="@+id/buildListFragment"
+        android:title="My Builds"
+        android:icon="@drawable/nav_computer"
+        />
+
+    <item
+        android:id="@+id/newBuildFragment"
+        android:title="Add Build"
+        android:icon="@drawable/nav_add_circle_filled"
+        />
+
+    <item
+        android:id="@+id/TEMPORARY_AboutDevelopersFragment2"
+        android:title="My Cart"
+        android:icon="@drawable/nav_shopping_cart_filled"
+        />
+
+    <item
+        android:id="@+id/settingsFragment"
+        android:title="Profile"
+        android:icon="@drawable/nav_account_circle_filled"
+        />
+</menu>
