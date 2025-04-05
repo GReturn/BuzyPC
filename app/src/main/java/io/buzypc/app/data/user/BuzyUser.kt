@@ -48,18 +48,16 @@ class BuzyUser(private val context: Context) {
     }
 
     /**
-     * Saves the user's profile information (username and email) to SharedPreferences.
+     * Saves the user's profile information (email) to SharedPreferences.
      *
-     * This function utilizes SharedPreferences to persistently store the provided username and email.
-     * These values can be retrieved later using the corresponding keys ("username" and "email").
+     * This function utilizes SharedPreferences to persistently store the provided email.
+     * These values can be retrieved later using the corresponding keys ("email").
      * The data is saved asynchronously using `apply()`.
      *
-     * @param username The username of the user to be saved.
      * @param email The email address of the user to be saved.
      */
-    fun saveProfile(username: String, email: String) {
+    fun saveProfile(email: String) {
         sharedPreferences.edit()
-            .putString("username", username)
             .putString("email", email)
             .apply()
     }
