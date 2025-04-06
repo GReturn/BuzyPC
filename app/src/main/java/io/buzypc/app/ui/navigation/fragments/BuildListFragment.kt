@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.view.doOnLayout
-import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.RecyclerView
 import io.buzypc.app.R
 import io.buzypc.app.data.pc.PCBuild
@@ -24,7 +23,6 @@ class BuildListFragment : Fragment() {
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycleView_builds)
         val tvEmptyList = view.findViewById<TextView>(R.id.tvEmptyList)
-        val tvTitle = view.findViewById<TextView>(R.id.textView_buildsHeader)
         setPCModelList()
 
         if(pcBuildList.isEmpty()){
