@@ -1,4 +1,4 @@
-package io.buzypc.app.ui.layoutmanager
+package io.buzypc.app.ui.layoutmanagers
 
 import android.animation.ValueAnimator
 import android.content.Context
@@ -16,7 +16,7 @@ import io.buzypc.app.ui.utils.lerp
 import io.buzypc.app.ui.utils.withEndActionOnce
 import kotlin.math.abs
 
-class AnimatedGridLayoutManager(
+class AnimatedBuildListLayoutManager(
     private val context: Context,
     spanCount: Int = 1
 ) : GridLayoutManager(context, spanCount) {

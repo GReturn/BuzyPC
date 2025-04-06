@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import io.buzypc.app.R
 import io.buzypc.app.data.pc.PCBuild
 import io.buzypc.app.model.PCBuildRecyclerViewAdapter
-import io.buzypc.app.ui.layoutmanager.AnimatedGridLayoutManager
+import io.buzypc.app.ui.layoutmanagers.AnimatedBuildListLayoutManager
 import io.buzypc.app.ui.navigation.BottomNavigationActivity
 import io.buzypc.app.ui.utils.loadCurrentUserDetails
 
@@ -36,7 +36,7 @@ class BuildListFragment : Fragment() {
             activity.handleNavigateToNewBuild()
         }
         recyclerView.adapter = adapter
-        recyclerView.layoutManager = AnimatedGridLayoutManager(requireContext(),1)
+        recyclerView.layoutManager = AnimatedBuildListLayoutManager(requireContext(),1)
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
@@ -45,7 +45,7 @@ class BuildListFragment : Fragment() {
         val recyclerView = view?.findViewById<RecyclerView>(R.id.recycleView_builds)
         recyclerView?.layoutAnimation = null
         recyclerView?.doOnLayout {
-            (recyclerView.layoutManager as AnimatedGridLayoutManager).animateItemsIn()
+            (recyclerView.layoutManager as AnimatedBuildListLayoutManager).animateItemsIn()
         }
     }
 
