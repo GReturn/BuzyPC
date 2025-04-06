@@ -1,0 +1,152 @@
+package io.buzypc.app.ui.layoutmanager
+
+import android.animation.ValueAnimator
+import android.content.Context
+import android.view.View
+import android.view.animation.AnimationUtils
+import androidx.annotation.AnimRes
+import androidx.core.animation.doOnEnd
+import androidx.core.animation.doOnStart
+import androidx.core.view.marginBottom
+import androidx.core.view.marginTop
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import io.buzypc.app.R
+import io.buzypc.app.ui.utils.lerp
+import io.buzypc.app.ui.utils.withEndActionOnce
+import kotlin.math.abs
+
+class AnimatedGridLayoutManager(
+    private val context: Context,
+    spanCount: Int = 1
+) : GridLayoutManager(context, spanCount) {
+
+    companion object {
+        const val DY_COEFFICIENT = 2
+        const val ANIMATION_OFFSET = 50L
+    }
+
+    private var animator: ValueAnimator? = null
+    private var previousDy = 0
+    private var currentDy = 0
+    private var animatedDy = 0
+    private var isAnimated = false
+
+    override fun scrollVerticallyBy(
+        dy: Int,
+        recycler: RecyclerView.Recycler?,
+        state: RecyclerView.State?
+    ): Int {
+        if(childCount == 0) return 0
+
+        val legal = super.scrollVerticallyBy(dy, recycler, state)
+        calculateDy(dy)
+        updateViews()
+        return legal
+    }
+
+    private fun calculateDy(dy: Int) {
+        val topView = getChildAt(0) ?: return
+        val bottomView = getChildAt(childCount - 1) ?: return
+
+        val isAtTop = getPosition(topView) == 0 && topView.top >= topView.marginTop + paddingTop
+        val isAtBottom = getPosition(bottomView) == itemCount - 1 && bottomView.bottom <= height - bottomView.marginBottom - paddingBottom
+
+        if(findFirstVisibleItemPosition() == 0 && dy > 0) {
+            if(currentDy > 0) currentDy -= dy
+            else currentDy = 0
+        }
+        if(findLastCompletelyVisibleItemPosition() == itemCount - 1 && dy < 0) {
+            if(currentDy > 0) currentDy += dy
+            else currentDy = 0
+        }
+
+        if(isAtTop) {
+            currentDy += abs(dy / DY_COEFFICIENT)
+            offsetChildrenVertical(-dy / DY_COEFFICIENT)
+        }
+        else {
+            if(isAtBottom) {
+                offsetChildrenVertical(-dy/ DY_COEFFICIENT)
+                currentDy += abs(dy / DY_COEFFICIENT)
+            }
+        }
+    }
+
+    private fun updateViews() {
+        for(i in 0 until childCount) {
+            val view = getChildAt(i)
+            view?.let {
+                val value = ((paddingTop - it.top) / it.height.toFloat())
+                it.alpha = 1f - value
+
+                var scale = 1f - value / 20f
+
+                if(scale > 1) scale = 1f
+                it.scaleX = scale
+                it.scaleY = scale
+            }
+        }
+    }
+
+    override fun onScrollStateChanged(state: Int) {
+        super.onScrollStateChanged(state)
+        if(state == RecyclerView.SCROLL_STATE_IDLE) {
+            if(getPosition(getChildAt(childCount - 1) as View) == itemCount - 1 && currentDy > 0) {
+                animationOffset(false)
+            }
+            else {
+                if(getPosition(getChildAt(0) as View) == 0 && currentDy > 0) {
+                    animationOffset(true)
+                }
+            }
+        }
+    }
+
+    private fun animationOffset(top: Boolean) {
+        val coefficient = if(top) -1 else 1
+        if(animator?.isRunning == true) {
+            animatedDy += currentDy - previousDy
+            animator?.cancel()
+        }
+        else {
+            animatedDy = currentDy
+        }
+
+        animator = ValueAnimator.ofInt( 0, animatedDy).apply {
+            addUpdateListener {
+                val value = it.animatedValue as Int
+                val offset = value - previousDy
+                previousDy = value
+                offsetChildrenVertical(offset * coefficient)
+                updateViews()
+            }
+            doOnStart {
+                isAnimated = true
+                currentDy = 0
+            }
+            doOnEnd {
+                isAnimated = false
+                currentDy = 0
+            }
+            duration = lerp(800f, 400f, currentDy.toFloat() / 1000).toLong()
+            start()
+        }
+    }
+
+    fun animateItemsIn() = animate(R.anim.list_item_animation_fade_in)
+
+    fun animateItemsOut() = animate(R.anim.list_item_animation_fade_out)
+
+    private fun animate(@AnimRes animationId: Int) {
+        var startOffset = 0L
+        for(i in childCount - 1 downTo 0) {
+            val set = AnimationUtils.loadAnimation(context, animationId)
+            set.startOffset = startOffset
+            startOffset += ANIMATION_OFFSET
+            getChildAt(i)?.startAnimation(set)
+            startOffset += ANIMATION_OFFSET
+            set.withEndActionOnce { updateViews() }
+        }
+    }
+}

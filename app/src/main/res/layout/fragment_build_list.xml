@@ -1,40 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".ui.navigation.fragments.BuildListFragment"
-    android:id="@+id/fragment_build_list"
     android:backgroundTint="?android:attr/colorBackground"
+
+    android:id="@+id/fragment_build_list"
     >
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/build_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.fragments.BuildListFragment"
+
         android:paddingBottom="56dp"
         android:paddingTop="30dp"
         >
+
         <TextView
             android:id="@+id/textView_buildsHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="My Builds"
-            android:textSize="32sp"
             android:fontFamily="@font/ubuntu_bold"
-            android:layout_centerHorizontal="true"
+            android:text="My Builds"
+
             android:layout_marginTop="50dp"
-            />
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycleView_builds"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/textView_buildsHeader"
-            android:layout_marginTop="20dp"
-            android:layout_marginHorizontal="20dp"
-            android:layout_centerHorizontal="true"
+
+            android:textSize="32sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             />
 
         <TextView
@@ -42,11 +43,29 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nothing here yet. Add your build now!"
-            android:layout_below="@id/textView_buildsHeader"
-            android:layout_centerHorizontal="true"
             android:visibility="invisible"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_buildsHeader"
             />
-    </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleView_builds"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+
+            android:clipToPadding="true"
+            android:overScrollMode="never"
+            tools:itemCount="4"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvEmptyList" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </FrameLayout>
