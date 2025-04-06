@@ -5,7 +5,7 @@
 
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="125dp"
+    android:layout_height="100dp"
     android:backgroundTint="@color/bz_darkGray"
 
     app:cardCornerRadius="25dp"
@@ -22,8 +22,8 @@
 
         <ImageView
             android:id="@+id/image_devicesImage"
-            android:layout_width="86dp"
-            android:layout_height="88dp"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="28dp"
             android:src="@drawable/devices_24px"
@@ -39,7 +39,7 @@
             android:layout_below="@id/image_devicesImage"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="20dp"
 
             android:fontFamily="@font/ubuntu_bold"
             android:text="PC Name"
@@ -56,7 +56,7 @@
             android:layout_below="@id/textView_pcName"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
 
             android:fontFamily="@font/ubuntu_bold"
             android:text="$budget"
