@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     android:layout_width="match_parent"
     android:layout_height="125dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:backgroundTint="@color/bz_darkGray"
+
     app:cardCornerRadius="25dp"
+
     android:id="@+id/build_card"
     android:layout_margin="10dp"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    >
     <RelativeLayout
         android:id="@+id/rlCard"
         android:layout_width="wrap_content"
@@ -42,4 +46,4 @@
             android:fontFamily="@font/ubuntu_bold"
             />
     </RelativeLayout>
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>
