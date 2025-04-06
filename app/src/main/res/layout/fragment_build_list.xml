@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
 
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
 
     tools:context=".ui.navigation.fragments.BuildListFragment"
     android:backgroundTint="?android:attr/colorBackground"
@@ -16,11 +16,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/build_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         tools:context=".ui.fragments.BuildListFragment"
-
-        android:paddingBottom="56dp"
-        android:paddingTop="30dp"
         >
 
         <TextView
@@ -32,7 +29,7 @@
 
             android:layout_marginTop="50dp"
 
-            android:textSize="32sp"
+            android:textSize="@dimen/font_title_large"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -48,6 +45,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView_buildsHeader"
+            app:layout_constraintBottom_toTopOf="@id/recycleView_builds"
             />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -58,7 +56,6 @@
             android:layout_marginEnd="20dp"
 
             tools:itemCount="4"
-            android:clipToPadding="false"
             android:padding="@dimen/space_small"
             android:overScrollMode="always"
 
