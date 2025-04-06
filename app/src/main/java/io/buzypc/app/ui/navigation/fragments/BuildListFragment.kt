@@ -37,8 +37,6 @@ class BuildListFragment : Fragment() {
         }
         recyclerView.adapter = adapter
         recyclerView.layoutManager = AnimatedGridLayoutManager(requireContext(),1)
-
-        animateIn()
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
@@ -49,32 +47,6 @@ class BuildListFragment : Fragment() {
         recyclerView?.doOnLayout {
             (recyclerView.layoutManager as AnimatedGridLayoutManager).animateItemsIn()
         }
-    }
-
-    override fun onPause() {
-        super.onPause()
-        animateOut()
-    }
-
-    private fun animateIn() {
-        val recyclerView = view?.findViewById<RecyclerView>(R.id.recycleView_builds)
-        val tvEmptyList = view?.findViewById<TextView>(R.id.tvEmptyList)
-        val tvTitle = view?.findViewById<TextView>(R.id.textView_buildsHeader)
-
-        recyclerView?.doOnLayout {
-            tvTitle?.animate()?.setDuration(650)?.alpha(1f)
-            tvEmptyList?.animate()?.setDuration(650)?.alpha(1f)
-        }
-    }
-
-    private fun animateOut() {
-        val recyclerView = view?.findViewById<RecyclerView>(R.id.recycleView_builds)
-        val tvEmptyList = view?.findViewById<TextView>(R.id.tvEmptyList)
-        val tvTitle = view?.findViewById<TextView>(R.id.textView_buildsHeader)
-
-        tvTitle?.animate()?.alpha(0f)
-        tvEmptyList?.animate()?.alpha(0f)
-        (recyclerView?.layoutManager as AnimatedGridLayoutManager).animateItemsOut()
     }
 
     // - LayoutInflater converts xml file into a View object that the fragment displays
