@@ -39,37 +39,47 @@ class AnimatedGridLayoutManager(
     ): Int {
         if(childCount == 0) return 0
 
-        val legal = super.scrollVerticallyBy(dy, recycler, state)
-        calculateDy(dy)
+        val scrollRange = super.scrollVerticallyBy(dy, recycler, state)
+        calculateDy(dy, scrollRange)
         updateViews()
-        return legal
+        return scrollRange
     }
 
-    private fun calculateDy(dy: Int) {
+    private fun calculateDy(dy: Int, scrollRange: Int) {
         if(isAnimated) return
+        val overScroll = dy - scrollRange
 
         val topView = getChildAt(0) ?: return
         val bottomView = getChildAt(childCount - 1) ?: return
 
-        val isAtTop = getPosition(topView) == 0 && topView.top >= topView.marginTop + paddingTop
-        val isAtBottom = getPosition(bottomView) == itemCount - 1 && bottomView.bottom <= height - bottomView.marginBottom - paddingBottom
+        val isAtTop = getPosition(topView) == 0
+                && topView.top >= topView.marginTop
+
+        val isAtBottom = getPosition(bottomView) == itemCount - 1
+                && bottomView.bottom <= height - bottomView.marginBottom
 
         if(findLastCompletelyVisibleItemPosition() == itemCount - 1 && dy < 0) {
-            if(currentDy > 0) currentDy += dy
-            else currentDy = 0
+            if(currentDy > 0)
+                currentDy += dy
+            else
+                currentDy = 0
         }
         if(findFirstVisibleItemPosition() == 0 && dy > 0) {
-            if(currentDy > 0) currentDy -= dy
-            else currentDy = 0
+            if(currentDy > 0)
+                currentDy -= dy
+            else
+                currentDy = 0
         }
 
         if(isAtTop) {
-            currentDy += abs(dy / DY_COEFFICIENT)
-            offsetChildrenVertical(-dy / DY_COEFFICIENT)
+            val adjustedDelta = dy / DY_COEFFICIENT
+            currentDy += abs(adjustedDelta)
+            offsetChildrenVertical(-adjustedDelta)
         }
         else if(isAtBottom) {
-            offsetChildrenVertical(-dy/ DY_COEFFICIENT)
-            currentDy += abs(dy / DY_COEFFICIENT)
+            val adjustedDelta = dy / DY_COEFFICIENT
+            offsetChildrenVertical(-adjustedDelta)
+            currentDy += abs(adjustedDelta)
         }
     }
 
@@ -107,7 +117,7 @@ class AnimatedGridLayoutManager(
     }
 
     /**
-     * Animates the vertical offset of child views.
+     * Animates the vertical offset of child views. Think of a rubber-band or snap-back animation.
      *
      * This function creates and starts a `ValueAnimator` to smoothly adjust the vertical
      * position of child views based on the `animatedDy` value. It handles the animation
