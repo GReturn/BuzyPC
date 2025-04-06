@@ -47,16 +47,16 @@ class AnimatedGridLayoutManager(
 
     private fun calculateDy(dy: Int, scrollRange: Int) {
         if(isAnimated) return
-        val overScroll = dy - scrollRange
+        val overScroll = dy - scrollRange // no use yet.........
 
-        val topView = getChildAt(0) ?: return
-        val bottomView = getChildAt(childCount - 1) ?: return
+        val topView = getChildAt(0) as View
+        val bottomView = getChildAt(childCount - 1) as View
 
         val isAtTop = getPosition(topView) == 0
-                && topView.top >= topView.marginTop
+                && topView.top >= topView.marginTop + paddingTop
 
         val isAtBottom = getPosition(bottomView) == itemCount - 1
-                && bottomView.bottom <= height - bottomView.marginBottom
+                && bottomView.bottom <= height - bottomView.marginBottom - paddingBottom
 
         if(findLastCompletelyVisibleItemPosition() == itemCount - 1 && dy < 0) {
             if(currentDy > 0)
@@ -71,29 +71,31 @@ class AnimatedGridLayoutManager(
                 currentDy = 0
         }
 
-        if(isAtTop) {
-            val adjustedDelta = dy / DY_COEFFICIENT
+        val adjustedDelta = dy / DY_COEFFICIENT
+        if(isAtTop && dy <= 0) {
             currentDy += abs(adjustedDelta)
             offsetChildrenVertical(-adjustedDelta)
         }
-        else if(isAtBottom) {
-            val adjustedDelta = dy / DY_COEFFICIENT
+        else if(isAtBottom && dy >= 0) {
             offsetChildrenVertical(-adjustedDelta)
             currentDy += abs(adjustedDelta)
         }
     }
 
     private fun updateViews() {
-        // multiplier for alpha
-        val multiplier = 1
+        val alphaMultiplier = 2
+        val scaleMultiplier = 4
 
         for(i in 0 until childCount) {
             val view = getChildAt(i)
             view?.let {
-                val value = (paddingTop - it.top) / it.height.toFloat()
-                it.alpha = 1f - (value * multiplier)
+                // let the `off-screen factor` be a basis as to how
+                // a list item varies in appearance is it undergoes changes
+                // as the user scrolls it on- and off-screen
+                val offScreenFactor = ( paddingTop - it.top ) / it.height.toFloat()
+                it.alpha = 1f - offScreenFactor * alphaMultiplier
 
-                var scale = 1f - (value / 20f)
+                var scale = 1f - offScreenFactor / 20f * scaleMultiplier
 
                 if(scale > 1) scale = 1f
                 it.scaleX = scale
@@ -151,7 +153,7 @@ class AnimatedGridLayoutManager(
      *      - It calls `updateViews` (to refresh the UI).
      *    - `doOnStart` listener */
     private fun animationOffset(top: Boolean) {
-        val coefficient = if(top) -1 else 1
+        val coefficient = if (top) -1 else 1
         if(animator?.isRunning == true) {
             animatedDy += currentDy - previousDy
             animator?.cancel()
@@ -162,9 +164,9 @@ class AnimatedGridLayoutManager(
 
         animator = ValueAnimator.ofInt( 0, animatedDy).apply {
             addUpdateListener {
-                val value = it.animatedValue as Int
-                val offset = value - previousDy
-                previousDy = value
+                val animatedValue = it.animatedValue as Int
+                val offset = animatedValue - previousDy
+                previousDy = animatedValue
                 offsetChildrenVertical(offset * coefficient)
                 updateViews()
             }
@@ -188,8 +190,16 @@ class AnimatedGridLayoutManager(
 
     private fun animate(@AnimRes animationId: Int) {
         var startOffset = 0L
-        for(i in childCount - 1 downTo 0) {
-            val set = AnimationUtils.loadAnimation(context, animationId)
+
+        // for the plus symbol
+        var set = AnimationUtils.loadAnimation(context, R.anim.nav_fade_in)
+        set.startOffset = 0
+        startOffset += ANIMATION_OFFSET
+        getChildAt(0)?.startAnimation(set)
+
+        // for the rest
+        for(i in 1 until childCount - 1) {
+            set = AnimationUtils.loadAnimation(context, animationId)
             set.startOffset = startOffset
             startOffset += ANIMATION_OFFSET
             getChildAt(i)?.startAnimation(set)
