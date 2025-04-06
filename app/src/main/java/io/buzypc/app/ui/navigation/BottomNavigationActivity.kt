@@ -28,7 +28,6 @@ class BottomNavigationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_navigation)
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         handleOnBackPress()
 
         // We'll let the BottomNavigation Activity handle the theme change instead of the
@@ -41,7 +40,11 @@ class BottomNavigationActivity : AppCompatActivity() {
             }
         }
 
+        setupBottomNavigation()
+    }
 
+    private fun setupBottomNavigation() {
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         val navController = findNavController(R.id.navController)
         bottomNavigationView.setupWithNavController(navController)
 
