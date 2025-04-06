@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import io.buzypc.app.R
 import io.buzypc.app.data.pc.PCBuild
@@ -58,9 +59,12 @@ class PCBuildRecyclerViewAdapter(
         val tvName: TextView = itemView.findViewById(R.id.textView_pcName)
         val tvBudget: TextView = itemView.findViewById(R.id.textView_pcBudget)
 
+        val container = itemView.findViewById<CardView>(R.id.build_card)
     }
 
     class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val button: ImageView = itemView.findViewById(R.id.footerButton)
+        val button: ImageView = itemView.findViewById(R.id.iv_addCard)
+
+        val container = itemView.findViewById<CardView>(R.id.card_addBuild)
     }
 }
