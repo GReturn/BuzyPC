@@ -9,17 +9,6 @@
     tools:context=".ui.navigation.BottomNavigationActivity"
     >
 
-    <FrameLayout
-        android:id="@+id/frame_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
@@ -37,7 +26,7 @@
         android:background="@android:color/transparent"
         />
 
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/navController"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

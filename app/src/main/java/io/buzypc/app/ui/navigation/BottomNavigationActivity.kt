@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.buzypc.app.R
@@ -45,7 +47,8 @@ class BottomNavigationActivity : AppCompatActivity() {
 
     private fun setupBottomNavigation() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-        val navController = findNavController(R.id.navController)
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.navController) as NavHostFragment
+        val navController = navHostFragment.navController
         bottomNavigationView.setupWithNavController(navController)
 
         bottomNavigationView.setOnItemSelectedListener { item ->
