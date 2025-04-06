@@ -46,18 +46,20 @@ class AnimatedGridLayoutManager(
     }
 
     private fun calculateDy(dy: Int) {
+        if(isAnimated) return
+
         val topView = getChildAt(0) ?: return
         val bottomView = getChildAt(childCount - 1) ?: return
 
         val isAtTop = getPosition(topView) == 0 && topView.top >= topView.marginTop + paddingTop
         val isAtBottom = getPosition(bottomView) == itemCount - 1 && bottomView.bottom <= height - bottomView.marginBottom - paddingBottom
 
-        if(findFirstVisibleItemPosition() == 0 && dy > 0) {
-            if(currentDy > 0) currentDy -= dy
-            else currentDy = 0
-        }
         if(findLastCompletelyVisibleItemPosition() == itemCount - 1 && dy < 0) {
             if(currentDy > 0) currentDy += dy
+            else currentDy = 0
+        }
+        if(findFirstVisibleItemPosition() == 0 && dy > 0) {
+            if(currentDy > 0) currentDy -= dy
             else currentDy = 0
         }
 
@@ -65,22 +67,23 @@ class AnimatedGridLayoutManager(
             currentDy += abs(dy / DY_COEFFICIENT)
             offsetChildrenVertical(-dy / DY_COEFFICIENT)
         }
-        else {
-            if(isAtBottom) {
-                offsetChildrenVertical(-dy/ DY_COEFFICIENT)
-                currentDy += abs(dy / DY_COEFFICIENT)
-            }
+        else if(isAtBottom) {
+            offsetChildrenVertical(-dy/ DY_COEFFICIENT)
+            currentDy += abs(dy / DY_COEFFICIENT)
         }
     }
 
     private fun updateViews() {
+        // multiplier for alpha
+        val multiplier = 1
+
         for(i in 0 until childCount) {
             val view = getChildAt(i)
             view?.let {
-                val value = ((paddingTop - it.top) / it.height.toFloat())
-                it.alpha = 1f - value
+                val value = (paddingTop - it.top) / it.height.toFloat()
+                it.alpha = 1f - (value * multiplier)
 
-                var scale = 1f - value / 20f
+                var scale = 1f - (value / 20f)
 
                 if(scale > 1) scale = 1f
                 it.scaleX = scale
@@ -103,6 +106,40 @@ class AnimatedGridLayoutManager(
         }
     }
 
+    /**
+     * Animates the vertical offset of child views.
+     *
+     * This function creates and starts a `ValueAnimator` to smoothly adjust the vertical
+     * position of child views based on the `animatedDy` value. It handles the animation
+     * direction based on the `top` parameter and manages the animator's lifecycle, including
+     * canceling existing animations.
+     *
+     * @param top A boolean flag indicating the direction of the offset.
+     *            - `true`: Offset is applied upwards (negative direction).
+     *            - `false`: Offset is applied downwards (positive direction).
+     *
+     * The function performs the following actions:
+     * 1. **Calculates the coefficient:**
+     *    - If `top` is `true`, the `coefficient` is set to -1, indicating an upward offset.
+     *    - If `top` is `false`, the `coefficient` is set to 1, indicating a downward offset.
+     * 2. **Handles existing animations:**
+     *    - If an animation (`animator`) is currently running, it calculates the accumulated
+     *      offset (`animatedDy`) by adding the difference between the current and previous
+     *      vertical displacement (`currentDy - previousDy`).
+     *    - The running animation is then canceled.
+     * 3. **Initializes `animatedDy`:**
+     *    - If no animation is running, `animatedDy` is set to the current vertical displacement (`currentDy`).
+     * 4. **Creates and configures the `ValueAnimator`:**
+     *    - A `ValueAnimator` is created to animate from 0 to `animatedDy`.
+     *    - An `addUpdateListener` is added to update the vertical offset of the children
+     *      during each animation frame.
+     *      - It calculates the `offset` based on the current animated value and the
+     *        `previousDy`.
+     *      - It updates `previousDy` to the current animated value.
+     *      - It calls `offsetChildrenVertical` to apply the calculated vertical offset,
+     *        multiplied by the `coefficient`.
+     *      - It calls `updateViews` (to refresh the UI).
+     *    - `doOnStart` listener */
     private fun animationOffset(top: Boolean) {
         val coefficient = if(top) -1 else 1
         if(animator?.isRunning == true) {
@@ -129,6 +166,7 @@ class AnimatedGridLayoutManager(
                 isAnimated = false
                 currentDy = 0
             }
+            // adjust duration based on displacement (between 400-800ms)
             duration = lerp(800f, 400f, currentDy.toFloat() / 1000).toLong()
             start()
         }
