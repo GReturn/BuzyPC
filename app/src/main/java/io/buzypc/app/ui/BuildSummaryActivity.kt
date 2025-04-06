@@ -10,10 +10,10 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import io.buzypc.app.R
 import io.buzypc.app.data.appsession.BuzyUserAppSession
-import io.buzypc.app.ui.navigation.BottomNavigation
+import io.buzypc.app.ui.navigation.BottomNavigationActivity
 import io.buzypc.app.ui.utils.loadCurrentUserDetails
 
-class BuildSummary : AppCompatActivity() {
+class BuildSummaryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -36,7 +36,7 @@ class BuildSummary : AppCompatActivity() {
 
             // Save build data into the user-specific SharedPreferences via BuzyUser
             user.saveBuilds()
-            val intent = Intent(this, BottomNavigation::class.java)
+            val intent = Intent(this, BottomNavigationActivity::class.java)
 
             /*
                 we set these flags to fix the issue of erratic screen flickering produced by

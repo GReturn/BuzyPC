@@ -11,7 +11,7 @@ import android.widget.EditText
 import android.widget.Toast
 import io.buzypc.app.R
 import io.buzypc.app.data.appsession.BuzyUserAppSession
-import io.buzypc.app.ui.BuildSummary
+import io.buzypc.app.ui.BuildSummaryActivity
 
 class NewBuildFragment : Fragment() {
 
@@ -36,7 +36,7 @@ class NewBuildFragment : Fragment() {
             requireContext()
             (context?.applicationContext as BuzyUserAppSession).buildName = etBuildName.text.toString()
             (context?.applicationContext as BuzyUserAppSession).buildBudget = etBudgetInput.text.toString()
-            val intent = Intent(requireActivity(), BuildSummary::class.java)
+            val intent = Intent(requireActivity(), BuildSummaryActivity::class.java)
             startActivity(intent)
         }
     }
