@@ -63,7 +63,6 @@ class BuildListFragment : Fragment() {
         val tvEmptyList = view?.findViewById<TextView>(R.id.tvEmptyList)
         val tvTitle = view?.findViewById<TextView>(R.id.textView_buildsHeader)
 
-        recyclerView?.updatePadding(top = 400)
         recyclerView?.doOnLayout {
             tvTitle?.animate()?.setDuration(650)?.alpha(1f)
             tvEmptyList?.animate()?.setDuration(650)?.alpha(1f)
