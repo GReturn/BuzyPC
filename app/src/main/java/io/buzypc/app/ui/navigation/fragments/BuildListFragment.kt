@@ -6,23 +6,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.core.view.doOnLayout
 import androidx.recyclerview.widget.RecyclerView
 import io.buzypc.app.R
 import io.buzypc.app.data.pc.PCBuild
 import io.buzypc.app.model.PCBuildRecyclerViewAdapter
-import io.buzypc.app.ui.navigation.BottomNavigation
+import io.buzypc.app.ui.layoutmanagers.AnimatedBuildListLayoutManager
+import io.buzypc.app.ui.navigation.BottomNavigationActivity
 import io.buzypc.app.ui.utils.loadCurrentUserDetails
 
 class BuildListFragment : Fragment() {
     val pcBuildList = ArrayList<PCBuild>()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycleView_builds)
+        val tvEmptyList = view.findViewById<TextView>(R.id.tvEmptyList)
         setPCModelList()
 
-        val tvEmptyList = view.findViewById<TextView>(R.id.tvEmptyList)
         if(pcBuildList.isEmpty()){
             tvEmptyList.visibility = View.VISIBLE
             recyclerView.visibility = View.VISIBLE
@@ -30,11 +32,21 @@ class BuildListFragment : Fragment() {
 
         val adapter = PCBuildRecyclerViewAdapter(requireContext(), pcBuildList) {
             // we handle the click event here when user clicks on the plus button inside the buildlist fragment
-            val activity = requireActivity() as BottomNavigation
+            val activity = requireActivity() as BottomNavigationActivity
             activity.handleNavigateToNewBuild()
         }
         recyclerView.adapter = adapter
-        recyclerView.layoutManager = GridLayoutManager(requireContext(),1)
+        recyclerView.layoutManager = AnimatedBuildListLayoutManager(requireContext(),1)
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+
+        val recyclerView = view?.findViewById<RecyclerView>(R.id.recycleView_builds)
+        recyclerView?.layoutAnimation = null
+        recyclerView?.doOnLayout {
+            (recyclerView.layoutManager as AnimatedBuildListLayoutManager).animateItemsIn()
+        }
     }
 
     // - LayoutInflater converts xml file into a View object that the fragment displays

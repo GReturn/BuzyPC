@@ -6,7 +6,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -16,7 +15,7 @@ import io.buzypc.app.R
 import io.buzypc.app.data.appsession.BuzyUserAppSession
 import io.buzypc.app.data.user.BuzyUser
 import io.buzypc.app.data.user.BuzyUserSettings
-import io.buzypc.app.ui.navigation.BottomNavigation
+import io.buzypc.app.ui.navigation.BottomNavigationActivity
 import io.buzypc.app.ui.utils.loadCurrentUserDetails
 
 class LoginActivity : AppCompatActivity() {
@@ -87,7 +86,7 @@ class LoginActivity : AppCompatActivity() {
                 userSettings.setLastUser(enteredUsername)
                 setAppTheme(userSettings)
 
-                val intent = Intent(this, BottomNavigation::class.java)
+                val intent = Intent(this, BottomNavigationActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
                 finish()
@@ -115,7 +114,7 @@ class LoginActivity : AppCompatActivity() {
      */
     private fun handleStartup(userDetails: BuzyUser) {
         if (userDetails.isLoggedIn()) {
-            val intent = Intent(this, BottomNavigation::class.java)
+            val intent = Intent(this, BottomNavigationActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
             finish()

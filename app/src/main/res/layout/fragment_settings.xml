@@ -4,14 +4,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".ui.navigation.fragments.SettingsFragment"
     android:id="@+id/fragment_settings"
     >
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:padding="20dp">
 
     <TextView
@@ -195,9 +195,11 @@
 
         android:layout_marginHorizontal="50dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+
         android:backgroundTint="?attr/colorOnSecondary"
         android:fontFamily="sans-serif-black"
+
+        android:layout_marginVertical="@dimen/space_medium"
 
         android:text="Logout"
         app:layout_constraintEnd_toEndOf="parent"

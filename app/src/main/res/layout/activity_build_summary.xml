@@ -4,7 +4,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.BuildSummary">
+    tools:context=".ui.BuildSummaryActivity">
     <TextView
         android:id="@+id/tv_BuildSummary"
         android:layout_width="wrap_content"

@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.buzypc.app.R
@@ -20,7 +22,7 @@ import io.buzypc.app.ui.widget.NewBuildCircleRevealView
 import kotlin.math.hypot
 
 
-class BottomNavigation : AppCompatActivity() {
+class BottomNavigationActivity : AppCompatActivity() {
     private val viewModel: StyleViewModel by viewModels()
     private var backPressedTime = 0L
 
@@ -28,7 +30,6 @@ class BottomNavigation : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_navigation)
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         handleOnBackPress()
 
         // We'll let the BottomNavigation Activity handle the theme change instead of the
@@ -41,8 +42,13 @@ class BottomNavigation : AppCompatActivity() {
             }
         }
 
+        setupBottomNavigation()
+    }
 
-        val navController = findNavController(R.id.navController)
+    private fun setupBottomNavigation() {
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.navController) as NavHostFragment
+        val navController = navHostFragment.navController
         bottomNavigationView.setupWithNavController(navController)
 
         bottomNavigationView.setOnItemSelectedListener { item ->
@@ -90,7 +96,7 @@ class BottomNavigation : AppCompatActivity() {
                 if (backPressedTime + 2000 > System.currentTimeMillis()) {
                     finish()
                 } else {
-                    Toast.makeText(this@BottomNavigation, "Press back again to close the app", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@BottomNavigationActivity, "Press back again to close the app", Toast.LENGTH_SHORT).show()
                     backPressedTime = System.currentTimeMillis()
                 }
             }

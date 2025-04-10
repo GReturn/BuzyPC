@@ -1,45 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    android:layout_width="match_parent"
-    android:layout_height="125dp"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
     android:backgroundTint="@color/bz_darkGray"
+
     app:cardCornerRadius="25dp"
+
     android:id="@+id/build_card"
     android:layout_margin="10dp"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <RelativeLayout
+    >
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/rlCard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
         >
+
         <ImageView
             android:id="@+id/image_devicesImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/devices_24px"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
             android:layout_centerHorizontal="true"
-            />
+            android:layout_marginStart="28dp"
+            android:src="@drawable/devices_24px"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/textView_pcName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="PC Name"
             android:layout_below="@id/image_devicesImage"
             android:layout_centerHorizontal="true"
-            android:textColor="@color/bz_honeyYellow"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="20dp"
+
             android:fontFamily="@font/ubuntu_bold"
-            />
+            android:text="PC Name"
+            android:textColor="@color/bz_honeyYellow"
+            android:textSize="@dimen/font_title"
+
+            app:layout_constraintStart_toEndOf="@+id/image_devicesImage"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/textView_pcBudget"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="$budget"
             android:layout_below="@id/textView_pcName"
             android:layout_centerHorizontal="true"
-            android:textColor="@color/bz_honeyYellow"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+
             android:fontFamily="@font/ubuntu_bold"
-            />
-    </RelativeLayout>
-</androidx.cardview.widget.CardView>
+            android:text="$budget"
+            android:textColor="@color/bz_honeyYellow"
+            android:textSize="@dimen/font_medium"
+
+            app:layout_constraintStart_toEndOf="@+id/image_devicesImage"
+            app:layout_constraintTop_toBottomOf="@+id/textView_pcName" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
