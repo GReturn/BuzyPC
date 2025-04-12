@@ -37,6 +37,7 @@ class BuildListFragment : Fragment() {
         }
         recyclerView.adapter = adapter
         recyclerView.layoutManager = AnimatedBuildListLayoutManager(requireContext(),1)
+
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
