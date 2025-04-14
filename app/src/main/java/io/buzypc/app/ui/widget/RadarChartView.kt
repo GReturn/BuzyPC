@@ -58,18 +58,12 @@ class RadarChartViewFragment : Fragment() {
             radarChart.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.bz_deepCharcoal))
             radarChart.animateXY(1500, 1500)
             radarChart.legend.isEnabled = false
-            radarChart.xAxis.apply{
-                setDrawAxisLine(false)
-                setDrawGridLines(false)
-            }
-            radarChart.yAxis.apply{
-                setDrawAxisLine(false)
-                setDrawGridLines(false)
-            }
+
+
 
             // 2) Y‑axis bounds
-            radarChart.yAxis.axisMinimum = 0f
-            radarChart.yAxis.axisMaximum = 5f
+            radarChart.yAxis.axisMinimum = 1f
+            radarChart.yAxis.axisMaximum = 4f
 
             // 3) Prepare your entries (Retrieve actual data)
             val app = requireActivity().application as BuzyUserAppSession
@@ -94,7 +88,8 @@ class RadarChartViewFragment : Fragment() {
             val set = RadarDataSet(entries,"").apply {
                 color = MaterialColors.getColor(radarChart, androidx.appcompat.R.attr.colorPrimary)
                 fillColor = MaterialColors.getColor(radarChart, androidx.appcompat.R.attr.colorPrimary)
-                setDrawFilled(false)
+                setDrawFilled(true)
+                fillAlpha = 50
                 lineWidth = 2f
                 isDrawHighlightCircleEnabled = true
                 highlightCircleInnerRadius = 1f
@@ -130,6 +125,15 @@ class RadarChartViewFragment : Fragment() {
             radarChart.xAxis.textColor = MaterialColors.getColor(radarChart, androidx.appcompat.R.attr.colorPrimary)
             radarChart.xAxis.typeface = ResourcesCompat.getFont(requireContext(), R.font.ubuntu_bold)
 
+            radarChart.xAxis.apply{
+                setDrawAxisLine(false)
+                setDrawGridLines(false)
+            }
+            radarChart.yAxis.apply{
+                setDrawAxisLine(false)
+                setDrawGridLines(false)
+            }
+
             // 7) Force redraw
             radarChart.data?.notifyDataChanged()
             radarChart.notifyDataSetChanged()
@@ -152,13 +156,12 @@ class RadarChartViewFragment : Fragment() {
 
             chartView.isVisible = true
 
-            val revealAnimator = ViewAnimationUtils.createCircularReveal(chartView, centerX, centerY, 0f, radius)
             val fadeAnimator = ObjectAnimator.ofFloat(chartView, "alpha", 0f, 1f).apply { duration = 1000L }
             val scaleXAnimator = ObjectAnimator.ofFloat(chartView, "scaleX", 0.8f, 1f).apply { duration = 1000L }
             val scaleYAnimator = ObjectAnimator.ofFloat(chartView, "scaleY", 0.8f, 1f).apply { duration = 1000L }
 
             AnimatorSet().apply {
-                playTogether(revealAnimator, fadeAnimator, scaleXAnimator, scaleYAnimator)
+                playTogether(fadeAnimator, scaleXAnimator, scaleYAnimator)
                 start()
             }
             Log.d("RadarChartFragment", "Chart reveal animation started")

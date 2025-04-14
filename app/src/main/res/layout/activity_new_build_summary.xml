@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.BuildSummaryActivity"
+    tools:context=".ui.NewBuildSummaryActivity"
     android:orientation="vertical"
     app:layout_scrollEffect="compress"
     android:fadeScrollbars="true"
@@ -46,19 +46,6 @@
             android:layout_gravity="center_horizontal"
 
             />
-        <Button
-            android:id="@+id/btnSaveBuild"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Save Build"
-            android:fontFamily="@font/ubuntu_bold"
-            android:layout_marginTop="10dp"
-            android:layout_marginHorizontal="50dp"
-            />
-
-
-
-
     </LinearLayout>
 
 </ScrollView>

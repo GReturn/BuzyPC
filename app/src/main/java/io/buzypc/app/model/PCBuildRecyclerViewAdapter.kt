@@ -13,6 +13,7 @@ import io.buzypc.app.R
 import io.buzypc.app.data.appsession.BuzyUserAppSession
 import io.buzypc.app.data.pc.PCBuild
 import io.buzypc.app.ui.BuildSummaryActivity
+import io.buzypc.app.ui.NewBuildSummaryActivity
 
 class PCBuildRecyclerViewAdapter(
     var context: Context,
@@ -48,7 +49,7 @@ class PCBuildRecyclerViewAdapter(
 
                 // 1) Click on the whole card → BuildSummaryActivity
                 holder.container.setOnClickListener {
-                    val intent = Intent(context, BuildSummaryActivity::class.java)
+                    val intent = Intent(context, NewBuildSummaryActivity::class.java)
                     context.startActivity(intent)
                 }
             }
