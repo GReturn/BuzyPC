@@ -16,7 +16,7 @@ import io.buzypc.app.data.user.BuzyUserSettings
 import io.buzypc.app.ui.AboutDevelopersActivity
 import io.buzypc.app.ui.LogoutPromptActivity
 import io.buzypc.app.ui.ProfileViewActivity
-import io.buzypc.app.ui.navigation.StyleViewModel
+import io.buzypc.app.ui.navigation.viewmodel.StyleViewModel
 import io.buzypc.app.ui.utils.loadCurrentUserDetails
 
 class SettingsFragment : Fragment() {
