@@ -24,6 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Meet the\nDevelopers"
+                android:fontFamily="@font/ubuntu_medium"
                 android:textSize="48sp"
                 android:textStyle="bold"
                 android:paddingBottom="16dp"/>
@@ -44,6 +45,7 @@
             android:paddingBottom="16dp"
             android:text="@string/about_dev_header"
             android:gravity="center"
+            android:fontFamily="@font/ubuntu_medium"
             />
 
         <LinearLayout
@@ -160,7 +162,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Back"
-            android:fontFamily="sans-serif-black" />
+            android:fontFamily="@font/ubuntu_medium" />
 
     </LinearLayout>
 
