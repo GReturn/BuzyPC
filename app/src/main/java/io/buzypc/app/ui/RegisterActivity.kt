@@ -2,6 +2,8 @@ package io.buzypc.app.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -30,10 +32,23 @@ class RegisterActivity : AppCompatActivity() {
         val edittextEmail = findViewById<EditText>(R.id.edittext_email)
         val edittextPassword = findViewById<EditText>(R.id.edittext_password)
         val edittextConfirmPassword = findViewById<EditText>(R.id.edittext_confirm_password)
+
         btnLogin.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
+
+        edittextUsername.addTextChangedListener( object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                if(s?.length == 10) Toast.makeText(this@RegisterActivity, "Only 10 characters allowed for username.", Toast.LENGTH_LONG).show()
+            }
+        })
 
         btnRegister.setOnClickListener {
             val nameRegex = "^[A-Za-z ]{3,10}$".toRegex()
