@@ -27,7 +27,7 @@
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="buzyPCSubheading">Get your personalized PC part recommendations tailored to your budget</string>
+    <string name="buzyPCSubheading">Get your personalized PC build tailored to your budget</string>
     <string name="buzyPCHeading">Claim your dream PC build</string>
     <string name="keyFeatures">Key Features</string>
     <string name="keyFeaturesBody">\u2022 Suitable builds for gaming, editing, etc.\n\u2022 Flexible for different budgets.</string>
