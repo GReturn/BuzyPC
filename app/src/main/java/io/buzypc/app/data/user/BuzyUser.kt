@@ -202,4 +202,14 @@ class BuzyUser(private val context: Context) {
             buildBudgetList.addAll(savedBudgets.split(","))
         }
     }
+
+    fun saveComponentStatus(build: String, componentKey: String, isChecked: Boolean) {
+        sharedPreferences.edit()
+            .putBoolean("$build component_$componentKey", isChecked)
+            .apply()
+    }
+
+    fun getComponentStatus(build: String,componentKey: String): Boolean {
+        return sharedPreferences.getBoolean("$build component_$componentKey", false)
+    }
 }

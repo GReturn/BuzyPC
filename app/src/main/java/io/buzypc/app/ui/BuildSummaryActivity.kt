@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -26,8 +27,8 @@ class BuildSummaryActivity : AppCompatActivity() {
             insets
         }
         val tvBuildName = findViewById<TextView>(R.id.tv_BuildSummary)
-        val btnSaveBuild = findViewById<Button>(R.id.btnSaveBuild)
         val user = loadCurrentUserDetails(this)
+        val app = application as BuzyUserAppSession
 
         user.retrieveBuilds()
         tvBuildName.text = "${(application as BuzyUserAppSession).buildName}'s Summary"
@@ -40,29 +41,46 @@ class BuildSummaryActivity : AppCompatActivity() {
 
         supportFragmentManager.executePendingTransactions() // Ensure the fragment is added immediately
 
-        btnSaveBuild.setOnClickListener {
-            // Add current build details to global lists (if needed)
-            user.buildNameList.add((application as BuzyUserAppSession).buildName)
-            user.buildBudgetList.add((application as BuzyUserAppSession).buildBudget)
+        val cbCPU = findViewById<CheckBox>(R.id.cbCpu)
+        val cbGPU = findViewById<CheckBox>(R.id.cbGpu)
+        val cbMotherboard = findViewById<CheckBox>(R.id.cbMotherboard)
+        val cbPSU = findViewById<CheckBox>(R.id.cbPSU)
+        val cbRAM = findViewById<CheckBox>(R.id.cbRAM)
+        val cbStorage = findViewById<CheckBox>(R.id.cbStorage)
 
-            // Save build data into the user-specific SharedPreferences via BuzyUser
-            user.saveBuilds()
-            val intent = Intent(this, BottomNavigationActivity::class.java)
+        cbCPU.isChecked         = user.getComponentStatus(app.buildName, "cpu")
+        cbGPU.isChecked         = user.getComponentStatus(app.buildName, "gpu")
+        cbMotherboard.isChecked = user.getComponentStatus(app.buildName, "motherboard")
+        cbPSU.isChecked         = user.getComponentStatus(app.buildName, "psu")
+        cbRAM.isChecked         = user.getComponentStatus(app.buildName, "ram")
+        cbStorage.isChecked     = user.getComponentStatus(app.buildName, "storage")
 
-            /*
-                we set these flags to fix the issue of erratic screen flickering produced by
-                doing the following procedures:
-                 1. change the theme to dark mode to light mode or vice versa
-                 2. add a build
-                 3. save the build
-                 4. change the theme again
-            */
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
 
-            startActivity(intent)
-            finish()
+
+
+        cbCPU.setOnCheckedChangeListener { _, isChecked ->
+            user.saveComponentStatus(app.buildName,"cpu", isChecked)
         }
+
+        cbGPU.setOnCheckedChangeListener { _, isChecked ->
+            user.saveComponentStatus(app.buildName,"gpu", isChecked)
+        }
+
+        cbMotherboard.setOnCheckedChangeListener { _, isChecked ->
+            user.saveComponentStatus(app.buildName,"motherboard", isChecked)
+        }
+
+        cbPSU.setOnCheckedChangeListener { _, isChecked ->
+            user.saveComponentStatus(app.buildName,"psu", isChecked)
+        }
+
+        cbRAM.setOnCheckedChangeListener { _, isChecked ->
+            user.saveComponentStatus(app.buildName,"ram", isChecked)
+        }
+
+        cbStorage.setOnCheckedChangeListener { _, isChecked ->
+            user.saveComponentStatus(app.buildName,"storage", isChecked)
+        }
+
     }
-
-
 }

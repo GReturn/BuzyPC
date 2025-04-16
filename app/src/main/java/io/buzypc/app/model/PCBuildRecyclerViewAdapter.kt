@@ -49,7 +49,10 @@ class PCBuildRecyclerViewAdapter(
 
                 // 1) Click on the whole card → BuildSummaryActivity
                 holder.container.setOnClickListener {
-                    val intent = Intent(context, NewBuildSummaryActivity::class.java)
+                    val appSession = (context.applicationContext as BuzyUserAppSession)
+                    appSession.buildName = build.buildName
+
+                    val intent = Intent(context, BuildSummaryActivity::class.java)
                     context.startActivity(intent)
                 }
             }

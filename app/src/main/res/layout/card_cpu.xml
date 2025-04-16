@@ -1,44 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="150dp"
+    android:layout_width="match_parent"
     android:layout_height="100dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:backgroundTint="@color/bz_deepCharcoal"
     app:cardCornerRadius="10dp">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         >
-        <ImageView
-            android:id="@+id/imgCPU"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/cpu_64_bit"
-            android:layout_marginHorizontal="10dp"
-            />
-
-        <TextView
-            android:id="@+id/tvCPU"
+        <RelativeLayout
+            android:id="@+id/rlDetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="CPU"
-            android:layout_marginTop="10dp"
-            android:layout_toEndOf="@id/imgCPU"
-            android:fontFamily="@font/ubuntu_bold"
-            android:textColor="@color/bz_honeyYellow"
-            />
-        <TextView
-            android:id="@+id/tvPrice"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            >
+            <ImageView
+                android:id="@+id/imgCPU"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/cpu_64_bit"
+                android:layout_marginHorizontal="10dp"
+                />
+
+            <TextView
+                android:id="@+id/tvCPU"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CPU"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@id/imgCPU"
+                android:fontFamily="@font/ubuntu_bold"
+                android:textColor="@color/bz_honeyYellow"
+                />
+            <TextView
+                android:id="@+id/tvPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$price"
+                android:layout_toEndOf="@id/imgCPU"
+                android:layout_below="@id/tvCPU"
+                android:fontFamily="@font/ubuntu_bold"
+                android:textColor="@color/bz_honeyYellow"
+                />
+
+        </RelativeLayout>
+
+        <CheckBox
+            android:id="@+id/cbCpu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="$price"
-            android:layout_toEndOf="@id/imgCPU"
-            android:layout_below="@id/tvCPU"
-            android:fontFamily="@font/ubuntu_bold"
-            android:textColor="@color/bz_honeyYellow"
+            android:layout_gravity=""
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:buttonTint="@color/bz_honeyYellow"
             />
-    </RelativeLayout>
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

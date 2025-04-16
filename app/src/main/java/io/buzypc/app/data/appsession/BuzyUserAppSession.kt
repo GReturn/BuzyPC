@@ -14,7 +14,6 @@ class BuzyUserAppSession: Application() {
     override fun onCreate() {
         super.onCreate()
     }
-
     val myPC = PC(
         name = "Gaming Beast",
         motherboardName = "ASUS ROG Strix Z790-E Gaming WiFi",

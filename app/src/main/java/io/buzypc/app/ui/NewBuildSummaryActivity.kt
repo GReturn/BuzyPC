@@ -25,6 +25,7 @@ class NewBuildSummaryActivity : AppCompatActivity() {
             insets
         }
         val tvBuildName = findViewById<TextView>(R.id.tv_BuildSummary)
+        val btnSaveButton = findViewById<Button>(R.id.btn_SaveBuild)
         val user = loadCurrentUserDetails(this)
 
         user.retrieveBuilds()
@@ -37,5 +38,28 @@ class NewBuildSummaryActivity : AppCompatActivity() {
         fragmentTransaction.commit()
 
         supportFragmentManager.executePendingTransactions() // Ensure the fragment is added immediately
+
+        btnSaveButton.setOnClickListener {
+            // Add current build details to global lists (if needed)
+            user.buildNameList.add((application as BuzyUserAppSession).buildName)
+            user.buildBudgetList.add((application as BuzyUserAppSession).buildBudget)
+
+            // Save build data into the user-specific SharedPreferences via BuzyUser
+            user.saveBuilds()
+            val intent = Intent(this, BottomNavigationActivity::class.java)
+
+            /*
+                we set these flags to fix the issue of erratic screen flickering produced by
+                doing the following procedures:
+                 1. change the theme to dark mode to light mode or vice versa
+                 2. add a build
+                 3. save the build
+                 4. change the theme again
+            */
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+            startActivity(intent)
+            finish()
+        }
     }
 }

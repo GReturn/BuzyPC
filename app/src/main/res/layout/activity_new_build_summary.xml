@@ -33,18 +33,30 @@
             app:cardCornerRadius="8dp"
             app:cardElevation="4dp"
             android:backgroundTint="@color/bz_deepCharcoal"
-            android:layout_marginHorizontal="50dp"
+            android:layout_marginHorizontal="40dp"
             android:layout_gravity="center_horizontal"
-
+            android:layout_marginBottom="10dp"
             >
         </androidx.cardview.widget.CardView>
+        <include layout ="@layout/compatibility_score_view"/>
 
-        <include layout="@layout/view_component_grid"
-            android:layout_width="wrap_content"
+
+        <include
+            layout="@layout/view_component_grid"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:layout_gravity="center_horizontal"
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginTop="20dp"
 
+            />
+
+        <Button
+            android:id="@+id/btn_SaveBuild"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="40dp"
+            android:layout_height="match_parent"
+            android:text="Save Build"
             />
     </LinearLayout>
 
