@@ -17,13 +17,15 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.buzypc.app.R
+import io.buzypc.app.ui.navigation.viewmodel.ListsInformationViewModel
 import io.buzypc.app.ui.navigation.viewmodel.StyleViewModel
 import io.buzypc.app.ui.widget.NewBuildCircleRevealView
 import kotlin.math.hypot
 
 
 class BottomNavigationActivity : AppCompatActivity() {
-    private val viewModel: StyleViewModel by viewModels()
+    private val styleViewModel: StyleViewModel by viewModels()
+    private val listInformationViewModel: ListsInformationViewModel by viewModels()
     private var backPressedTime = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,12 +36,22 @@ class BottomNavigationActivity : AppCompatActivity() {
 
         // We'll let the BottomNavigation Activity handle the theme change instead of the
         // Settings Fragment
-        viewModel.themeState.observe(this) { isDarkMode ->
+        styleViewModel.themeState.observe(this) { isDarkMode ->
             if (isDarkMode) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
+        }
+
+        // TODO get the count content from shared pref; have to set up first tho
+        listInformationViewModel.setBuildCount(0)
+        listInformationViewModel.setChecklistItemCount(0)
+        listInformationViewModel.buildListCount.observe(this) { buildCount ->
+            // TODO (change the sharedpref list counter)
+        }
+        listInformationViewModel.checkListCount.observe(this) { checkCount ->
+            // TODO (change the sharedpref list counter)
         }
 
         setupBottomNavigation()
