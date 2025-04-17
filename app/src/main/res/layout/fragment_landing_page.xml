@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
 
-                android:layout_marginTop="@dimen/space_normal"
+                android:layout_marginTop="@dimen/space_medium"
 
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -83,11 +83,11 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
 
-                        android:fontFamily="@font/ubuntu_mono"
+                        android:fontFamily="@font/ubuntu_medium"
                         android:text="Hello, {username}"
                         android:textAlignment="center"
                         android:textColor="?attr/colorOnSecondary"
-                        android:textSize="24sp" />
+                        android:textSize="@dimen/font_large" />
 
                     <TextView
                         android:id="@+id/buzyPCHeading"
@@ -103,7 +103,7 @@
                         android:textAllCaps="true"
 
                         android:textColor="?attr/colorOnSecondary"
-                        android:textSize="36sp" />
+                        android:textSize="@dimen/font_title_large" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/button_landing_build_now_cta"
@@ -116,7 +116,6 @@
                         android:fontFamily="@font/ubuntu_bold"
                         android:text="Build Now"
                         android:textAlignment="center"
-
                         android:textColor="?attr/colorControlNormal"
                         android:textSize="@dimen/font_title_large"
 
@@ -141,11 +140,11 @@
                 android:id="@+id/textview_landing_overview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_medium"
+                android:layout_marginTop="@dimen/space_xsmall"
 
                 android:fontFamily="@font/ubuntu_bold"
                 android:text="Overview"
-                android:textSize="32sp"
+                android:textSize="@dimen/font_title_large"
 
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -191,7 +190,7 @@
                             android:text="Total Builds"
                             android:textAlignment="center"
                             android:textColor="?attr/colorOnSecondary"
-                            android:textSize="24sp" />
+                            android:textSize="@dimen/font_larger" />
 
 
                         <TextView
@@ -199,13 +198,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/space_small"
 
                             android:fontFamily="@font/ubuntu_bold"
 
-                            android:text="0"
+                            android:text="?"
                             android:textAlignment="center"
                             android:textColor="?attr/colorOnSecondary"
-                            android:textSize="48dp"
+                            android:textSize="@dimen/font_title_large"
                             />
 
                         <TextView
@@ -215,7 +215,6 @@
 
                             android:fontFamily="@font/ubuntu_bold"
 
-                            android:paddingTop="@dimen/space_small"
                             android:text="builds"
                             android:textAlignment="center"
                             android:textColor="?attr/colorOnSecondary"
@@ -227,8 +226,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/space_normal"
 
-                            android:layout_marginTop="@dimen/space_xlarge"
                             android:backgroundTint="?attr/colorOnSecondary"
                             android:fontFamily="@font/ubuntu_bold"
                             android:text="View My Builds"
@@ -276,21 +275,22 @@
                             android:text="Checklist"
                             android:textAlignment="center"
                             android:textColor="?attr/colorOnSecondary"
-                            android:textSize="24sp" />
-
+                            android:textSize="@dimen/font_larger"
+                        />
 
                         <TextView
                             android:id="@+id/textview_dynamic_checklist_list_counter"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
+                            android:paddingTop="@dimen/space_small"
 
                             android:fontFamily="@font/ubuntu_bold"
 
-                            android:text="0"
+                            android:text="?"
                             android:textAlignment="center"
                             android:textColor="?attr/colorOnSecondary"
-                            android:textSize="48dp"
+                            android:textSize="@dimen/font_title_large"
                             />
 
                         <TextView
@@ -300,7 +300,6 @@
 
                             android:fontFamily="@font/ubuntu_bold"
 
-                            android:paddingTop="@dimen/space_small"
                             android:text="items"
                             android:textAlignment="center"
                             android:textColor="?attr/colorOnSecondary"
@@ -312,11 +311,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/space_normal"
 
-                            android:layout_marginTop="@dimen/space_xlarge"
                             android:backgroundTint="?attr/colorOnSecondary"
                             android:fontFamily="@font/ubuntu_bold"
-                            android:text="Go To Checklist"
+                            android:text="See Checklist"
                             android:textAlignment="center"
 
                             android:textColor="?attr/colorControlNormal"
