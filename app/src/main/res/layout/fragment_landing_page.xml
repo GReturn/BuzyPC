@@ -9,92 +9,227 @@
     android:backgroundTint="?android:attr/colorBackground"
     >
 
-    <RelativeLayout
-        android:id="@+id/main"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_horizontal">
+    >
 
-        <TextView
-            android:id="@+id/hello_user"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/main"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="100dp"
-            android:background="@drawable/underline"
-            android:fontFamily="@font/ubuntu_mono"
-            android:padding="10dp"
-            android:text="Hello, {username}"
-            android:textSize="25dp" />
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/hello_user"
-            android:layout_marginHorizontal="20dp"
-            android:orientation="vertical">
+            <LinearLayout
+                android:id="@+id/landing_title"
 
-            <ScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                android:layout_marginTop="@dimen/space_huge"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+
+                    android:src="@drawable/mascot_buzybee"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+
+                    android:fontFamily="@font/ubuntu_bold"
+                    android:text="BuzyPC"
+                    android:textColor="?attr/colorControlNormal"
+                    android:textSize="48sp" />
+
+            </LinearLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardview_landing_first_cta"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <RelativeLayout
-                    android:id="@+id/relativeLayout"
+                android:layout_height="wrap_content"
+
+                android:layout_marginHorizontal="@dimen/space_medium"
+                android:layout_marginTop="@dimen/space_huge"
+
+                android:backgroundTint="?attr/colorControlNormal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/landing_title">
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+
+                    android:paddingHorizontal="@dimen/space_xsmall"
+                    android:paddingVertical="@dimen/space_medium">
+
+                    <TextView
+                        android:id="@+id/hello_user"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+
+                        android:fontFamily="@font/ubuntu_mono"
+                        android:text="Hello, {username}"
+                        android:textAlignment="center"
+                        android:textColor="?attr/colorOnSecondary"
+                        android:textSize="24sp" />
+
                     <TextView
                         android:id="@+id/buzyPCHeading"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+
                         android:fontFamily="@font/ubuntu_bold"
+
+                        android:paddingTop="@dimen/space_small"
                         android:text="@string/buzyPCHeading"
-                        android:textColor="@color/bz_honeyYellow"
-                        android:layout_marginTop="30dp"
-                        android:textSize="40sp" />
+                        android:textAlignment="center"
+                        android:textAllCaps="true"
 
-                    <TextView
-                        android:id="@+id/buzyPCSubheading"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/buzyPCSubheading"
-                        android:layout_below="@id/buzyPCHeading"
-                        android:layout_marginTop="30dp"
-                        android:fontFamily="@font/ubuntu_medium"
+                        android:textColor="?attr/colorOnSecondary"
+                        android:textSize="36sp" />
 
-                        android:textSize="20sp"
-                        />
-
-                    <TextView
-                        android:id="@+id/keyFeatures"
+                    <com.google.android.material.button.MaterialButton
+                        id="@+id/button_landing_build_now_cta"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/keyFeatures"
-                        android:layout_below="@id/buzyPCSubheading"
-                        android:layout_marginTop="30dp"
-                        android:textSize="20dp"
+                        android:layout_gravity="center"
+
+                        android:layout_marginTop="@dimen/space_xlarge"
+                        android:backgroundTint="?attr/colorOnSecondary"
                         android:fontFamily="@font/ubuntu_bold"
-                        />
+                        android:text="Build Now"
+                        android:textAlignment="center"
+
+                        android:textColor="?attr/colorControlNormal"
+                        android:textSize="@dimen/font_title_large"
+
+                        app:cornerRadius="5dp" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <View
+                android:id="@+id/view_landing_line_divider"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginHorizontal="@dimen/space_medium"
+
+                android:layout_marginTop="@dimen/space_medium"
+
+                android:background="?attr/colorOnSecondary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardview_landing_first_cta" />
+
+            <TextView
+                android:id="@+id/textview_landing_overview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_medium"
+
+                android:fontFamily="@font/ubuntu_bold"
+                android:text="Overview"
+                android:textSize="32sp"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view_landing_line_divider" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                app:layout_constraintTop_toBottomOf="@+id/textview_landing_overview"
+            >
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardview_landing_overview_buildlist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:backgroundTint="?attr/colorControlNormal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/landing_title">
 
                     <LinearLayout
-                        android:id="@+id/keyFeaturesLinearLayout"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:orientation="vertical"
-                        android:layout_below="@id/keyFeatures"
-                        >
+
+                        android:paddingHorizontal="@dimen/space_xsmall"
+                        android:paddingVertical="@dimen/space_medium">
+
                         <TextView
-                            android:layout_width="match_parent"
+                            android:id="@+id/textview_landing_overview_current_build_list"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/keyFeaturesBody"
-                            android:padding="15dp"
-                            android:lineHeight="20dp"
+                            android:layout_gravity="center"
 
+                            android:fontFamily="@font/ubuntu_bold"
+                            android:text="You currently have"
+                            android:textAlignment="center"
+                            android:textColor="?attr/colorOnSecondary"
+                            android:textSize="24sp" />
 
-                            />
+                        <TextView
+                            android:id="@+id/buzyPCHeading"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+
+                            android:fontFamily="@font/ubuntu_bold"
+
+                            android:paddingTop="@dimen/space_small"
+                            android:text="@string/buzyPCHeading"
+                            android:textAlignment="center"
+                            android:textAllCaps="true"
+
+                            android:textColor="?attr/colorOnSecondary"
+                            android:textSize="36sp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            id="@+id/button_landing_build_now_cta"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+
+                            android:layout_marginTop="@dimen/space_xlarge"
+                            android:backgroundTint="?attr/colorOnSecondary"
+                            android:fontFamily="@font/ubuntu_bold"
+                            android:text="Build Now"
+                            android:textAlignment="center"
+
+                            android:textColor="?attr/colorControlNormal"
+                            android:textSize="@dimen/font_title_large"
+
+                            app:cornerRadius="5dp" />
 
                     </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
 
-                </RelativeLayout>
-            </ScrollView>
-        </LinearLayout>
-    </RelativeLayout>
+
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
 </FrameLayout>
