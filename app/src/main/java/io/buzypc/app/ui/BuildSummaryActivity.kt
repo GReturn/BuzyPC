@@ -28,8 +28,11 @@ class BuildSummaryActivity : AppCompatActivity() {
         }
         val user = loadCurrentUserDetails(this)
         val tvBuildName = findViewById<TextView>(R.id.tv_BuildSummary)
-        val tvBuildTotalPrice = findViewById<TextView>(R.id.tvTotalPrice)
         val app = application as BuzyUserAppSession
+
+        val tvTotalPrice = findViewById<TextView>(R.id.tvTotalPrice)
+        tvTotalPrice.paintFlags = tvTotalPrice.paintFlags
+
 
         val priceCPU = findViewById<TextView>(R.id.tvPriceCPU)
         val priceGPU = findViewById<TextView>(R.id.tvPriceGPU)
@@ -38,25 +41,18 @@ class BuildSummaryActivity : AppCompatActivity() {
         val priceRAM = findViewById<TextView>(R.id.tvPriceRAM)
         val priceStorage = findViewById<TextView>(R.id.tvPriceStorage)
 
-        val nameCPU = findViewById<TextView>(R.id.tvCPU)
-        val nameGPU = findViewById<TextView>(R.id.tvGPU)
-        val nameMotherboard = findViewById<TextView>(R.id.tvMotherboard)
-        val nameRAM = findViewById<TextView>(R.id.tvRAM)
-        val namePSU = findViewById<TextView>(R.id.tvPSU)
-        val nameStorage = findViewById<TextView>(R.id.tvStorage)
+        val nameCPU = findViewById<TextView>(R.id.tvCPUName)
+        val nameGPU = findViewById<TextView>(R.id.tvGPUName)
+        val nameMotherboard = findViewById<TextView>(R.id.tvMotherboardName)
+        val nameRAM = findViewById<TextView>(R.id.tvRAMName)
+        val namePSU = findViewById<TextView>(R.id.tvPSUName)
+        val nameStorage = findViewById<TextView>(R.id.tvStorageName)
 
-        val cbCPU = findViewById<CheckBox>(R.id.cbCpu)
-        val cbGPU = findViewById<CheckBox>(R.id.cbGpu)
-        val cbMotherboard = findViewById<CheckBox>(R.id.cbMotherboard)
-        val cbPSU = findViewById<CheckBox>(R.id.cbPSU)
-        val cbRAM = findViewById<CheckBox>(R.id.cbRAM)
-        val cbStorage = findViewById<CheckBox>(R.id.cbStorage)
-
-        val compatCPU = findViewById<TextView>(R.id. tvHeaderCpuCompat)
-        val compatGPU= findViewById<TextView>(R.id.tvHeaderGPUCompat)
-        val compatPSU = findViewById<TextView>(R.id.tvHeaderPSUCompat)
-        val compatRam = findViewById<TextView>(R.id.tvHeaderRAMCompat)
-        val compatStorage = findViewById<TextView>(R.id.tvHeaderStorageCompat)
+        val compatCPU = findViewById<TextView>(R.id. tvCPUSCore)
+        val compatGPU= findViewById<TextView>(R.id.tvGPUSCore)
+        val compatPSU = findViewById<TextView>(R.id.tvPSUScore)
+        val compatRam = findViewById<TextView>(R.id.tvRAMScore)
+        val compatStorage = findViewById<TextView>(R.id.tvStorageScore)
 
 
         user.retrieveBuilds()
@@ -65,54 +61,55 @@ class BuildSummaryActivity : AppCompatActivity() {
         // Add the RadarChartView Fragment
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         val radarChartFragment = RadarChartViewFragment()
-        fragmentTransaction.replace(R.id.radarChartContainer, radarChartFragment)
+        fragmentTransaction.add(R.id.radarChartContainer, radarChartFragment)
         fragmentTransaction.commit()
 
         supportFragmentManager.executePendingTransactions() // Ensure the fragment is added immediately
-
-
-        cbCPU.isChecked         = user.getComponentStatus(app.buildName, "cpu")
-        cbGPU.isChecked         = user.getComponentStatus(app.buildName, "gpu")
-        cbMotherboard.isChecked = user.getComponentStatus(app.buildName, "motherboard")
-        cbPSU.isChecked         = user.getComponentStatus(app.buildName, "psu")
-        cbRAM.isChecked         = user.getComponentStatus(app.buildName, "ram")
-        cbStorage.isChecked     = user.getComponentStatus(app.buildName, "storage")
-
         setCompatScore(app, compatCPU, compatGPU, compatPSU, compatRam, compatStorage)
-        updateTotalPrice(app,cbCPU, cbGPU, cbMotherboard, cbPSU, cbRAM, cbStorage, tvBuildTotalPrice)
+        setTotalPrice(app, tvTotalPrice)
         setComponentPrices(app, priceCPU,priceGPU, priceMotherboard, pricePSU, priceRAM, priceStorage)
         setComponentNames(app, nameCPU, nameGPU, nameMotherboard, namePSU, nameRAM, nameStorage)
 
-        cbCPU.setOnCheckedChangeListener { _, isChecked ->
-            user.saveComponentStatus(app.buildName,"cpu", isChecked)
-            updateTotalPrice(app,cbCPU, cbGPU, cbMotherboard, cbPSU, cbRAM, cbStorage, tvBuildTotalPrice)
-        }
 
-        cbGPU.setOnCheckedChangeListener { _, isChecked ->
-            user.saveComponentStatus(app.buildName,"gpu", isChecked)
-            updateTotalPrice(app,cbCPU, cbGPU, cbMotherboard, cbPSU, cbRAM, cbStorage, tvBuildTotalPrice)
-        }
+//        cbCPU.isChecked         = user.getComponentStatus(app.buildName, "cpu")
+//        cbGPU.isChecked         = user.getComponentStatus(app.buildName, "gpu")
+//        cbMotherboard.isChecked = user.getComponentStatus(app.buildName, "motherboard")
+//        cbPSU.isChecked         = user.getComponentStatus(app.buildName, "psu")
+//        cbRAM.isChecked         = user.getComponentStatus(app.buildName, "ram")
+//        cbStorage.isChecked     = user.getComponentStatus(app.buildName, "storage")
+//        updateTotalPrice(app,cbCPU, cbGPU, cbMotherboard, cbPSU, cbRAM, cbStorage, tvBuildTotalPrice)
 
-        cbMotherboard.setOnCheckedChangeListener { _, isChecked ->
-            user.saveComponentStatus(app.buildName,"motherboard", isChecked)
-            updateTotalPrice(app,cbCPU, cbGPU, cbMotherboard, cbPSU, cbRAM, cbStorage, tvBuildTotalPrice)
-
-        }
-
-        cbPSU.setOnCheckedChangeListener { _, isChecked ->
-            user.saveComponentStatus(app.buildName,"psu", isChecked)
-            updateTotalPrice(app,cbCPU, cbGPU, cbMotherboard, cbPSU, cbRAM, cbStorage, tvBuildTotalPrice)
-        }
-
-        cbRAM.setOnCheckedChangeListener { _, isChecked ->
-            user.saveComponentStatus(app.buildName,"ram", isChecked)
-            updateTotalPrice(app,cbCPU, cbGPU, cbMotherboard, cbPSU, cbRAM, cbStorage, tvBuildTotalPrice)
-        }
-
-        cbStorage.setOnCheckedChangeListener { _, isChecked ->
-            user.saveComponentStatus(app.buildName,"storage", isChecked)
-            updateTotalPrice(app, cbCPU, cbGPU, cbMotherboard, cbPSU, cbRAM, cbStorage, tvBuildTotalPrice)
-        }
+//
+//        cbCPU.setOnCheckedChangeListener { _, isChecked ->
+//            user.saveComponentStatus(app.buildName,"cpu", isChecked)
+//            updateTotalPrice(app,cbCPU, cbGPU, cbMotherboard, cbPSU, cbRAM, cbStorage, tvBuildTotalPrice)
+//        }
+//
+//        cbGPU.setOnCheckedChangeListener { _, isChecked ->
+//            user.saveComponentStatus(app.buildName,"gpu", isChecked)
+//            updateTotalPrice(app,cbCPU, cbGPU, cbMotherboard, cbPSU, cbRAM, cbStorage, tvBuildTotalPrice)
+//        }
+//
+//        cbMotherboard.setOnCheckedChangeListener { _, isChecked ->
+//            user.saveComponentStatus(app.buildName,"motherboard", isChecked)
+//            updateTotalPrice(app,cbCPU, cbGPU, cbMotherboard, cbPSU, cbRAM, cbStorage, tvBuildTotalPrice)
+//
+//        }
+//
+//        cbPSU.setOnCheckedChangeListener { _, isChecked ->
+//            user.saveComponentStatus(app.buildName,"psu", isChecked)
+//            updateTotalPrice(app,cbCPU, cbGPU, cbMotherboard, cbPSU, cbRAM, cbStorage, tvBuildTotalPrice)
+//        }
+//
+//        cbRAM.setOnCheckedChangeListener { _, isChecked ->
+//            user.saveComponentStatus(app.buildName,"ram", isChecked)
+//            updateTotalPrice(app,cbCPU, cbGPU, cbMotherboard, cbPSU, cbRAM, cbStorage, tvBuildTotalPrice)
+//        }
+//
+//        cbStorage.setOnCheckedChangeListener { _, isChecked ->
+//            user.saveComponentStatus(app.buildName,"storage", isChecked)
+//            updateTotalPrice(app, cbCPU, cbGPU, cbMotherboard, cbPSU, cbRAM, cbStorage, tvBuildTotalPrice)
+//        }
 
 
     }
@@ -129,13 +126,23 @@ class BuildSummaryActivity : AppCompatActivity() {
         tvBuildTotalPrice.text = "TOTAL: PHP $totalPrice"
     }
 
+    fun setTotalPrice(app: BuzyUserAppSession, tvTotalPrice: TextView){
+        var total = 0.00
+        total += app.myPC.gpuPrice
+        total += app.myPC.motherboardPrice
+        total += app.myPC.psuPrice
+        total += app.myPC.ramPrice
+        total += app.myPC.storageDevicePrice
+        tvTotalPrice.text = "Total: PHP $total"
+    }
+
     fun setComponentPrices(app: BuzyUserAppSession, priceCPU: TextView, priceGPU: TextView, priceMotherboard: TextView, pricePSU: TextView, priceRAM: TextView, priceStorage: TextView,){
-        priceCPU.text = "PHP ${app.myPC.cpuPrice}"
-        priceGPU.text = "PHP ${app.myPC.gpuPrice}"
-        priceMotherboard.text = "PHP ${app.myPC.motherboardPrice}"
-        priceRAM.text = "PHP ${app.myPC.ramPrice}"
-        pricePSU.text = "PHP ${app.myPC.psuPrice}"
-        priceStorage.text = "PHP ${app.myPC.storageDevicePrice}"
+        priceCPU.text = "PHP %.2f".format(app.myPC.cpuPrice)
+        priceGPU.text = "PHP %.2f".format(app.myPC.gpuPrice)
+        priceMotherboard.text = "PHP %.2f".format(app.myPC.motherboardPrice)
+        priceRAM.text = "PHP %.2f".format(app.myPC.ramPrice)
+        pricePSU.text = "PHP %.2f".format(app.myPC.psuPrice)
+        priceStorage.text = "PHP %.2f".format(app.myPC.storageDevicePrice)
     }
 
     fun setCompatScore(app: BuzyUserAppSession, compatCPU: TextView, compatGPU: TextView, compatPSU: TextView, compatRam: TextView, compatStorage: TextView){

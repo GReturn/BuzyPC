@@ -100,18 +100,17 @@ class RadarChartViewFragment : Fragment() {
 
             // 5) Wrap in RadarData and style values
             val data = RadarData(set).apply {
-                setValueTypeface(Typeface.SANS_SERIF)
-                setValueTextSize(10f)
                 setDrawValues(false)
-                setValueTextColor(Color.BLACK)
             }
 
             radarChart.data = data
 
             // 6) X‑axis labels
-            val labels = listOf("Computing Power", "Graphics Rendering", "Data Storage", "Data Transfer Speed", "Power Capacity")
+            val labels = listOf("Processor", "Graphics", "Storage", "Memory", "Power")
             radarChart.xAxis.apply {
                 isEnabled = true
+                textSize = 15f
+
 
                 valueFormatter = object : ValueFormatter() {
                     override fun getFormattedValue(value: Float): String {

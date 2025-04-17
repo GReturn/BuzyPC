@@ -32,7 +32,7 @@ class BuzyUserAppSession: Application() {
         psuPrice              = 1900.00,
 
         // performance metrics (scaled-down from high-end)
-        computingPower        = 4.0,
+        computingPower        = 4.5,
         graphicsRendering     = 4.0,
         dataStorage           = 4.5,
         dataTransferSpeed     = 5.0,
