@@ -65,7 +65,7 @@ class BottomNavigationActivity : AppCompatActivity() {
                     Log.d("BottomNavigation", "NEW BUILD Page Selected")
                     // we won't normally just navigate; check the function on how the
                     // navigation is handled
-                    handleNavigateToNewBuild()
+                    showCircle(bottomNavigationView.menu.findItem(R.id.newBuildFragment))
                 }
                 R.id.TEMPORARY_AboutDevelopersFragment2 -> {
                     Log.d("BottomNavigation", "TEMP Page Selected")
@@ -103,9 +103,9 @@ class BottomNavigationActivity : AppCompatActivity() {
         })
     }
 
-    fun handleNavigateToNewBuild() {
+    fun handleNavigationToOtherFragments(id: Int) {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-        showCircle(bottomNavigationView.menu.findItem(R.id.newBuildFragment))
+        bottomNavigationView.selectedItemId = id
     }
 
     private fun navigateToFragment(fragmentId: Int) {
