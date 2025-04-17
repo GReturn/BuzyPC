@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="ic_launcher_buzypc_background">#E4B363</color>
+    <color name="ic_launcher_buzypc_background">@color/bz_honeyDrizzle</color>
 </resources>

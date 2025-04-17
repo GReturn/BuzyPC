@@ -28,7 +28,7 @@
 
     <item
         android:id="@+id/settingsFragment"
-        android:title="Profile"
-        android:icon="@drawable/nav_account_circle_filled"
+        android:title="Settings"
+        android:icon="@drawable/nav_settings"
         />
 </menu>
