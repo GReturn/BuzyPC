@@ -68,20 +68,20 @@ class RadarChartViewFragment : Fragment() {
             // 3) Prepare your entries (Retrieve actual data)
             val app = requireActivity().application as BuzyUserAppSession
             Log.d("RadarChartFragment", "App Session: $app")
-            val computingPower = app.myPC.computingPower
-            val graphicsRendering = app.myPC.graphicsRendering
-            val dataStorage = app.myPC.dataStorage
-            val dataTransferSpeed = app.myPC.dataTransferSpeed
-            val powerCapacity = app.myPC.powerCapacity
+            val computingPower = app.pc.cpu.performanceScore
+            val graphicsRendering = app.pc.gpu.performanceScore
+            val dataStorage = app.pc.storageDevice.performanceScore
+            val dataTransferSpeed = app.pc.ram.performanceScore
+            val powerCapacity = app.pc.psu.performanceScore
 
             Log.d("RadarChartFragment", "Data: CPU=$computingPower, GPU=$graphicsRendering, Storage=$dataStorage, Network=$dataTransferSpeed, Battery=$powerCapacity")
 
             val entries = listOf(
-                RadarEntry(computingPower.toFloat()),
-                RadarEntry(graphicsRendering.toFloat()),
-                RadarEntry(dataStorage.toFloat()),
-                RadarEntry(dataTransferSpeed.toFloat()),
-                RadarEntry(powerCapacity.toFloat())
+                RadarEntry(computingPower),
+                RadarEntry(graphicsRendering),
+                RadarEntry(dataStorage),
+                RadarEntry(dataTransferSpeed),
+                RadarEntry(powerCapacity)
             )
 
             // 4) Build and style the dataset
@@ -149,16 +149,10 @@ class RadarChartViewFragment : Fragment() {
 
     private fun revealChart(chartView: RadarChart) {
         chartView.post {
-            val radius = chartView.radius
-            val centerX = chartView.width / 2
-            val centerY = chartView.height / 2
-
             chartView.isVisible = true
-
             val fadeAnimator = ObjectAnimator.ofFloat(chartView, "alpha", 0f, 1f).apply { duration = 1000L }
             val scaleXAnimator = ObjectAnimator.ofFloat(chartView, "scaleX", 0.8f, 1f).apply { duration = 1000L }
             val scaleYAnimator = ObjectAnimator.ofFloat(chartView, "scaleY", 0.8f, 1f).apply { duration = 1000L }
-
             AnimatorSet().apply {
                 playTogether(fadeAnimator, scaleXAnimator, scaleYAnimator)
                 start()

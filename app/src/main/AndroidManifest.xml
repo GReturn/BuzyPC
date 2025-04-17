@@ -14,10 +14,10 @@
         android:theme="@style/Theme.BuzyPC"
         tools:targetApi="31">
         <activity
-            android:name=".ui.NewBuildSummaryActivity"
+            android:name=".ui.BuyComponentActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.widget.RadarChartView"
+            android:name=".ui.NewBuildSummaryActivity"
             android:exported="false" />
         <activity
             android:name=".ui.BuildSummaryActivity"

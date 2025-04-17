@@ -70,11 +70,11 @@
             android:textAlignment="center"
             android:textColor="@color/bz_honeyYellow"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/btnSeeStores"
+            app:layout_constraintBottom_toTopOf="@id/btnSeeStoresCPU"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <Button
-            android:id="@+id/btnSeeStores"
+            android:id="@+id/btnSeeStoresCPU"
             android:layout_width="120dp"
             android:layout_height="40dp"
             android:layout_marginEnd="16dp"

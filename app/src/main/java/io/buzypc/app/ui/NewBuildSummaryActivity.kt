@@ -36,7 +36,6 @@ class NewBuildSummaryActivity : AppCompatActivity() {
         user.retrieveBuilds()
         tvBuildName.text = "${(application as BuzyUserAppSession).buildName}'s Summary"
 
-        // Add the RadarChartView Fragment
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         val radarChartFragment = RadarChartViewFragment()
 
@@ -59,6 +58,45 @@ class NewBuildSummaryActivity : AppCompatActivity() {
         val compatPSU = findViewById<TextView>(R.id.tvPSUScore)
         val compatRam = findViewById<TextView>(R.id.tvRAMScore)
         val compatStorage = findViewById<TextView>(R.id.tvStorageScore)
+
+        val btnSeeCPUStores = findViewById<Button>(R.id.btnSeeStoresCPU)
+        val btnSeeGPUsStores = findViewById<Button>(R.id.btnSeeStoresGPU)
+        val btnSeeMotherboardStores = findViewById<Button>(R.id.btnSeeStoresMotherboard)
+        val btnSeePSUStores = findViewById<Button>(R.id.btnSeeStoresPSU)
+        val btnSeeRAMStores = findViewById<Button>(R.id.btnSeeStoresRAM)
+        val btnSeeStorageStores = findViewById<Button>(R.id.btnSeeStoresStorage)
+
+
+        btnSeeCPUStores.setOnClickListener {
+            app.component = app.pc.cpu
+            startActivity(Intent(this, BuyComponentActivity::class.java))
+        }
+
+        btnSeeGPUsStores.setOnClickListener {
+            app.component = app.pc.gpu
+            startActivity(Intent(this, BuyComponentActivity::class.java))
+        }
+
+        btnSeeMotherboardStores.setOnClickListener {
+            app.component = app.pc.motherboard
+            startActivity(Intent(this, BuyComponentActivity::class.java))
+        }
+
+        btnSeePSUStores.setOnClickListener {
+            app.component = app.pc.psu
+            startActivity(Intent(this, BuyComponentActivity::class.java))
+        }
+
+        btnSeeRAMStores.setOnClickListener {
+            app.component = app.pc.ram
+            startActivity(Intent(this, BuyComponentActivity::class.java))
+        }
+
+        btnSeeStorageStores.setOnClickListener {
+            app.component = app.pc.storageDevice
+            startActivity(Intent(this, BuyComponentActivity::class.java))
+        }
+
 
         setCompatScore(app, compatCPU, compatGPU, compatPSU, compatRam, compatStorage)
         setComponentPrices(app, priceCPU,priceGPU, priceMotherboard, pricePSU, priceRAM, priceStorage)
@@ -93,41 +131,41 @@ class NewBuildSummaryActivity : AppCompatActivity() {
             finish()
         }
     }
-    fun setComponentPrices(app: BuzyUserAppSession, priceCPU: TextView, priceGPU: TextView, priceMotherboard: TextView, pricePSU: TextView, priceRAM: TextView, priceStorage: TextView,){
-        priceCPU.text = "PHP ${app.myPC.cpuPrice}"
-        priceGPU.text = "PHP ${app.myPC.gpuPrice}"
-        priceMotherboard.text = "PHP ${app.myPC.motherboardPrice}"
-        priceRAM.text = "PHP ${app.myPC.ramPrice}"
-        pricePSU.text = "PHP ${app.myPC.psuPrice}"
-        priceStorage.text = "PHP ${app.myPC.storageDevicePrice}"
-    }
-
-    fun setComponentNames(app: BuzyUserAppSession, nameCPU: TextView, nameGPU: TextView, nameMotherboard: TextView, namePSU: TextView, nameRAM: TextView, nameStorage: TextView,){
-        nameCPU.text = app.myPC.cpuName
-        nameGPU.text = app.myPC.gpuName
-        nameMotherboard.text = app.myPC.motherboardName
-        namePSU.text = app.myPC.psuName
-        nameStorage.text = app.myPC.storageDeviceName
-        nameRAM.text = app.myPC.ramName
-
-    }
-    fun setCompatScore(app: BuzyUserAppSession, compatCPU: TextView, compatGPU: TextView, compatPSU: TextView, compatRam: TextView, compatStorage: TextView){
-        compatCPU.text = app.myPC.cpuCompatibility.toString()
-        compatGPU.text = app.myPC.gpuCompatibility.toString()
-        compatPSU.text = app.myPC.psuCompatibility.toString()
-        compatRam.text = app.myPC.ramCompatibility.toString()
-        compatStorage.text = app.myPC.storageDeviceCompatibility.toString()
-    }
-
-    fun setTotalPrice(app: BuzyUserAppSession, tvBuildTotalPrice: TextView){
+    fun setTotalPrice(app: BuzyUserAppSession, tvTotalPrice: TextView) {
         var total = 0.00
-        total += app.myPC.gpuPrice
-        total += app.myPC.motherboardPrice
-        total += app.myPC.psuPrice
-        total += app.myPC.ramPrice
-        total += app.myPC.storageDevicePrice
-        tvBuildTotalPrice.text = "Total: PHP $total"
+        total += app.pc.cpu.price
+        total += app.pc.gpu.price
+        total += app.pc.motherboard.price
+        total += app.pc.psu.price
+        total += app.pc.storageDevice.price
+        total += app.pc.ram.price
+        tvTotalPrice.text = "Total: PHP $total"
+    }
+
+    fun setComponentPrices(app: BuzyUserAppSession, priceCPU: TextView, priceGPU: TextView, priceMotherboard: TextView, pricePSU: TextView, priceRAM: TextView, priceStorage: TextView) {
+        priceCPU.text = "PHP %.2f".format(app.pc.cpu.price)
+        priceGPU.text = "PHP %.2f".format(app.pc.gpu.price)
+        priceMotherboard.text = "PHP %.2f".format(app.pc.motherboard.price)
+        priceRAM.text = "PHP %.2f".format(app.pc.ram.price)
+        pricePSU.text = "PHP %.2f".format(app.pc.psu.price)
+        priceStorage.text = "PHP %.2f".format(app.pc.storageDevice.price)
     }
 
 
+    fun setCompatScore(app: BuzyUserAppSession, compatCPU: TextView, compatGPU: TextView, compatPSU: TextView, compatRam: TextView, compatStorage: TextView) {
+        compatCPU.text = app.pc.cpu.performanceScore.toString()
+        compatGPU.text = app.pc.gpu.performanceScore.toString()
+        compatPSU.text = app.pc.psu.performanceScore.toString()
+        compatRam.text = app.pc.ram.performanceScore.toString()
+        compatStorage.text = app.pc.storageDevice.performanceScore.toString()
+    }
+
+    fun setComponentNames(app: BuzyUserAppSession, nameCPU: TextView, nameGPU: TextView, nameMotherboard: TextView, namePSU: TextView, nameRAM: TextView, nameStorage: TextView) {
+        nameCPU.text = app.pc.cpu.name
+        nameGPU.text = app.pc.gpu.name
+        nameMotherboard.text = app.pc.motherboard.name
+        namePSU.text = app.pc.psu.name
+        nameStorage.text = app.pc.storageDevice.name
+        nameRAM.text = app.pc.ram.name
+    }
 }
