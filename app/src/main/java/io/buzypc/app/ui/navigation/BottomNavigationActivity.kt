@@ -45,13 +45,13 @@ class BottomNavigationActivity : AppCompatActivity() {
         }
 
         // TODO get the count content from shared pref; have to set up first tho
-        listInformationViewModel.setBuildCount(0)
-        listInformationViewModel.setChecklistItemCount(0)
+        listInformationViewModel.setBuildCount(10)
+        listInformationViewModel.setChecklistItemCount(20)
         listInformationViewModel.buildListCount.observe(this) { buildCount ->
-            // TODO (change the sharedpref list counter)
+            // TODO (save/change the sharedpref list counter)
         }
         listInformationViewModel.checkListCount.observe(this) { checkCount ->
-            // TODO (change the sharedpref list counter)
+            // TODO (save/change the sharedpref list counter)
         }
 
         setupBottomNavigation()
