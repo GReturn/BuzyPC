@@ -18,4 +18,12 @@ class ListsInformationViewModel : ViewModel() {
     fun incrementChecklistItemCount() {
         mutableCheckListCount.value = (mutableCheckListCount.value ?: 0) + 1
     }
+
+    fun setBuildCount(count: Int) {
+        mutableBuildListCount.value = count
+    }
+
+    fun setChecklistItemCount(count: Int) {
+        mutableCheckListCount.value = count
+    }
 }
