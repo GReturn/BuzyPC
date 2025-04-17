@@ -24,9 +24,9 @@
         tools:layout="@layout/fragment_new_build" />
     <fragment
         android:id="@+id/TEMPORARY_AboutDevelopersFragment2"
-        android:name="io.buzypc.app.ui.navigation.fragments.TEMPORARY_AboutDevelopersFragment"
+        android:name="io.buzypc.app.ui.navigation.fragments.ChecklistFragment"
         android:label="fragment_screen_not_implemented"
-        tools:layout="@layout/fragment_screen_not_implemented" />
+        tools:layout="@layout/fragment_checklist" />
 
     <fragment
         android:id="@+id/settingsFragment"
