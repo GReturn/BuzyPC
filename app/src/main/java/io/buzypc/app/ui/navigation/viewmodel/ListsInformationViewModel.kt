@@ -3,6 +3,8 @@ package io.buzypc.app.ui.navigation.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
+// TODO (when we finally integrate and finish all the list views)
+
 class ListsInformationViewModel : ViewModel() {
     private val mutableBuildListCount = MutableLiveData<Int>()
     private val mutableCheckListCount = MutableLiveData<Int>()
