@@ -11,7 +11,7 @@
     <item
         android:id="@+id/buildListFragment"
         android:title="My Builds"
-        android:icon="@drawable/nav_computer"
+        android:icon="@drawable/nav_desktop_monitor"
         />
 
     <item
@@ -22,8 +22,8 @@
 
     <item
         android:id="@+id/TEMPORARY_AboutDevelopersFragment2"
-        android:title="My Cart"
-        android:icon="@drawable/nav_shopping_cart_filled"
+        android:title="Checklist"
+        android:icon="@drawable/nav_checklist"
         />
 
     <item

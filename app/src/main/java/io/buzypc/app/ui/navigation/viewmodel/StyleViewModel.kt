@@ -1,4 +1,4 @@
-package io.buzypc.app.ui.navigation
+package io.buzypc.app.ui.navigation.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

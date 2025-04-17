@@ -16,11 +16,11 @@ import io.buzypc.app.data.user.BuzyUserSettings
 import io.buzypc.app.ui.AboutDevelopersActivity
 import io.buzypc.app.ui.LogoutPromptActivity
 import io.buzypc.app.ui.ProfileViewActivity
-import io.buzypc.app.ui.navigation.StyleViewModel
+import io.buzypc.app.ui.navigation.viewmodel.StyleViewModel
 import io.buzypc.app.ui.utils.loadCurrentUserDetails
 
 class SettingsFragment : Fragment() {
-    private val viewModel: StyleViewModel by activityViewModels()
+    private val styleViewModel: StyleViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
@@ -72,7 +72,7 @@ class SettingsFragment : Fragment() {
                 cardDarkMode.strokeWidth = 0
 
                 userSettings.setTheme("light")
-                viewModel.setDarkMode(false)
+                styleViewModel.setDarkMode(false)
             }
         }
 
@@ -83,7 +83,7 @@ class SettingsFragment : Fragment() {
                 cardDarkMode.strokeWidth = 3
 
                 userSettings.setTheme("dark")
-                viewModel.setDarkMode(true)
+                styleViewModel.setDarkMode(true)
             }
         }
 

@@ -14,16 +14,18 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.buzypc.app.R
+import io.buzypc.app.ui.navigation.viewmodel.ListsInformationViewModel
+import io.buzypc.app.ui.navigation.viewmodel.StyleViewModel
 import io.buzypc.app.ui.widget.NewBuildCircleRevealView
 import kotlin.math.hypot
 
 
 class BottomNavigationActivity : AppCompatActivity() {
-    private val viewModel: StyleViewModel by viewModels()
+    private val styleViewModel: StyleViewModel by viewModels()
+    private val listInformationViewModel: ListsInformationViewModel by viewModels()
     private var backPressedTime = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,12 +36,22 @@ class BottomNavigationActivity : AppCompatActivity() {
 
         // We'll let the BottomNavigation Activity handle the theme change instead of the
         // Settings Fragment
-        viewModel.themeState.observe(this) { isDarkMode ->
+        styleViewModel.themeState.observe(this) { isDarkMode ->
             if (isDarkMode) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
+        }
+
+        // TODO get the count content from shared pref; have to set up first tho
+        listInformationViewModel.setBuildCount(10)
+        listInformationViewModel.setChecklistItemCount(20)
+        listInformationViewModel.buildListCount.observe(this) { buildCount ->
+            // TODO (save/change the sharedpref list counter)
+        }
+        listInformationViewModel.checkListCount.observe(this) { checkCount ->
+            // TODO (save/change the sharedpref list counter)
         }
 
         setupBottomNavigation()
@@ -65,7 +77,7 @@ class BottomNavigationActivity : AppCompatActivity() {
                     Log.d("BottomNavigation", "NEW BUILD Page Selected")
                     // we won't normally just navigate; check the function on how the
                     // navigation is handled
-                    handleNavigateToNewBuild()
+                    showCircle(bottomNavigationView.menu.findItem(R.id.newBuildFragment))
                 }
                 R.id.TEMPORARY_AboutDevelopersFragment2 -> {
                     Log.d("BottomNavigation", "TEMP Page Selected")
@@ -103,9 +115,9 @@ class BottomNavigationActivity : AppCompatActivity() {
         })
     }
 
-    fun handleNavigateToNewBuild() {
+    fun handleNavigationToOtherFragments(id: Int) {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-        showCircle(bottomNavigationView.menu.findItem(R.id.newBuildFragment))
+        bottomNavigationView.selectedItemId = id
     }
 
     private fun navigateToFragment(fragmentId: Int) {

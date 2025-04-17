@@ -26,6 +26,8 @@
         android:layout_marginTop="13dp"
         android:text="BuzyPC"
         android:textAlignment="center"
+        android:fontFamily="@font/ubuntu_medium"
+
         android:textColor="@color/bz_honeyYellow"
         android:textSize="40sp"
         android:textStyle="bold"
@@ -40,6 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/logo"
         android:text="Register"
+        android:fontFamily="@font/ubuntu_medium"
         android:textAlignment="center"
         android:textSize="25sp"
         android:textStyle="bold"
@@ -58,6 +61,7 @@
         android:layout_marginTop="30dp"
         android:hint="Username"
         android:inputType="text"
+        android:fontFamily="@font/ubuntu_medium"
         android:textAlignment="center"
         android:textColor="#808080"
         android:textSize="15sp"
@@ -84,6 +88,7 @@
         android:textAlignment="center"
         android:textColor="#808080"
         android:textSize="15sp"
+        android:fontFamily="@font/ubuntu_medium"
 
         android:singleLine="true"
         android:maxLines="1"
@@ -105,6 +110,7 @@
         android:textAlignment="center"
         android:textColor="#808080"
         android:textSize="15sp"
+        android:fontFamily="@font/ubuntu_medium"
 
         android:singleLine="true"
         android:maxLines="1"
@@ -126,6 +132,7 @@
         android:textAlignment="center"
         android:textColor="#808080"
         android:textSize="15sp"
+        android:fontFamily="@font/ubuntu_medium"
 
         android:singleLine="true"
         android:maxLines="1"

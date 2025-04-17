@@ -33,7 +33,7 @@ class BuildListFragment : Fragment() {
         val adapter = PCBuildRecyclerViewAdapter(requireContext(), pcBuildList) {
             // we handle the click event here when user clicks on the plus button inside the buildlist fragment
             val activity = requireActivity() as BottomNavigationActivity
-            activity.handleNavigateToNewBuild()
+            activity.handleNavigationToOtherFragments(R.id.newBuildFragment)
         }
         recyclerView.adapter = adapter
         recyclerView.layoutManager = AnimatedBuildListLayoutManager(requireContext(),1)

@@ -8,77 +8,128 @@
     android:id="@+id/fragment_new_build"
     android:background="?attr/colorPrimary">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/new_build"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.NewBuildActivity">
+        tools:context=".ui.NewBuildActivity"
+        android:padding="@dimen/space_medium"
+        >
 
         <TextView
             android:id="@+id/textview_budgetPrompt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="80dp"
-            android:text="Create a new build"
+            android:layout_marginTop="96dp"
+
+            android:fontFamily="@font/ubuntu_bold"
+            android:text="Create a New Build"
             android:textColor="@color/bz_darkGray"
-            android:textSize="30sp"
-            android:textStyle="bold" />
+            android:textSize="@dimen/font_title_large"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/et_buildName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/textview_budgetPrompt"
-            android:layout_marginHorizontal="50dp"
-            android:layout_marginTop="80dp"
+
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="72dp"
+
             android:backgroundTint="@color/bz_darkGray"
             android:focusable="true"
             android:fontFamily="@font/ubuntu_bold"
             android:hint="Build Name"
             android:imeOptions="actionNext"
             android:maxLength="10"
-            android:maxLines="1"
 
+            android:inputType="text"
+            android:maxLines="1"
             android:shadowColor="?attr/colorOnPrimary"
             android:singleLine="true"
+
             android:textAlignment="center"
+            android:textSize="@dimen/font_normal"
             android:textColor="@color/bz_darkGray"
-            android:textColorHint="@color/bz_darkGray" />
+            android:textColorHint="@color/bz_darkGray"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
 
         <EditText
             android:id="@+id/et_budgetInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/et_buildName"
-            android:layout_marginHorizontal="50dp"
-            android:layout_marginTop="30dp"
+
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="16dp"
+
+            android:autofillHints=""
             android:background="@drawable/round_edittext"
             android:backgroundTint="?attr/background"
             android:hint="PHP"
+            android:textColorHint="?attr/colorOnSecondary"
             android:inputType="number"
-            android:padding="10dp"
-            android:textColor="?attr/colorOnSecondary"
 
-            />
+            android:padding="10dp"
+            android:fontFamily="@font/ubuntu_medium"
+
+
+            android:textColor="?attr/colorOnSecondary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_buildName" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_build"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/et_budgetInput"
-            android:layout_marginHorizontal="50dp"
-            android:layout_marginTop="180dp"
+
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="96dp"
+
+
             android:backgroundTint="@color/white"
             android:text="Build"
-
             android:textColor="@color/bz_darkGray"
+            android:fontFamily="@font/ubuntu_medium"
+            android:textSize="@dimen/font_normal"
+
             android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
 
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_budgetInput"
             app:strokeColor="@color/bz_darkGray"
-            app:strokeWidth="3dp"
-
+            app:strokeWidth="2dp"
             />
-    </RelativeLayout>
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="@dimen/space_small"
+
+            android:text="@string/buzyPCSubheading"
+            android:textAlignment="center"
+            android:fontFamily="@font/ubuntu_medium"
+            android:textSize="@dimen/font_normal"
+            android:textColor="@color/bz_darkGray"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textview_budgetPrompt" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

@@ -17,8 +17,11 @@
     <TextView
         android:id="@+id/textView"
         android:text="Settings"
-        android:textSize="25sp"
+
+        android:textSize="@dimen/font_title_large"
         android:textStyle="bold"
+        android:fontFamily="@font/ubuntu_medium"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -48,9 +51,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/image_profile_picture"
+
         android:text="Username"
         android:textStyle="bold"
-        android:textSize="24sp"
+        android:textSize="@dimen/font_title"
+        android:fontFamily="@font/ubuntu_medium"
+
         android:layout_margin="16dp"
 
         app:layout_constraintEnd_toEndOf="parent"
@@ -68,8 +74,9 @@
 
         android:layout_marginHorizontal="50dp"
 
-        android:fontFamily="sans-serif-black"
+        android:fontFamily="@font/ubuntu_bold"
         android:text="Edit Account Details"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_usernameDisplay" />
@@ -82,7 +89,7 @@
 
         android:layout_marginHorizontal="50dp"
 
-        android:fontFamily="sans-serif-black"
+        android:fontFamily="@font/ubuntu_bold"
         android:text="About the Developers"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -95,10 +102,13 @@
 
         android:layout_marginHorizontal="50dp"
 
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="18dp"
+
         android:text="Change Theme"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:fontFamily="@font/ubuntu_medium"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_about_developers" />
@@ -143,8 +153,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:buttonTint="@color/black"
-                    android:text="Default"
+                    android:text="Light"
                     android:textColor="#000000"
+                    android:fontFamily="@font/ubuntu_bold"
                     android:textStyle="bold" />
 
 
@@ -181,6 +192,7 @@
                     android:buttonTint="@color/white"
                     android:text="Dark"
                     android:textColor="#FFFFFF"
+                    android:fontFamily="@font/ubuntu_bold"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -197,7 +209,7 @@
         android:layout_centerHorizontal="true"
 
         android:backgroundTint="?attr/colorOnSecondary"
-        android:fontFamily="sans-serif-black"
+        android:fontFamily="@font/ubuntu_bold"
 
         android:layout_marginVertical="@dimen/space_medium"
 
