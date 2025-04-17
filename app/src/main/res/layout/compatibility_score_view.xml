@@ -34,7 +34,8 @@
             >
             <include layout = "@layout/card_compat_cpu"/>
             <include layout = "@layout/card_compat_gpu"/>
-            <include layout = "@layout/card_compat_motherboard"/>
+            <include layout = "@layout/card_compat_psu"/>
+
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -42,7 +43,6 @@
             android:orientation="horizontal"
             android:layout_gravity="center_horizontal"
             >
-            <include layout = "@layout/card_compat_psu"/>
             <include layout = "@layout/card_compat_ram"/>
             <include layout = "@layout/card_compat_storage"/>
         </LinearLayout>

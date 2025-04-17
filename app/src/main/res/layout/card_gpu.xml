@@ -37,7 +37,7 @@
                 android:textColor="@color/bz_honeyYellow"
                 />
             <TextView
-                android:id="@+id/tvPrice"
+                android:id="@+id/tvPriceGPU"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="$price"

@@ -68,20 +68,20 @@ class RadarChartViewFragment : Fragment() {
             // 3) Prepare your entries (Retrieve actual data)
             val app = requireActivity().application as BuzyUserAppSession
             Log.d("RadarChartFragment", "App Session: $app")
-            val computingPower = 5f
-            val graphicsRendering = 4f
-            val dataStorage = 3f
-            val dataTransferSpeed = 4.5f
-            val powerCapacity = 3f
+            val computingPower = app.myPC.computingPower
+            val graphicsRendering = app.myPC.graphicsRendering
+            val dataStorage = app.myPC.dataStorage
+            val dataTransferSpeed = app.myPC.dataTransferSpeed
+            val powerCapacity = app.myPC.powerCapacity
 
             Log.d("RadarChartFragment", "Data: CPU=$computingPower, GPU=$graphicsRendering, Storage=$dataStorage, Network=$dataTransferSpeed, Battery=$powerCapacity")
 
             val entries = listOf(
-                RadarEntry(computingPower),
-                RadarEntry(graphicsRendering),
-                RadarEntry(dataStorage),
-                RadarEntry(dataTransferSpeed),
-                RadarEntry(powerCapacity)
+                RadarEntry(computingPower.toFloat()),
+                RadarEntry(graphicsRendering.toFloat()),
+                RadarEntry(dataStorage.toFloat()),
+                RadarEntry(dataTransferSpeed.toFloat()),
+                RadarEntry(powerCapacity.toFloat())
             )
 
             // 4) Build and style the dataset

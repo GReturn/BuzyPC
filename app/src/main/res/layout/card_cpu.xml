@@ -28,8 +28,10 @@
 
             <TextView
                 android:id="@+id/tvCPU"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginRight="60dp"
                 android:layout_height="wrap_content"
+                android:maxLines="2"
                 android:text="CPU"
                 android:layout_marginTop="10dp"
                 android:layout_toEndOf="@id/imgCPU"
@@ -37,7 +39,7 @@
                 android:textColor="@color/bz_honeyYellow"
                 />
             <TextView
-                android:id="@+id/tvPrice"
+                android:id="@+id/tvPriceCPU"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="$price"
