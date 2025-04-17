@@ -75,7 +75,7 @@
             android:background="@drawable/round_edittext"
             android:backgroundTint="?attr/background"
             android:hint="PHP"
-            android:textColorHint="@color/bz_almostBlack"
+            android:textColorHint="?attr/colorOnSecondary"
             android:inputType="number"
 
             android:padding="10dp"
