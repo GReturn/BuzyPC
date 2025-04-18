@@ -15,8 +15,8 @@
         <item name="colorControlNormal">@color/bz_honeyYellow</item>
 
         <item name="android:windowBackground">@color/bz_softGray</item>
-
         <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <item name="android:navigationBarColor">?attr/colorPrimary</item>
     </style>
 
     <style name="Theme.BuzyPC" parent="Base.Theme.BuzyPC.Dark" />

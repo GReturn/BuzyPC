@@ -13,7 +13,7 @@
         <item name="colorControlNormal">@color/bz_honeyYellow</item>
 
         <item name="android:windowBackground">@color/bz_almostBlack</item>
-
         <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <item name="android:navigationBarColor">?attr/colorPrimary</item>
     </style>
 </resources>
