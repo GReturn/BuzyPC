@@ -67,7 +67,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_normal"
 
-                    app:cardBackgroundColor="#80FFFFFF"
+                    app:cardBackgroundColor="@color/bz_honeyYellow_semi_transparent"
 
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -223,12 +223,12 @@
                             android:layout_height="match_parent"
                             android:orientation="vertical"
 
-                            android:paddingHorizontal="@dimen/space_xsmall"
-                            android:paddingVertical="@dimen/space_medium">
+                            android:paddingVertical="@dimen/space_xsmall"
+                            >
 
                             <ImageView
-                                android:layout_width="54dp"
-                                android:layout_height="52dp"
+                                android:layout_width="@dimen/menu_icon_width"
+                                android:layout_height="@dimen/menu_icon_height"
                                 android:src="@drawable/nav_desktop_monitor"
                                 app:tint="@color/bz_darkGray"
 
@@ -247,7 +247,7 @@
                                 android:text="@string/landingpage_build_count"
                                 android:textAlignment="center"
                                 android:textColor="@color/bz_darkGray"
-                                android:textSize="@dimen/font_title_large"
+                                android:textSize="@dimen/font_larger"
                                 />
 
                             <com.google.android.material.button.MaterialButton
@@ -288,12 +288,12 @@
                             android:layout_height="match_parent"
                             android:orientation="vertical"
 
-                            android:paddingHorizontal="@dimen/space_xsmall"
-                            android:paddingVertical="@dimen/space_medium">
+                            android:paddingVertical="@dimen/space_xsmall"
+                            >
 
                             <ImageView
-                                android:layout_width="54dp"
-                                android:layout_height="52dp"
+                                android:layout_width="@dimen/menu_icon_width"
+                                android:layout_height="@dimen/menu_icon_height"
                                 android:src="@drawable/nav_checklist"
                                 app:tint="@color/bz_darkGray"
 
@@ -312,7 +312,7 @@
                                 android:text="@string/landingpage_checklist_count"
                                 android:textAlignment="center"
                                 android:textColor="@color/bz_darkGray"
-                                android:textSize="@dimen/font_title_large"
+                                android:textSize="@dimen/font_larger"
                                 />
 
                             <com.google.android.material.button.MaterialButton

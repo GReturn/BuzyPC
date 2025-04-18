@@ -43,7 +43,7 @@
             android:backgroundTint="@color/bz_darkGray"
             android:focusable="true"
             android:fontFamily="@font/ubuntu_bold"
-            android:hint="Build Name"
+            android:hint="@string/fragment_new_build_build_name_hint"
             android:imeOptions="actionNext"
             android:maxLength="10"
 
