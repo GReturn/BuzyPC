@@ -12,7 +12,6 @@
         android:id="@+id/new_build"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.NewBuildActivity"
         android:padding="@dimen/space_medium"
         >
 
