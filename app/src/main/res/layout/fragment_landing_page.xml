@@ -12,324 +12,334 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-    >
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/main"
+        >
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-
-            android:padding="24dp"
+            android:orientation="vertical"
             >
 
-            <LinearLayout
-                android:id="@+id/landing_title"
-
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/main"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:gravity="center_horizontal"
 
-                android:layout_marginTop="@dimen/space_medium"
-
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_gravity="center"
-
-                    android:src="@drawable/mascot_buzybee"
-                    />
+                android:padding="24dp"
+                android:background="?attr/colorControlNormal"
+                >
 
                 <TextView
+                    android:id="@+id/hello_user"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/space_normal"
 
                     android:fontFamily="@font/ubuntu_bold"
-                    android:text="BuzyPC"
-                    android:textColor="?attr/colorControlNormal"
-                    android:textSize="48sp"
+                    android:text="@string/hello_user"
+                    android:textSize="36sp"
+                    android:textColor="@color/bz_almostBlack"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     />
 
-            </LinearLayout>
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/image_landingpage_profile_pic"
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardview_landing_first_cta"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="@dimen/space_normal"
+                    android:scaleType="centerCrop"
+
+                    android:src="@drawable/profilepic"
+                    app:layout_constraintEnd_toEndOf="parent"
+
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/hello_user"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:shapeAppearanceOverlay="@style/circular_image_view" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardview_landing_first_cta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_normal"
+
+                    app:cardBackgroundColor="#80FFFFFF"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/hello_user">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+
+                        android:paddingVertical="@dimen/space_medium"
+                        android:paddingHorizontal="@dimen/space_medium"
+                        >
+
+                        <LinearLayout
+                            android:id="@+id/landingpage_card_heading"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:orientation="horizontal"
+
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <LinearLayout
+                                android:id="@+id/heading_content"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+
+                                android:layout_weight="1"
+
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <TextView
+                                    android:id="@+id/buzyPCHeading"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+
+                                    android:paddingTop="@dimen/space_small"
+
+                                    android:fontFamily="@font/ubuntu_bold"
+                                    android:text="@string/landingpage_heading"
+                                    android:textAlignment="textStart"
+                                    android:textColor="@color/bz_almostBlack"
+                                    android:textSize="@dimen/font_larger"
+
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                    android:id="@+id/textview_landingpage_subheading"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:layout_marginTop="12dp"
+
+                                    android:fontFamily="@font/ubuntu"
+                                    android:text="@string/landingpage_subheading"
+                                    android:textSize="@dimen/font_normal"
+                                    android:textColor="@color/bz_almostBlack"
+
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/buzyPCHeading" />
+                            </LinearLayout>
+
+                            <Space
+                                android:layout_width="10dp"
+                                android:layout_height="wrap_content" />
+
+                            <ImageView
+                                android:layout_width="0dp"
+                                android:layout_height="163dp"
+                                android:src="@drawable/landing_page_computer"
+
+                                android:layout_weight="1"
+
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/heading_content"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </LinearLayout>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/button_landing_build_now_cta"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/space_xlarge"
+
+                            android:layout_marginTop="@dimen/space_normal"
+                            android:backgroundTint="?attr/colorControlNormal"
+                            android:fontFamily="@font/ubuntu_bold"
+                            android:text="Start Building"
+                            android:textColor="@color/bz_almostBlack"
+                            android:textSize="@dimen/font_larger"
+
+                            android:drawableRight="@drawable/ic_landingpage_build"
+                            android:drawableTint="@color/bz_almostBlack"
+
+                            app:cornerRadius="5dp"
+
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/landingpage_card_heading" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
-                android:layout_marginTop="@dimen/space_normal"
+                android:padding="@dimen/space_normal"
+                >
 
-                android:backgroundTint="?attr/colorControlNormal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/landing_title">
+                <TextView
+                    android:id="@+id/textview_landing_overview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:fontFamily="@font/ubuntu_bold"
+                    android:text="Your Dashboard"
+                    android:textSize="@dimen/font_title_large"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
 
-                    android:paddingVertical="@dimen/space_medium"
-                >
+                    android:layout_marginTop="@dimen/space_normal"
 
-                    <TextView
-                        android:id="@+id/hello_user"
-                        android:layout_width="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/textview_landing_overview"
+                    >
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardview_landing_overview_buildlist"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
 
-                        android:fontFamily="@font/ubuntu_medium"
-                        android:text="Hello, {username}"
-                        android:textAlignment="center"
-                        android:textColor="?attr/colorOnSecondary"
-                        android:textSize="@dimen/font_large" />
+                        android:layout_weight="1"
 
-                    <TextView
-                        android:id="@+id/buzyPCHeading"
-                        android:layout_width="wrap_content"
+                        android:backgroundTint="?attr/colorPrimary"
+                        >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+
+                            android:paddingHorizontal="@dimen/space_xsmall"
+                            android:paddingVertical="@dimen/space_medium">
+
+                            <ImageView
+                                android:layout_width="54dp"
+                                android:layout_height="52dp"
+                                android:src="@drawable/nav_desktop_monitor"
+                                app:tint="@color/bz_darkGray"
+
+                                android:layout_gravity="center"
+                                />
+
+                            <TextView
+                                android:id="@+id/textview_dynamic_build_list_counter"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="@dimen/space_small"
+
+                                android:fontFamily="@font/ubuntu_bold"
+
+                                android:text="@string/landingpage_build_count"
+                                android:textAlignment="center"
+                                android:textColor="@color/bz_darkGray"
+                                android:textSize="@dimen/font_title_large"
+                                />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/button_landing_view_builds"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="@dimen/space_normal"
+
+                                android:backgroundTint="@color/bz_darkGray"
+                                android:fontFamily="@font/ubuntu_bold"
+                                android:text="View Builds"
+                                android:textAlignment="center"
+                                android:textSize="@dimen/font_normal"
+                                android:textColor="?attr/colorPrimary"
+
+                                app:cornerRadius="5dp" />
+
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <Space
+                        android:layout_width="@dimen/space_small"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+                        />
 
-                        android:fontFamily="@font/ubuntu_bold"
-
-                        android:paddingTop="@dimen/space_small"
-                        android:text="@string/buzyPCHeading"
-                        android:textAlignment="center"
-                        android:textAllCaps="true"
-
-                        android:textColor="?attr/colorOnSecondary"
-                        android:textSize="@dimen/font_title_large" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/button_landing_build_now_cta"
-                        android:layout_width="wrap_content"
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardview_landing_overview_checklist"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
 
-                        android:layout_marginTop="@dimen/space_xlarge"
-                        android:backgroundTint="?attr/colorOnSecondary"
-                        android:fontFamily="@font/ubuntu_bold"
-                        android:text="Build Now"
-                        android:textAlignment="center"
-                        android:textColor="?attr/colorControlNormal"
-                        android:textSize="@dimen/font_title_large"
+                        android:layout_weight="1"
 
-                        app:cornerRadius="5dp" />
+                        android:backgroundTint="?attr/colorPrimary">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+
+                            android:paddingHorizontal="@dimen/space_xsmall"
+                            android:paddingVertical="@dimen/space_medium">
+
+                            <ImageView
+                                android:layout_width="54dp"
+                                android:layout_height="52dp"
+                                android:src="@drawable/nav_checklist"
+                                app:tint="@color/bz_darkGray"
+
+                                android:layout_gravity="center"
+                                />
+
+                            <TextView
+                                android:id="@+id/textview_dynamic_checklist_list_counter"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:paddingTop="@dimen/space_small"
+
+                                android:fontFamily="@font/ubuntu_bold"
+
+                                android:text="@string/landingpage_checklist_count"
+                                android:textAlignment="center"
+                                android:textColor="@color/bz_darkGray"
+                                android:textSize="@dimen/font_title_large"
+                                />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/button_landing_go_to_checklist"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="@dimen/space_normal"
+
+                                android:backgroundTint="@color/bz_darkGray"
+                                android:fontFamily="@font/ubuntu_bold"
+                                android:text="See Checklist"
+                                android:textAlignment="center"
+
+                                android:textColor="?attr/colorPrimary"
+                                android:textSize="@dimen/font_normal"
+
+                                app:cornerRadius="5dp" />
+
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
 
                 </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
 
-            <View
-                android:id="@+id/view_landing_line_divider"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-
-                android:layout_marginTop="@dimen/space_medium"
-
-                android:background="?attr/colorOnSecondary"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cardview_landing_first_cta" />
-
-            <TextView
-                android:id="@+id/textview_landing_overview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_xsmall"
-
-                android:fontFamily="@font/ubuntu_bold"
-                android:text="Overview"
-                android:textSize="@dimen/font_title_large"
-
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/view_landing_line_divider" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-
-                android:layout_marginTop="@dimen/space_medium"
-
-                app:layout_constraintTop_toBottomOf="@+id/textview_landing_overview"
-            >
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cardview_landing_overview_buildlist"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-
-                    android:layout_weight="1"
-
-                    android:backgroundTint="?attr/colorControlNormal"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/landing_title">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-
-                        android:paddingHorizontal="@dimen/space_xsmall"
-                        android:paddingVertical="@dimen/space_medium">
-
-                        <TextView
-                            android:id="@+id/textview_landing_overview_current_build_list"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-
-                            android:fontFamily="@font/ubuntu_bold"
-                            android:text="Total Builds"
-                            android:textAlignment="center"
-                            android:textColor="?attr/colorOnSecondary"
-                            android:textSize="@dimen/font_larger" />
-
-
-                        <TextView
-                            android:id="@+id/textview_dynamic_build_list_counter"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="@dimen/space_small"
-
-                            android:fontFamily="@font/ubuntu_bold"
-
-                            android:text="\?"
-                            android:textAlignment="center"
-                            android:textColor="?attr/colorOnSecondary"
-                            android:textSize="@dimen/font_title_large"
-                            />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-
-                            android:fontFamily="@font/ubuntu_bold"
-
-                            android:text="builds"
-                            android:textAlignment="center"
-                            android:textColor="?attr/colorOnSecondary"
-                            android:textSize="@dimen/font_normal"
-                        />
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/button_landing_view_builds"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="@dimen/space_normal"
-
-                            android:backgroundTint="?attr/colorOnSecondary"
-                            android:fontFamily="@font/ubuntu_bold"
-                            android:text="View My Builds"
-                            android:textAlignment="center"
-                            android:textSize="@dimen/font_normal"
-                            android:textColor="?attr/colorControlNormal"
-
-                            app:cornerRadius="5dp" />
-
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <Space
-                    android:layout_width="@dimen/space_normal"
-                    android:layout_height="wrap_content"
-                />
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cardview_landing_overview_checklist"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-
-                    android:layout_weight="1"
-
-                    android:backgroundTint="?attr/colorControlNormal"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/landing_title">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-
-                        android:paddingHorizontal="@dimen/space_xsmall"
-                        android:paddingVertical="@dimen/space_medium">
-
-                        <TextView
-                            android:id="@+id/textview_landing_overview_checklist_items"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-
-                            android:fontFamily="@font/ubuntu_bold"
-                            android:text="Checklist"
-                            android:textAlignment="center"
-                            android:textColor="?attr/colorOnSecondary"
-                            android:textSize="@dimen/font_larger"
-                        />
-
-                        <TextView
-                            android:id="@+id/textview_dynamic_checklist_list_counter"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:paddingTop="@dimen/space_small"
-
-                            android:fontFamily="@font/ubuntu_bold"
-
-                            android:text="\?"
-                            android:textAlignment="center"
-                            android:textColor="?attr/colorOnSecondary"
-                            android:textSize="@dimen/font_title_large"
-                            />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-
-                            android:fontFamily="@font/ubuntu_bold"
-
-                            android:text="items"
-                            android:textAlignment="center"
-                            android:textColor="?attr/colorOnSecondary"
-                            android:textSize="@dimen/font_normal"
-                            />
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/button_landing_go_to_checklist"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="@dimen/space_normal"
-
-                            android:backgroundTint="?attr/colorOnSecondary"
-                            android:fontFamily="@font/ubuntu_bold"
-                            android:text="See Checklist"
-                            android:textAlignment="center"
-
-                            android:textColor="?attr/colorControlNormal"
-                            android:textSize="@dimen/font_normal"
-
-                            app:cornerRadius="5dp" />
-
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-
-            </LinearLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
 
