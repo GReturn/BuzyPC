@@ -8,7 +8,6 @@ import io.buzypc.app.Data.BuildData.Components.RAMComponent
 import io.buzypc.app.Data.BuildData.Components.StorageDeviceComponent
 
 data class PC(
-    val name: String,
     val motherboard: MotherboardComponent,
     val cpu: CPUComponent,
     val gpu: GPUComponent,

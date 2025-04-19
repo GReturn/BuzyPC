@@ -24,7 +24,6 @@ class BuzyUserAppSession: Application() {
         super.onCreate()
     }
     val pc = PC(
-        "My PC",
         motherboard = MotherboardComponent(
             "Z690",
             "LGA 1700",
