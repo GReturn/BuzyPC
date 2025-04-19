@@ -17,11 +17,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
 
+        android:elevation="16dp"
+
         app:menu="@menu/menu"
         app:itemIconTint="?attr/colorOnSecondary"
         app:itemTextColor="?attr/colorOnSecondary"
-        app:itemActiveIndicatorStyle="?attr/colorPrimary"
-        app:itemRippleColor="?attr/colorPrimary"
+        app:itemActiveIndicatorStyle="@android:color/transparent"
+        app:itemRippleColor="@color/bz_honeyYellow_semi_transparent"
+
+        style="@style/BottomNavigationItemStyle"
 
         android:background="@android:color/transparent"
         />

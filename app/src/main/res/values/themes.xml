@@ -12,7 +12,9 @@
         <item name="colorTertiary">@color/bz_warmBrown</item>
         <item name="colorOnTertiary">@color/white</item>
         <item name="background">@color/bz_softGray</item>
+
         <item name="colorControlNormal">@color/bz_honeyYellow</item>
+        <item name="colorControlHighlight">@color/bz_honeyYellow_semi_transparent</item>
 
         <item name="android:windowBackground">@color/bz_softGray</item>
         <item name="android:statusBarColor">?attr/colorPrimary</item>
