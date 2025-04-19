@@ -2,7 +2,10 @@ package io.buzypc.app.UI.Utils
 
 import android.content.Context
 import io.buzypc.app.Data.AppSession.BuzyUserAppSession
+import io.buzypc.app.Data.BuildData.PCBuild
+import io.buzypc.app.Data.SharedPrefManagers.BuzyUserBuildPrefManager
 import io.buzypc.app.Data.SharedPrefManagers.BuzyUserManager
+import io.buzypc.app.Data.SharedPrefManagers.SessionManager
 
 /**
  * Loads the details of the currently logged-in user.
@@ -25,4 +28,10 @@ fun loadCurrentUserDetails(context: Context): BuzyUserManager {
     val userDetails = BuzyUserManager(context)
     userDetails.loadUser((context.applicationContext as BuzyUserAppSession).username)
     return userDetails
+}
+
+fun loadBuildList(context: Context): ArrayList<PCBuild> {
+    val buzyUserBuildPrefManager = BuzyUserBuildPrefManager(context)
+    val sessionManager = SessionManager(context)
+    return sessionManager.getUsername().let { buzyUserBuildPrefManager.getBuildList(it) }
 }

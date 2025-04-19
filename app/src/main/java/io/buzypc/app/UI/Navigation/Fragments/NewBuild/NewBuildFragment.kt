@@ -52,7 +52,7 @@ class NewBuildFragment : Fragment() {
             }
             requireContext()
             (context?.applicationContext as BuzyUserAppSession).buildName = etBuildName.text.toString()
-            (context?.applicationContext as BuzyUserAppSession).buildBudget = etBudgetInput.text.toString()
+            (context?.applicationContext as BuzyUserAppSession).buildBudget = etBudgetInput.text.toString().toDouble()
             val intent = Intent(requireActivity(), NewBuildSummaryActivity::class.java)
             startActivity(intent)
         }

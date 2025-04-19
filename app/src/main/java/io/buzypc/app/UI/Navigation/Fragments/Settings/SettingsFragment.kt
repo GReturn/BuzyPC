@@ -19,6 +19,7 @@ import io.buzypc.app.UI.Utils.loadCurrentUserDetails
 
 class SettingsFragment : Fragment() {
     private val styleViewModel: StyleViewModel by activityViewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
@@ -88,10 +89,6 @@ class SettingsFragment : Fragment() {
         // Logout Button
         val buttonLogout = view.findViewById<Button>(R.id.btn_logout)
         buttonLogout.setOnClickListener {
-            // Clear the last logged-in user
-            userSettings.setLastUser(null)
-            // Store whichever theme the user had selected at logout
-            userSettings.setTheme(if (radioBtnDarkMode.isChecked) "dark" else "light")
 
             val intent = Intent(requireActivity(), LogoutPromptActivity::class.java)
             startActivity(intent)

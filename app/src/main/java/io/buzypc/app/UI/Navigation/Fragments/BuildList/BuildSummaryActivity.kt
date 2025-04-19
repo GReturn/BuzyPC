@@ -23,7 +23,6 @@ class BuildSummaryActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val user = loadCurrentUserDetails(this)
         val tvBuildName = findViewById<TextView>(R.id.tv_BuildSummary)
         val app = application as BuzyUserAppSession
 
@@ -89,8 +88,7 @@ class BuildSummaryActivity : AppCompatActivity() {
             startActivity(Intent(this, BuyComponentActivity::class.java))
         }
 
-        user.retrieveBuilds()
-        tvBuildName.text = "${(application as BuzyUserAppSession).buildName}'s Summary"
+        tvBuildName.text = "${(application as BuzyUserAppSession).selectedBuildInBuildList.name}'s Summary"
 
         // Add the RadarChartView Fragment
         val fragmentTransaction = supportFragmentManager.beginTransaction()

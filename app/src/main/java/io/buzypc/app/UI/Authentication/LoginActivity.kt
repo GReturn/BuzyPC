@@ -15,12 +15,8 @@ import io.buzypc.app.R
 import io.buzypc.app.Data.AppSession.BuzyUserAppSession
 import io.buzypc.app.Data.SharedPrefManagers.BuzyAuthenticator
 import io.buzypc.app.Data.SharedPrefManagers.SessionManager
-import io.buzypc.app.Data.SharedPrefManagers.BuzyUserManager
 import io.buzypc.app.Data.SharedPrefManagers.BuzyUserSettingsManager
-import io.buzypc.app.Data.SharedPrefManagers.UserRegistryManager
 import io.buzypc.app.UI.Navigation.BottomNavigationActivity
-import io.buzypc.app.UI.Utils.loadCurrentUserDetails
-import java.net.Authenticator
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -79,8 +75,8 @@ class LoginActivity : AppCompatActivity() {
 
                 buzyAuthenticator.loginUser(enteredUsername)
 
-                val userDetails = loadCurrentUserDetails(this)
-                handleStartup(userDetails)
+                val sessionManager = SessionManager(this)
+                handleStartup(sessionManager)
 
                 setAppTheme()
 
@@ -102,9 +98,8 @@ class LoginActivity : AppCompatActivity() {
     private fun autoLogin() {
         val sessionManager = SessionManager(this)
         if(sessionManager.isLoggedIn()) {
-            (application as BuzyUserAppSession).username = sessionManager.getUsername().toString()
-            val userDetails = loadCurrentUserDetails(this)
-            handleStartup(userDetails)
+            (application as BuzyUserAppSession).username = sessionManager.getUsername()
+            handleStartup(sessionManager)
         }
     }
 
@@ -119,8 +114,8 @@ class LoginActivity : AppCompatActivity() {
      * @param userDetails An object containing details about the user, including their login status.
      * @param userSettings An object containing the user's application settings, such as the preferred theme.
      */
-    private fun handleStartup(userDetails: BuzyUserManager) {
-        if (userDetails.isLoggedIn()) {
+    private fun handleStartup(session: SessionManager) {
+        if (session.isLoggedIn()) {
             val intent = Intent(this, BottomNavigationActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)

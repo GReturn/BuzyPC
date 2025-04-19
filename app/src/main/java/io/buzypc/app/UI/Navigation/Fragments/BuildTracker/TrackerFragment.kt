@@ -8,13 +8,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.view.doOnLayout
 import androidx.recyclerview.widget.RecyclerView
-import io.buzypc.app.Data.pc.PCBuild
 import io.buzypc.app.R
 import io.buzypc.app.UI.Navigation.BottomNavigationActivity
 import io.buzypc.app.UI.Utils.LayoutManagers.AnimatedGridLayoutManager
 import io.buzypc.app.UI.Utils.LayoutManagers.BuildTrackerListLayoutManager
-import io.buzypc.app.UI.Utils.loadCurrentUserDetails
-import io.buzypc.app.UI.Navigation.Fragments.BuildList.BuildListRecyclerViewAdapter
+import io.buzypc.app.UI.Utils.loadBuildList
 
 class TrackerFragment : Fragment() {
     val pcBuildList = ArrayList<io.buzypc.app.Data.BuildData.PCBuild>()
@@ -32,7 +30,6 @@ class TrackerFragment : Fragment() {
         }
 
         val adapter = BuildTrackerRecyclerViewAdapter(requireContext(), pcBuildList) {
-            // we handle the click event here when user clicks on the plus button inside the buildlist fragment
             val activity = requireActivity() as BottomNavigationActivity
             activity.handleNavigationToOtherFragments(R.id.newBuildFragment)
         }
@@ -50,27 +47,18 @@ class TrackerFragment : Fragment() {
         }
     }
 
-    // - LayoutInflater converts xml file into a View object that the fragment displays
-    // - 'container' is the parent view where this fragment’s UI will be placed, passing false as the third parameter because the system
-    //    will handle attaching the fragment to the container automatically.
-    // - savedInstanceState contains any previously saved state, restores them upon recreating (updating) the fragment.
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_tracker, container, false)
     }
 
     private fun setPCModelList() {
-        val userDetails = loadCurrentUserDetails(requireContext())
-        userDetails.retrieveBuilds()
-
-        val nameList = userDetails.buildNameList
-        val budgetList = userDetails.buildBudgetList
-        val size = nameList.size
+        val buildList = loadBuildList(requireContext())
+        val size = buildList.size
         for (i in size-1 downTo 0) {
-            pcBuildList.add(PCBuild(nameList[i], budgetList[i]))
+            pcBuildList.add(buildList[i])
         }
     }
 }

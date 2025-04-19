@@ -1,16 +1,13 @@
 package io.buzypc.app.UI.Navigation.Fragments.BuildTracker
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import io.buzypc.app.Data.AppSession.BuzyUserAppSession
 import io.buzypc.app.R
-import io.buzypc.app.UI.Navigation.Fragments.BuildList.BuildSummaryActivity
 
 class BuildTrackerRecyclerViewAdapter(
     var context: Context,
@@ -25,7 +22,7 @@ class BuildTrackerRecyclerViewAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val build = pcBuilds[position - 1]
+        val build = pcBuilds[position]
         val item = holder as ItemViewHolder
         item.tvName.text = build.name
         item.tvBudget.text = "PHP ${build.budget}"

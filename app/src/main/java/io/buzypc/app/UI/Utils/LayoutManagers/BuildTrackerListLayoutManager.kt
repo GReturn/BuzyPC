@@ -13,10 +13,8 @@ class BuildTrackerListLayoutManager(
     override fun animate(animationId: Int) {
         var startOffset = 0L
 
-        // for the plus symbol
         val set = AnimationUtils.loadAnimation(context, animationId)
 
-        // for the rest
         for (i in 0 until childCount) {
             set.startOffset = startOffset
             startOffset += ANIMATION_OFFSET

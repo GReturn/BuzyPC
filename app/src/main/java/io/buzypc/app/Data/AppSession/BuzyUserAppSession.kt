@@ -10,13 +10,20 @@ import io.buzypc.app.Data.BuildData.Components.MotherboardComponent
 import io.buzypc.app.Data.BuildData.Components.PSUComponent
 import io.buzypc.app.Data.BuildData.Components.RAMComponent
 import io.buzypc.app.Data.BuildData.Components.StorageDeviceComponent
+import io.buzypc.app.Data.BuildData.PCBuild
 
 class BuzyUserAppSession: Application() {
     var username: String = ""
     var theme: String = ""
 
-    var buildBudget: String = ""
+    // information for new build
     var buildName: String = ""
+    var buildBudget: Double = 0.0
+
+    lateinit var buildList: ArrayList<PCBuild>
+    lateinit var toSaveBuild: PCBuild
+    lateinit var selectedBuildInBuildList: PCBuild
+    lateinit var selectedBuildInBuildTracker: PCBuild
 
     lateinit var component: Component
 

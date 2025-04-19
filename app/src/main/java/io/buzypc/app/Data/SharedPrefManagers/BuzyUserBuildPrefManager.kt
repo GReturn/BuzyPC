@@ -2,15 +2,18 @@ package io.buzypc.app.Data.SharedPrefManagers
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import io.buzypc.app.Data.BuildData.PCBuild
+import io.buzypc.app.Data.BuildData.Utils.JsonAdapters.ClosedFloatingPointRangeAdapter
 
 class BuzyUserBuildPrefManager(
     private val context: Context
 ) {
     private val prefs: SharedPreferences = context.getSharedPreferences("pc_build_prefs", Context.MODE_PRIVATE)
-    private val gson = Gson()
+    private val gson = GsonBuilder()
+        .registerTypeAdapter(ClosedFloatingPointRange::class.java, ClosedFloatingPointRangeAdapter())
+        .create()
 
     // Always call this with a valid username
     fun getBuildList(username: String): ArrayList<PCBuild> {

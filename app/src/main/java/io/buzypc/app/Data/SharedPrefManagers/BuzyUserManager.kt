@@ -105,6 +105,8 @@ class BuzyUserManager(private val context: Context) {
 
     fun getEmail(): String? = sharedPreferences.getString("email", null)
 
+    fun getHashedPassword() : String? = sharedPreferences.getString("password", null)
+
     fun setUsername(newName: String) = sharedPreferences.edit().putString("username", newName).apply()
 
     fun setEmail(newEmail: String) = sharedPreferences.edit().putString("email", newEmail).apply()
@@ -116,27 +118,14 @@ class BuzyUserManager(private val context: Context) {
     }
 
     fun validatePassword(inputPassword: String) : Boolean {
-        val realPassword = sharedPreferences.getString("password", null)
+        val realPassword = getHashedPassword()
         return realPassword == hashPassword(inputPassword)
     }
 
     fun validateLogin(inputUsername: String, inputPassword: String) : Boolean {
+        loadUser(inputUsername)
         val realUsername = getUsername()
-        val realPassword = sharedPreferences.getString("password", null)
-
-        return if (realUsername == inputUsername && realPassword == hashPassword(inputPassword)) {
-            /*
-                commit() is synchronous, so it blocks the process (apply is async).
-                This is ideal for our use-case since we don't want the user to log in
-                before the login state of user is written to file. If commit() was
-                unsuccessful, it will return false.
-            */
-            sharedPreferences.edit().putBoolean("isLoggedIn", true).commit()
-            true
-        }
-        else {
-            false
-        }
+        return realUsername == inputUsername && validatePassword(inputPassword)
     }
 
     fun saveImageToInternalStorage(context: Context, bitmap: Bitmap, filename: String) {

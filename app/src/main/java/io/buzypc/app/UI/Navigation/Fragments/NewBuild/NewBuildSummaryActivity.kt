@@ -10,9 +10,10 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import io.buzypc.app.R
 import io.buzypc.app.Data.AppSession.BuzyUserAppSession
+import io.buzypc.app.Data.BuildData.PCBuild
+import io.buzypc.app.Data.SharedPrefManagers.BuzyUserBuildPrefManager
 import io.buzypc.app.UI.Navigation.Fragments.BuildList.BuyComponentActivity
 import io.buzypc.app.UI.Navigation.BottomNavigationActivity
-import io.buzypc.app.UI.Utils.loadCurrentUserDetails
 import io.buzypc.app.UI.Widget.RadarChartViewFragment
 
 class NewBuildSummaryActivity : AppCompatActivity() {
@@ -28,11 +29,9 @@ class NewBuildSummaryActivity : AppCompatActivity() {
         val tvBuildName = findViewById<TextView>(R.id.tv_BuildSummary)
         val tvBuildTotalPrice = findViewById<TextView>(R.id.tvTotalPrice)
         val btnSaveButton = findViewById<Button>(R.id.btn_SaveBuild)
-        val user = loadCurrentUserDetails(this)
         val app = application as BuzyUserAppSession
 
 
-        user.retrieveBuilds()
         tvBuildName.text = "${(application as BuzyUserAppSession).buildName}'s Summary"
 
         val fragmentTransaction = supportFragmentManager.beginTransaction()
@@ -108,12 +107,17 @@ class NewBuildSummaryActivity : AppCompatActivity() {
         supportFragmentManager.executePendingTransactions() // Ensure the fragment is added immediately
 
         btnSaveButton.setOnClickListener {
-            // Add current build details to global lists (if needed)
-            user.buildNameList.add((application as BuzyUserAppSession).buildName)
-            user.buildBudgetList.add((application as BuzyUserAppSession).buildBudget)
+            val buildManager = BuzyUserBuildPrefManager(this)
+            buildManager.addBuild(
+                app.username,
+                PCBuild(
+                    generateUniqueBuildId(this),
+                    app.buildName,
+                    app.buildBudget,
+                    app.pc
+                )
+            )
 
-            // Save build data into the user-specific SharedPreferences via BuzyUser
-            user.saveBuilds()
             val intent = Intent(this, BottomNavigationActivity::class.java)
 
             /*

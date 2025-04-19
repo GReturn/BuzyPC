@@ -24,8 +24,8 @@ class SessionManager(
         return sharedPreferences.getBoolean(KEY_IS_LOGGED_IN, false)
     }
 
-    fun getUsername(): String? {
-        return sharedPreferences.getString(KEY_USERNAME, null)
+    fun getUsername(): String {
+        return sharedPreferences.getString(KEY_USERNAME, null)!!
     }
 
     fun logout() {
