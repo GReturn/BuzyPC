@@ -9,13 +9,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import io.buzypc.app.R
 import io.buzypc.app.Data.AppSession.BuzyUserAppSession
-import io.buzypc.app.Data.pc.PCBuild
+import io.buzypc.app.R
 
 class BuildListRecyclerViewAdapter(
     var context: Context,
-    var pcBuilds: ArrayList<PCBuild>,
+    var pcBuilds: ArrayList<io.buzypc.app.Data.BuildData.PCBuild>,
     var onNavigateToNewBuild: () -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val VIEW_TYPE_ADD_BUILD = 0
@@ -42,13 +41,14 @@ class BuildListRecyclerViewAdapter(
             is ItemViewHolder -> {
                 // since position 0 is the add button, builds start at index 1
                 val build = pcBuilds[position - 1]
-                holder.tvName.text = build.buildName
-                holder.tvBudget.text = "PHP ${build.buildBudget}"
+                holder.tvName.text = build.name
+                holder.tvBudget.text = "PHP ${build.budget}"
 
                 // 1) Click on the whole card → BuildSummaryActivity
                 holder.container.setOnClickListener {
+
                     val appSession = (context.applicationContext as BuzyUserAppSession)
-                    appSession.buildName = build.buildName
+                    appSession.selectedBuildInBuildList = build
 
                     val intent = Intent(context, BuildSummaryActivity::class.java)
                     context.startActivity(intent)
