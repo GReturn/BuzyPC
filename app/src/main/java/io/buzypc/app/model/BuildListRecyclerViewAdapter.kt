@@ -14,7 +14,7 @@ import io.buzypc.app.Data.AppSession.BuzyUserAppSession
 import io.buzypc.app.Data.pc.PCBuild
 import io.buzypc.app.UI.Navigation.Fragments.BuildList.BuildSummaryActivity
 
-class PCBuildRecyclerViewAdapter(
+class BuildListRecyclerViewAdapter(
     var context: Context,
     var pcBuilds: ArrayList<PCBuild>,
     var onNavigateToNewBuild: () -> Unit
