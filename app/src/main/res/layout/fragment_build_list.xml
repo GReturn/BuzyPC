@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
 
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
 
     tools:context=".UI.Navigation.Fragments.BuildList.BuildListFragment"
     android:backgroundTint="?android:attr/colorBackground"
@@ -13,60 +13,80 @@
     android:id="@+id/fragment_build_list"
     >
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/build_list"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:context=".UI.fragments.BuildListFragment"
+        android:layout_height="match_parent"
+
+        android:orientation="vertical"
         >
 
-        <TextView
-            android:id="@+id/textView_buildsHeader"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/ubuntu_bold"
-            android:text="My Builds"
-
-            android:layout_marginTop="50dp"
-
-            android:textSize="@dimen/font_title_large"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
-
-        <TextView
-            android:id="@+id/tvEmptyList"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nothing here yet. Add your build now!"
-            android:visibility="invisible"
-
-            android:paddingTop="@dimen/space_small"
-
-            app:layout_constraintBottom_toTopOf="@id/recycleView_builds"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_buildsHeader"
-            />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycleView_builds"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/build_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
+            tools:context=".UI.fragments.BuildListFragment"
 
-            android:clipToPadding="false"
-            android:padding="@dimen/space_small"
-            tools:itemCount="4"
-            android:overScrollMode="never"
+            android:background="?attr/colorControlNormal"
+            android:padding="@dimen/space_normal"
+            >
 
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvEmptyList"
-            />
+            <TextView
+                android:id="@+id/textView_buildsHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_normal"
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                android:fontFamily="@font/ubuntu_bold"
+                android:text="My Builds"
+                android:textSize="@dimen/font_title_large"
+                android:textColor="@color/bz_almostBlack"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/tvEmptyList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/space_small"
+
+                android:fontFamily="@font/ubuntu_medium"
+                android:visibility="invisible"
+                android:text="Nothing here yet. Add your build now!"
+                android:textColor="@color/bz_almostBlack"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_buildsHeader"
+                />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycleView_builds"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:clipToPadding="false"
+                android:overScrollMode="never"
+                android:padding="@dimen/space_small"
+                app:layout_constraintEnd_toEndOf="parent"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:itemCount="4" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
 
 
 </FrameLayout>
