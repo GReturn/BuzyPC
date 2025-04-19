@@ -67,7 +67,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_normal"
 
-                    app:cardBackgroundColor="@color/bz_honeyYellow_semi_transparent"
+                    app:cardBackgroundColor="@color/bz_white_semi_transparent"
 
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
