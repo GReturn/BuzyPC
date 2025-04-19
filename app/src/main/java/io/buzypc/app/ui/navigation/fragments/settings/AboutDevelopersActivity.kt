@@ -1,6 +1,5 @@
-package io.buzypc.app.ui
+package io.buzypc.app.ui.navigation.fragments.settings
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge

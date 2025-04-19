@@ -1,10 +1,8 @@
-package io.buzypc.app.ui
+package io.buzypc.app.ui.navigation.fragments.newbuild
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
-import android.widget.CheckBox
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +10,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import io.buzypc.app.R
 import io.buzypc.app.data.appsession.BuzyUserAppSession
+import io.buzypc.app.ui.navigation.fragments.buildlist.BuyComponentActivity
 import io.buzypc.app.ui.navigation.BottomNavigationActivity
 import io.buzypc.app.ui.utils.loadCurrentUserDetails
 import io.buzypc.app.ui.widget.RadarChartViewFragment

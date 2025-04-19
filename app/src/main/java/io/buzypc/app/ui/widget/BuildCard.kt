@@ -1,4 +1,4 @@
-package io.buzypc.app.ui
+package io.buzypc.app.ui.widget
 
 import android.annotation.SuppressLint
 import android.os.Bundle

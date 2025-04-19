@@ -1,4 +1,4 @@
-package io.buzypc.app.ui.navigation.fragments
+package io.buzypc.app.ui.navigation.fragments.buildlist
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import io.buzypc.app.R
 import io.buzypc.app.data.pc.PCBuild
 import io.buzypc.app.model.PCBuildRecyclerViewAdapter
-import io.buzypc.app.ui.layoutmanagers.AnimatedBuildListLayoutManager
+import io.buzypc.app.ui.utils.layoutmanagers.AnimatedBuildListLayoutManager
 import io.buzypc.app.ui.navigation.BottomNavigationActivity
 import io.buzypc.app.ui.utils.loadCurrentUserDetails
 

@@ -1,4 +1,4 @@
-package io.buzypc.app.ui.layoutmanagers
+package io.buzypc.app.ui.utils.layoutmanagers
 
 import android.animation.ValueAnimator
 import android.content.Context

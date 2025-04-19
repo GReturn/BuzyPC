@@ -1,4 +1,4 @@
-package io.buzypc.app.ui
+package io.buzypc.app.ui.navigation.fragments.buildlist
 
 import android.content.Intent
 import android.net.Uri
@@ -13,7 +13,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import io.buzypc.app.R
 import io.buzypc.app.data.appsession.BuzyUserAppSession
-import org.w3c.dom.Text
 
 class BuyComponentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

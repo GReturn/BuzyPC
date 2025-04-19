@@ -1,4 +1,4 @@
-package io.buzypc.app.ui.navigation.fragments
+package io.buzypc.app.ui.navigation.fragments.settings
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,9 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import io.buzypc.app.R
 import io.buzypc.app.data.user.BuzyUserSettings
-import io.buzypc.app.ui.AboutDevelopersActivity
-import io.buzypc.app.ui.LogoutPromptActivity
-import io.buzypc.app.ui.ProfileViewActivity
+import io.buzypc.app.ui.authentication.LogoutPromptActivity
 import io.buzypc.app.ui.navigation.viewmodel.StyleViewModel
 import io.buzypc.app.ui.utils.loadCurrentUserDetails
 

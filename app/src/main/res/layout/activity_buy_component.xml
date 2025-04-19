@@ -5,7 +5,22 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.BuyComponentActivity">
+    tools:context=".ui.navigation.fragments.buildlist.BuyComponentActivity"
+
+    android:padding="@dimen/space_medium"
+    >
+
+    <ImageView
+        android:id="@+id/btn_back_navigation"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="@dimen/space_normal"
+
+        android:src="@drawable/arrow_back_24px"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardImg"
@@ -14,7 +29,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="@dimen/space_huge"
         app:cardCornerRadius="20dp"
         android:backgroundTint="?attr/colorControlNormal"
         >
@@ -62,14 +77,12 @@
         android:fontFamily="@font/ubuntu_medium"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvComponentName"
-        android:layout_marginHorizontal="50dp"
         android:layout_marginTop="30dp"
         />
     <ListView
         android:id="@+id/lvStoreList"
         android:layout_width="match_parent"
         android:textAlignment="center"
-        android:layout_marginHorizontal="50dp"
         android:layout_marginTop="10dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"

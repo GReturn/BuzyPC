@@ -1,4 +1,4 @@
-package io.buzypc.app.ui.navigation.fragments
+package io.buzypc.app.ui.navigation.fragments.newbuild
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,8 +13,6 @@ import android.widget.EditText
 import android.widget.Toast
 import io.buzypc.app.R
 import io.buzypc.app.data.appsession.BuzyUserAppSession
-import io.buzypc.app.ui.BuildSummaryActivity
-import io.buzypc.app.ui.NewBuildSummaryActivity
 
 class NewBuildFragment : Fragment() {
 

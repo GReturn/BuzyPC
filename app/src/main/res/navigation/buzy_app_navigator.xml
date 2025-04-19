@@ -13,24 +13,24 @@
     </fragment>
     <fragment
         android:id="@+id/buildListFragment"
-        android:name="io.buzypc.app.ui.navigation.fragments.BuildListFragment"
+        android:name="io.buzypc.app.ui.navigation.fragments.buildlist.BuildListFragment"
         android:label="fragment_build_list"
         tools:layout="@layout/fragment_build_list" >
     </fragment>
     <fragment
         android:id="@+id/newBuildFragment"
-        android:name="io.buzypc.app.ui.navigation.fragments.NewBuildFragment"
+        android:name="io.buzypc.app.ui.navigation.fragments.newbuild.NewBuildFragment"
         android:label="fragment_new_build"
         tools:layout="@layout/fragment_new_build" />
     <fragment
         android:id="@+id/TEMPORARY_AboutDevelopersFragment2"
-        android:name="io.buzypc.app.ui.navigation.fragments.ChecklistFragment"
+        android:name="io.buzypc.app.ui.navigation.fragments.checklist.ChecklistFragment"
         android:label="fragment_screen_not_implemented"
         tools:layout="@layout/fragment_checklist" />
 
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="io.buzypc.app.ui.navigation.fragments.SettingsFragment"
+        android:name="io.buzypc.app.ui.navigation.fragments.settings.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
 </navigation>

@@ -1,4 +1,4 @@
-package io.buzypc.app.ui
+package io.buzypc.app.ui.navigation.fragments.settings
 
 import android.content.Context
 import android.graphics.Bitmap

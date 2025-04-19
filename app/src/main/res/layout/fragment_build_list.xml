@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
 
-    tools:context=".ui.navigation.fragments.BuildListFragment"
+    tools:context=".ui.navigation.fragments.buildlist.BuildListFragment"
     android:backgroundTint="?android:attr/colorBackground"
 
     android:id="@+id/fragment_build_list"
