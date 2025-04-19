@@ -19,7 +19,7 @@ import com.github.mikephil.charting.data.RadarEntry
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.google.android.material.color.MaterialColors
 import io.buzypc.app.R
-import io.buzypc.app.data.appsession.BuzyUserAppSession
+import io.buzypc.app.Data.AppSession.BuzyUserAppSession
 
 class RadarChartViewFragment : Fragment() {
 

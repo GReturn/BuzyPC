@@ -1,6 +1,4 @@
-package io.buzypc.app.data.pc
-
-import io.buzypc.app.data.buildpc.Store
+package io.buzypc.app.Data.BuildData
 
 open class Component(
     val name: String,

@@ -10,8 +10,8 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import io.buzypc.app.R
-import io.buzypc.app.data.appsession.BuzyUserAppSession
-import io.buzypc.app.data.pc.PCBuild
+import io.buzypc.app.Data.AppSession.BuzyUserAppSession
+import io.buzypc.app.Data.pc.PCBuild
 import io.buzypc.app.ui.navigation.fragments.buildlist.BuildSummaryActivity
 
 class PCBuildRecyclerViewAdapter(

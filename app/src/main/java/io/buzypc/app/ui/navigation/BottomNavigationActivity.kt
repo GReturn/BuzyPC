@@ -79,9 +79,9 @@ class BottomNavigationActivity : AppCompatActivity() {
                     // navigation is handled
                     showCircle(bottomNavigationView.menu.findItem(R.id.newBuildFragment))
                 }
-                R.id.TEMPORARY_AboutDevelopersFragment2 -> {
+                R.id.checklistFragment -> {
                     Log.d("BottomNavigation", "TEMP Page Selected")
-                    navigateToFragment(R.id.TEMPORARY_AboutDevelopersFragment2)
+                    navigateToFragment(R.id.checklistFragment)
                 }
                 R.id.settingsFragment -> {
                     Log.d("BottomNavigation", "SETTINGS Page Selected")

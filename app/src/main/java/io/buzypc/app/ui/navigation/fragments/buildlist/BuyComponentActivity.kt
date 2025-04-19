@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import io.buzypc.app.R
-import io.buzypc.app.data.appsession.BuzyUserAppSession
+import io.buzypc.app.Data.AppSession.BuzyUserAppSession
 
 class BuyComponentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,6 +23,12 @@ class BuyComponentActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        val btnBackNavigation = findViewById<ImageView>(R.id.btn_back_navigation)
+        btnBackNavigation.setOnClickListener {
+            finish()
+            return@setOnClickListener
         }
 
         val imgComponent = findViewById<ImageView>(R.id.imgComponent)

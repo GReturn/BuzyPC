@@ -59,7 +59,7 @@ import io.buzypc.app.ui.utils.loadCurrentUserDetails
             activity.handleNavigationToOtherFragments(R.id.buildListFragment)
         }
         btnGoToChecklist.setOnClickListener {
-            activity.handleNavigationToOtherFragments(R.id.TEMPORARY_AboutDevelopersFragment2)
+            activity.handleNavigationToOtherFragments(R.id.checklistFragment)
         }
     }
 

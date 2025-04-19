@@ -1,10 +1,10 @@
-package io.buzypc.app.data.user
+package io.buzypc.app.Data.User
 
 import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import io.buzypc.app.data.appsession.BuzyUserAppSession
+import io.buzypc.app.Data.AppSession.BuzyUserAppSession
 import java.io.File
 import java.io.FileOutputStream
 import java.security.MessageDigest

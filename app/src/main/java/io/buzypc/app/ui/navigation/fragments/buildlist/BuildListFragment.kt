@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.core.view.doOnLayout
 import androidx.recyclerview.widget.RecyclerView
 import io.buzypc.app.R
-import io.buzypc.app.data.pc.PCBuild
+import io.buzypc.app.Data.pc.PCBuild
 import io.buzypc.app.model.PCBuildRecyclerViewAdapter
 import io.buzypc.app.ui.utils.layoutmanagers.AnimatedBuildListLayoutManager
 import io.buzypc.app.ui.navigation.BottomNavigationActivity

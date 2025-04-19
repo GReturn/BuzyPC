@@ -1,27 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
     tools:context=".ui.navigation.fragments.checklist.ChecklistFragment"
-    android:id="@+id/fragment_cart_view"
     android:backgroundTint="?android:attr/colorBackground"
+
+    android:id="@+id/fragment_checklist"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/build_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        tools:context=".ui.fragments.BuildListFragment"
+        >
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/textView_buildsHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="AAJs"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:fontFamily="@font/ubuntu_bold"
+            android:text="Checklist"
+
+            android:layout_marginTop="50dp"
+
+            android:textSize="@dimen/font_title_large"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/tvEmptyList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nothing here yet. Add your build now!"
+            android:visibility="invisible"
+
+            android:paddingTop="@dimen/space_small"
+
+            app:layout_constraintBottom_toTopOf="@id/recycleView_builds"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_buildsHeader"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleView_builds"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+
+            android:clipToPadding="false"
+            android:padding="@dimen/space_small"
+            tools:itemCount="4"
+            android:overScrollMode="never"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvEmptyList"
+            />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </FrameLayout>

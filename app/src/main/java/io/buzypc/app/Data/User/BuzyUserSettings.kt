@@ -1,4 +1,4 @@
-package io.buzypc.app.data.user
+package io.buzypc.app.Data.User
 
 import android.content.Context
 

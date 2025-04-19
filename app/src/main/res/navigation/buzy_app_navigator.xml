@@ -23,9 +23,9 @@
         android:label="fragment_new_build"
         tools:layout="@layout/fragment_new_build" />
     <fragment
-        android:id="@+id/TEMPORARY_AboutDevelopersFragment2"
+        android:id="@+id/checklistFragment"
         android:name="io.buzypc.app.ui.navigation.fragments.checklist.ChecklistFragment"
-        android:label="fragment_screen_not_implemented"
+        android:label="fragment_checklist"
         tools:layout="@layout/fragment_checklist" />
 
     <fragment

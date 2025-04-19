@@ -21,7 +21,7 @@
         />
 
     <item
-        android:id="@+id/TEMPORARY_AboutDevelopersFragment2"
+        android:id="@+id/checklistFragment"
         android:title="Checklist"
         android:icon="@drawable/nav_checklist"
         />

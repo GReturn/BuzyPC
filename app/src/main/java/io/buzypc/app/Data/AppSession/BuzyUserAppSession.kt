@@ -1,15 +1,15 @@
-package io.buzypc.app.data.appsession
+package io.buzypc.app.Data.AppSession
 
 import android.app.Application
-import io.buzypc.app.data.buildpc.Store
-import io.buzypc.app.data.pc.Component
-import io.buzypc.app.data.pc.PC
-import io.buzypc.app.data.pc.components.CPUComponent
-import io.buzypc.app.data.pc.components.GPUComponent
-import io.buzypc.app.data.pc.components.MotherboardComponent
-import io.buzypc.app.data.pc.components.PSUComponent
-import io.buzypc.app.data.pc.components.RAMComponent
-import io.buzypc.app.data.pc.components.StorageDeviceComponent
+import io.buzypc.app.Data.BuildData.Store
+import io.buzypc.app.Data.BuildData.Component
+import io.buzypc.app.Data.BuildData.PC
+import io.buzypc.app.Data.BuildData.Components.CPUComponent
+import io.buzypc.app.Data.BuildData.Components.GPUComponent
+import io.buzypc.app.Data.BuildData.Components.MotherboardComponent
+import io.buzypc.app.Data.BuildData.Components.PSUComponent
+import io.buzypc.app.Data.BuildData.Components.RAMComponent
+import io.buzypc.app.Data.BuildData.Components.StorageDeviceComponent
 
 class BuzyUserAppSession: Application() {
     var username: String = ""

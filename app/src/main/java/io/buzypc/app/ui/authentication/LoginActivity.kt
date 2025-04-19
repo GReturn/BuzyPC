@@ -12,9 +12,9 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import io.buzypc.app.R
-import io.buzypc.app.data.appsession.BuzyUserAppSession
-import io.buzypc.app.data.user.BuzyUser
-import io.buzypc.app.data.user.BuzyUserSettings
+import io.buzypc.app.Data.AppSession.BuzyUserAppSession
+import io.buzypc.app.Data.User.BuzyUser
+import io.buzypc.app.Data.User.BuzyUserSettings
 import io.buzypc.app.ui.navigation.BottomNavigationActivity
 import io.buzypc.app.ui.utils.loadCurrentUserDetails
 

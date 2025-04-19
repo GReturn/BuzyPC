@@ -1,4 +1,4 @@
-package io.buzypc.app.data.buildpc
+package io.buzypc.app.Data.BuildData
 
 data class Store(
     val name: String,

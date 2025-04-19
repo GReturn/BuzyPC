@@ -1,8 +1,8 @@
 package io.buzypc.app.ui.utils
 
 import android.content.Context
-import io.buzypc.app.data.appsession.BuzyUserAppSession
-import io.buzypc.app.data.user.BuzyUser
+import io.buzypc.app.Data.AppSession.BuzyUserAppSession
+import io.buzypc.app.Data.User.BuzyUser
 
 /**
  * Loads the details of the currently logged-in user.

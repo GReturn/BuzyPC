@@ -12,7 +12,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import io.buzypc.app.R
-import io.buzypc.app.data.user.BuzyUserSettings
+import io.buzypc.app.Data.User.BuzyUserSettings
 import io.buzypc.app.ui.authentication.LogoutPromptActivity
 import io.buzypc.app.ui.navigation.viewmodel.StyleViewModel
 import io.buzypc.app.ui.utils.loadCurrentUserDetails

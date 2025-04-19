@@ -12,7 +12,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import io.buzypc.app.R
-import io.buzypc.app.data.appsession.BuzyUserAppSession
+import io.buzypc.app.Data.AppSession.BuzyUserAppSession
 
 class NewBuildFragment : Fragment() {
 

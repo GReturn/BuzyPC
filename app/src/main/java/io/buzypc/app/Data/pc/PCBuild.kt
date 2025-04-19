@@ -1,4 +1,4 @@
-package io.buzypc.app.data.pc
+package io.buzypc.app.Data.pc
 
 class PCBuild(
     var buildName: String,
