@@ -24,9 +24,9 @@
         tools:layout="@layout/fragment_new_build" />
     <fragment
         android:id="@+id/checklistFragment"
-        android:name="io.buzypc.app.UI.Navigation.Fragments.CheckList.ChecklistFragment"
+        android:name="io.buzypc.app.UI.Navigation.Fragments.BuildTracker.TrackerFragment"
         android:label="fragment_checklist"
-        tools:layout="@layout/fragment_checklist" />
+        tools:layout="@layout/fragment_tracker" />
 
     <fragment
         android:id="@+id/settingsFragment"

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".UI.Navigation.Fragments.BuildTracker.TrackerFragment"
+    android:backgroundTint="?android:attr/colorBackground"
+
+    android:id="@+id/fragment_checklist"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:orientation="vertical"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/build_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:background="?attr/colorControlNormal"
+            android:padding="@dimen/space_normal"
+            >
+
+            <TextView
+                android:id="@+id/textView_buildsHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_normal"
+
+                android:fontFamily="@font/ubuntu_bold"
+                android:text="My Build Tracker"
+                android:textSize="@dimen/font_title_large"
+                android:textColor="@color/bz_almostBlack"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/tvEmptyList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/space_small"
+
+                android:fontFamily="@font/ubuntu_medium"
+                android:visibility="invisible"
+                android:text="Not tracking any build. Track your favorite build now!"
+                android:textColor="@color/bz_almostBlack"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_buildsHeader"
+                />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycleView_builds"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:clipToPadding="false"
+                android:overScrollMode="never"
+                android:padding="@dimen/space_small"
+                app:layout_constraintEnd_toEndOf="parent"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:itemCount="4" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+
+
+</FrameLayout>
