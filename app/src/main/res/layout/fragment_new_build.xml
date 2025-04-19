@@ -55,7 +55,7 @@
             android:textAlignment="center"
             android:textSize="@dimen/font_normal"
             android:textColor="@color/bz_darkGray"
-            android:textColorHint="@color/bz_darkGray"
+            android:textColorHint="@color/bz_darkGray_semi_transparent"
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

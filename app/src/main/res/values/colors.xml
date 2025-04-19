@@ -22,6 +22,8 @@
     <color name="bz_warmYellow">#FFD862</color>
 
     <color name="bz_honeyYellow_semi_transparent">#A0FFFFFF</color>
+    <color name="bz_darkGray_semi_transparent">#80313638</color>
+
 </resources>
 
 <!--
