@@ -27,9 +27,6 @@
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".UI.PCBuildActivity"
-            android:exported="false" />
-        <activity
             android:name=".UI.Widget.BuildCard"
             android:exported="false" />
         <activity
