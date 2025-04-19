@@ -8,6 +8,5 @@ open class Component(
     val price: Double,
     val performanceScore: Float,
     val stores: List<Store>
-){
-}
+)
 
