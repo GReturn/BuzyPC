@@ -20,7 +20,7 @@
 
     </string-array>
 
-    <string-array name ="pc_budget">
+    <string-array name="pc_budget">
         <item>10000.00</item>
         <item>10000.00</item>
 

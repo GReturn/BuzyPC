@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:backgroundTint="@color/bz_deepCharcoal"
+    app:cardCornerRadius="10dp"
+    android:layout_marginHorizontal="40dp"
+    android:layout_marginTop="10dp"
+
+    >
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Compatibility Score"
+        android:textColor="@color/bz_honeyYellow"
+        android:fontFamily="@font/ubuntu_bold"
+        android:textSize="20sp"
+        android:layout_gravity="center_horizontal"
+        />
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            >
+            <include layout = "@layout/card_compat_cpu"/>
+            <include layout = "@layout/card_compat_gpu"/>
+            <include layout = "@layout/card_compat_psu"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            >
+            <include layout = "@layout/card_compat_ram"/>
+            <include layout = "@layout/card_compat_storage"/>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

@@ -1,44 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="150dp"
-    android:layout_height="100dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
     android:backgroundTint="@color/bz_deepCharcoal"
     app:cardCornerRadius="10dp">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:padding="16dp"
         >
-        <ImageView
-            android:id="@+id/imgPSU"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginHorizontal="10dp"
 
-            android:src="@drawable/psu_vector"
-            />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/imgCard"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:cardCornerRadius="5dp"
+            android:backgroundTint="@color/bz_honeyYellow"
+            >
+
+            <ImageView
+                android:id="@+id/imgGPU"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="fitXY"
+                android:layout_gravity="center"
+                android:src="@drawable/psu_vector"/>
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/tvPSU"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="PSU"
-            android:layout_marginTop="10dp"
-            android:layout_toEndOf="@id/imgPSU"
+            android:layout_marginStart="16dp"
             android:fontFamily="@font/ubuntu_bold"
+            android:text="PSU"
             android:textColor="@color/bz_honeyYellow"
-            />
+            android:textSize="15sp"
+            app:layout_constraintStart_toEndOf="@id/imgCard"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
-            android:id="@+id/tvPrice"
+            android:id="@+id/tvPSUName"
+            android:layout_width="154dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/ubuntu_medium"
+            android:maxLines="2"
+            android:text="{psu name}"
+            android:textColor="@color/bz_honeyYellow"
+            android:textSize="15sp"
+            app:layout_constraintStart_toEndOf="@id/imgCard"
+            app:layout_constraintTop_toBottomOf="@id/tvPSU" />
+
+        <TextView
+            android:id="@+id/tvPricePSU"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="$price"
-            android:layout_toEndOf="@id/imgPSU"
-            android:layout_below="@id/tvPSU"
+            android:layout_marginEnd="16dp"
             android:fontFamily="@font/ubuntu_bold"
+            android:text="PHP $price"
+            android:textAlignment="center"
             android:textColor="@color/bz_honeyYellow"
-            />
-    </RelativeLayout>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btnSeeStoresPSU"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/btnSeeStoresPSU"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:background="@drawable/btn_see_stores"
+            android:text="See Stores"
+            android:textColor="@color/bz_deepCharcoal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.cardview.widget.CardView>

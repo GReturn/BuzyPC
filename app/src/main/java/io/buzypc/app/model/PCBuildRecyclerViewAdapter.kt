@@ -1,6 +1,7 @@
 package io.buzypc.app.model
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +10,10 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import io.buzypc.app.R
+import io.buzypc.app.data.appsession.BuzyUserAppSession
 import io.buzypc.app.data.pc.PCBuild
+import io.buzypc.app.ui.BuildSummaryActivity
+import io.buzypc.app.ui.NewBuildSummaryActivity
 
 class PCBuildRecyclerViewAdapter(
     var context: Context,
@@ -36,17 +40,27 @@ class PCBuildRecyclerViewAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (holder is ItemViewHolder) {
-            val pcBuild = pcBuilds[position-1]
-            // populate each item of PC build here with corresponding fields
-            holder.tvName.text = pcBuild.buildName
-            holder.tvBudget.text = "PHP " + pcBuild.buildBudget
+        when (holder) {
+            is ItemViewHolder -> {
+                // since position 0 is the add button, builds start at index 1
+                val build = pcBuilds[position - 1]
+                holder.tvName.text = build.buildName
+                holder.tvBudget.text = "PHP ${build.buildBudget}"
 
-            // TODO add onclick listener here
+                // 1) Click on the whole card → BuildSummaryActivity
+                holder.container.setOnClickListener {
+                    val appSession = (context.applicationContext as BuzyUserAppSession)
+                    appSession.buildName = build.buildName
 
-        } else if (holder is ImageViewHolder) {
-            holder.button.setOnClickListener {
-                onNavigateToNewBuild()
+                    val intent = Intent(context, BuildSummaryActivity::class.java)
+                    context.startActivity(intent)
+                }
+            }
+
+            is ImageViewHolder -> {
+                holder.button.setOnClickListener {
+                    onNavigateToNewBuild()
+                }
             }
         }
     }

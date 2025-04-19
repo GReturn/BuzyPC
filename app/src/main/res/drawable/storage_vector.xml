@@ -5,7 +5,7 @@
     android:height="3304dp"
     android:viewportWidth="2578"
     android:viewportHeight="3304"
-    android:tint="?attr/colorPrimary"
+    android:tint="@color/bz_deepCharcoal"
     >
     <group android:name="wrapper">
         <clip-path

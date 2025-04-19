@@ -5,7 +5,7 @@
     android:height="16dp"
     android:viewportWidth="16"
     android:viewportHeight="16"
-    android:tint="?attr/colorPrimary">
+    android:tint="@color/bz_deepCharcoal"
     >
     <path
         android:name="path"
