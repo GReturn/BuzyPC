@@ -198,7 +198,7 @@ class AnimatedBuildListLayoutManager(
         getChildAt(0)?.startAnimation(set)
 
         // for the rest
-        for(i in 1 until childCount - 1) {
+        for(i in 1 until childCount) {
             set = AnimationUtils.loadAnimation(context, animationId)
             set.startOffset = startOffset
             startOffset += ANIMATION_OFFSET
