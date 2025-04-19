@@ -41,11 +41,24 @@ android {
 }
 
 dependencies {
+    // Splash Screen
     implementation("androidx.core:core-splashscreen:1.0.1")
 
+    // ViewModel
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.livedata.ktx)
+
+    // Fragment
     implementation(libs.androidx.fragment.ktx)
+
+    // Card View
+    implementation(libs.androidx.cardview)
+
+    // Radar Chart
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
+    // JSON Serialization
+    implementation("com.google.code.gson:gson:2.13.0")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -55,9 +68,7 @@ dependencies {
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.animation.core.android)
-    implementation(libs.androidx.cardview)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
 }

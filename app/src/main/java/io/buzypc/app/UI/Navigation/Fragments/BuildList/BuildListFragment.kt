@@ -10,11 +10,9 @@ import androidx.core.view.doOnLayout
 import androidx.recyclerview.widget.RecyclerView
 import io.buzypc.app.R
 import io.buzypc.app.Data.pc.PCBuild
-import io.buzypc.app.model.BuildListRecyclerViewAdapter
 import io.buzypc.app.UI.Utils.LayoutManagers.AnimatedGridLayoutManager
 import io.buzypc.app.UI.Navigation.BottomNavigationActivity
 import io.buzypc.app.UI.Utils.LayoutManagers.BuildListLayoutManager
-import io.buzypc.app.UI.Utils.LayoutManagers.BuildTrackerListLayoutManager
 import io.buzypc.app.UI.Utils.loadCurrentUserDetails
 
 class BuildListFragment : Fragment() {
@@ -39,7 +37,6 @@ class BuildListFragment : Fragment() {
         }
         recyclerView.adapter = adapter
         recyclerView.layoutManager = BuildListLayoutManager(requireContext(),1)
-
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {

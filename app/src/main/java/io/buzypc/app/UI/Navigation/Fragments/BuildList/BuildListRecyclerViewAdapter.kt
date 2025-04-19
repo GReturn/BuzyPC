@@ -1,4 +1,4 @@
-package io.buzypc.app.model
+package io.buzypc.app.UI.Navigation.Fragments.BuildList
 
 import android.content.Context
 import android.content.Intent
@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import io.buzypc.app.R
 import io.buzypc.app.Data.AppSession.BuzyUserAppSession
 import io.buzypc.app.Data.pc.PCBuild
-import io.buzypc.app.UI.Navigation.Fragments.BuildList.BuildSummaryActivity
 
 class BuildListRecyclerViewAdapter(
     var context: Context,

@@ -12,7 +12,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import io.buzypc.app.R
-import io.buzypc.app.Data.User.BuzyUserSettings
+import io.buzypc.app.Data.SharedPrefManagers.BuzyUserSettingsManager
 import io.buzypc.app.UI.Authentication.LogoutPromptActivity
 import io.buzypc.app.UI.Navigation.ViewModels.StyleViewModel
 import io.buzypc.app.UI.Utils.loadCurrentUserDetails
@@ -40,7 +40,7 @@ class SettingsFragment : Fragment() {
         cardLightMode.strokeWidth = 0
         cardDarkMode.strokeWidth = 0
 
-        val userSettings = BuzyUserSettings(requireContext())
+        val userSettings = BuzyUserSettingsManager(requireContext())
 
         // Check current theme and update radio buttons + highlights
         if (userSettings.getTheme() == "dark") {

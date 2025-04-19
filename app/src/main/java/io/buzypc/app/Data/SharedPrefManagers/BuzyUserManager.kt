@@ -1,19 +1,20 @@
-package io.buzypc.app.Data.User
+package io.buzypc.app.Data.SharedPrefManagers
 
 import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import io.buzypc.app.Data.AppSession.BuzyUserAppSession
+import io.buzypc.app.Data.SharedPrefManagers.Util.hashPassword
 import java.io.File
 import java.io.FileOutputStream
-import java.security.MessageDigest
 
-class BuzyUser(private val context: Context) {
-    var buildNameList = ArrayList<String>()
-    var buildBudgetList = ArrayList<String>()
+class BuzyUserManager(private val context: Context) {
+//    var buildNameList = ArrayList<String>()
+//    var buildBudgetList = ArrayList<String>()
 
     private lateinit var sharedPreferences: SharedPreferences
+    private val SHARED_PREF_FILENAME_TEMPLATE = "buzy-user-secrets_"
 
     init {
         loadUser()
@@ -21,24 +22,8 @@ class BuzyUser(private val context: Context) {
     // region User Profile Authentication functions
 
     fun registerUser(username: String, email: String, password: String) {
-        sharedPreferences = context.getSharedPreferences("buzy-user-secrets_${username}", Context.MODE_PRIVATE)
-        saveProfile(username, email, password)
-        sharedPreferences.edit().putBoolean("isLoggedIn", true).apply()
-    }
+        sharedPreferences = context.getSharedPreferences("${SHARED_PREF_FILENAME_TEMPLATE}${username}", Context.MODE_PRIVATE)
 
-    /**
-     * For first time registration;
-     * Saves user profile information (username, email, and a hashed password) to shared preferences.
-     *
-     * This function takes the user's username, email, and password as input. It then hashes the
-     * password for security before storing it. The username, email, and the hashed password are
-     * stored persistently in the application's shared preferences.
-     *
-     * @param username The user's username.
-     * @param email The user's email address.
-     * @param password The user's password (will be hashed before storage).
-     */
-    private fun saveProfile(username: String, email: String, password: String) {
         val hashedPassword = hashPassword(password)
         sharedPreferences.edit()
             .putString("username", username)
@@ -83,7 +68,7 @@ class BuzyUser(private val context: Context) {
      * ```
      */
     fun loadUser(username: String) {
-        sharedPreferences = context.getSharedPreferences("buzy-user-secrets_${username}", Context.MODE_PRIVATE)
+        sharedPreferences = context.getSharedPreferences("${SHARED_PREF_FILENAME_TEMPLATE}${username}", Context.MODE_PRIVATE)
     }
 
     /**
@@ -105,9 +90,9 @@ class BuzyUser(private val context: Context) {
      * @see Context.getSharedPreferences
      * @see Context.MODE_PRIVATE
      */
-    fun loadUser() {
+    private fun loadUser() {
         val username = BuzyUserAppSession().username
-        sharedPreferences = context.getSharedPreferences("buzy-user-secrets_${username}", Context.MODE_PRIVATE)
+        sharedPreferences = context.getSharedPreferences("${SHARED_PREF_FILENAME_TEMPLATE}${username}", Context.MODE_PRIVATE)
     }
 
     // endregion
@@ -120,13 +105,9 @@ class BuzyUser(private val context: Context) {
 
     fun getEmail(): String? = sharedPreferences.getString("email", null)
 
-    fun getContactNumber(): String? = sharedPreferences.getString("contactNumber", null)
-
     fun setUsername(newName: String) = sharedPreferences.edit().putString("username", newName).apply()
 
     fun setEmail(newEmail: String) = sharedPreferences.edit().putString("email", newEmail).apply()
-
-    fun setContactNumber(newContactNumber: String) = sharedPreferences.edit().putString("contactNumber", newContactNumber).apply()
 
     fun setPassword(newPassword: String) = sharedPreferences.edit().putString("password", hashPassword(newPassword)).apply()
 
@@ -172,44 +153,5 @@ class BuzyUser(private val context: Context) {
     fun getImageFromInternalStorage(): Bitmap? {
         val filename = sharedPreferences.getString("profile_pic", null)
         return filename?.let { BitmapFactory.decodeFile(it) }
-    }
-
-    private fun hashPassword(password: String) : String {
-        // Message Digest: https://www.geeksforgeeks.org/message-digest-in-information-security/
-        // List of algorithms: https://developer.android.com/reference/java/security/MessageDigest
-        val bytes = MessageDigest.getInstance("SHA-256").digest(password.toByteArray())
-        return bytes.joinToString("") { "%02x".format(it) }
-    }
-
-   // TODO: Temporary; we should store build information as a JSON or XML string
-
-    fun saveBuilds() {
-        sharedPreferences.edit()
-            .putString("buildNameList", buildNameList.joinToString(separator = ","))
-            .putString("buildBudgetList", buildBudgetList.joinToString(separator = ","))
-            .apply()
-    }
-
-    fun retrieveBuilds() {
-        val savedNames = sharedPreferences.getString("buildNameList", "") ?: ""
-        val savedBudgets = sharedPreferences.getString("buildBudgetList", "") ?: ""
-        buildNameList.clear()
-        buildBudgetList.clear()
-        if (savedNames.isNotEmpty()) {
-            buildNameList.addAll(savedNames.split(","))
-        }
-        if (savedBudgets.isNotEmpty()) {
-            buildBudgetList.addAll(savedBudgets.split(","))
-        }
-    }
-
-    fun saveComponentStatus(build: String, componentKey: String, isChecked: Boolean) {
-        sharedPreferences.edit()
-            .putBoolean("$build component_$componentKey", isChecked)
-            .apply()
-    }
-
-    fun getComponentStatus(build: String,componentKey: String): Boolean {
-        return sharedPreferences.getBoolean("$build component_$componentKey", false)
     }
 }

@@ -11,6 +11,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import io.buzypc.app.Data.SharedPrefManagers.BuzyAuthenticator
+import io.buzypc.app.Data.SharedPrefManagers.UserRegistryManager
 import io.buzypc.app.R
 import io.buzypc.app.UI.Utils.loadCurrentUserDetails
 
@@ -51,6 +53,8 @@ class RegisterActivity : AppCompatActivity() {
         })
 
         btnRegister.setOnClickListener {
+            val buzyAuthenticator = BuzyAuthenticator(this)
+
             val nameRegex = "^[A-Za-z ]{3,10}$".toRegex()
             val emailPattern = android.util.Patterns.EMAIL_ADDRESS
             val passwordMinLength = 6
@@ -59,6 +63,10 @@ class RegisterActivity : AppCompatActivity() {
             if(edittextUsername.text.isNullOrEmpty() || edittextEmail.text.isNullOrEmpty() ||
                 edittextPassword.text.isNullOrEmpty() || edittextConfirmPassword.text.isNullOrEmpty()){
                 Toast.makeText(this,"Fill out all fields", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+            else if(buzyAuthenticator.isUserRegistered(edittextUsername.text.toString())) {
+                Toast.makeText(this,"This username is already taken", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
             else if(!edittextUsername.text.matches(nameRegex)){
@@ -81,13 +89,11 @@ class RegisterActivity : AppCompatActivity() {
             }
 
             else{
-                val userDetails = loadCurrentUserDetails(this)
+                val username = edittextUsername.text.toString()
+                val email = edittextEmail.text.toString()
+                val password = edittextPassword.text.toString()
+                buzyAuthenticator.registerUser(username, email, password)
 
-                userDetails.registerUser(
-                        edittextUsername.text.toString(),
-                        edittextEmail.text.toString(),
-                        edittextPassword.text.toString()
-                )
                 Toast.makeText(this, "Account successfully created!", Toast.LENGTH_LONG).show()
                 intent = Intent(this, LoginActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

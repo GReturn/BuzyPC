@@ -14,10 +14,10 @@ import io.buzypc.app.UI.Navigation.BottomNavigationActivity
 import io.buzypc.app.UI.Utils.LayoutManagers.AnimatedGridLayoutManager
 import io.buzypc.app.UI.Utils.LayoutManagers.BuildTrackerListLayoutManager
 import io.buzypc.app.UI.Utils.loadCurrentUserDetails
-import io.buzypc.app.model.BuildListRecyclerViewAdapter
+import io.buzypc.app.UI.Navigation.Fragments.BuildList.BuildListRecyclerViewAdapter
 
 class TrackerFragment : Fragment() {
-    val pcBuildList = ArrayList<PCBuild>()
+    val pcBuildList = ArrayList<io.buzypc.app.Data.BuildData.PCBuild>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -31,14 +31,13 @@ class TrackerFragment : Fragment() {
             recyclerView.visibility = View.VISIBLE
         }
 
-        val adapter = BuildListRecyclerViewAdapter(requireContext(), pcBuildList) {
+        val adapter = BuildTrackerRecyclerViewAdapter(requireContext(), pcBuildList) {
             // we handle the click event here when user clicks on the plus button inside the buildlist fragment
             val activity = requireActivity() as BottomNavigationActivity
             activity.handleNavigationToOtherFragments(R.id.newBuildFragment)
         }
         recyclerView.adapter = adapter
         recyclerView.layoutManager = BuildTrackerListLayoutManager(requireContext(),1)
-
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {

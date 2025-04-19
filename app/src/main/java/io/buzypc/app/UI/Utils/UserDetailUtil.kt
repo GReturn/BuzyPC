@@ -2,7 +2,7 @@ package io.buzypc.app.UI.Utils
 
 import android.content.Context
 import io.buzypc.app.Data.AppSession.BuzyUserAppSession
-import io.buzypc.app.Data.User.BuzyUser
+import io.buzypc.app.Data.SharedPrefManagers.BuzyUserManager
 
 /**
  * Loads the details of the currently logged-in user.
@@ -13,16 +13,16 @@ import io.buzypc.app.Data.User.BuzyUser
  *
  * @param context The application context. This is used to access the application's session
  *                and for initializing the BuzyUser object.
- * @return A [BuzyUser] object containing the details of the currently logged-in user.
+ * @return A [BuzyUserManager] object containing the details of the currently logged-in user.
  *         The BuzyUser object will have its properties populated based on the user data
  *         associated with the retrieved username.
  * @throws IllegalStateException if the application context is not an instance of BuzyUserAppSession.
  *         This indicates an error in application setup.
- * @see BuzyUser
+ * @see BuzyUserManager
  * @see BuzyUserAppSession
  */
-fun loadCurrentUserDetails(context: Context): BuzyUser {
-    val userDetails = BuzyUser(context)
+fun loadCurrentUserDetails(context: Context): BuzyUserManager {
+    val userDetails = BuzyUserManager(context)
     userDetails.loadUser((context.applicationContext as BuzyUserAppSession).username)
     return userDetails
 }

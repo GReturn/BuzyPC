@@ -13,10 +13,14 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import io.buzypc.app.R
 import io.buzypc.app.Data.AppSession.BuzyUserAppSession
-import io.buzypc.app.Data.User.BuzyUser
-import io.buzypc.app.Data.User.BuzyUserSettings
+import io.buzypc.app.Data.SharedPrefManagers.BuzyAuthenticator
+import io.buzypc.app.Data.SharedPrefManagers.SessionManager
+import io.buzypc.app.Data.SharedPrefManagers.BuzyUserManager
+import io.buzypc.app.Data.SharedPrefManagers.BuzyUserSettingsManager
+import io.buzypc.app.Data.SharedPrefManagers.UserRegistryManager
 import io.buzypc.app.UI.Navigation.BottomNavigationActivity
 import io.buzypc.app.UI.Utils.loadCurrentUserDetails
+import java.net.Authenticator
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,16 +34,10 @@ class LoginActivity : AppCompatActivity() {
             insets
         }
 
-        val userSettings = BuzyUserSettings(this)
-        setAppTheme(userSettings)
+        autoLogin()
+        setAppTheme()
 
-        // Attempt auto-login if a last user exists
-        val lastUser = userSettings.getLastUser()
-        if (lastUser != null) {
-            (application as BuzyUserAppSession).username = lastUser
-            val userDetails = loadCurrentUserDetails(this)
-            handleStartup(userDetails)
-        }
+        val buzyAuthenticator = BuzyAuthenticator(this)
 
         val edittextUsername = findViewById<EditText>(R.id.username)
         val edittextPassword = findViewById<EditText>(R.id.password)
@@ -59,11 +57,7 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Create BuzyUser using the entered username.
-            val userDetails = loadCurrentUserDetails(this)
-            userDetails.loadUser(enteredUsername)
-
-            if (!userDetails.isUserRegistered(enteredUsername)) {
+            if(!buzyAuthenticator.isUserRegistered(enteredUsername)) {
                 android.app.AlertDialog.Builder(this)
                     .setIcon(R.drawable.mascot_buzybee)
                     .setTitle("Profile Not Found")
@@ -77,14 +71,18 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            if (!userDetails.validateLogin(enteredUsername, enteredPassword)) {
+            if (!buzyAuthenticator.validateLogin(enteredUsername, enteredPassword)) {
                 Toast.makeText(this, "Invalid credentials", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             } else {
                 (application as BuzyUserAppSession).username = enteredUsername
-                // Save the last logged in user so that auto-login works next time.
-                userSettings.setLastUser(enteredUsername)
-                setAppTheme(userSettings)
+
+                buzyAuthenticator.loginUser(enteredUsername)
+
+                val userDetails = loadCurrentUserDetails(this)
+                handleStartup(userDetails)
+
+                setAppTheme()
 
                 val intent = Intent(this, BottomNavigationActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -101,6 +99,15 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    private fun autoLogin() {
+        val sessionManager = SessionManager(this)
+        if(sessionManager.isLoggedIn()) {
+            (application as BuzyUserAppSession).username = sessionManager.getUsername().toString()
+            val userDetails = loadCurrentUserDetails(this)
+            handleStartup(userDetails)
+        }
+    }
+
     /**
      * Handles the application's startup logic based on user details and settings.
      *
@@ -112,7 +119,7 @@ class LoginActivity : AppCompatActivity() {
      * @param userDetails An object containing details about the user, including their login status.
      * @param userSettings An object containing the user's application settings, such as the preferred theme.
      */
-    private fun handleStartup(userDetails: BuzyUser) {
+    private fun handleStartup(userDetails: BuzyUserManager) {
         if (userDetails.isLoggedIn()) {
             val intent = Intent(this, BottomNavigationActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -139,7 +146,8 @@ class LoginActivity : AppCompatActivity() {
      * setAppTheme(userSettings)
      * ```
      */
-    private fun setAppTheme(userSettings: BuzyUserSettings) {
+    private fun setAppTheme() {
+        val userSettings = BuzyUserSettingsManager(this)
         val theme = userSettings.getTheme()
         if (theme == null || theme == "light") {
             userSettings.setTheme("light")
