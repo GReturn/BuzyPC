@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.navigation.fragments.LandingPageFragment"
+    tools:context=".UI.Navigation.Fragments.LandingPageFragment"
     android:id="@+id/fragment_landing_page"
     android:backgroundTint="?android:attr/colorBackground"
     >

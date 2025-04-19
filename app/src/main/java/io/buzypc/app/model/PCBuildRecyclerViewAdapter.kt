@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import io.buzypc.app.R
 import io.buzypc.app.Data.AppSession.BuzyUserAppSession
 import io.buzypc.app.Data.pc.PCBuild
-import io.buzypc.app.ui.navigation.fragments.buildlist.BuildSummaryActivity
+import io.buzypc.app.UI.Navigation.Fragments.BuildList.BuildSummaryActivity
 
 class PCBuildRecyclerViewAdapter(
     var context: Context,

@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    tools:context=".ui.PCBuildActivity"
+    tools:context=".UI.PCBuildActivity"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:fillViewport="true">

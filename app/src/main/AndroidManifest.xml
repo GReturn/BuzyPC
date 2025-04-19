@@ -14,35 +14,35 @@
         android:theme="@style/Theme.BuzyPC"
         tools:targetApi="31">
         <activity
-            android:name=".ui.navigation.fragments.buildlist.BuyComponentActivity"
+            android:name=".UI.Navigation.Fragments.BuildList.BuyComponentActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.navigation.fragments.newbuild.NewBuildSummaryActivity"
+            android:name=".UI.Navigation.Fragments.NewBuild.NewBuildSummaryActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.navigation.fragments.buildlist.BuildSummaryActivity"
+            android:name=".UI.Navigation.Fragments.BuildList.BuildSummaryActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.navigation.BottomNavigationActivity"
+            android:name=".UI.Navigation.BottomNavigationActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".ui.PCBuildActivity"
+            android:name=".UI.PCBuildActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.widget.BuildCard"
+            android:name=".UI.Widget.BuildCard"
             android:exported="false" />
         <activity
-            android:name=".ui.navigation.fragments.settings.AboutDevelopersActivity"
+            android:name=".UI.Navigation.Fragments.Settings.AboutDevelopersActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.authentication.LogoutPromptActivity"
+            android:name=".UI.Authentication.LogoutPromptActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.authentication.RegisterActivity"
+            android:name=".UI.Authentication.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.authentication.LoginActivity"
+            android:name=".UI.Authentication.LoginActivity"
             android:exported="true"
             android:theme="@style/Theme.AnimatedSplash.MySplash"
             android:windowSoftInputMode="adjustPan">
@@ -52,7 +52,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.navigation.fragments.settings.ProfileViewActivity" />
+        <activity android:name=".UI.Navigation.Fragments.Settings.ProfileViewActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

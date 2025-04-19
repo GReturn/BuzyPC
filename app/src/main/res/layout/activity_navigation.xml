@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/transparent"
-    tools:context=".ui.navigation.BottomNavigationActivity"
+    tools:context=".UI.Navigation.BottomNavigationActivity"
     >
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -41,7 +41,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <io.buzypc.app.ui.widget.NewBuildCircleRevealView
+    <io.buzypc.app.UI.Widget.NewBuildCircleRevealView
         android:id="@+id/circleRevealView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

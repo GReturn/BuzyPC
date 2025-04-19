@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
 
-    tools:context=".ui.navigation.fragments.checklist.ChecklistFragment"
+    tools:context=".UI.Navigation.Fragments.CheckList.ChecklistFragment"
     android:backgroundTint="?android:attr/colorBackground"
 
     android:id="@+id/fragment_checklist"
@@ -17,7 +17,7 @@
         android:id="@+id/build_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".ui.fragments.BuildListFragment"
+        tools:context=".UI.fragments.BuildListFragment"
         >
 
         <TextView
