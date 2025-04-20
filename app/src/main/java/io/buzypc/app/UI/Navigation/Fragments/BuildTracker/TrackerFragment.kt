@@ -8,14 +8,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.view.doOnLayout
 import androidx.recyclerview.widget.RecyclerView
+import io.buzypc.app.Data.BuildData.PCBuild
 import io.buzypc.app.R
-import io.buzypc.app.UI.Navigation.BottomNavigationActivity
 import io.buzypc.app.UI.Utils.LayoutManagers.AnimatedGridLayoutManager
 import io.buzypc.app.UI.Utils.LayoutManagers.BuildTrackerListLayoutManager
 import io.buzypc.app.UI.Utils.loadBuildList
 
 class TrackerFragment : Fragment() {
-    val pcBuildList = ArrayList<io.buzypc.app.Data.BuildData.PCBuild>()
+    val pcBuildList = ArrayList<PCBuild>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -55,7 +55,9 @@ class TrackerFragment : Fragment() {
         val buildList = loadBuildList(requireContext())
         val size = buildList.size
         for (i in size-1 downTo 0) {
-            pcBuildList.add(buildList[i])
+            if(buildList[i].isTracked) {
+                pcBuildList.add(buildList[i])
+            }
         }
     }
 }
