@@ -73,7 +73,7 @@ class BuildTrackerRecyclerViewAdapter(
 
             CustomActionDialogView(context, DialogType.DESTRUCTION)
                 .setTitle("Remove From Checklist")
-                .setDescription("Are you sure you want to remove this build from your checklist?")
+                .setDescription("This build will be removed from your checklist, but you can add it back later.")
                 .setOnCancelClickListener {
 
                 }

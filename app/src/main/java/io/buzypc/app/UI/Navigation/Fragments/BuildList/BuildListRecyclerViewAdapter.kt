@@ -74,7 +74,7 @@ class BuildListRecyclerViewAdapter(
 
                     CustomActionDialogView(context, DialogType.DESTRUCTION)
                         .setTitle("Remove Build")
-                        .setDescription("Are you sure you want to delete this build? This will permanently remove the build from your list.")
+                        .setDescription("Are you sure you want to delete this build? This action cannot be undone.")
                         .setOnCancelClickListener {
 
                         }
@@ -113,7 +113,7 @@ class BuildListRecyclerViewAdapter(
                     if(build.isTracked) {
                         CustomActionDialogView(context, DialogType.DESTRUCTION)
                             .setTitle("Remove From Checklist")
-                            .setDescription("Are you sure you want to remove this build from your checklist?")
+                            .setDescription("This build will be removed from your checklist, but you can add it back later.")
                             .setOnCancelClickListener { }
                             .setOnConfirmClickListener {
                                 build.isTracked = false
@@ -132,7 +132,7 @@ class BuildListRecyclerViewAdapter(
                     else {
                         CustomActionDialogView(context, DialogType.CONFIRMATION)
                             .setTitle("Add to Checklist")
-                            .setDescription("Are you sure you want to add this item to your checklist?")
+                            .setDescription("Adding to checklist will help you track which components you’ve acquired so far in this build. Proceed?")
                             .setOnCancelClickListener { }
                             .setOnConfirmClickListener {
                                 build.isTracked = true

@@ -27,7 +27,7 @@
         android:layout_marginStart="20dp"
 
         android:gravity="center"
-        android:text="Remove From Checklist"
+        android:text="Destruction"
         android:textColor="?attr/colorOnSurface"
         android:textSize="@dimen/font_larger"
         android:textStyle="bold"
@@ -44,7 +44,7 @@
         android:layout_marginTop="@dimen/space_normal"
 
         android:fontFamily="@font/ubuntu_medium"
-        android:text="Are you sure you want to remove this item from your checklist?"
+        android:text="Destruction Confirmation"
         android:textColor="?attr/colorOnSurface"
         android:textSize="@dimen/space_normal"
 
