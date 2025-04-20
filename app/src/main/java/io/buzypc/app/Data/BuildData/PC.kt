@@ -14,4 +14,24 @@ data class PC(
     val storageDevice: StorageDeviceComponent,
     val ram: RAMComponent,
     val psu: PSUComponent
-)
+) {
+    fun getPurchasedComponentCount(): Pair<Int,Int> {
+        val components = listOf(
+            motherboard,
+            cpu,
+            gpu,
+            storageDevice,
+            ram,
+            psu
+        )
+        var ctr = 0
+        var total = 0
+        for (component in components) {
+            if (component.isBought) {
+                ctr++
+            }
+            total++
+        }
+        return Pair(ctr, total)
+    }
+}

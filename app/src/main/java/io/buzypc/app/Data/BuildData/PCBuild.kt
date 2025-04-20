@@ -13,4 +13,8 @@ data class PCBuild(
     val isTracked: Boolean = false,
     val isArchived: Boolean = false,
     val isDeleted: Boolean = false
-)
+) {
+    fun getProgress(): Pair<Int,Int> {
+        return pc.getPurchasedComponentCount()
+    }
+}
