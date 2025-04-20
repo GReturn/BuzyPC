@@ -46,8 +46,8 @@ class NewBuildFragment : Fragment() {
                 Toast.makeText(requireContext(), "Input your budget.", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
-            if(etBudgetInput.text.toString().toInt() < 20_000) {
-                Toast.makeText(requireContext(), "You can only place a budget of PHP 20,000 or above.", Toast.LENGTH_LONG).show()
+            if(etBudgetInput.text.toString().toInt() < 20_000 || etBudgetInput.text.toString().toInt() > 999_999) {
+                Toast.makeText(requireContext(), "You can only place a budget between PHP 20,000 and PHP 999,999.", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
             requireContext()
