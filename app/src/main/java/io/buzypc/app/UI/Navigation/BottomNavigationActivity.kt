@@ -19,6 +19,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.buzypc.app.R
 import io.buzypc.app.UI.Navigation.ViewModels.ListsInformationViewModel
 import io.buzypc.app.UI.Navigation.ViewModels.StyleViewModel
+import io.buzypc.app.UI.Utils.loadBuildList
 import io.buzypc.app.UI.Widget.NewBuildCircleRevealView
 import kotlin.math.hypot
 
@@ -44,17 +45,18 @@ class BottomNavigationActivity : AppCompatActivity() {
             }
         }
 
-        // TODO get the count content from shared pref; have to set up first tho
-        listInformationViewModel.setBuildCount(10)
-        listInformationViewModel.setChecklistItemCount(20)
-        listInformationViewModel.buildListCount.observe(this) { buildCount ->
-            // TODO (save/change the sharedpref list counter)
-        }
-        listInformationViewModel.checkListCount.observe(this) { checkCount ->
-            // TODO (save/change the sharedpref list counter)
-        }
-
+        initializeViewModel()
         setupBottomNavigation()
+    }
+
+    private fun initializeViewModel() {
+        val buildList = loadBuildList(this)
+        var trackingCtr = 0
+        for(i in 0 until  buildList.size) {
+            if(buildList[i].isTracked) ++trackingCtr
+        }
+        listInformationViewModel.setBuildCount(buildList.size)
+        listInformationViewModel.setChecklistItemCount(trackingCtr)
     }
 
     private fun setupBottomNavigation() {

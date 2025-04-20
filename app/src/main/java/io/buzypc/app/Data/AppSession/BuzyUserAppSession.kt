@@ -11,25 +11,31 @@ import io.buzypc.app.Data.BuildData.Components.PSUComponent
 import io.buzypc.app.Data.BuildData.Components.RAMComponent
 import io.buzypc.app.Data.BuildData.Components.StorageDeviceComponent
 import io.buzypc.app.Data.BuildData.PCBuild
+import io.buzypc.app.UI.Utils.loadBuildList
 
 class BuzyUserAppSession: Application() {
     var username: String = ""
     var theme: String = ""
 
-    // information for new build
+    // information for new build -- will be passed to the AI
     var buildName: String = ""
     var buildBudget: Double = 0.0
 
-    lateinit var buildList: ArrayList<PCBuild>
+//    lateinit var buildList: ArrayList<PCBuild>
     lateinit var toSaveBuild: PCBuild
     lateinit var selectedBuildInBuildList: PCBuild
     lateinit var selectedBuildInBuildTracker: PCBuild
 
     lateinit var component: Component
 
-    override fun onCreate() {
-        super.onCreate()
-    }
+//    fun loadBuildList() {
+//        buildList = loadBuildList(this)
+//    }
+//
+//    fun getBuildList(): ArrayList<PCBuild> {
+//        return buildList
+//    }
+
     val pc = PC(
         motherboard = MotherboardComponent(
             "Z690",

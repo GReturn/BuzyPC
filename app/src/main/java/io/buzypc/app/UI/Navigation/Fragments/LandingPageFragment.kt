@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.button.MaterialButton
 import io.buzypc.app.R
@@ -32,14 +33,29 @@ import io.buzypc.app.UI.Utils.loadCurrentUserDetails
         val txtCurrentChecklist = view.findViewById<TextView>(R.id.textview_dynamic_checklist_list_counter)
 
         txtHelloUser.text = getString(R.string.hello_user, userDetails.getUsername())
-        txtCurrentBuildList.text = getString(
-            R.string.landingpage_build_count,
-            listsInformationViewModel.buildListCount.value.toString()
-        )
-        txtCurrentChecklist.text = getString(
-            R.string.landingpage_checklist_count,
-            listsInformationViewModel.checkListCount.value.toString()
-        )
+
+        listsInformationViewModel.buildListCount.observe(requireActivity()) { buildCount ->
+            Toast.makeText(requireContext(), "Build Count: $buildCount", Toast.LENGTH_SHORT).show()
+            txtCurrentBuildList.text = getString(
+                R.string.landingpage_build_count,
+                buildCount.toString()
+            )
+        }
+        listsInformationViewModel.checkListCount.observe(requireActivity()) { checkCount ->
+            Toast.makeText(requireContext(), "Check Count: $checkCount", Toast.LENGTH_SHORT).show()
+            txtCurrentChecklist.text = getString(
+                R.string.landingpage_checklist_count,
+                checkCount.toString()
+            )
+        }
+//        txtCurrentBuildList.text = getString(
+//            R.string.landingpage_build_count,
+//            listsInformationViewModel.buildListCount.value.toString()
+//        )
+//        txtCurrentChecklist.text = getString(
+//            R.string.landingpage_checklist_count,
+//            listsInformationViewModel.checkListCount.value.toString()
+//        )
 
         val imageProfilePicture = view.findViewById<ImageView>(R.id.image_landingpage_profile_pic)
         val imageBitmap = userDetails.getImageFromInternalStorage()

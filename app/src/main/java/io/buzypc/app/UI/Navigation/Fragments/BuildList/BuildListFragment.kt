@@ -7,11 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.view.doOnLayout
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.RecyclerView
+import io.buzypc.app.Data.AppSession.BuzyUserAppSession
 import io.buzypc.app.Data.BuildData.PCBuild
 import io.buzypc.app.R
 import io.buzypc.app.UI.Utils.LayoutManagers.AnimatedGridLayoutManager
 import io.buzypc.app.UI.Navigation.BottomNavigationActivity
+import io.buzypc.app.UI.Navigation.ViewModels.ListsInformationViewModel
 import io.buzypc.app.UI.Utils.LayoutManagers.BuildListLayoutManager
 import io.buzypc.app.UI.Utils.loadBuildList
 
@@ -23,6 +26,7 @@ class BuildListFragment : Fragment() {
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycleView_builds)
         val tvEmptyList = view.findViewById<TextView>(R.id.tvEmptyList)
+
         setPCModelList()
 
         if(pcBuildList.isEmpty()){
@@ -64,5 +68,4 @@ class BuildListFragment : Fragment() {
             pcBuildList.add(buildList[i])
         }
     }
-
 }

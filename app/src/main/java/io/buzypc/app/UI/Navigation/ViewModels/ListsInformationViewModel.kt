@@ -2,6 +2,7 @@ package io.buzypc.app.UI.Navigation.ViewModels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import io.buzypc.app.Data.BuildData.PCBuild
 
 // TODO (when we finally integrate and finish all the list views)
 
