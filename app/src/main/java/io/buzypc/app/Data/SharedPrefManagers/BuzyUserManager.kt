@@ -10,9 +10,6 @@ import java.io.File
 import java.io.FileOutputStream
 
 class BuzyUserManager(private val context: Context) {
-//    var buildNameList = ArrayList<String>()
-//    var buildBudgetList = ArrayList<String>()
-
     private lateinit var sharedPreferences: SharedPreferences
     private val SHARED_PREF_FILENAME_TEMPLATE = "buzy-user-secrets_"
 
