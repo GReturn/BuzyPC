@@ -188,5 +188,23 @@ abstract class AnimatedGridLayoutManager(
 
     fun animateItemsOut() = animate(R.anim.list_item_animation_fade_out)
 
+    /**
+     * Initiates an animation specified by the given animation resource ID.
+     *
+     * This function triggers an animation defined in the application's animation resources.
+     * The animation can be used for various visual effects, such as transitions, fade-ins,
+     * fade-outs, rotations, and other transformations.
+     *
+     * @param animationId The resource ID of the animation to play. This should be a valid
+     *                    animation resource defined in the `res/anim` directory.
+     *                    The ID is annotated with `@AnimRes` to indicate that it must
+     *                    refer to an animation resource.
+     *
+     * @throws Resources.NotFoundException If the resource specified by `animationId`
+     *                                       cannot be found.
+     *
+     * @see androidx.annotation.AnimRes
+     * @see android.view.animation.Animation
+     */
     abstract fun animate(@AnimRes animationId: Int)
 }
