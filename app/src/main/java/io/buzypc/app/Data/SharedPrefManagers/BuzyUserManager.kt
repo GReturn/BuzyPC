@@ -94,19 +94,11 @@ class BuzyUserManager(private val context: Context) {
 
     // endregion
 
-    fun isUserRegistered(username: String): Boolean = username == getUsername()
-
-    fun isLoggedIn(): Boolean = sharedPreferences.getBoolean("isLoggedIn", false)
-
     fun getUsername(): String? = sharedPreferences.getString("username", null)
 
     fun getEmail(): String? = sharedPreferences.getString("email", null)
 
     fun getHashedPassword() : String? = sharedPreferences.getString("password", null)
-
-    fun setUsername(newName: String) = sharedPreferences.edit().putString("username", newName).apply()
-
-    fun setEmail(newEmail: String) = sharedPreferences.edit().putString("email", newEmail).apply()
 
     fun setPassword(newPassword: String) = sharedPreferences.edit().putString("password", hashPassword(newPassword)).apply()
 
