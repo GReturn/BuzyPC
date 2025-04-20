@@ -135,7 +135,7 @@ class ProfileViewActivity : AppCompatActivity() {
      *
      */
     private fun showChangePasswordDialog() {
-        val dialogView = LayoutInflater.from(this).inflate(R.layout.profile_view_dialog_change_password, null)
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_profile_view_change_password, null)
         val currentPasswordInput = dialogView.findViewById<TextInputEditText>(R.id.edittext_old_password)
         val newPasswordInput = dialogView.findViewById<TextInputEditText>(R.id.edittext_new_password)
         val confirmNewPasswordInput = dialogView.findViewById<TextInputEditText>(R.id.edittext_confirm_password)

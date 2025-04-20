@@ -25,6 +25,8 @@
     <color name="bz_honeyYellow_semi_transparent">#80E4B363</color>"
     <color name="bz_darkGray_semi_transparent">#80313638</color>
 
+    <color name="bz_destructive_red">#FFD44A4A</color>
+
 </resources>
 
 <!--
