@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.button.MaterialButton
 import io.buzypc.app.R
@@ -35,27 +34,17 @@ import io.buzypc.app.UI.Utils.loadCurrentUserDetails
         txtHelloUser.text = getString(R.string.hello_user, userDetails.getUsername())
 
         listsInformationViewModel.buildListCount.observe(requireActivity()) { buildCount ->
-            Toast.makeText(requireContext(), "Build Count: $buildCount", Toast.LENGTH_SHORT).show()
             txtCurrentBuildList.text = getString(
                 R.string.landingpage_build_count,
                 buildCount.toString()
             )
         }
         listsInformationViewModel.checkListCount.observe(requireActivity()) { checkCount ->
-            Toast.makeText(requireContext(), "Check Count: $checkCount", Toast.LENGTH_SHORT).show()
             txtCurrentChecklist.text = getString(
                 R.string.landingpage_checklist_count,
                 checkCount.toString()
             )
         }
-//        txtCurrentBuildList.text = getString(
-//            R.string.landingpage_build_count,
-//            listsInformationViewModel.buildListCount.value.toString()
-//        )
-//        txtCurrentChecklist.text = getString(
-//            R.string.landingpage_checklist_count,
-//            listsInformationViewModel.checkListCount.value.toString()
-//        )
 
         val imageProfilePicture = view.findViewById<ImageView>(R.id.image_landingpage_profile_pic)
         val imageBitmap = userDetails.getImageFromInternalStorage()
@@ -79,15 +68,10 @@ import io.buzypc.app.UI.Utils.loadCurrentUserDetails
         }
     }
 
-     // - LayoutInflater converts xml file into a View object that the fragment displays
-     // - 'container' is the parent view where this fragment’s UI will be placed, passing false as the third parameter because the system
-     //    will handle attaching the fragment to the container automatically.
-     // - savedInstanceState contains any previously saved state, restores them upon recreating (updating) the fragment.
-    override fun onCreateView(
+     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_landing_page, container, false)
     }
  }

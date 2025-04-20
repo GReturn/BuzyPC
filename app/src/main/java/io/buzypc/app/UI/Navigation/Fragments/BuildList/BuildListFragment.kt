@@ -20,6 +20,7 @@ import io.buzypc.app.UI.Utils.loadBuildList
 
 class BuildListFragment : Fragment() {
     val pcBuildList = ArrayList<PCBuild>()
+    private val listsInformationViewModel: ListsInformationViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -34,11 +35,18 @@ class BuildListFragment : Fragment() {
             recyclerView.visibility = View.VISIBLE
         }
 
-        val adapter = BuildListRecyclerViewAdapter(requireContext(), pcBuildList) {
+        val adapter = BuildListRecyclerViewAdapter(
+            requireContext(),
+            pcBuildList,
+            {
             // we handle the click event here when user clicks on the plus button inside the buildlist fragment
             val activity = requireActivity() as BottomNavigationActivity
             activity.handleNavigationToOtherFragments(R.id.newBuildFragment)
-        }
+        },
+            listsInformationViewModel
+        )
+
+
         recyclerView.adapter = adapter
         recyclerView.layoutManager = BuildListLayoutManager(requireContext(),1)
     }
@@ -65,7 +73,9 @@ class BuildListFragment : Fragment() {
 
         val size = buildList.size
         for (i in size-1 downTo 0) {
-            pcBuildList.add(buildList[i])
+            if(!buildList[i].isDeleted) {
+                pcBuildList.add(buildList[i])
+            }
         }
     }
 }

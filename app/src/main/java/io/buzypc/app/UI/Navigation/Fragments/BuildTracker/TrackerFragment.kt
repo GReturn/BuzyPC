@@ -7,15 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.view.doOnLayout
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.RecyclerView
 import io.buzypc.app.Data.BuildData.PCBuild
 import io.buzypc.app.R
+import io.buzypc.app.UI.Navigation.ViewModels.ListsInformationViewModel
 import io.buzypc.app.UI.Utils.LayoutManagers.AnimatedGridLayoutManager
 import io.buzypc.app.UI.Utils.LayoutManagers.BuildTrackerListLayoutManager
 import io.buzypc.app.UI.Utils.loadBuildList
 
 class TrackerFragment : Fragment() {
     val pcBuildList = ArrayList<PCBuild>()
+    private val listsInformationViewModel: ListsInformationViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -29,7 +32,11 @@ class TrackerFragment : Fragment() {
             recyclerView.visibility = View.VISIBLE
         }
 
-        val adapter = BuildTrackerRecyclerViewAdapter(requireContext(), pcBuildList)
+        val adapter = BuildTrackerRecyclerViewAdapter(
+            requireContext(),
+            pcBuildList,
+            listsInformationViewModel
+        )
         recyclerView.adapter = adapter
         recyclerView.layoutManager = BuildTrackerListLayoutManager(requireContext(),1)
     }
