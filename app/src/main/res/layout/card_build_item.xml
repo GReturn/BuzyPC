@@ -123,7 +123,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
 
-                    android:backgroundTint="@android:color/transparent"
+                    android:backgroundTint="?attr/colorControlNormal"
 
                     android:fontFamily="@font/ubuntu_bold"
                     android:text="Summary"
