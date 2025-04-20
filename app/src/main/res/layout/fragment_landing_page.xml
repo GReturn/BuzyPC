@@ -215,6 +215,9 @@
 
                         android:layout_weight="1"
 
+                        app:strokeColor="@color/bz_darkGray"
+                        app:strokeWidth="2dp"
+
                         android:backgroundTint="?attr/colorPrimary"
                         >
 
@@ -223,17 +226,15 @@
                             android:layout_height="match_parent"
                             android:orientation="vertical"
 
-                            android:paddingVertical="@dimen/space_xsmall"
-                            >
+                            android:paddingVertical="@dimen/space_xsmall">
 
                             <ImageView
                                 android:layout_width="@dimen/menu_icon_width"
                                 android:layout_height="@dimen/menu_icon_height"
-                                android:src="@drawable/nav_desktop_monitor"
-                                app:tint="@color/bz_darkGray"
-
                                 android:layout_gravity="center"
-                                />
+                                android:src="@drawable/nav_desktop_monitor"
+
+                                app:tint="@color/bz_darkGray" />
 
                             <TextView
                                 android:id="@+id/textview_dynamic_build_list_counter"
@@ -247,8 +248,7 @@
                                 android:text="@string/landingpage_build_count"
                                 android:textAlignment="center"
                                 android:textColor="@color/bz_darkGray"
-                                android:textSize="@dimen/font_larger"
-                                />
+                                android:textSize="@dimen/font_larger" />
 
                             <com.google.android.material.button.MaterialButton
                                 android:id="@+id/button_landing_view_builds"
@@ -261,8 +261,8 @@
                                 android:fontFamily="@font/ubuntu_bold"
                                 android:text="View Builds"
                                 android:textAlignment="center"
-                                android:textSize="@dimen/font_normal"
                                 android:textColor="?attr/colorPrimary"
+                                android:textSize="@dimen/font_normal"
 
                                 app:cornerRadius="5dp" />
 
@@ -280,6 +280,9 @@
                         android:layout_height="wrap_content"
 
                         android:layout_weight="1"
+
+                        app:strokeColor="@color/bz_darkGray"
+                        app:strokeWidth="2dp"
 
                         android:backgroundTint="?attr/colorPrimary">
 
