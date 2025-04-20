@@ -12,6 +12,7 @@ class BuzyUserBuildPrefManager(
 ) {
     private val prefs: SharedPreferences = context.getSharedPreferences("pc_build_prefs", Context.MODE_PRIVATE)
     private val gson = GsonBuilder()
+        .setPrettyPrinting()
         .registerTypeAdapter(ClosedFloatingPointRange::class.java, ClosedFloatingPointRangeAdapter())
         .create()
 
