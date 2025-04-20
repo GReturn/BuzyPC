@@ -16,7 +16,6 @@ import io.buzypc.app.UI.Navigation.Fragments.Shared.OnBuildListChangedListener
 import io.buzypc.app.UI.Navigation.ViewModels.ListsInformationViewModel
 import io.buzypc.app.UI.Utils.LayoutManagers.AnimatedGridLayoutManager
 import io.buzypc.app.UI.Utils.LayoutManagers.BuildTrackerListLayoutManager
-import io.buzypc.app.UI.Utils.loadBuildList
 
 class TrackerFragment : Fragment() {
     private lateinit var app: BuzyUserAppSession

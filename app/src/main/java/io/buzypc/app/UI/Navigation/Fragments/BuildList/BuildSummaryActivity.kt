@@ -10,7 +10,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import io.buzypc.app.R
 import io.buzypc.app.Data.AppSession.BuzyUserAppSession
-import io.buzypc.app.UI.Utils.loadCurrentUserDetails
 import io.buzypc.app.UI.Widget.RadarChartViewFragment
 
 class BuildSummaryActivity : AppCompatActivity() {
