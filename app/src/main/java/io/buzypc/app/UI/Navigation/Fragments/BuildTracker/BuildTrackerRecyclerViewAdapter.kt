@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.button.MaterialButton
 import io.buzypc.app.Data.AppSession.BuzyUserAppSession
 import io.buzypc.app.R
+import io.buzypc.app.UI.Navigation.Fragments.BuildList.BuildSummaryActivity
 import java.util.Calendar
 
 class BuildTrackerRecyclerViewAdapter(
@@ -48,6 +49,14 @@ class BuildTrackerRecyclerViewAdapter(
             val intent = Intent(context, TrackingBuildSummaryActivity::class.java)
             context.startActivity(intent)
         }
+        item.btnViewSummary.setOnClickListener {
+            val appSession = (context.applicationContext as BuzyUserAppSession)
+            appSession.selectedBuildInBuildList = build
+
+            val intent = Intent(context, BuildSummaryActivity::class.java)
+            context.startActivity(intent)
+        }
+
     }
 
     override fun getItemCount(): Int {
@@ -59,6 +68,8 @@ class BuildTrackerRecyclerViewAdapter(
         val tvBudget: TextView = itemView.findViewById(R.id.textView_pcBudget)
         val tvProgress: TextView = itemView.findViewById(R.id.textView_progress)
         val tvCreatedAt: TextView = itemView.findViewById(R.id.textView_createdAt)
+
+        val btnViewSummary: MaterialButton = itemView.findViewById(R.id.btn_viewSummary)
         val btnViewCheckList: MaterialButton = itemView.findViewById(R.id.btn_viewChecklist)
     }
 

@@ -9,6 +9,8 @@
     android:backgroundTint="?attr/colorControlNormal"
 
     app:cardCornerRadius="10dp"
+    app:strokeWidth="2sp"
+    app:strokeColor="@color/bz_darkGray"
 
     android:id="@+id/build_card"
     android:layout_margin="10dp"
@@ -17,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
-        android:padding="@dimen/space_small"
+        android:padding="@dimen/space_normal"
         >
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,8 +28,8 @@
 
             <ImageView
                 android:id="@+id/image_devicesImage"
-                android:layout_width="@dimen/icon_size"
-                android:layout_height="@dimen/icon_size"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
 
                 android:src="@drawable/ic_desktop_monitor"
 
@@ -52,7 +54,6 @@
                 android:id="@+id/textView_buildName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_small"
 
                 android:fontFamily="@font/ubuntu_bold"
                 android:text="PC Name"
@@ -69,7 +70,7 @@
                 android:layout_marginTop="@dimen/space_normal"
 
                 android:fontFamily="@font/ubuntu_medium"
-                android:text="$budget"
+                android:text="\t$budget"
                 android:textColor="@color/bz_darkGray"
                 android:textSize="@dimen/font_normal"
 
@@ -78,21 +79,6 @@
 
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView_buildName" />
-
-            <TextView
-                android:id="@+id/textView_progress"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_small"
-
-                android:fontFamily="@font/ubuntu_medium"
-                android:text="$progress"
-                android:textColor="@color/bz_darkGray"
-                android:textSize="@dimen/font_normal"
-
-
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_pcBudget" />
 
             <TextView
                 android:id="@+id/textView_createdAt"
@@ -105,27 +91,81 @@
                 android:textColor="@color/bz_darkGray"
                 android:textSize="@dimen/font_normal"
 
-
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_progress"
+                app:layout_constraintTop_toBottomOf="@+id/textView_pcBudget"
                 />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_viewChecklist"
+            <TextView
+                android:id="@+id/textView_progress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_small"
 
-                app:cornerRadius="5dp"
-
-                android:backgroundTint="@color/bz_darkGray"
-                android:fontFamily="@font/ubuntu_bold"
-                android:text="View Checklist"
-                android:textColor="?attr/colorControlNormal"
+                android:fontFamily="@font/ubuntu_medium"
+                android:text="$progress"
+                android:textColor="@color/bz_darkGray"
                 android:textSize="@dimen/font_normal"
 
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView_createdAt"
                 />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="@dimen/space_normal"
+
+                android:orientation="horizontal"
+                android:gravity="end"
+
+                app:layout_constraintTop_toBottomOf="@+id/textView_progress"
+                app:layout_constraintEnd_toEndOf="parent"
+                >
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_viewSummary"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+
+                    android:backgroundTint="@android:color/transparent"
+
+                    app:strokeWidth="2dp"
+                    app:strokeColor="@color/bz_darkGray"
+
+                    android:fontFamily="@font/ubuntu_bold"
+                    android:text="Summary"
+                    android:textColor="@color/bz_darkGray"
+                    android:textSize="@dimen/font_normal"
+                    app:cornerRadius="5dp"
+
+                    app:layout_constraintEnd_toStartOf="@id/btn_viewChecklist"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_createdAt" />
+
+                <Space
+                    android:layout_width="@dimen/space_xsmall"
+                    android:layout_height="wrap_content" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_viewChecklist"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+
+                    android:backgroundTint="@color/bz_darkGray"
+
+                    android:fontFamily="@font/ubuntu_bold"
+                    android:text="Checklist"
+                    android:textColor="?attr/colorControlNormal"
+                    android:textSize="@dimen/font_normal"
+                    app:cornerRadius="5dp"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_createdAt" />
+
+            </LinearLayout>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
