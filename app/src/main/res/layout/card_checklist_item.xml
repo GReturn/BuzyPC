@@ -151,7 +151,7 @@
                     android:textSize="@dimen/font_normal"
                     app:cornerRadius="5dp"
 
-                    app:layout_constraintEnd_toStartOf="@id/btn_viewChecklist"
+                    app:layout_constraintEnd_toStartOf="@id/btn_addToChecklist"
                     app:layout_constraintTop_toBottomOf="@+id/textView_createdAt" />
 
                 <Space
@@ -159,7 +159,7 @@
                     android:layout_height="wrap_content" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_viewChecklist"
+                    android:id="@+id/btn_addToChecklist"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

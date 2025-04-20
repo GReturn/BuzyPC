@@ -5,22 +5,25 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.button.MaterialButton
 import io.buzypc.app.Data.AppSession.BuzyUserAppSession
 import io.buzypc.app.Data.BuildData.PCBuild
 import io.buzypc.app.R
 import io.buzypc.app.UI.Navigation.Fragments.BuildList.BuildSummaryActivity
+import io.buzypc.app.UI.Navigation.ViewModels.ListsInformationViewModel
+import io.buzypc.app.UI.Utils.saveBuildList
+import io.buzypc.app.UI.Widget.DialogView.CustomActionDialogView
+import io.buzypc.app.UI.Widget.DialogView.DialogType
 import java.util.Calendar
 
 class BuildTrackerRecyclerViewAdapter(
     var context: Context,
     var pcBuilds: ArrayList<PCBuild>,
+    private val listsInformationViewModel: ListsInformationViewModel
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -63,28 +66,23 @@ class BuildTrackerRecyclerViewAdapter(
             context.startActivity(intent)
         }
         item.imgBtnRemove.setOnClickListener {
-            val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_checklist_remove_from_checklist, null)
+            CustomActionDialogView(context, DialogType.DESTRUCTION)
+                .setTitle("Remove From Checklist")
+                .setDescription("Are you sure you want to remove this build from your checklist?")
+                .setOnCancelClickListener {
 
-            val dialog = AlertDialog.Builder(context)
-                .setView(dialogView)
-                .setCancelable(true)
-                .create()
+                }
+                .setOnConfirmClickListener {
+                    build.isTracked = false
+                    updateList(pcBuilds)
+                    saveBuildList(context, pcBuilds)
 
-            dialogView.findViewById<Button>(R.id.btnConfirm).setOnClickListener {
-                // comment these out for now; uncomment it after everything is sorted
-//                pcBuilds.removeAt(position)
-//                notifyItemRemoved(position)
+                    val checklistCount = pcBuilds.count { !it.isDeleted && it.isTracked }
+                    listsInformationViewModel.setChecklistItemCount(checklistCount)
 
-                // TODO: Handle remove item from list here
-
-                Toast.makeText(context, "Build removed from checklist.", Toast.LENGTH_SHORT).show()
-                dialog.dismiss()
-            }
-            dialogView.findViewById<MaterialButton>(R.id.btnCancel).setOnClickListener {
-                dialog.dismiss()
-            }
-
-            dialog.show()
+                    Toast.makeText(context, "Build removed from checklist.", Toast.LENGTH_SHORT).show()
+                }
+                .show()
         }
     }
 
@@ -100,7 +98,11 @@ class BuildTrackerRecyclerViewAdapter(
 
         val imgBtnRemove: ImageButton = itemView.findViewById(R.id.imgBtn_removeItem)
         val btnViewSummary: MaterialButton = itemView.findViewById(R.id.btn_viewSummary)
-        val btnViewCheckList: MaterialButton = itemView.findViewById(R.id.btn_viewChecklist)
+        val btnViewCheckList: MaterialButton = itemView.findViewById(R.id.btn_addToChecklist)
     }
 
+    private fun updateList(newBuilds: List<PCBuild>) {
+        pcBuilds = ArrayList(newBuilds.filter { !it.isDeleted && it.isTracked })
+        notifyDataSetChanged()
+    }
 }
