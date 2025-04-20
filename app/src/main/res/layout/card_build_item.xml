@@ -33,7 +33,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView_pcName"
+            android:id="@+id/textView_buildName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/image_devicesImage"
@@ -53,7 +53,7 @@
             android:id="@+id/textView_pcBudget"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/textView_pcName"
+            android:layout_below="@id/textView_buildName"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="12dp"
             android:layout_marginTop="8dp"
@@ -64,7 +64,7 @@
             android:textSize="@dimen/font_medium"
 
             app:layout_constraintStart_toEndOf="@+id/image_devicesImage"
-            app:layout_constraintTop_toBottomOf="@+id/textView_pcName" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_buildName" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

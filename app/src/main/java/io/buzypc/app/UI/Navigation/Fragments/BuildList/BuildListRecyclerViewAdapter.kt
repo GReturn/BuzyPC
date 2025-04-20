@@ -68,7 +68,7 @@ class BuildListRecyclerViewAdapter(
     }
 
     class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tvName: TextView = itemView.findViewById(R.id.textView_pcName)
+        val tvName: TextView = itemView.findViewById(R.id.textView_buildName)
         val tvBudget: TextView = itemView.findViewById(R.id.textView_pcBudget)
 
         val container = itemView.findViewById<CardView>(R.id.build_card)
