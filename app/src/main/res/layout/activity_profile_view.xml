@@ -121,7 +121,7 @@
                 android:id="@+id/image_email"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/mail_24px"
+                android:src="@drawable/ic_mail"
                 app:layout_constraintBottom_toBottomOf="parent"
 
                 app:layout_constraintStart_toStartOf="parent"
