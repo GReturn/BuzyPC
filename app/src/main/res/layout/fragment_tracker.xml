@@ -36,7 +36,7 @@
                 android:layout_marginTop="@dimen/space_normal"
 
                 android:fontFamily="@font/ubuntu_bold"
-                android:text="My Build Tracker"
+                android:text="My Checklist"
                 android:textSize="@dimen/font_title_large"
                 android:textColor="@color/bz_almostBlack"
 
