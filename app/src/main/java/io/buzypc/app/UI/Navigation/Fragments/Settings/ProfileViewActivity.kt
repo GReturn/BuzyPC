@@ -143,7 +143,7 @@ class ProfileViewActivity : AppCompatActivity() {
         val btnConfirm = dialogView.findViewById<Button>(R.id.btnConfirm)
         val btnCancel = dialogView.findViewById<Button>(R.id.btnCancel)
 
-        val dialog = MaterialAlertDialogBuilder(this)
+        val dialog = MaterialAlertDialogBuilder(this, R.style.CustomAlertDialog)
             .setView(dialogView)
             .setCancelable(false)
             .create()

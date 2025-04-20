@@ -1,11 +1,12 @@
 package io.buzypc.app.UI.Widget.DialogView
 
-import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.buzypc.app.R
 
 class CustomActionDialogView(
@@ -38,7 +39,7 @@ class CustomActionDialogView(
         btnCancel = dialogView.findViewById(R.id.btnCancel)
         btnConfirm = dialogView.findViewById(R.id.btnConfirm)
 
-        dialog = AlertDialog.Builder(context)
+        dialog = MaterialAlertDialogBuilder(context, R.style.CustomAlertDialog)
             .setView(dialogView)
             .setCancelable(true)
             .create()

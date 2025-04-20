@@ -13,4 +13,12 @@
     <style name="BottomNavigationItemStyle" parent="Widget.MaterialComponents.BottomNavigationView">
         <item name="android:background">@drawable/nav_custom_ripple</item>
     </style>
+
+    <style name="CustomAlertDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="shapeAppearanceOverlay">@style/CustomShapeAppearance</item>
+    </style>
+
+    <style name="CustomShapeAppearance" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerSize">10dp</item> <!-- Your desired corner radius -->
+    </style>
 </resources>
