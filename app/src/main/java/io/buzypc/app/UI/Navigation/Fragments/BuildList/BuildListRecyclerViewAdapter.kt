@@ -14,6 +14,7 @@ import com.google.android.material.button.MaterialButton
 import io.buzypc.app.Data.AppSession.BuzyUserAppSession
 import io.buzypc.app.Data.BuildData.PCBuild
 import io.buzypc.app.R
+import io.buzypc.app.UI.Navigation.Fragments.Shared.OnBuildListChangedListener
 import io.buzypc.app.UI.Navigation.ViewModels.ListsInformationViewModel
 import io.buzypc.app.UI.Utils.saveBuildList
 import io.buzypc.app.UI.Widget.DialogView.CustomActionDialogView
@@ -24,7 +25,8 @@ class BuildListRecyclerViewAdapter(
     var context: Context,
     var pcBuilds: ArrayList<PCBuild>,
     var onNavigateToNewBuild: () -> Unit,
-    private val listsInformationViewModel: ListsInformationViewModel
+    private val listsInformationViewModel: ListsInformationViewModel,
+    private val buildListChangedListener: OnBuildListChangedListener
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val VIEW_TYPE_ADD_BUILD = 0
     private val VIEW_TYPE_BUILD_ITEM = 1
@@ -67,6 +69,9 @@ class BuildListRecyclerViewAdapter(
                 else holder.btnAddToChecklist.setImageResource(R.drawable.ic_heart_nofill)
 
                 holder.imgBtnRemove.setOnClickListener {
+
+                    val appSession = (context.applicationContext as BuzyUserAppSession)
+
                     CustomActionDialogView(context, DialogType.DESTRUCTION)
                         .setTitle("Remove Build")
                         .setDescription("Are you sure you want to delete this build? This will permanently remove the build from your list.")
@@ -75,12 +80,18 @@ class BuildListRecyclerViewAdapter(
                         }
                         .setOnConfirmClickListener {
                             build.isDeleted = true
-                            updateList(pcBuilds)
 
-                            saveBuildList(context, pcBuilds)
+                            updateList(appSession.buildList)
+                            saveBuildList(context, appSession.buildList)
 
-                            val buildCount = pcBuilds.count { !it.isDeleted }
+                            buildListChangedListener.onBuildListChanged(
+                                appSession.buildList.none { !it.isDeleted }
+                            )
+
+                            val buildCount = appSession.buildList.count { !it.isDeleted }
+                            val checklistCount = appSession.buildList.count { !it.isDeleted && it.isTracked }
                             listsInformationViewModel.setBuildCount(buildCount)
+                            listsInformationViewModel.setChecklistItemCount(checklistCount)
 
                             Toast.makeText(context, "Build removed from checklist.", Toast.LENGTH_SHORT).show()
                         }
@@ -97,6 +108,8 @@ class BuildListRecyclerViewAdapter(
 
                 holder.btnAddToChecklist.setOnClickListener {
 
+                    val appSession = (context.applicationContext as BuzyUserAppSession)
+
                     if(build.isTracked) {
                         CustomActionDialogView(context, DialogType.DESTRUCTION)
                             .setTitle("Remove From Checklist")
@@ -106,9 +119,10 @@ class BuildListRecyclerViewAdapter(
                                 build.isTracked = false
                                 holder.btnAddToChecklist.setImageResource(R.drawable.ic_heart_nofill)
 
-                                saveBuildList(context, pcBuilds)
+                                updateList(appSession.buildList)
+                                saveBuildList(context, appSession.buildList)
 
-                                val checklistCount = pcBuilds.count { !it.isDeleted && it.isTracked }
+                                val checklistCount = appSession.buildList.count { !it.isDeleted && it.isTracked }
                                 listsInformationViewModel.setChecklistItemCount(checklistCount)
 
                                 Toast.makeText(context, "Item removed from checklist.", Toast.LENGTH_SHORT).show()
@@ -124,9 +138,10 @@ class BuildListRecyclerViewAdapter(
                                 build.isTracked = true
                                 holder.btnAddToChecklist.setImageResource(R.drawable.ic_heart_filled)
 
-                                saveBuildList(context, pcBuilds)
+                                updateList(appSession.buildList)
+                                saveBuildList(context, appSession.buildList)
 
-                                val checklistCount = pcBuilds.count { !it.isDeleted && it.isTracked }
+                                val checklistCount = appSession.buildList.count { !it.isDeleted && it.isTracked }
                                 listsInformationViewModel.setChecklistItemCount(checklistCount)
 
                                 Toast.makeText(context, "Item added to checklist.", Toast.LENGTH_SHORT).show()

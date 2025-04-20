@@ -14,6 +14,7 @@ import io.buzypc.app.Data.AppSession.BuzyUserAppSession
 import io.buzypc.app.Data.BuildData.PCBuild
 import io.buzypc.app.R
 import io.buzypc.app.UI.Navigation.Fragments.BuildList.BuildSummaryActivity
+import io.buzypc.app.UI.Navigation.Fragments.Shared.OnBuildListChangedListener
 import io.buzypc.app.UI.Navigation.ViewModels.ListsInformationViewModel
 import io.buzypc.app.UI.Utils.saveBuildList
 import io.buzypc.app.UI.Widget.DialogView.CustomActionDialogView
@@ -23,7 +24,8 @@ import java.util.Calendar
 class BuildTrackerRecyclerViewAdapter(
     var context: Context,
     var pcBuilds: ArrayList<PCBuild>,
-    private val listsInformationViewModel: ListsInformationViewModel
+    private val listsInformationViewModel: ListsInformationViewModel,
+    private val buildListChangedListener: OnBuildListChangedListener
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -66,6 +68,9 @@ class BuildTrackerRecyclerViewAdapter(
             context.startActivity(intent)
         }
         item.imgBtnRemove.setOnClickListener {
+
+            val appSession = (context.applicationContext as BuzyUserAppSession)
+
             CustomActionDialogView(context, DialogType.DESTRUCTION)
                 .setTitle("Remove From Checklist")
                 .setDescription("Are you sure you want to remove this build from your checklist?")
@@ -75,10 +80,14 @@ class BuildTrackerRecyclerViewAdapter(
                 .setOnConfirmClickListener {
                     build.isTracked = false
                     updateList(pcBuilds)
-                    saveBuildList(context, pcBuilds)
+                    saveBuildList(context, appSession.buildList)
 
                     val checklistCount = pcBuilds.count { !it.isDeleted && it.isTracked }
                     listsInformationViewModel.setChecklistItemCount(checklistCount)
+
+                    buildListChangedListener.onBuildListChanged(
+                        appSession.buildList.none { !it.isDeleted && it.isTracked }
+                    )
 
                     Toast.makeText(context, "Build removed from checklist.", Toast.LENGTH_SHORT).show()
                 }

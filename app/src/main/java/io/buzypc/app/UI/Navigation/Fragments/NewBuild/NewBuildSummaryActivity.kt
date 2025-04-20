@@ -108,15 +108,15 @@ class NewBuildSummaryActivity : AppCompatActivity() {
 
         btnSaveButton.setOnClickListener {
             val buildManager = BuzyUserBuildPrefManager(this)
-            buildManager.addBuild(
-                app.username,
-                PCBuild(
-                    generateUniqueBuildId(this),
-                    app.buildName,
-                    app.buildBudget,
-                    app.pc
-                )
+            val newBuild = PCBuild(
+                generateUniqueBuildId(this),
+                app.buildName,
+                app.buildBudget,
+                app.pc
             )
+
+            buildManager.addBuild(app.username, newBuild)
+            app.loadBuildList()
 
             val intent = Intent(this, BottomNavigationActivity::class.java)
 

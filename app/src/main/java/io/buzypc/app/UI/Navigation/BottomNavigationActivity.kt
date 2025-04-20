@@ -51,12 +51,11 @@ class BottomNavigationActivity : AppCompatActivity() {
 
     private fun initializeViewModel() {
         val buildList = loadBuildList(this)
-        var trackingCtr = 0
-        for(i in 0 until  buildList.size) {
-            if(buildList[i].isTracked) ++trackingCtr
-        }
-        listInformationViewModel.setBuildCount(buildList.size)
-        listInformationViewModel.setChecklistItemCount(trackingCtr)
+        val allBuilds = buildList.count { !it.isDeleted }
+        val inChecklist = buildList.count { !it.isDeleted && it.isTracked }
+
+        listInformationViewModel.setBuildCount(allBuilds)
+        listInformationViewModel.setChecklistItemCount(inChecklist)
     }
 
     private fun setupBottomNavigation() {

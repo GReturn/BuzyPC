@@ -9,33 +9,43 @@ import android.widget.TextView
 import androidx.core.view.doOnLayout
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.RecyclerView
+import io.buzypc.app.Data.AppSession.BuzyUserAppSession
 import io.buzypc.app.Data.BuildData.PCBuild
 import io.buzypc.app.R
+import io.buzypc.app.UI.Navigation.Fragments.Shared.OnBuildListChangedListener
 import io.buzypc.app.UI.Navigation.ViewModels.ListsInformationViewModel
 import io.buzypc.app.UI.Utils.LayoutManagers.AnimatedGridLayoutManager
 import io.buzypc.app.UI.Utils.LayoutManagers.BuildTrackerListLayoutManager
 import io.buzypc.app.UI.Utils.loadBuildList
 
 class TrackerFragment : Fragment() {
-    val pcBuildList = ArrayList<PCBuild>()
+    private lateinit var app: BuzyUserAppSession
+    private lateinit var pcBuildList: ArrayList<PCBuild>
     private val listsInformationViewModel: ListsInformationViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        app = requireActivity().application as BuzyUserAppSession
+        pcBuildList = app.buildList
+
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycleView_builds)
         val tvEmptyList = view.findViewById<TextView>(R.id.tvEmptyList)
-        setPCModelList()
 
-        if(pcBuildList.isEmpty()){
+        val trackedBuilds = pcBuildList.filter { it.isTracked && !it.isDeleted } as ArrayList<PCBuild>
+        if(trackedBuilds.isEmpty()){
             tvEmptyList.visibility = View.VISIBLE
-            recyclerView.visibility = View.VISIBLE
         }
 
         val adapter = BuildTrackerRecyclerViewAdapter(
             requireContext(),
-            pcBuildList,
-            listsInformationViewModel
+            trackedBuilds,
+            listsInformationViewModel,
+            object : OnBuildListChangedListener {
+                override fun onBuildListChanged(isEmpty: Boolean) {
+                    tvEmptyList.visibility = if (isEmpty) View.VISIBLE else View.GONE
+                }
+            }
         )
         recyclerView.adapter = adapter
         recyclerView.layoutManager = BuildTrackerListLayoutManager(requireContext(),1)
@@ -43,6 +53,12 @@ class TrackerFragment : Fragment() {
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
+
+        val tvEmptyList = view?.findViewById<TextView>(R.id.tvEmptyList)
+        val trackedBuilds = pcBuildList.filter { it.isTracked && !it.isDeleted } as ArrayList<PCBuild>
+        if(trackedBuilds.isEmpty()){
+            tvEmptyList?.visibility = View.VISIBLE
+        }
 
         val recyclerView = view?.findViewById<RecyclerView>(R.id.recycleView_builds)
         recyclerView?.layoutAnimation = null
@@ -56,15 +72,5 @@ class TrackerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_tracker, container, false)
-    }
-
-    private fun setPCModelList() {
-        val buildList = loadBuildList(requireContext())
-        val size = buildList.size
-        for (i in size-1 downTo 0) {
-            if(buildList[i].isTracked) {
-                pcBuildList.add(buildList[i])
-            }
-        }
     }
 }

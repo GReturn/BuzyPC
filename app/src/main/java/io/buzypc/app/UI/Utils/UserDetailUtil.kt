@@ -29,9 +29,3 @@ fun loadCurrentUserDetails(context: Context): BuzyUserManager {
     userDetails.loadUser((context.applicationContext as BuzyUserAppSession).username)
     return userDetails
 }
-
-fun loadBuildList(context: Context): ArrayList<PCBuild> {
-    val buzyUserBuildPrefManager = BuzyUserBuildPrefManager(context)
-    val sessionManager = SessionManager(context)
-    return sessionManager.getUsername().let { buzyUserBuildPrefManager.getBuildList(it) }
-}

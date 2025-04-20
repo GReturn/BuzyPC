@@ -14,38 +14,46 @@ import io.buzypc.app.Data.BuildData.PCBuild
 import io.buzypc.app.R
 import io.buzypc.app.UI.Utils.LayoutManagers.AnimatedGridLayoutManager
 import io.buzypc.app.UI.Navigation.BottomNavigationActivity
+import io.buzypc.app.UI.Navigation.Fragments.Shared.OnBuildListChangedListener
 import io.buzypc.app.UI.Navigation.ViewModels.ListsInformationViewModel
 import io.buzypc.app.UI.Utils.LayoutManagers.BuildListLayoutManager
 import io.buzypc.app.UI.Utils.loadBuildList
 
 class BuildListFragment : Fragment() {
-    val pcBuildList = ArrayList<PCBuild>()
+    private lateinit var app: BuzyUserAppSession
+    private lateinit var pcBuildList: ArrayList<PCBuild>
     private val listsInformationViewModel: ListsInformationViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        app = requireActivity().application as BuzyUserAppSession
+        pcBuildList = app.buildList
+
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycleView_builds)
         val tvEmptyList = view.findViewById<TextView>(R.id.tvEmptyList)
 
-        setPCModelList()
-
-        if(pcBuildList.isEmpty()){
+        val allBuilds = pcBuildList.filter { !it.isDeleted } as ArrayList<PCBuild>
+        if(allBuilds.isEmpty()){
             tvEmptyList.visibility = View.VISIBLE
             recyclerView.visibility = View.VISIBLE
         }
 
         val adapter = BuildListRecyclerViewAdapter(
             requireContext(),
-            pcBuildList,
+            allBuilds,
             {
             // we handle the click event here when user clicks on the plus button inside the buildlist fragment
-            val activity = requireActivity() as BottomNavigationActivity
-            activity.handleNavigationToOtherFragments(R.id.newBuildFragment)
-        },
-            listsInformationViewModel
+                val activity = requireActivity() as BottomNavigationActivity
+                activity.handleNavigationToOtherFragments(R.id.newBuildFragment)
+            },
+            listsInformationViewModel,
+            object : OnBuildListChangedListener {
+                override fun onBuildListChanged(isEmpty: Boolean) {
+                    tvEmptyList.visibility = if (isEmpty) View.VISIBLE else View.GONE
+                }
+            }
         )
-
 
         recyclerView.adapter = adapter
         recyclerView.layoutManager = BuildListLayoutManager(requireContext(),1)
@@ -66,16 +74,5 @@ class BuildListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_build_list, container, false)
-    }
-
-    private fun setPCModelList() {
-        val buildList = loadBuildList(requireContext())
-
-        val size = buildList.size
-        for (i in size-1 downTo 0) {
-            if(!buildList[i].isDeleted) {
-                pcBuildList.add(buildList[i])
-            }
-        }
     }
 }

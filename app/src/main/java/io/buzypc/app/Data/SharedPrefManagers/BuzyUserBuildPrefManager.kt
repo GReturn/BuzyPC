@@ -8,7 +8,7 @@ import io.buzypc.app.Data.BuildData.PCBuild
 import io.buzypc.app.Data.BuildData.Utils.JsonAdapters.ClosedFloatingPointRangeAdapter
 
 class BuzyUserBuildPrefManager(
-    private val context: Context
+    context: Context
 ) {
     private val prefs: SharedPreferences = context.getSharedPreferences("pc_build_prefs", Context.MODE_PRIVATE)
     private val gson = GsonBuilder()

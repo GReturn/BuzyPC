@@ -21,17 +21,21 @@ class BuzyUserAppSession: Application() {
     var buildName: String = ""
     var buildBudget: Double = 0.0
 
-//    lateinit var buildList: ArrayList<PCBuild>
-    lateinit var toSaveBuild: PCBuild
+    lateinit var buildList: ArrayList<PCBuild>
     lateinit var selectedBuildInBuildList: PCBuild
     lateinit var selectedBuildInBuildTracker: PCBuild
 
     lateinit var component: Component
 
-//    fun loadBuildList() {
-//        buildList = loadBuildList(this)
-//    }
-//
+    override fun onCreate() {
+        super.onCreate()
+        loadBuildList()
+    }
+
+    fun loadBuildList() {
+        buildList = loadBuildList(this)
+    }
+
 //    fun getBuildList(): ArrayList<PCBuild> {
 //        return buildList
 //    }
