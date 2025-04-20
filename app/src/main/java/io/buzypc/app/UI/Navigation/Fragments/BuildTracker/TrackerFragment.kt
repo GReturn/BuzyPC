@@ -29,10 +29,7 @@ class TrackerFragment : Fragment() {
             recyclerView.visibility = View.VISIBLE
         }
 
-        val adapter = BuildTrackerRecyclerViewAdapter(requireContext(), pcBuildList) {
-            val activity = requireActivity() as BottomNavigationActivity
-            activity.handleNavigationToOtherFragments(R.id.newBuildFragment)
-        }
+        val adapter = BuildTrackerRecyclerViewAdapter(requireContext(), pcBuildList)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = BuildTrackerListLayoutManager(requireContext(),1)
     }

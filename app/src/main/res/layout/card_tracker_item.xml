@@ -5,7 +5,7 @@
 
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="wrap_content"
     android:backgroundTint="?attr/colorControlNormal"
 
     app:cardCornerRadius="10dp"
@@ -13,59 +13,121 @@
     android:id="@+id/build_card"
     android:layout_margin="10dp"
     >
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/rlCard"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
+
+        android:padding="@dimen/space_small"
         >
 
-        <ImageView
-            android:id="@+id/image_devicesImage"
-            android:layout_width="@dimen/icon_size"
-            android:layout_height="@dimen/icon_size"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="28dp"
-            android:src="@drawable/devices_24px"
-
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView_pcName"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/image_devicesImage"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="20dp"
+            android:layout_height="match_parent" >
 
-            android:fontFamily="@font/ubuntu_bold"
-            android:text="PC Name"
-            android:textColor="@color/bz_honeyYellow"
-            android:textSize="@dimen/font_title"
+            <ImageView
+                android:id="@+id/image_devicesImage"
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
 
-            app:layout_constraintStart_toEndOf="@+id/image_devicesImage"
-            app:layout_constraintTop_toTopOf="parent" />
+                android:src="@drawable/ic_desktop_monitor"
 
-        <TextView
-            android:id="@+id/textView_pcBudget"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textView_pcName"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="8dp"
+                app:tint="@color/bz_darkGray"
 
-            android:fontFamily="@font/ubuntu_bold"
-            android:text="$budget"
-            android:textColor="@color/bz_honeyYellow"
-            android:textSize="@dimen/font_medium"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
 
-            app:layout_constraintStart_toEndOf="@+id/image_devicesImage"
-            app:layout_constraintTop_toBottomOf="@+id/textView_pcName" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/rlCard"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+
+            android:paddingStart="@dimen/space_small"
+            >
+
+            <TextView
+                android:id="@+id/textView_buildName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_small"
+
+                android:fontFamily="@font/ubuntu_bold"
+                android:text="PC Name"
+                android:textColor="@color/bz_darkGray"
+                android:textSize="@dimen/font_title_large"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView_pcBudget"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_normal"
+
+                android:fontFamily="@font/ubuntu_medium"
+                android:text="$budget"
+                android:textColor="@color/bz_darkGray"
+                android:textSize="@dimen/font_normal"
+
+                app:drawableStartCompat="@drawable/ic_price_tag"
+                app:drawableTint="@color/bz_darkGray"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_buildName" />
+
+            <TextView
+                android:id="@+id/textView_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_small"
+
+                android:fontFamily="@font/ubuntu_medium"
+                android:text="$progress"
+                android:textColor="@color/bz_darkGray"
+                android:textSize="@dimen/font_normal"
+
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_pcBudget" />
+
+            <TextView
+                android:id="@+id/textView_createdAt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_small"
+
+                android:fontFamily="@font/ubuntu_medium"
+                android:text="$createdAt"
+                android:textColor="@color/bz_darkGray"
+                android:textSize="@dimen/font_normal"
+
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_progress"
+                />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_viewChecklist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                app:cornerRadius="5dp"
+
+                android:backgroundTint="@color/bz_darkGray"
+                android:fontFamily="@font/ubuntu_bold"
+                android:text="View Checklist"
+                android:textColor="?attr/colorControlNormal"
+                android:textSize="@dimen/font_normal"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_createdAt"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </com.google.android.material.card.MaterialCardView>
