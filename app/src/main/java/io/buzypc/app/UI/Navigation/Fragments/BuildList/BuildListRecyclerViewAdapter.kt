@@ -93,7 +93,7 @@ class BuildListRecyclerViewAdapter(
                             listsInformationViewModel.setBuildCount(buildCount)
                             listsInformationViewModel.setChecklistItemCount(checklistCount)
 
-                            Toast.makeText(context, "Build removed from checklist.", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, "Build deleted.", Toast.LENGTH_SHORT).show()
                         }
                         .show()
                 }
