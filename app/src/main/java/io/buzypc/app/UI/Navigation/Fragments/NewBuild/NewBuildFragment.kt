@@ -38,6 +38,17 @@ class NewBuildFragment : Fragment() {
                 if(s?.length == 10) Toast.makeText(this@NewBuildFragment.context, "Only 10 characters allowed for the build name.", Toast.LENGTH_LONG).show()
             }
         })
+        etBudgetInput.addTextChangedListener( object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                if(s?.length == 7) Toast.makeText(this@NewBuildFragment.context, "You can only place a budget between PHP 20,000 and PHP 999,999.", Toast.LENGTH_LONG).show()
+            }
+        })
 
         btnBuild.setOnClickListener {
             if(etBuildName.text.isNullOrEmpty()) etBuildName.setText("New Build")
@@ -46,7 +57,7 @@ class NewBuildFragment : Fragment() {
                 Toast.makeText(requireContext(), "Input your budget.", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
-            if(etBudgetInput.text.toString().toInt() < 20_000 || etBudgetInput.text.toString().toInt() > 999_999) {
+            if(etBudgetInput.text.toString().toLong() < 20_000 || etBudgetInput.text.toString().toLong() > 999_999) {
                 Toast.makeText(requireContext(), "You can only place a budget between PHP 20,000 and PHP 999,999.", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }

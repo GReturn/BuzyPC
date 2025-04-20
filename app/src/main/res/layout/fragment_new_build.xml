@@ -77,6 +77,8 @@
             android:hint="PHP"
             android:textColorHint="?attr/colorOnSecondary"
             android:inputType="number"
+            android:maxLines="1"
+            android:maxLength="7"
 
             android:padding="10dp"
             android:fontFamily="@font/ubuntu_medium"
