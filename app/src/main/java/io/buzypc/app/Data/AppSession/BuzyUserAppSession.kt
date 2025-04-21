@@ -27,18 +27,9 @@ class BuzyUserAppSession: Application() {
 
     lateinit var component: Component
 
-    override fun onCreate() {
-        super.onCreate()
-        loadBuildList()
-    }
-
     fun loadBuildList() {
         buildList = loadBuildList(this)
     }
-
-//    fun getBuildList(): ArrayList<PCBuild> {
-//        return buildList
-//    }
 
     val pc = PC(
         motherboard = MotherboardComponent(

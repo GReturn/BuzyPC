@@ -8,11 +8,11 @@ import io.buzypc.app.Data.SharedPrefManagers.SessionManager
 fun loadBuildList(context: Context): ArrayList<PCBuild> {
     val buzyUserBuildPrefManager = BuzyUserBuildPrefManager(context)
     val sessionManager = SessionManager(context)
-    return sessionManager.getUsername().let { buzyUserBuildPrefManager.getBuildList(it) }
+    return sessionManager.getUsername()?.let { buzyUserBuildPrefManager.getBuildList(it) } ?: ArrayList()
 }
 
 fun saveBuildList(context: Context, list: ArrayList<PCBuild>) {
     val buildManager = BuzyUserBuildPrefManager(context)
     val sessionManager = SessionManager(context)
-    buildManager.saveBuildList(sessionManager.getUsername(), list)
+    sessionManager.getUsername()?.let { buildManager.saveBuildList(it, list) }
 }

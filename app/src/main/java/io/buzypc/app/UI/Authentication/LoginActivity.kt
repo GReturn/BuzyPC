@@ -15,8 +15,8 @@ import io.buzypc.app.R
 import io.buzypc.app.Data.AppSession.BuzyUserAppSession
 import io.buzypc.app.Data.SharedPrefManagers.BuzyAuthenticator
 import io.buzypc.app.Data.SharedPrefManagers.SessionManager
-import io.buzypc.app.Data.SharedPrefManagers.BuzyUserSettingsManager
 import io.buzypc.app.UI.Navigation.BottomNavigationActivity
+import io.buzypc.app.UI.Utils.loadCurrentUserDetails
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,19 +71,17 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "Invalid credentials", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             } else {
-                (application as BuzyUserAppSession).username = enteredUsername
+                val appSession = application as BuzyUserAppSession
+                appSession.username = enteredUsername
 
                 buzyAuthenticator.loginUser(enteredUsername)
 
                 val sessionManager = SessionManager(this)
-                handleStartup(sessionManager)
+                sessionManager.createSession(appSession.username)
 
                 setAppTheme()
+                autoLogin()
 
-                val intent = Intent(this, BottomNavigationActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                startActivity(intent)
-                finish()
                 return@setOnClickListener
             }
         }
@@ -98,7 +96,10 @@ class LoginActivity : AppCompatActivity() {
     private fun autoLogin() {
         val sessionManager = SessionManager(this)
         if(sessionManager.isLoggedIn()) {
-            (application as BuzyUserAppSession).username = sessionManager.getUsername()
+            val appSession = application as BuzyUserAppSession
+            appSession.loadBuildList()
+            val userName = sessionManager.getUsername() ?: "User"
+            appSession.username = userName
             handleStartup(sessionManager)
         }
     }
