@@ -142,14 +142,14 @@ class LoginActivity : AppCompatActivity() {
      * ```
      */
     private fun setAppTheme() {
-        val userSettings = BuzyUserSettingsManager(this)
-        val theme = userSettings.getTheme()
+        val userManager = loadCurrentUserDetails(this)
+        val theme = userManager.getTheme()
         if (theme == null || theme == "light") {
-            userSettings.setTheme("light")
+            userManager.setTheme("light")
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
         else {
-            userSettings.setTheme("dark")
+            userManager.setTheme("dark")
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         }
     }

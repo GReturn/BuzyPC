@@ -132,4 +132,9 @@ class BuzyUserManager(private val context: Context) {
         val filename = sharedPreferences.getString("profile_pic", null)
         return filename?.let { BitmapFactory.decodeFile(it) }
     }
+
+    fun getTheme(): String? = sharedPreferences.getString("theme", null)
+
+    fun setTheme(newTheme: String) = sharedPreferences.edit()
+        .putString("theme", newTheme).apply()
 }
