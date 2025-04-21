@@ -13,9 +13,9 @@ import android.widget.EditText
 import android.widget.Toast
 import io.buzypc.app.R
 import io.buzypc.app.Data.AppSession.BuzyUserAppSession
+import io.buzypc.app.UI.Widget.LoadingScreenActivity
 
 class NewBuildFragment : Fragment() {
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_new_build, container, false)
     }
@@ -24,7 +24,6 @@ class NewBuildFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val etBudgetInput = view.findViewById<EditText>(R.id.et_budgetInput)
         val etBuildName = view.findViewById<EditText>(R.id.et_buildName)
-
         val btnBuild = view.findViewById<Button>(R.id.btn_build)
 
         etBuildName.addTextChangedListener( object : TextWatcher {
@@ -64,7 +63,7 @@ class NewBuildFragment : Fragment() {
             requireContext()
             (context?.applicationContext as BuzyUserAppSession).buildName = etBuildName.text.toString()
             (context?.applicationContext as BuzyUserAppSession).buildBudget = etBudgetInput.text.toString().toDouble()
-            val intent = Intent(requireActivity(), NewBuildSummaryActivity::class.java)
+            val intent = Intent(requireActivity(), LoadingScreenActivity::class.java)
             startActivity(intent)
         }
     }

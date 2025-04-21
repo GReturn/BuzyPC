@@ -32,6 +32,7 @@ class NewBuildSummaryActivity : AppCompatActivity() {
         val app = application as BuzyUserAppSession
 
 
+
         tvBuildName.text = "${(application as BuzyUserAppSession).buildName}'s Summary"
 
         val fragmentTransaction = supportFragmentManager.beginTransaction()
