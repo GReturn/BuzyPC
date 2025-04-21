@@ -55,14 +55,14 @@ class BuildTrackerRecyclerViewAdapter(
 
         item.btnViewCheckList.setOnClickListener {
             val appSession = (context.applicationContext as BuzyUserAppSession)
-            appSession.selectedBuildInBuildTracker = build
+            appSession.selectedBuildToViewChecklist = build
 
             val intent = Intent(context, TrackingBuildSummaryActivity::class.java)
             context.startActivity(intent)
         }
         item.btnViewSummary.setOnClickListener {
             val appSession = (context.applicationContext as BuzyUserAppSession)
-            appSession.selectedBuildInBuildList = build
+            appSession.selectedBuildToSummarize = build
 
             val intent = Intent(context, BuildSummaryActivity::class.java)
             context.startActivity(intent)

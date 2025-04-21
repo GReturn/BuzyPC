@@ -100,7 +100,7 @@ class BuildListRecyclerViewAdapter(
 
                 holder.btnViewSummary.setOnClickListener {
                     val appSession = (context.applicationContext as BuzyUserAppSession)
-                    appSession.selectedBuildInBuildList = build
+                    appSession.selectedBuildToSummarize = build
 
                     val intent = Intent(context, BuildSummaryActivity::class.java)
                     context.startActivity(intent)

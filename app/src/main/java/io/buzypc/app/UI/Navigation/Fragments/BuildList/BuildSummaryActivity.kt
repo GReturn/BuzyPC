@@ -87,7 +87,7 @@ class BuildSummaryActivity : AppCompatActivity() {
             startActivity(Intent(this, BuyComponentActivity::class.java))
         }
 
-        tvBuildName.text = "${(application as BuzyUserAppSession).selectedBuildInBuildList.name}'s Summary"
+        tvBuildName.text = "${(application as BuzyUserAppSession).selectedBuildToSummarize.name}'s Summary"
 
         // Add the RadarChartView Fragment
         val fragmentTransaction = supportFragmentManager.beginTransaction()
@@ -122,7 +122,6 @@ class BuildSummaryActivity : AppCompatActivity() {
         pricePSU.text = "PHP %.2f".format(app.pc.psu.price)
         priceStorage.text = "PHP %.2f".format(app.pc.storageDevice.price)
     }
-
 
     fun setCompatScore(app: BuzyUserAppSession, compatCPU: TextView, compatGPU: TextView, compatPSU: TextView, compatRam: TextView, compatStorage: TextView) {
         compatCPU.text = app.pc.cpu.performanceScore.toString()

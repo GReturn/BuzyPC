@@ -22,8 +22,8 @@ class BuzyUserAppSession: Application() {
     var buildBudget: Double = 0.0
 
     lateinit var buildList: ArrayList<PCBuild>
-    lateinit var selectedBuildInBuildList: PCBuild
-    lateinit var selectedBuildInBuildTracker: PCBuild
+    lateinit var selectedBuildToSummarize: PCBuild
+    lateinit var selectedBuildToViewChecklist: PCBuild
 
     lateinit var component: Component
 
