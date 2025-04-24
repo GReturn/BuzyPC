@@ -20,7 +20,16 @@ import io.buzypc.app.UI.Utils.LayoutManagers.BuildTrackerListLayoutManager
 class TrackerFragment : Fragment() {
     private lateinit var app: BuzyUserAppSession
     private lateinit var pcBuildList: ArrayList<PCBuild>
+    private lateinit var trackedBuilds: ArrayList<PCBuild>
+    private lateinit var adapter: BuildTrackerRecyclerViewAdapter
     private val listsInformationViewModel: ListsInformationViewModel by activityViewModels()
+
+    override fun onResume() {
+        super.onResume()
+        trackedBuilds.clear()
+        trackedBuilds.addAll(app.buildList.filter { it.isTracked && !it.isDeleted })
+        adapter.notifyDataSetChanged()
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -31,12 +40,12 @@ class TrackerFragment : Fragment() {
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycleView_builds)
         val tvEmptyList = view.findViewById<TextView>(R.id.tvEmptyList)
 
-        val trackedBuilds = pcBuildList.filter { it.isTracked && !it.isDeleted } as ArrayList<PCBuild>
+        trackedBuilds = pcBuildList.filter { it.isTracked && !it.isDeleted } as ArrayList<PCBuild>
         if(trackedBuilds.isEmpty()){
             tvEmptyList.visibility = View.VISIBLE
         }
 
-        val adapter = BuildTrackerRecyclerViewAdapter(
+        adapter = BuildTrackerRecyclerViewAdapter(
             requireContext(),
             trackedBuilds,
             listsInformationViewModel,
