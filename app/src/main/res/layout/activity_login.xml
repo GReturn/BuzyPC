@@ -76,7 +76,6 @@
 
 
             android:fontFamily="@font/ubuntu_medium"
-            android:textAlignment="center"
             android:textSize="15sp"
 
             android:maxLength="30"
@@ -121,7 +120,6 @@
             android:minHeight="48dp"
 
             android:singleLine="true"
-            android:textAlignment="center"
             android:textSize="15sp"
 
             app:layout_constraintEnd_toEndOf="parent"
