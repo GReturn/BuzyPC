@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.LinearLayout
 import androidx.core.view.doOnLayout
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.RecyclerView
@@ -38,11 +38,16 @@ class TrackerFragment : Fragment() {
         pcBuildList = app.buildList
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycleView_builds)
-        val tvEmptyList = view.findViewById<TextView>(R.id.tvEmptyList)
+        val emptyListMessage = view.findViewById<LinearLayout>(R.id.layout_emptyList)
 
         trackedBuilds = pcBuildList.filter { it.isTracked && !it.isDeleted } as ArrayList<PCBuild>
         if(trackedBuilds.isEmpty()){
-            tvEmptyList.visibility = View.VISIBLE
+            emptyListMessage.visibility = View.VISIBLE
+            recyclerView.visibility = View.GONE
+        }
+        else {
+            emptyListMessage.visibility = View.GONE
+            recyclerView.visibility = View.VISIBLE
         }
 
         adapter = BuildTrackerRecyclerViewAdapter(
@@ -51,7 +56,7 @@ class TrackerFragment : Fragment() {
             listsInformationViewModel,
             object : OnBuildListChangedListener {
                 override fun onBuildListChanged(isEmpty: Boolean) {
-                    tvEmptyList.visibility = if (isEmpty) View.VISIBLE else View.GONE
+                    emptyListMessage.visibility = if (isEmpty) View.VISIBLE else View.GONE
                 }
             }
         )
@@ -62,13 +67,18 @@ class TrackerFragment : Fragment() {
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
 
-        val tvEmptyList = view?.findViewById<TextView>(R.id.tvEmptyList)
+        val emptyListMessage = view?.findViewById<LinearLayout>(R.id.layout_emptyList)
+        val recyclerView = view?.findViewById<RecyclerView>(R.id.recycleView_builds)
+
         val trackedBuilds = pcBuildList.filter { it.isTracked && !it.isDeleted } as ArrayList<PCBuild>
         if(trackedBuilds.isEmpty()){
-            tvEmptyList?.visibility = View.VISIBLE
+            emptyListMessage?.visibility = View.VISIBLE
+            recyclerView?.visibility = View.GONE
+        } else {
+            emptyListMessage?.visibility = View.GONE
+            recyclerView?.visibility = View.VISIBLE
         }
 
-        val recyclerView = view?.findViewById<RecyclerView>(R.id.recycleView_builds)
         recyclerView?.layoutAnimation = null
         recyclerView?.doOnLayout {
             (recyclerView.layoutManager as AnimatedGridLayoutManager).animateItemsIn()
