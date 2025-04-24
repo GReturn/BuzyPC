@@ -34,7 +34,7 @@
             android:id="@+id/privacy_policy_textview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/privacy_policy_text"
+            android:text="Privacy Policy Message"
             android:textSize="16sp"
             android:lineSpacingExtra="4dp"
             android:textColor="@android:color/black" />
