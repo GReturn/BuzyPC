@@ -77,7 +77,6 @@
 
             android:fontFamily="@font/ubuntu_medium"
             android:textAlignment="center"
-            android:textColor="#808080"
             android:textSize="15sp"
 
             android:maxLength="30"
@@ -123,7 +122,6 @@
 
             android:singleLine="true"
             android:textAlignment="center"
-            android:textColor="#808080"
             android:textSize="15sp"
 
             app:layout_constraintEnd_toEndOf="parent"
