@@ -152,6 +152,8 @@
         android:layout_marginBottom="90dp"
         android:backgroundTint="?attr/background"
 
+        app:cornerRadius="10dp"
+
         android:fontFamily="@font/ubuntu_bold"
         android:text="@string/login"
         android:textColor="?attr/colorPrimary"
@@ -162,7 +164,7 @@
         app:strokeColor="?attr/colorPrimary"
         app:strokeWidth="1dp" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/registerButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -171,6 +173,8 @@
         android:fontFamily="@font/ubuntu_bold"
         android:text="@string/register"
         android:textAlignment="center"
+
+        app:cornerRadius="10dp"
 
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/loginButton"

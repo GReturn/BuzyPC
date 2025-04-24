@@ -100,37 +100,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username" />
 
-    <TextView
-        android:id="@+id/forgot_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/password"
-        android:layout_marginTop="5dp"
-        android:fontFamily="@font/ubuntu_medium"
-        android:text="@string/forgot_password"
-        android:textAlignment="center"
-        android:textSize="13sp"
 
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
-
-
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/loginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/forgot_password"
         android:layout_marginHorizontal="50dp"
         android:fontFamily="@font/ubuntu_bold"
         android:text="@string/login"
+
+        app:cornerRadius="10dp"
 
         app:layout_constraintBottom_toTopOf="@+id/registerButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/registerButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -140,6 +126,8 @@
         android:backgroundTint="?attr/background"
         android:fontFamily="@font/ubuntu_bold"
         android:text="@string/register"
+
+        app:cornerRadius="10dp"
 
         android:textAlignment="center"
         android:textColor="?attr/colorPrimary"
