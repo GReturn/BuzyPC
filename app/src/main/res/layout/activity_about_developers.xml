@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fillViewport="true">
 
     <LinearLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_margin="24dp"
+        android:layout_margin="@dimen/margin_normal"
         android:gravity="center_horizontal"
         >
 
@@ -49,10 +48,16 @@
             />
 
         <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@drawable/rounded_card"
+            android:background="@drawable/about_developers_rounded_card"
             android:layout_marginBottom="12dp"
             android:elevation="6dp">
             <ImageView
@@ -60,7 +65,7 @@
                 android:layout_height="550px"
                 android:scaleType="centerCrop"
                 android:contentDescription="Profile Image"
-                android:background="@drawable/devaus"
+                android:background="@drawable/devaus_stroke"
                 android:layout_marginBottom="-32dp"
                 />
 
@@ -76,7 +81,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/dev1"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/font_title"
                     android:fontFamily="@font/ubuntu_bold"
                     android:textColor="@color/bz_almostBlack"
                     />
@@ -85,7 +90,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/dev1_occupation"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_medium"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/ubuntu_medium"
                     android:textColor="@color/bz_almostBlack"
@@ -98,7 +103,7 @@
                     android:fontFamily="@font/ubuntu_mono"
                     android:text="@string/dev1_desc"
                     android:textColor="@color/bz_almostBlack"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/font_normal" />
             </LinearLayout>
         </LinearLayout>
 
@@ -107,7 +112,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@drawable/rounded_card"
+            android:background="@drawable/about_developers_rounded_card"
             android:layout_marginBottom="12dp"
             android:elevation="6dp"
             android:paddingLeft="25dp"
@@ -123,7 +128,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/dev2"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/font_title"
                     android:fontFamily="@font/ubuntu_bold"
                     android:textColor="@color/bz_almostBlack"
                     />
@@ -131,7 +136,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/dev2_occupation"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/font_medium"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/ubuntu_medium"
                     android:textColor="@color/bz_almostBlack"
@@ -140,7 +145,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/dev2_desc"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/font_normal"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/ubuntu_mono"
                     android:textColor="@color/bz_almostBlack"
@@ -150,19 +155,23 @@
             <ImageView
                 android:layout_width="424px"
                 android:layout_height="500px"
-                android:background="@drawable/devraf"
+                android:background="@drawable/devraf_stroke"
                 android:contentDescription="Profile Image"
                 android:scaleType="centerCrop"
                 android:layout_marginRight="-10dp"
                 />
         </LinearLayout>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_back_navigation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
+            app:cornerRadius="10dp"
+
             android:text="Back"
-            android:fontFamily="@font/ubuntu_medium" />
+            android:fontFamily="@font/ubuntu_bold"
+            />
 
     </LinearLayout>
 
