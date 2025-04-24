@@ -156,7 +156,7 @@
                 android:layout_height="@dimen/space_small" />
 
             <include
-                layout="@layout/card_checklist_item_motherboard"
+                layout="@layout/card_checklist_item_cpu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -165,7 +165,7 @@
                 android:layout_height="@dimen/space_small" />
 
             <include
-                layout="@layout/card_checklist_item_motherboard"
+                layout="@layout/card_checklist_item_gpu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -174,7 +174,7 @@
                 android:layout_height="@dimen/space_small" />
 
             <include
-                layout="@layout/card_checklist_item_motherboard"
+                layout="@layout/card_checklist_item_ram"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -183,7 +183,7 @@
                 android:layout_height="@dimen/space_small" />
 
             <include
-                layout="@layout/card_checklist_item_motherboard"
+                layout="@layout/card_checklist_item_storage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -192,7 +192,7 @@
                 android:layout_height="@dimen/space_small" />
 
             <include
-                layout="@layout/card_checklist_item_motherboard"
+                layout="@layout/card_checklist_item_psu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -235,8 +235,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-
-
             >
 
             <TextView

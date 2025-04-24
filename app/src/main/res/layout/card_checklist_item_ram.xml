@@ -11,7 +11,7 @@
     app:strokeWidth="2sp"
     app:strokeColor="@color/bz_darkGray"
 
-    android:id="@+id/card_checklist_item_motherboard"
+    android:id="@+id/card_checklist_item_ram"
     android:layout_margin="10dp"
     >
     <LinearLayout
@@ -26,7 +26,7 @@
             android:layout_height="match_parent">
 
             <com.google.android.material.checkbox.MaterialCheckBox
-                android:id="@+id/checkbox_componentMotherboardBoughtStatusMark"
+                android:id="@+id/checkbox_componentRAMBoughtStatusMark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
@@ -62,8 +62,7 @@
                     android:layout_height="50dp"
                     android:background="@color/bz_honeyYellow"
                     android:scaleType="fitXY"
-                    android:src="@drawable/motherboard_vector"
-                    android:padding="5dp"
+                    android:src="@drawable/ram_vector"
                     app:tint="@color/bz_darkGray" />
 
             </androidx.cardview.widget.CardView>
@@ -86,7 +85,7 @@
                 android:layout_height="wrap_content"
 
                 android:fontFamily="@font/ubuntu_bold"
-                android:text="Motherboard"
+                android:text="RAM"
                 android:textColor="@color/bz_darkGray"
                 android:textSize="@dimen/font_large"
 
@@ -95,7 +94,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView_componentMotherboardName"
+                android:id="@+id/textView_componentRAMName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
@@ -117,12 +116,12 @@
                 android:orientation="vertical"
                 android:gravity="end"
 
-                app:layout_constraintTop_toBottomOf="@+id/textView_componentMotherboardName"
+                app:layout_constraintTop_toBottomOf="@+id/textView_componentRAMName"
                 app:layout_constraintEnd_toEndOf="parent"
                 >
 
                 <TextView
-                    android:id="@+id/textView_componentMotherboardPrice"
+                    android:id="@+id/textView_componentRAMPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 

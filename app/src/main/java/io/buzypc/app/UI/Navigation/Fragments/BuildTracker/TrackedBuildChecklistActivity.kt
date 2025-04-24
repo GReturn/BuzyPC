@@ -69,9 +69,9 @@ class TrackedBuildChecklistActivity : AppCompatActivity() {
         updateProgressUI(initialProgress, totalComponents)
 
 
-
+        // Motherboard
         val checkboxMotherboardBoughtStatus: MaterialCheckBox = findViewById(R.id.checkbox_componentMotherboardBoughtStatusMark)
-        val tvMotherboardName: TextView = findViewById(R.id.textView_componentName)
+        val tvMotherboardName: TextView = findViewById(R.id.textView_componentMotherboardName)
         val tvMotherboardPrice: TextView = findViewById(R.id.textView_componentMotherboardPrice)
         tvMotherboardName.text = focusedBuild.pc.motherboard.name
 
@@ -90,6 +90,115 @@ class TrackedBuildChecklistActivity : AppCompatActivity() {
             updateProgressUI(initProgress, maxProgress)
         }
 
+
+        // CPU
+        val checkboxCPUBoughtStatus: MaterialCheckBox = findViewById(R.id.checkbox_componentCPUBoughtStatusMark)
+        val tvCPUName: TextView = findViewById(R.id.textView_componentCPUName)
+        val tvCPUPrice: TextView = findViewById(R.id.textView_componentCPUPrice)
+        tvCPUName.text = focusedBuild.pc.cpu.name
+
+        tvCPUPrice.text = getString(
+            R.string.pricePHP,
+            formatDecimalPriceToString(focusedBuild.pc.cpu.price)
+        )
+
+        checkboxCPUBoughtStatus.isChecked = focusedBuild.pc.cpu.isBought
+        checkboxCPUBoughtStatus.setOnCheckedChangeListener { _, isChecked ->
+            focusedBuild.pc.cpu.isBought = isChecked
+
+            saveBuildList(this, app.buildList)
+            val initProgress = focusedBuild.getProgress().first
+            val maxProgress = focusedBuild.getProgress().second
+            updateProgressUI(initProgress, maxProgress)
+        }
+
+
+        // GPU
+        val checkboxGPUBoughtStatus: MaterialCheckBox = findViewById(R.id.checkbox_componentGPUBoughtStatusMark)
+        val tvGPUName: TextView = findViewById(R.id.textView_componentGPUName)
+        val tvGPUPrice: TextView = findViewById(R.id.textView_componentGPUPrice)
+        tvGPUName.text = focusedBuild.pc.gpu.name
+
+        tvGPUPrice.text = getString(
+            R.string.pricePHP,
+            formatDecimalPriceToString(focusedBuild.pc.gpu.price)
+        )
+
+        checkboxGPUBoughtStatus.isChecked = focusedBuild.pc.gpu.isBought
+        checkboxGPUBoughtStatus.setOnCheckedChangeListener { _, isChecked ->
+            focusedBuild.pc.gpu.isBought = isChecked
+
+            saveBuildList(this, app.buildList)
+            val initProgress = focusedBuild.getProgress().first
+            val maxProgress = focusedBuild.getProgress().second
+            updateProgressUI(initProgress, maxProgress)
+        }
+
+
+        // RAM
+        val checkboxRAMBoughtStatus: MaterialCheckBox = findViewById(R.id.checkbox_componentRAMBoughtStatusMark)
+        val tvRAMName: TextView = findViewById(R.id.textView_componentRAMName)
+        val tvRAMPrice: TextView = findViewById(R.id.textView_componentRAMPrice)
+        tvRAMName.text = focusedBuild.pc.ram.name
+
+        tvRAMPrice.text = getString(
+            R.string.pricePHP,
+            formatDecimalPriceToString(focusedBuild.pc.ram.price)
+        )
+
+        checkboxRAMBoughtStatus.isChecked = focusedBuild.pc.ram.isBought
+        checkboxRAMBoughtStatus.setOnCheckedChangeListener { _, isChecked ->
+            focusedBuild.pc.ram.isBought = isChecked
+
+            saveBuildList(this, app.buildList)
+            val initProgress = focusedBuild.getProgress().first
+            val maxProgress = focusedBuild.getProgress().second
+            updateProgressUI(initProgress, maxProgress)
+        }
+
+
+        // Storage
+        val checkboxStorageBoughtStatus: MaterialCheckBox = findViewById(R.id.checkbox_componentStorageBoughtStatusMark)
+        val tvStorageName: TextView = findViewById(R.id.textView_componentStorageName)
+        val tvStoragePrice: TextView = findViewById(R.id.textView_componentStoragePrice)
+        tvStorageName.text = focusedBuild.pc.storageDevice.name
+
+        tvStoragePrice.text = getString(
+            R.string.pricePHP,
+            formatDecimalPriceToString(focusedBuild.pc.storageDevice.price)
+        )
+
+        checkboxStorageBoughtStatus.isChecked = focusedBuild.pc.storageDevice.isBought
+        checkboxStorageBoughtStatus.setOnCheckedChangeListener { _, isChecked ->
+            focusedBuild.pc.storageDevice.isBought = isChecked
+
+            saveBuildList(this, app.buildList)
+            val initProgress = focusedBuild.getProgress().first
+            val maxProgress = focusedBuild.getProgress().second
+            updateProgressUI(initProgress, maxProgress)
+        }
+
+
+        // PSU
+        val checkboxPSUBoughtStatus: MaterialCheckBox = findViewById(R.id.checkbox_componentPSUBoughtStatusMark)
+        val tvPSUName: TextView = findViewById(R.id.textView_componentPSUName)
+        val tvPSUPrice: TextView = findViewById(R.id.textView_componentPSUPrice)
+        tvPSUName.text = focusedBuild.pc.psu.name
+
+        tvPSUPrice.text = getString(
+            R.string.pricePHP,
+            formatDecimalPriceToString(focusedBuild.pc.psu.price)
+        )
+
+        checkboxPSUBoughtStatus.isChecked = focusedBuild.pc.psu.isBought
+        checkboxPSUBoughtStatus.setOnCheckedChangeListener { _, isChecked ->
+            focusedBuild.pc.psu.isBought = isChecked
+
+            saveBuildList(this, app.buildList)
+            val initProgress = focusedBuild.getProgress().first
+            val maxProgress = focusedBuild.getProgress().second
+            updateProgressUI(initProgress, maxProgress)
+        }
     }
 
     private fun updateProgressUI(completedItems: Int, totalItems: Int) {
