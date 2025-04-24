@@ -26,6 +26,9 @@
     <color name="bz_darkGray_semi_transparent">#80313638</color>
 
     <color name="bz_destructive_red">#FFD44A4A</color>
+    <color name="bz_success_green">#FF4CAF50</color>
+    <color name="bz_success_bright_green">#FF2ECC71</color>
+    <color name="bz_success_deep_green">#FF27AE60</color>
 
 </resources>
 

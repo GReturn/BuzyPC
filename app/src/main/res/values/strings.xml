@@ -37,4 +37,15 @@
     <string name="landingpage_checklist_count">%1$s Items</string>
 
     <string name="fragment_new_build_build_name_hint">e.g. \"Gaming Rig\", \"Office PC\", \"Budget PC\"</string>
+    <string name="progress_completed_of_total_components_bought"><b>Progress:</b> %1$d of %2$d components bought</string>
+    <string name="pricePHP">PHP %1$s</string>
+
+    <string name="tips_description">
+        <ol>
+            <li>1. If you have acquired the component, mark it as bought.</li>\n\n
+            <li>2. Long-press a component to see its information.</li>
+        </ol>
+    </string>
+    <string name="checklist_grand_total">Grand Total: PHP %1$s</string>
+
 </resources>
