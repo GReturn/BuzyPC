@@ -39,7 +39,7 @@
             android:fontFamily="@font/ubuntu"
             android:textSize="16sp"
             android:lineSpacingExtra="4dp"
-            android:textColor="@android:color/black" />
+            />
 
     </ScrollView>
 
