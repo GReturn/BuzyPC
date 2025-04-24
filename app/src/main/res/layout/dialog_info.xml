@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/space_normal"
+    android:background="@drawable/dialog_background"
+    >
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="@dimen/space_xsmall"
+        android:src="@drawable/mascot_buzybee"
+
+        app:layout_constraintEnd_toStartOf="@+id/textViewTitle"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+
+        android:gravity="center"
+        android:text="Information"
+        android:textColor="?attr/colorOnSurface"
+        android:textSize="@dimen/font_larger"
+        android:textStyle="bold"
+        android:fontFamily="@font/ubuntu_medium"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_dialogMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_normal"
+
+        android:fontFamily="@font/ubuntu_medium"
+        android:text="Information Details"
+        android:textColor="?attr/colorOnSurface"
+        android:textSize="@dimen/space_normal"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewTitle" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/space_normal"
+
+        android:gravity="end"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView_dialogMessage"
+        >
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnConfirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:fontFamily="@font/ubuntu_medium"
+            android:text="OK"
+            android:textStyle="bold"
+            android:textSize="@dimen/space_normal"
+            app:cornerRadius="5dp"
+
+            android:backgroundTint="?attr/colorControlNormal"
+            />
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
