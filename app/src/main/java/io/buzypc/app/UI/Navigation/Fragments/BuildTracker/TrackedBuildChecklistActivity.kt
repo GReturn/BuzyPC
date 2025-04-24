@@ -44,7 +44,7 @@ class TrackedBuildChecklistActivity : AppCompatActivity() {
 
         btnInfo.setOnClickListener {
             CustomInfoDialogView(this)
-                .setTitle("Tips!")
+                .setTitle("What's this?")
                 .setDescription(getString(R.string.tips_description))
                 .setOnConfirmClickListener {  }
                 .show()
