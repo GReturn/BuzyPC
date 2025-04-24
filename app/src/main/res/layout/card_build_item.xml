@@ -12,7 +12,7 @@
     app:strokeWidth="2sp"
     app:strokeColor="@color/bz_darkGray"
 
-    android:id="@+id/build_card"
+    android:id="@+id/card_checklist_item_motherboard"
     android:layout_margin="10dp"
     >
     <LinearLayout
@@ -51,7 +51,7 @@
             >
 
             <TextView
-                android:id="@+id/textView_buildName"
+                android:id="@+id/textView_componentLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
@@ -64,7 +64,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView_pcBudget"
+                android:id="@+id/textView_componentSubtotal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_normal"
@@ -78,7 +78,7 @@
                 app:drawableTint="@color/bz_darkGray"
 
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_buildName" />
+                app:layout_constraintTop_toBottomOf="@+id/textView_componentLabel" />
 
             <TextView
                 android:id="@+id/textView_createdAt"
@@ -92,7 +92,7 @@
                 android:textSize="@dimen/font_normal"
 
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_pcBudget"
+                app:layout_constraintTop_toBottomOf="@+id/textView_componentSubtotal"
                 />
 
             <ImageButton
