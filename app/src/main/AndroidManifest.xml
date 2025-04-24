@@ -14,7 +14,7 @@
         android:theme="@style/Theme.BuzyPC"
         tools:targetApi="31">
         <activity
-            android:name=".UI.Navigation.Fragments.BuildTracker.TrackingBuildSummaryActivity"
+            android:name=".UI.Navigation.Fragments.BuildTracker.TrackedBuildChecklistActivity"
             android:exported="false" />
         <activity
             android:name=".UI.Navigation.Fragments.BuildList.BuyComponentActivity"
