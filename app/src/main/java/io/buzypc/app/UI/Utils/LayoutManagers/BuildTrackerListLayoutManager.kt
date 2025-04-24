@@ -2,8 +2,6 @@ package io.buzypc.app.UI.Utils.LayoutManagers
 
 import android.content.Context
 import android.view.animation.AnimationUtils
-import io.buzypc.app.R
-import io.buzypc.app.UI.Utils.LayoutManagers.AnimatedGridLayoutManager.Companion.ANIMATION_OFFSET
 import io.buzypc.app.UI.Utils.withEndActionOnce
 
 class BuildTrackerListLayoutManager(
