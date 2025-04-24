@@ -17,4 +17,8 @@ data class PCBuild(
     fun getProgress(): Pair<Int,Int> {
         return pc.getPurchasedComponentCount()
     }
+
+    fun getTotalPrice(): Double {
+        return pc.getTotalPrice()
+    }
 }
