@@ -13,13 +13,6 @@ class ListsInformationViewModel : ViewModel() {
     val buildListCount: MutableLiveData<Int> get() = mutableBuildListCount
     val checkListCount: MutableLiveData<Int> get() = mutableCheckListCount
 
-    fun incrementBuildCount() {
-        mutableBuildListCount.value = (mutableBuildListCount.value ?: 0) + 1
-    }
-    fun incrementChecklistItemCount() {
-        mutableCheckListCount.value = (mutableCheckListCount.value ?: 0) + 1
-    }
-
     fun setBuildCount(count: Int) {
         mutableBuildListCount.value = count
     }
