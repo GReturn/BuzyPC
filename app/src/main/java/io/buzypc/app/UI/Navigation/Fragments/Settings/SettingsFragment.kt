@@ -33,6 +33,7 @@ class SettingsFragment : Fragment() {
         // Theme and Navigation Setup
         val btnEditAccount = view.findViewById<Button>(R.id.btn_edit_account)
         val btnAboutDevelopers = view.findViewById<Button>(R.id.btn_about_developers)
+        val btnPrivacyPolicy = view.findViewById<Button>(R.id.btn_privacy_policy)
         val radioBtnLightMode = view.findViewById<RadioButton>(R.id.rb_lightMode)
         val radioBtnDarkMode = view.findViewById<RadioButton>(R.id.rb_darkMode)
         val cardLightMode = view.findViewById<com.google.android.material.card.MaterialCardView>(R.id.card_lightMode)
@@ -59,6 +60,10 @@ class SettingsFragment : Fragment() {
 
         btnAboutDevelopers.setOnClickListener {
             val intent = Intent(requireActivity(), AboutDevelopersActivity::class.java)
+            startActivity(intent)
+        }
+        btnPrivacyPolicy.setOnClickListener {
+            val intent = Intent(requireActivity(), PrivacyPolicyActivity::class.java)
             startActivity(intent)
         }
 

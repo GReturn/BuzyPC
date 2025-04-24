@@ -17,7 +17,6 @@
     <string-array name="pc_builds">
         <item>Sheshable</item>
         <item>Sheshable</item>
-
     </string-array>
 
     <string-array name="pc_budget">
@@ -40,7 +39,38 @@
     <string name="progress_completed_of_total_components_bought"><b>Progress:</b> %1$d of %2$d components bought</string>
     <string name="pricePHP">PHP %1$s</string>
 
-    <string name="tips_description">If you have acquired the component, mark it as bought.</string>
+    <string name="tips_description">If you have acquired the component, you may put a checkmark on the box.</string>
     <string name="checklist_grand_total">Grand Total: PHP %1$s</string>
 
+
+    <string name="privacy_policy_text">
+    <![CDATA[
+    Privacy Policy\n
+    Last updated: April 24, 2025\n\n
+
+    Welcome to BuzyPC — your budget-friendly PC build assistant!\n\n
+
+    This privacy policy is here to let you know what kind of information we collect and how we use it. Don\'t worry — we keep it simple and respect your privacy.\n\n
+
+    1. Information We Collect\n
+    BuzyPC does not collect any personal data.\n
+    All the data (like your PC build preferences, budget, or checklist items) stays locally on your device.\n\n
+
+    2. How We Use Your Data\n
+    Your input is used only to generate and manage your custom PC builds. That’s it. No tracking, no analytics, no funny business.\n\n
+
+    3. Data Sharing\n
+    We don’t share, sell, or send your data anywhere. Your builds are yours alone.\n\n
+
+    4. Internet Access\n
+    BuzyPC may access the internet only for optional features like fetching component suggestions or updates in the future. These are strictly for app enhancement.\n\n
+
+    5. Changes to This Policy\n
+    This is a mock privacy policy for demonstration purposes. In a real deployment, we’d notify users if anything changed.\n\n
+
+    Contact\n
+    Questions or concerns? Feel free to reach out when we’re real. 😉\n
+    For now, enjoy building your dream PC with BuzyPC.
+    ]]>
+</string>
 </resources>
