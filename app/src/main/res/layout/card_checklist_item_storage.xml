@@ -92,7 +92,7 @@
                 android:layout_height="wrap_content"
 
                 android:fontFamily="@font/ubuntu_bold"
-                android:text="Storage"
+                android:text="Storage Device"
                 android:textColor="@color/bz_darkGray"
                 android:textSize="@dimen/font_large"
 
