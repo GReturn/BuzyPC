@@ -39,7 +39,7 @@
     <string name="progress_completed_of_total_components_bought"><b>Progress:</b> %1$d of %2$d components bought</string>
     <string name="pricePHP">PHP %1$s</string>
 
-    <string name="tips_description">If you have acquired the component, you may put a checkmark on the box.</string>
+    <string name="tips_description">Track your build components here! Once you’ve got the part, simply check the box to keep track of it.</string>
     <string name="checklist_grand_total">Grand Total: PHP %1$s</string>
 
 </resources>
