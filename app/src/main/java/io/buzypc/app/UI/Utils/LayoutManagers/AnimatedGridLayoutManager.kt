@@ -3,7 +3,6 @@ package io.buzypc.app.UI.Utils.LayoutManagers
 import android.animation.ValueAnimator
 import android.content.Context
 import android.view.View
-import android.view.animation.AnimationUtils
 import androidx.annotation.AnimRes
 import androidx.core.animation.doOnEnd
 import androidx.core.animation.doOnStart
@@ -13,11 +12,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.buzypc.app.R
 import io.buzypc.app.UI.Utils.lerp
-import io.buzypc.app.UI.Utils.withEndActionOnce
 import kotlin.math.abs
 
 abstract class AnimatedGridLayoutManager(
-    private val context: Context,
+    context: Context,
     spanCount: Int = 1
 ) : GridLayoutManager(context, spanCount) {
 
