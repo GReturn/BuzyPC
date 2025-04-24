@@ -111,19 +111,82 @@
     </LinearLayout>
 
 
-    <View
-        android:id="@+id/view_divider"
+    <LinearLayout
+        android:id="@+id/layout_statusSummary"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="wrap_content"
 
         android:layout_marginHorizontal="@dimen/margin_normal"
 
-        android:background="@color/bz_darkGray"
+        android:orientation="vertical"
+
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/sv_componentList"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/header">
+
+        <LinearLayout
+            android:id="@+id/progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_progressCompleted"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+
+                android:layout_weight="1"
+
+                android:fontFamily="@font/ubuntu_bold"
+                android:text="@string/progress_completed_of_total_components_bought"
+                android:textColor="@color/bz_darkGray"
+                android:textSize="@dimen/font_small" />
+
+            <TextView
+                android:id="@+id/tv_percentageCompleted"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:fontFamily="@font/ubuntu_bold"
+                android:text="%"
+                android:textAlignment="textEnd"
+                android:textColor="@color/bz_darkGray"
+                android:textSize="@dimen/font_small" />
+
+        </LinearLayout>
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/linearProgressIndicator"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+
+            android:indeterminate="false"
+            android:max="100"
+
+            app:indicatorColor="@color/bz_darkGray"
+            app:showAnimationBehavior="inward"
+            app:trackColor="@color/bz_softGray"
+            app:trackCornerRadius="10dp"
+            app:trackThickness="@dimen/space_xsmall" />
+
+    </LinearLayout>
+
+
+
+<!--    <View-->
+<!--        android:id="@+id/view_divider"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="1dp"-->
+
+
+<!--        android:background="@color/bz_darkGray"-->
+
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        />-->
 
     <ScrollView
         android:id="@+id/sv_componentList"
@@ -132,12 +195,13 @@
         android:layout_height="0dp"
 
         android:layout_marginHorizontal="@dimen/margin_normal"
-        android:layout_marginBottom="@dimen/margin_normal"
+        android:layout_marginTop="@dimen/margin_normal"
 
-        app:layout_constraintBottom_toTopOf="@+id/layout_statusSummary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/header">
+        app:layout_constraintTop_toBottomOf="@id/layout_statusSummary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -199,88 +263,5 @@
 
         </LinearLayout>
     </ScrollView>
-
-    <View
-        android:id="@+id/divider_progress"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-
-        android:layout_marginHorizontal="@dimen/margin_normal"
-
-        android:backgroundTint="@color/bz_almostBlack"
-        android:background="@color/bz_darkGray"
-
-        app:layout_constraintEnd_toEndOf="parent"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sv_componentList" />
-
-    <LinearLayout
-        android:id="@+id/layout_statusSummary"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:layout_marginHorizontal="@dimen/margin_normal"
-        android:layout_marginBottom="@dimen/margin_normal"
-
-        android:orientation="vertical"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <LinearLayout
-            android:id="@+id/progress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
-
-            <TextView
-                android:id="@+id/tv_progressCompleted"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-
-                android:layout_weight="1"
-
-                android:fontFamily="@font/ubuntu_bold"
-                android:text="@string/progress_completed_of_total_components_bought"
-                android:textSize="@dimen/font_small"
-                android:textColor="@color/bz_darkGray"
-                />
-
-            <TextView
-                android:id="@+id/tv_percentageCompleted"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:fontFamily="@font/ubuntu_bold"
-                android:text="%"
-                android:textSize="@dimen/font_small"
-                android:textColor="@color/bz_darkGray"
-                android:textAlignment="textEnd"
-                />
-
-        </LinearLayout>
-
-        <com.google.android.material.progressindicator.LinearProgressIndicator
-            android:id="@+id/linearProgressIndicator"
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_small"
-
-            android:indeterminate="false"
-            android:max="100"
-
-            app:indicatorColor="@color/bz_darkGray"
-            app:trackColor="@color/bz_softGray"
-            app:trackCornerRadius="10dp"
-            app:trackThickness="@dimen/space_xsmall"
-            app:showAnimationBehavior="inward"
-            />
-
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
