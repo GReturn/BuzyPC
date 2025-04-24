@@ -52,53 +52,84 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_title" />
 
-    <EditText
-        android:id="@+id/username"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/username_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="48dp"
-        android:layout_below="@id/logo"
-        android:layout_marginHorizontal="50dp"
-        android:layout_marginTop="32dp"
 
         android:hint="Username"
-        android:fontFamily="@font/ubuntu_medium"
-        android:textAlignment="center"
-        android:textColor="#808080"
-        android:textSize="15sp"
+        android:layout_marginHorizontal="50dp"
 
-        android:maxLength="30"
-        android:singleLine="true"
-        android:maxLines="1"
-        android:focusable="true"
-        android:imeOptions="actionNext"
+        android:layout_marginTop="@dimen/margin_normal"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtview_login" />
+        app:layout_constraintTop_toBottomOf="@+id/txtview_login"
+        >
 
-    <EditText
-        android:id="@+id/password"
+        <com.google.android.material.textfield.TextInputEditText
+
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/logo"
+
+
+            android:fontFamily="@font/ubuntu_medium"
+            android:textAlignment="center"
+            android:textColor="#808080"
+            android:textSize="15sp"
+
+            android:maxLength="30"
+            android:singleLine="true"
+            android:maxLines="1"
+            android:focusable="true"
+            android:imeOptions="actionNext"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtview_login" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/password_layout"
+
+        android:hint="Password"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="48dp"
-        android:layout_below="@id/username"
-        android:layout_marginHorizontal="50dp"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:textAlignment="center"
-        android:textColor="#808080"
-        android:textSize="15sp"
-        android:fontFamily="@font/ubuntu_medium"
 
-        android:singleLine="true"
-        android:maxLines="1"
-        android:focusable="true"
-        android:imeOptions="actionDone"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginTop="@dimen/margin_small"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
+        app:layout_constraintTop_toBottomOf="@+id/username_layout"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/username_layout"
+
+            android:focusable="true"
+            android:fontFamily="@font/ubuntu_medium"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:minHeight="48dp"
+
+            android:singleLine="true"
+            android:textAlignment="center"
+            android:textColor="#808080"
+            android:textSize="15sp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/username_layout" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 
     <com.google.android.material.button.MaterialButton
