@@ -174,20 +174,6 @@
 
     </LinearLayout>
 
-
-
-<!--    <View-->
-<!--        android:id="@+id/view_divider"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="1dp"-->
-
-
-<!--        android:background="@color/bz_darkGray"-->
-
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        />-->
-
     <ScrollView
         android:id="@+id/sv_componentList"
 
@@ -196,6 +182,7 @@
 
         android:layout_marginHorizontal="@dimen/margin_normal"
         android:layout_marginTop="@dimen/margin_normal"
+        android:layout_marginBottom="@dimen/margin_normal"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
