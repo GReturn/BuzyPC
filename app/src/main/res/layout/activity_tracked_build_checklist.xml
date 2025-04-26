@@ -165,6 +165,7 @@
 
             android:indeterminate="false"
             android:max="100"
+            app:trackStopIndicatorSize="0dp"
 
             app:indicatorColor="@color/bz_darkGray"
             app:showAnimationBehavior="inward"
