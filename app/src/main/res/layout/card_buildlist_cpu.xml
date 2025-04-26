@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    app:strokeColor="@color/bz_almostBlack"
+    app:strokeWidth="2dp"
+    app:cardCornerRadius="10dp"
+
+    android:layout_margin="@dimen/margin_large"
+    android:backgroundTint="?attr/colorControlNormal"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="@dimen/padding_normal"
+        >
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/imgCard"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            app:cardCornerRadius="5dp"
+
+            >
+
+            <ImageView
+                android:id="@+id/imgRAM"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bz_darkGray"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_build_component_cpu"
+
+                />
+        </androidx.cardview.widget.CardView>
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_xsmall"
+
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/tvCPU"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ubuntu_bold"
+                android:text="CPU"
+                android:textColor="@color/bz_darkGray"
+                android:textSize="@dimen/font_large"
+
+                />
+
+            <TextView
+                android:id="@+id/tvCPUName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+
+                android:fontFamily="@font/ubuntu_medium"
+                android:maxLines="2"
+                android:text="sddsdsdsd"
+                android:textColor="@color/bz_darkGray"
+                android:textSize="@dimen/font_larger"
+
+
+                />
+
+            <TextView
+                android:id="@+id/tvPriceCPU"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:fontFamily="@font/ubuntu_bold"
+                android:text="PHP $price"
+                android:textAlignment="center"
+                android:textColor="@color/bz_darkGray"
+
+                app:layout_constraintStart_toEndOf="@+id/imgCard"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+                />
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSeeStoresCPU"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:src="@drawable/ic_shopping_cart"
+            app:backgroundTint="@color/bz_darkGray"
+            app:cornerRadius="5dp"
+            android:text="See Stores"
+            android:textColor="@color/bz_honeyYellow"
+
+            android:layout_gravity="center"
+
+            />
+
+    </LinearLayout>
+
+
+</com.google.android.material.card.MaterialCardView>
