@@ -7,7 +7,7 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="colorPrimary">@color/bz_honeyYellow</item>
         <item name="colorOnPrimary">@color/white</item>
-        <item name="colorSecondary">@color/bz_warmYellow</item>
+        <item name="colorSecondary">@color/bz_deepCharcoal</item>
         <item name="colorOnSecondary">@color/bz_darkGray</item>
         <item name="colorTertiary">@color/bz_warmBrown</item>
         <item name="colorOnTertiary">@color/white</item>
