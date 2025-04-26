@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.button.MaterialButton
 import io.buzypc.app.Data.AppSession.BuzyUserAppSession
@@ -40,6 +41,7 @@ class BuildTrackerRecyclerViewAdapter(
         val item = holder as ItemViewHolder
         item.tvName.text = build.name
         item.tvBudget.text = "PHP %,.2f".format(build.budget)
+
 
         val initialProgress = build.getProgress().first
         val totalComponents = build.getProgress().second
@@ -82,11 +84,11 @@ class BuildTrackerRecyclerViewAdapter(
                     updateList(pcBuilds)
                     saveBuildList(context, appSession.buildList)
 
-                    val checklistCount = pcBuilds.count { !it.isDeleted && it.isTracked }
+                    val checklistCount = pcBuilds.count {!it.isDeleted && !it.isArchived && it.isTracked }
                     listsInformationViewModel.setChecklistItemCount(checklistCount)
 
                     buildListChangedListener.onBuildListChanged(
-                        appSession.buildList.none { !it.isDeleted && it.isTracked }
+                        appSession.buildList.none {!it.isDeleted && !it.isArchived && it.isTracked }
                     )
 
                     Toast.makeText(context, "Build removed from checklist.", Toast.LENGTH_SHORT).show()
@@ -111,7 +113,7 @@ class BuildTrackerRecyclerViewAdapter(
     }
 
     private fun updateList(newBuilds: List<PCBuild>) {
-        pcBuilds = ArrayList(newBuilds.filter { !it.isDeleted && it.isTracked })
+        pcBuilds = ArrayList(newBuilds.filter {!it.isDeleted && !it.isArchived && it.isTracked })
         notifyDataSetChanged()
     }
 }

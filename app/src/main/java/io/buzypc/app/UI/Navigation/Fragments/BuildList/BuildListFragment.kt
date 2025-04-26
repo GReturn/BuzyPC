@@ -32,7 +32,9 @@ class BuildListFragment : Fragment() {
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycleView_builds)
         val tvEmptyList = view.findViewById<TextView>(R.id.tvEmptyList)
 
-        val allBuilds = pcBuildList.filter { !it.isDeleted } as ArrayList<PCBuild>
+
+        // Added !it.isArchived to filter out archived builds
+        val allBuilds = pcBuildList.filter { !it.isDeleted && !it.isArchived} as ArrayList<PCBuild>
         if(allBuilds.isEmpty()){
             tvEmptyList.visibility = View.VISIBLE
             recyclerView.visibility = View.VISIBLE

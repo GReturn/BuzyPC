@@ -5,7 +5,31 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.Navigation.Fragments.Settings.ArchiveListActivity">
+    tools:context=".UI.Navigation.Fragments.Settings.Archive.ArchiveListActivity">
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/arrow_back_24px"
+        android:layout_margin="30dp"
+        />
+
+    <TextView
+        android:id="@+id/tvEmptyArchiveList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/space_small"
+
+        android:fontFamily="@font/ubuntu_medium"
+        android:visibility="invisible"
+        android:text="Nothing here yet. Add your build now!"
+        android:textColor="@color/bz_almostBlack"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        />
 
     <LinearLayout
         android:id="@+id/header"
@@ -33,7 +57,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycleView_builds"
+        android:id="@+id/recycleView_archivedBuilds"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 

@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import io.buzypc.app.R
 import io.buzypc.app.UI.Authentication.LogoutPromptActivity
+import io.buzypc.app.UI.Navigation.Fragments.Settings.Archive.ArchiveListActivity
 import io.buzypc.app.UI.Navigation.ViewModels.StyleViewModel
 import io.buzypc.app.UI.Utils.loadCurrentUserDetails
 
@@ -34,6 +35,7 @@ class SettingsFragment : Fragment() {
         val btnEditAccount = view.findViewById<Button>(R.id.btn_edit_account)
         val btnAboutDevelopers = view.findViewById<Button>(R.id.btn_about_developers)
         val radioBtnLightMode = view.findViewById<RadioButton>(R.id.rb_lightMode)
+        val btnViewArchivedList = view.findViewById<Button>(R.id.btn_archived_list)
         val radioBtnDarkMode = view.findViewById<RadioButton>(R.id.rb_darkMode)
         val cardLightMode = view.findViewById<com.google.android.material.card.MaterialCardView>(R.id.card_lightMode)
         val cardDarkMode = view.findViewById<com.google.android.material.card.MaterialCardView>(R.id.card_darkMode)
@@ -59,6 +61,11 @@ class SettingsFragment : Fragment() {
 
         btnAboutDevelopers.setOnClickListener {
             val intent = Intent(requireActivity(), AboutDevelopersActivity::class.java)
+            startActivity(intent)
+        }
+
+        btnViewArchivedList.setOnClickListener{
+            val intent = Intent(requireActivity(), ArchiveListActivity::class.java)
             startActivity(intent)
         }
 

@@ -6,7 +6,7 @@ import io.buzypc.app.Data.BuildData.PCBuild
 
 // TODO (when we finally integrate and finish all the list views)
 
-class ListsInformationViewModel : ViewModel() {
+class  ListsInformationViewModel : ViewModel() {
     private val mutableBuildListCount = MutableLiveData<Int>()
     private val mutableCheckListCount = MutableLiveData<Int>()
 

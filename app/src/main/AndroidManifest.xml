@@ -14,7 +14,7 @@
         android:theme="@style/Theme.BuzyPC"
         tools:targetApi="31">
         <activity
-            android:name=".UI.Navigation.Fragments.Settings.ArchiveListActivity"
+            android:name=".UI.Navigation.Fragments.Settings.Archive.ArchiveListActivity"
             android:exported="false" />
         <activity
             android:name=".UI.Widget.LoadingScreenActivity"

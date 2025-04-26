@@ -31,7 +31,7 @@ class TrackerFragment : Fragment() {
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycleView_builds)
         val tvEmptyList = view.findViewById<TextView>(R.id.tvEmptyList)
 
-        val trackedBuilds = pcBuildList.filter { it.isTracked && !it.isDeleted } as ArrayList<PCBuild>
+        val trackedBuilds = pcBuildList.filter { it.isTracked && !it.isDeleted && !it.isArchived } as ArrayList<PCBuild>
         if(trackedBuilds.isEmpty()){
             tvEmptyList.visibility = View.VISIBLE
         }

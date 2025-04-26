@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTint="?attr/colorControlNormal"
+    >
+
+    <TextView
+        android:id="@+id/tvRestore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Restore"
+        android:textSize="15sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="20dp"
+        android:fontFamily="@font/ubuntu_bold"
+        />
+
+    <TextView
+        android:id="@+id/tvDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete"
+        android:textSize="15sp"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/ubuntu_bold"
+        android:textColor="@color/bz_destructive_red"
+        />
+
+
+</LinearLayout>

@@ -71,29 +71,30 @@ class BuildListRecyclerViewAdapter(
                 holder.imgBtnRemove.setOnClickListener {
 
                     val appSession = (context.applicationContext as BuzyUserAppSession)
-
                     CustomActionDialogView(context, DialogType.DESTRUCTION)
-                        .setTitle("Remove Build")
-                        .setDescription("Are you sure you want to delete this build? This action cannot be undone.")
+                        .setTitle("Archive Build")
+                        .setDescription("Are you sure you want to archive this build? This build will be stored in your archives.")
                         .setOnCancelClickListener {
 
                         }
                         .setOnConfirmClickListener {
-                            build.isDeleted = true
+                            build.isArchived = true
+                            build.isTracked = false;
 
                             updateList(appSession.buildList)
                             saveBuildList(context, appSession.buildList)
 
+                            // Added !it.isArchived to filter out archived builds
                             buildListChangedListener.onBuildListChanged(
-                                appSession.buildList.none { !it.isDeleted }
+                                appSession.buildList.none { !it.isDeleted && !it.isArchived }
                             )
 
-                            val buildCount = appSession.buildList.count { !it.isDeleted }
-                            val checklistCount = appSession.buildList.count { !it.isDeleted && it.isTracked }
+                            val buildCount = appSession.buildList.count { !it.isDeleted && !it.isArchived}
+                            val checklistCount = appSession.buildList.count { !it.isDeleted && !it.isArchived && it.isTracked }
                             listsInformationViewModel.setBuildCount(buildCount)
                             listsInformationViewModel.setChecklistItemCount(checklistCount)
 
-                            Toast.makeText(context, "Build deleted.", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, "Build archived.", Toast.LENGTH_SHORT).show()
                         }
                         .show()
                 }
@@ -122,7 +123,7 @@ class BuildListRecyclerViewAdapter(
                                 updateList(appSession.buildList)
                                 saveBuildList(context, appSession.buildList)
 
-                                val checklistCount = appSession.buildList.count { !it.isDeleted && it.isTracked }
+                                val checklistCount = appSession.buildList.count {  !it.isDeleted && !it.isArchived && it.isTracked }
                                 listsInformationViewModel.setChecklistItemCount(checklistCount)
 
                                 Toast.makeText(context, "Item removed from checklist.", Toast.LENGTH_SHORT).show()
@@ -141,7 +142,7 @@ class BuildListRecyclerViewAdapter(
                                 updateList(appSession.buildList)
                                 saveBuildList(context, appSession.buildList)
 
-                                val checklistCount = appSession.buildList.count { !it.isDeleted && it.isTracked }
+                                val checklistCount = appSession.buildList.count { !it.isDeleted && !it.isArchived && it.isTracked  }
                                 listsInformationViewModel.setChecklistItemCount(checklistCount)
 
                                 Toast.makeText(context, "Item added to checklist.", Toast.LENGTH_SHORT).show()
@@ -178,7 +179,7 @@ class BuildListRecyclerViewAdapter(
 
 
     private fun updateList(newBuilds: List<PCBuild>) {
-        pcBuilds = ArrayList(newBuilds.filter { !it.isDeleted })
+        pcBuilds = ArrayList(newBuilds.filter { !it.isDeleted && !it.isArchived })
         notifyDataSetChanged()
     }
 }
