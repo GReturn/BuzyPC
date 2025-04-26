@@ -41,6 +41,7 @@ class BuzyUserAppSession: Application() {
             "ASUS",
             14250.0,
             9.0f,
+            9.5f,
             listOf(
                 Store(
                     "Lazada",
@@ -74,6 +75,7 @@ class BuzyUserAppSession: Application() {
             "Intel",
             31350.0,
             4.5f,
+            4.0f,
             listOf(
                 Store(
                     "Lazada",
@@ -106,6 +108,7 @@ class BuzyUserAppSession: Application() {
             "Nvidia",
             34200.0,
             4.2f,
+            6.4f,
             listOf(
                 Store(
                     "Lazada",
@@ -139,6 +142,7 @@ class BuzyUserAppSession: Application() {
             "Samsung",
             11400.0,
             4.7f,
+            6.3f,
             listOf(
                 Store(
                     "Lazada",
@@ -171,6 +175,7 @@ class BuzyUserAppSession: Application() {
             "Corsair",
             8550.0,
             4.4f,
+            5.7f,
             listOf(
                 Store(
                     "Lazada",
@@ -203,6 +208,7 @@ class BuzyUserAppSession: Application() {
             "Corsair",
             6840.0,
             4.1f,
+            6.2f,
             listOf(
                 Store(
                     "Lazada",
