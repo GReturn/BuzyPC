@@ -3,11 +3,15 @@ package io.buzypc.app.UI.Navigation.Fragments.BuildList
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.ScrollView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import io.buzypc.app.R
 import io.buzypc.app.Data.AppSession.BuzyUserAppSession
 import io.buzypc.app.UI.Widget.RadarChartViewFragment
@@ -17,15 +21,32 @@ class BuildSummaryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_build_summary)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.scrollView)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val tvBuildName = findViewById<TextView>(R.id.tv_BuildSummary)
         val app = application as BuzyUserAppSession
 
+        val btnBack = findViewById<ImageView>(R.id.btn_back_navigation)
+        btnBack.setOnClickListener {
+            finish()
+            return@setOnClickListener
+        }
+
+        val scrollView = findViewById<ScrollView>(R.id.scrollView)
+        val fab = findViewById<FloatingActionButton>(R.id.fabScrollToTop)
+        scrollView.viewTreeObserver.addOnScrollChangedListener {
+            val scrollY = scrollView.scrollY
+            val pxLimit = 200
+            if (scrollY > pxLimit) fab.show() else fab.hide()
+        }
+        fab.setOnClickListener { scrollView.smoothScrollTo(0, 0) }
+
+
+        val tvBuildName = findViewById<TextView>(R.id.tv_BuildName)
         val tvTotalPrice = findViewById<TextView>(R.id.tvTotalPrice)
+
         tvTotalPrice.paintFlags = tvTotalPrice.paintFlags
 
 
@@ -49,7 +70,7 @@ class BuildSummaryActivity : AppCompatActivity() {
         val compatRam = findViewById<TextView>(R.id.tvRAMScore)
         val compatStorage = findViewById<TextView>(R.id.tvStorageScore)
 
-        val btnSeeCPUStores = findViewById<Button>(R.id.btnSeeStoresCPU)
+        val btnSeeCPUStores = findViewById<ImageButton>(R.id.btnSeeStoresCPU)
         val btnSeeGPUsStores = findViewById<Button>(R.id.btnSeeStoresGPU)
         val btnSeeMotherboardStores = findViewById<Button>(R.id.btnSeeStoresMotherboard)
         val btnSeePSUStores = findViewById<Button>(R.id.btnSeeStoresPSU)
@@ -87,7 +108,7 @@ class BuildSummaryActivity : AppCompatActivity() {
             startActivity(Intent(this, BuyComponentActivity::class.java))
         }
 
-        tvBuildName.text = "${(application as BuzyUserAppSession).selectedBuildToSummarize.name}'s Summary"
+        tvBuildName.text = "${(application as BuzyUserAppSession).selectedBuildToSummarize.name}"
 
         // Add the RadarChartView Fragment
         val fragmentTransaction = supportFragmentManager.beginTransaction()
