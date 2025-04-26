@@ -26,7 +26,7 @@ class NewBuildSummaryActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val tvBuildName = findViewById<TextView>(R.id.tv_BuildSummary)
+        val tvBuildName = findViewById<TextView>(R.id.tv_BuildName)
         val tvBuildTotalPrice = findViewById<TextView>(R.id.tvTotalPrice)
         val btnSaveButton = findViewById<Button>(R.id.btn_SaveBuild)
         val app = application as BuzyUserAppSession
@@ -149,11 +149,11 @@ class NewBuildSummaryActivity : AppCompatActivity() {
 
 
     fun setCompatScore(app: BuzyUserAppSession, compatCPU: TextView, compatGPU: TextView, compatPSU: TextView, compatRam: TextView, compatStorage: TextView) {
-        compatCPU.text = app.pc.cpu.performanceScore.toString()
-        compatGPU.text = app.pc.gpu.performanceScore.toString()
-        compatPSU.text = app.pc.psu.performanceScore.toString()
-        compatRam.text = app.pc.ram.performanceScore.toString()
-        compatStorage.text = app.pc.storageDevice.performanceScore.toString()
+        compatCPU.text = app.pc.cpu.compatibilityScore.toString()
+        compatGPU.text = app.pc.gpu.compatibilityScore.toString()
+        compatPSU.text = app.pc.psu.compatibilityScore.toString()
+        compatRam.text = app.pc.ram.compatibilityScore.toString()
+        compatStorage.text = app.pc.storageDevice.compatibilityScore.toString()
     }
 
     fun setComponentNames(app: BuzyUserAppSession, nameCPU: TextView, nameGPU: TextView, nameMotherboard: TextView, namePSU: TextView, nameRAM: TextView, nameStorage: TextView) {
