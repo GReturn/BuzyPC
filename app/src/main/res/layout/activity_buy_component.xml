@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".UI.Navigation.Fragments.BuildList.BuyComponentActivity"
 
-    android:padding="@dimen/space_medium"
+    android:layout_margin="@dimen/margin_medium"
     >
 
     <ImageView
@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardImg"
         android:layout_width="200dp"
         android:layout_height="200dp"
@@ -30,7 +30,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="@dimen/space_huge"
-        app:cardCornerRadius="20dp"
+        app:cardCornerRadius="10dp"
         android:backgroundTint="?attr/colorControlNormal"
         >
         <ImageView
@@ -40,7 +40,7 @@
             android:layout_height="150dp"
             android:src="@drawable/cpu_64_bit"
             />
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
     <TextView
         android:id="@+id/tvBrandName"
         android:layout_width="wrap_content"
