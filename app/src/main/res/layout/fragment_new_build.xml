@@ -31,89 +31,108 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/et_buildName"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_buildName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/textview_budgetPrompt"
 
+            android:hint="Build Name"
+            android:textColorHint="@color/bz_darkGray"
+            app:hintTextColor="@color/bz_darkGray"
+            app:boxStrokeColor="@color/bz_darkGray"
+            app:cursorColor="@color/bz_darkGray"
+
+            android:layout_marginTop="@dimen/margin_large"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="72dp"
-
-            android:backgroundTint="@color/bz_darkGray"
-            android:focusable="true"
-            android:fontFamily="@font/ubuntu_bold"
-            android:hint="@string/fragment_new_build_build_name_hint"
-            android:imeOptions="actionNext"
-            android:maxLength="10"
-
-            android:inputType="text"
-            android:maxLines="1"
-            android:shadowColor="?attr/colorOnPrimary"
-            android:singleLine="true"
-
-            android:textAlignment="center"
-            android:textSize="@dimen/font_normal"
-            android:textColor="@color/bz_darkGray"
-            android:textColorHint="@color/bz_darkGray_semi_transparent"
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+            app:layout_constraintTop_toBottomOf="@+id/textView4">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_buildName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:backgroundTint="@color/bz_darkGray"
+                android:focusable="true"
+                android:fontFamily="@font/ubuntu_medium"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+
+                android:maxLength="10"
+                android:maxLines="1"
+                android:shadowColor="?attr/colorOnPrimary"
+                android:singleLine="true"
+
+                android:textColor="@color/bz_darkGray"
+                android:textSize="@dimen/font_normal"
+
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-        <EditText
-            android:id="@+id/et_budgetInput"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_buildBudget"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/et_buildName"
 
+            android:hint="Budget (PHP)"
+            android:textColorHint="@color/bz_darkGray"
+            app:hintTextColor="@color/bz_darkGray"
+            app:boxStrokeColor="@color/bz_darkGray"
+            app:cursorColor="@color/bz_darkGray"
+
+            android:background="@android:color/transparent"
+            android:layout_marginTop="@dimen/margin_normal"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="16dp"
 
-            android:autofillHints=""
-            android:background="@drawable/round_edittext"
-            android:backgroundTint="?attr/background"
-            android:hint="PHP"
-            android:textColorHint="?attr/colorOnSecondary"
-            android:inputType="number"
-            android:maxLines="1"
-            android:maxLength="7"
-
-            android:padding="10dp"
-            android:fontFamily="@font/ubuntu_medium"
-
-
-            android:textColor="?attr/colorOnSecondary"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_buildName" />
+            app:layout_constraintTop_toBottomOf="@+id/layout_buildName">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_budgetInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/et_buildName"
+
+                android:backgroundTint="@color/bz_darkGray"
+                android:fontFamily="@font/ubuntu_medium"
+                android:inputType="number"
+                android:maxLength="7"
+                android:maxLines="1"
+
+
+                android:textColor="@color/bz_darkGray"
+                android:textSize="@dimen/font_normal"
+
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_build"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/et_budgetInput"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="96dp"
+            android:layout_marginTop="@dimen/space_huge"
 
-            android:backgroundTint="@color/white"
-            android:text="Build"
-            android:textColor="@color/bz_darkGray"
+            android:backgroundTint="@color/bz_darkGray"
             android:fontFamily="@font/ubuntu_medium"
+            android:text="Build"
+            android:textColor="@color/bz_honeyYellow"
             android:textSize="@dimen/font_normal"
-            android:textStyle="bold"
 
-            app:strokeColor="@color/bz_darkGray"
-            app:strokeWidth="2dp"
-            app:cornerRadius="10dp"
+            android:textStyle="bold"
+            app:cornerRadius="5dp"
+
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_budgetInput"
-
-            />
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
         <TextView
             android:id="@+id/textView4"
@@ -131,6 +150,25 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textview_budgetPrompt" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="@dimen/margin_normal"
+
+            android:fontFamily="@font/ubuntu"
+            android:text="Note:\n1. Build name is limited to only 10 characters.\n2. Build budget must be at least PHP 20,000."
+            android:textAlignment="textStart"
+            android:textColor="@color/bz_darkGray"
+            android:textSize="@dimen/font_small"
+
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_buildBudget" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
