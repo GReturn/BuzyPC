@@ -159,10 +159,10 @@
             android:layout_marginTop="@dimen/margin_normal"
 
             android:fontFamily="@font/ubuntu"
-            android:text="Note:\n1. Build name is limited to only 10 characters.\n2. Build budget must be at least PHP 20,000."
+            android:text="Note:\n1. Build name is limited to only 10 characters.\n2. Budget must be between PHP 20,000 and PHP 1,000,000."
             android:textAlignment="textStart"
             android:textColor="@color/bz_darkGray"
-            android:textSize="@dimen/font_small"
+            android:textSize="@dimen/font_extra_small"
 
 
             app:layout_constraintEnd_toEndOf="parent"
