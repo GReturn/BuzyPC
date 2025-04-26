@@ -11,8 +11,9 @@ class RAMComponent(
     brand: String,
     price: Double,
     performanceScore: Float,
+    compatibilityScore: Float,
     stores: List<Store>
-) : Component(name, brand, price, performanceScore, stores) {
+) : Component(name, brand, price, performanceScore, compatibilityScore, stores) {
 
     lateinit var motherboard : MotherboardComponent
 }

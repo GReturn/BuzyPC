@@ -12,7 +12,6 @@ class MotherboardComponent(
     brand: String,
     price: Double,
     performanceScore: Float,
+    compatibilityScore: Float,
     stores: List<Store>
-) : Component(name, brand, price, performanceScore, stores) {
-    var compatibilityScore: Int = 0
-}
+) : Component(name, brand, price, performanceScore, compatibilityScore, stores)
