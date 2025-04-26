@@ -5,7 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.core.view.doOnLayout
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.RecyclerView
@@ -21,7 +22,16 @@ import io.buzypc.app.UI.Utils.LayoutManagers.BuildListLayoutManager
 class BuildListFragment : Fragment() {
     private lateinit var app: BuzyUserAppSession
     private lateinit var pcBuildList: ArrayList<PCBuild>
+    private lateinit var allBuilds: ArrayList<PCBuild>
+    private lateinit var adapter: BuildListRecyclerViewAdapter
     private val listsInformationViewModel: ListsInformationViewModel by activityViewModels()
+
+    override fun onResume() {
+        super.onResume()
+        allBuilds.clear()
+        allBuilds.addAll(app.buildList.filter { !it.isDeleted })
+        adapter.notifyDataSetChanged()
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -30,17 +40,25 @@ class BuildListFragment : Fragment() {
         pcBuildList = app.buildList
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycleView_builds)
-        val tvEmptyList = view.findViewById<TextView>(R.id.tvEmptyList)
+        val emptyListMessage = view.findViewById<LinearLayout>(R.id.layout_emptyList)
+        val imageAddBuild = view.findViewById<ImageView>(R.id.image_addNewBuild)
 
-
-        // Added !it.isArchived to filter out archived builds
-        val allBuilds = pcBuildList.filter { !it.isDeleted && !it.isArchived} as ArrayList<PCBuild>
+        allBuilds = pcBuildList.filter { !it.isDeleted && !it.isArchived } as ArrayList<PCBuild>
         if(allBuilds.isEmpty()){
-            tvEmptyList.visibility = View.VISIBLE
+            emptyListMessage.visibility = View.VISIBLE
+            recyclerView.visibility = View.GONE
+        }
+        else {
+            emptyListMessage.visibility = View.GONE
             recyclerView.visibility = View.VISIBLE
         }
 
-        val adapter = BuildListRecyclerViewAdapter(
+        imageAddBuild.setOnClickListener {
+            val activity = requireActivity() as BottomNavigationActivity
+            activity.handleNavigationToOtherFragments(R.id.newBuildFragment)
+        }
+
+        adapter = BuildListRecyclerViewAdapter(
             requireContext(),
             allBuilds,
             {
@@ -51,7 +69,8 @@ class BuildListFragment : Fragment() {
             listsInformationViewModel,
             object : OnBuildListChangedListener {
                 override fun onBuildListChanged(isEmpty: Boolean) {
-                    tvEmptyList.visibility = if (isEmpty) View.VISIBLE else View.GONE
+                    emptyListMessage.visibility = if (isEmpty) View.VISIBLE else View.GONE
+                    recyclerView.visibility = if (isEmpty) View.GONE else View.VISIBLE
                 }
             }
         )
@@ -63,7 +82,18 @@ class BuildListFragment : Fragment() {
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
 
+        val emptyListMessage = view?.findViewById<LinearLayout>(R.id.layout_emptyList)
         val recyclerView = view?.findViewById<RecyclerView>(R.id.recycleView_builds)
+
+        val allBuilds = pcBuildList.filter { !it.isDeleted } as ArrayList<PCBuild>
+        if(allBuilds.isEmpty()){
+            emptyListMessage?.visibility = View.VISIBLE
+            recyclerView?.visibility = View.GONE
+        } else {
+            emptyListMessage?.visibility = View.GONE
+            recyclerView?.visibility = View.VISIBLE
+        }
+
         recyclerView?.layoutAnimation = null
         recyclerView?.doOnLayout {
             (recyclerView.layoutManager as AnimatedGridLayoutManager).animateItemsIn()

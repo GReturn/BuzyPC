@@ -20,7 +20,10 @@
             android:name=".UI.Widget.LoadingScreenActivity"
             android:exported="false" />
         <activity
-            android:name=".UI.Navigation.Fragments.BuildTracker.TrackingBuildSummaryActivity"
+            android:name=".UI.Navigation.Fragments.Settings.PrivacyPolicyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UI.Navigation.Fragments.BuildTracker.TrackedBuildChecklistActivity"
             android:exported="false" />
         <activity
             android:name=".UI.Navigation.Fragments.BuildList.BuyComponentActivity"
@@ -46,7 +49,9 @@
             android:exported="false" />
         <activity
             android:name=".UI.Authentication.RegisterActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"
+            />
         <activity
             android:name=".UI.Authentication.LoginActivity"
             android:exported="true"

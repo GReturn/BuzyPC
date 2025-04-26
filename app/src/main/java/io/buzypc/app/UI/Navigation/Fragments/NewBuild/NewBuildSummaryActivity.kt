@@ -112,7 +112,7 @@ class NewBuildSummaryActivity : AppCompatActivity() {
             val newBuild = PCBuild(
                 generateUniqueBuildId(this),
                 app.buildName,
-                app.buildBudget,
+                app.pc.getTotalPrice(),
                 app.pc
             )
 
@@ -136,14 +136,7 @@ class NewBuildSummaryActivity : AppCompatActivity() {
         }
     }
     fun setTotalPrice(app: BuzyUserAppSession, tvTotalPrice: TextView) {
-        var total = 0.00
-        total += app.pc.cpu.price
-        total += app.pc.gpu.price
-        total += app.pc.motherboard.price
-        total += app.pc.psu.price
-        total += app.pc.storageDevice.price
-        total += app.pc.ram.price
-        tvTotalPrice.text = "Total: PHP $total"
+        tvTotalPrice.text = app.pc.getTotalPrice().toString()
     }
 
     fun setComponentPrices(app: BuzyUserAppSession, priceCPU: TextView, priceGPU: TextView, priceMotherboard: TextView, pricePSU: TextView, priceRAM: TextView, priceStorage: TextView) {

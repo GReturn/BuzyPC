@@ -14,7 +14,7 @@ class BuildCard : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.card_build_item)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.build_card)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.card_checklist_item_motherboard)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets

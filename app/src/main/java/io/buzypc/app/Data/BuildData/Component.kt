@@ -7,6 +7,6 @@ open class Component(
     val performanceScore: Float,
     val stores: List<Store>,
 
-    val isBought: Boolean = false
+    var isBought: Boolean = false
 )
 

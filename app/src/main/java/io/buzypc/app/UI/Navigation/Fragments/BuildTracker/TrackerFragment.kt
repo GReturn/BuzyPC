@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.view.doOnLayout
 import androidx.fragment.app.activityViewModels
@@ -20,7 +21,16 @@ import io.buzypc.app.UI.Utils.LayoutManagers.BuildTrackerListLayoutManager
 class TrackerFragment : Fragment() {
     private lateinit var app: BuzyUserAppSession
     private lateinit var pcBuildList: ArrayList<PCBuild>
+    private lateinit var trackedBuilds: ArrayList<PCBuild>
+    private lateinit var adapter: BuildTrackerRecyclerViewAdapter
     private val listsInformationViewModel: ListsInformationViewModel by activityViewModels()
+
+    override fun onResume() {
+        super.onResume()
+        trackedBuilds.clear()
+        trackedBuilds.addAll(app.buildList.filter { it.isTracked && !it.isDeleted })
+        adapter.notifyDataSetChanged()
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -29,20 +39,25 @@ class TrackerFragment : Fragment() {
         pcBuildList = app.buildList
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycleView_builds)
-        val tvEmptyList = view.findViewById<TextView>(R.id.tvEmptyList)
+        val emptyListMessage = view.findViewById<LinearLayout>(R.id.layout_emptyList)
 
-        val trackedBuilds = pcBuildList.filter { it.isTracked && !it.isDeleted && !it.isArchived } as ArrayList<PCBuild>
+        trackedBuilds = pcBuildList.filter { it.isTracked && !it.isDeleted && !it.isArchived} as ArrayList<PCBuild>
         if(trackedBuilds.isEmpty()){
-            tvEmptyList.visibility = View.VISIBLE
+            emptyListMessage.visibility = View.VISIBLE
+            recyclerView.visibility = View.GONE
+        }
+        else {
+            emptyListMessage.visibility = View.GONE
+            recyclerView.visibility = View.VISIBLE
         }
 
-        val adapter = BuildTrackerRecyclerViewAdapter(
+        adapter = BuildTrackerRecyclerViewAdapter(
             requireContext(),
             trackedBuilds,
             listsInformationViewModel,
             object : OnBuildListChangedListener {
                 override fun onBuildListChanged(isEmpty: Boolean) {
-                    tvEmptyList.visibility = if (isEmpty) View.VISIBLE else View.GONE
+                    emptyListMessage.visibility = if (isEmpty) View.VISIBLE else View.GONE
                 }
             }
         )
@@ -53,13 +68,18 @@ class TrackerFragment : Fragment() {
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
 
-        val tvEmptyList = view?.findViewById<TextView>(R.id.tvEmptyList)
+        val emptyListMessage = view?.findViewById<LinearLayout>(R.id.layout_emptyList)
+        val recyclerView = view?.findViewById<RecyclerView>(R.id.recycleView_builds)
+
         val trackedBuilds = pcBuildList.filter { it.isTracked && !it.isDeleted } as ArrayList<PCBuild>
         if(trackedBuilds.isEmpty()){
-            tvEmptyList?.visibility = View.VISIBLE
+            emptyListMessage?.visibility = View.VISIBLE
+            recyclerView?.visibility = View.GONE
+        } else {
+            emptyListMessage?.visibility = View.GONE
+            recyclerView?.visibility = View.VISIBLE
         }
 
-        val recyclerView = view?.findViewById<RecyclerView>(R.id.recycleView_builds)
         recyclerView?.layoutAnimation = null
         recyclerView?.doOnLayout {
             (recyclerView.layoutManager as AnimatedGridLayoutManager).animateItemsIn()

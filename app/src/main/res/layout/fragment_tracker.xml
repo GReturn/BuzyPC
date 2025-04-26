@@ -45,22 +45,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 />
 
-            <TextView
-                android:id="@+id/tvEmptyList"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingTop="@dimen/space_small"
-
-                android:fontFamily="@font/ubuntu_medium"
-                android:visibility="invisible"
-                android:text="Not tracking any build. Track your favorite build now!"
-                android:textColor="@color/bz_almostBlack"
-
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_buildsHeader"
-                />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -68,6 +52,43 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             >
+
+            <LinearLayout
+                android:id="@+id/layout_emptyList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/recycleView_builds">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/ic_visibility_off"
+
+                    app:tint="?attr/colorOnSecondary"
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:fontFamily="@font/ubuntu_medium"
+                    android:text="Not tracking any build. Track your favorite build now!"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/font_x_large"
+                    android:layout_marginHorizontal="@dimen/margin_normal"
+                    />
+
+            </LinearLayout>
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycleView_builds"
@@ -78,6 +99,8 @@
                 android:overScrollMode="never"
                 android:padding="@dimen/space_small"
                 app:layout_constraintEnd_toEndOf="parent"
+
+                android:visibility="visible"
 
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

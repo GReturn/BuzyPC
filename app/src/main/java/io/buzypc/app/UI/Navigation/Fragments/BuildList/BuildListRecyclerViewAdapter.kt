@@ -165,8 +165,8 @@ class BuildListRecyclerViewAdapter(
     }
 
     class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tvName: TextView = itemView.findViewById(R.id.textView_buildName)
-        val tvBudget: TextView = itemView.findViewById(R.id.textView_pcBudget)
+        val tvName: TextView = itemView.findViewById(R.id.textView_componentLabel)
+        val tvBudget: TextView = itemView.findViewById(R.id.textView_componentSubtotal)
         val tvCreatedAt: TextView = itemView.findViewById(R.id.textView_createdAt)
         val imgBtnRemove: ImageButton = itemView.findViewById(R.id.imgBtn_removeItem)
         val btnViewSummary: MaterialButton = itemView.findViewById(R.id.btn_viewSummary)

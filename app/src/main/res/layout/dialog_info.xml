@@ -13,7 +13,7 @@
         android:id="@+id/imageView"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginEnd="3dp"
+        android:layout_marginEnd="@dimen/space_xsmall"
         android:src="@drawable/mascot_buzybee"
 
         app:layout_constraintEnd_toStartOf="@+id/textViewTitle"
@@ -26,7 +26,7 @@
         android:layout_marginStart="20dp"
 
         android:gravity="center"
-        android:text="Destruction"
+        android:text="Information"
         android:textColor="?attr/colorOnSurface"
         android:textSize="@dimen/font_larger"
         android:textStyle="bold"
@@ -43,7 +43,7 @@
         android:layout_marginTop="@dimen/space_normal"
 
         android:fontFamily="@font/ubuntu_medium"
-        android:text="Destruction Confirmation"
+        android:text="Information Details"
         android:textColor="?attr/colorOnSurface"
         android:textSize="@dimen/space_normal"
 
@@ -57,50 +57,26 @@
         android:orientation="horizontal"
         android:layout_marginTop="@dimen/space_normal"
 
-        android:gravity="center"
+        android:gravity="end"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView_dialogMessage"
         >
 
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnCancel"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-
-            android:backgroundTint="?attr/colorOnPrimary"
-            android:fontFamily="@font/ubuntu_bold"
-            android:text="Cancel"
-            android:textSize="@dimen/space_normal"
-            android:textColor="?attr/colorControlNormal"
-            app:cornerRadius="5dp"
-
-            app:strokeColor="?attr/colorControlNormal"
-            app:strokeWidth="2dp"
-            />
-
-        <Space
-            android:layout_width="@dimen/space_normal"
-            android:layout_height="wrap_content"
-            />
-
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnConfirm"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:layout_weight="1"
 
             android:fontFamily="@font/ubuntu_medium"
-            android:text="Confirm"
+            android:text="OK"
             android:textStyle="bold"
             android:textSize="@dimen/space_normal"
             app:cornerRadius="5dp"
 
-            android:backgroundTint="@color/bz_destructive_red"
+            android:backgroundTint="?attr/colorControlNormal"
             />
 
 

@@ -31,7 +31,7 @@ class BuildTrackerRecyclerViewAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(context)
-        val view = inflater.inflate(R.layout.card_checklist_item, parent, false)
+        val view = inflater.inflate(R.layout.card_checklist_build, parent, false)
         return ItemViewHolder(view)
     }
 
@@ -59,7 +59,7 @@ class BuildTrackerRecyclerViewAdapter(
             val appSession = (context.applicationContext as BuzyUserAppSession)
             appSession.selectedBuildToViewChecklist = build
 
-            val intent = Intent(context, TrackingBuildSummaryActivity::class.java)
+            val intent = Intent(context, TrackedBuildChecklistActivity::class.java)
             context.startActivity(intent)
         }
         item.btnViewSummary.setOnClickListener {
@@ -102,8 +102,8 @@ class BuildTrackerRecyclerViewAdapter(
     }
 
     class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tvName: TextView = itemView.findViewById(R.id.textView_buildName)
-        val tvBudget: TextView = itemView.findViewById(R.id.textView_pcBudget)
+        val tvName: TextView = itemView.findViewById(R.id.textView_componentLabel)
+        val tvBudget: TextView = itemView.findViewById(R.id.textView_componentSubtotal)
         val tvProgress: TextView = itemView.findViewById(R.id.textView_progress)
         val tvCreatedAt: TextView = itemView.findViewById(R.id.textView_createdAt)
 

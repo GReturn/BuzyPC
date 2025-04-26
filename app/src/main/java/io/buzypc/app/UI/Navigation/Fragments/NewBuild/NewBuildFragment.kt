@@ -13,9 +13,23 @@ import android.widget.EditText
 import android.widget.Toast
 import io.buzypc.app.R
 import io.buzypc.app.Data.AppSession.BuzyUserAppSession
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import io.buzypc.app.UI.Widget.LoadingScreenActivity
 
+
 class NewBuildFragment : Fragment() {
+    private var budgetCheckJob: Job? = null  // To track/cancel previous checks
+    private val scope = MainScope()         // Coroutine scope tied to the UI lifecycle
+
+    override fun onDestroyView() {
+        scope.cancel()  // Clean up coroutines to avoid leaks
+        super.onDestroyView()
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_new_build, container, false)
     }
@@ -24,28 +38,52 @@ class NewBuildFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val etBudgetInput = view.findViewById<EditText>(R.id.et_budgetInput)
         val etBuildName = view.findViewById<EditText>(R.id.et_buildName)
+
         val btnBuild = view.findViewById<Button>(R.id.btn_build)
 
         etBuildName.addTextChangedListener( object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            }
-
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable?) {
-                if(s?.length == 10) Toast.makeText(this@NewBuildFragment.context, "Only 10 characters allowed for the build name.", Toast.LENGTH_LONG).show()
+                if(s?.length == 10)
+                    Toast.makeText(this@NewBuildFragment.context, "Only 10 characters allowed for the build name.", Toast.LENGTH_LONG).show()
             }
         })
         etBudgetInput.addTextChangedListener( object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            }
-
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable?) {
-                if(s?.length == 7) Toast.makeText(this@NewBuildFragment.context, "You can only place a budget between PHP 20,000 and PHP 999,999.", Toast.LENGTH_LONG).show()
+                budgetCheckJob?.cancel()
+                budgetCheckJob = scope.launch {
+                    delay(500)
+                    checkBudget(s)
+                }
+            }
+
+            private fun checkBudget(s: Editable?) {
+                s?.let {
+                    try {
+                        // Remove commas or other non-digit characters if present
+                        val cleanString = it.toString().replace("[^\\d]".toRegex(), "")
+                        if (cleanString.isNotEmpty()) {
+                            val budget = cleanString.toLong()
+                            if (budget > 999999) {
+                                Toast.makeText(
+                                    this@NewBuildFragment.context,
+                                    "You can only place a budget between PHP 20,000 and PHP 999,999.",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+                        }
+                    } catch (e: NumberFormatException) {
+                        // Handle the case where the number is too large or invalid
+                        Toast.makeText(
+                            this@NewBuildFragment.context,
+                            "Invalid or too large! Please enter a valid budget amount.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
             }
         })
 

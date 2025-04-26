@@ -21,4 +21,19 @@
     <style name="CustomShapeAppearance" parent="ShapeAppearance.Material3.MediumComponent">
         <item name="cornerSize">10dp</item> <!-- Your desired corner radius -->
     </style>
+
+    <style name="Widget.App.CheckBox" parent="Widget.Material3.CompoundButton.CheckBox">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.CheckBox</item>
+    </style>
+
+    <style name="ThemeOverlay.App.CheckBox" parent="">
+        <!-- Container colors -->
+        <item name="colorOnSurface">@color/bz_darkGray</item>
+        <item name="colorPrimary">@color/bz_darkGray</item>
+        <item name="colorError">@color/bz_destructive_red</item>
+        <!-- Icon colors -->
+        <item name="colorSurface">@color/bz_honeyYellow</item>
+        <item name="colorOnPrimary">@color/bz_softGray</item>
+        <item name="colorOnError">@color/bz_softGray</item>
+    </style>
 </resources>

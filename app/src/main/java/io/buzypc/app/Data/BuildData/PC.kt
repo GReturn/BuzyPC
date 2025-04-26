@@ -34,4 +34,20 @@ data class PC(
         }
         return Pair(ctr, total)
     }
+
+    fun getTotalPrice(): Double {
+        val components = listOf(
+            motherboard,
+            cpu,
+            gpu,
+            storageDevice,
+            ram,
+            psu
+        )
+        var total = 0.0
+        for (component in components) {
+            total += component.price
+        }
+        return total
+    }
 }
