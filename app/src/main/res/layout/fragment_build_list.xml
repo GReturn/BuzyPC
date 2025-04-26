@@ -39,7 +39,7 @@
                 android:fontFamily="@font/ubuntu_bold"
                 android:text="My Builds"
                 android:textSize="@dimen/font_title_large"
-                android:textColor="@color/bz_almostBlack"
+                android:textColor="@color/bz_darkGray"
 
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
