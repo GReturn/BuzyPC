@@ -101,7 +101,6 @@
                 android:backgroundTint="@color/bz_darkGray"
                 android:fontFamily="@font/ubuntu_medium"
                 android:inputType="number"
-                android:maxLength="7"
                 android:maxLines="1"
 
 
