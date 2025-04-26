@@ -3,6 +3,7 @@ package io.buzypc.app.UI.Widget
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -46,15 +47,16 @@ class RadarChartViewFragment : Fragment() {
         chart?.let { radarChart ->
             // 1) Basic styling
             radarChart.description.isEnabled = false
-            radarChart.webLineWidth = 1f
-            radarChart.webColor = MaterialColors.getColor(radarChart, androidx.appcompat.R.attr.colorPrimary)
-            radarChart.webLineWidthInner = 1f
-            radarChart.webColorInner = MaterialColors.getColor(radarChart, androidx.appcompat.R.attr.colorPrimary)
-            radarChart.webAlpha = 100
             radarChart.isRotationEnabled = false
-            radarChart.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.bz_deepCharcoal))
-            radarChart.animateXY(1500, 1500)
             radarChart.legend.isEnabled = false
+
+            radarChart.webLineWidth = 1f
+            radarChart.webColor = MaterialColors.getColor(radarChart, com.google.android.material.R.attr.colorSecondary)
+            radarChart.webLineWidthInner = 1f
+            radarChart.webColorInner = MaterialColors.getColor(radarChart, com.google.android.material.R.attr.colorSecondary)
+            radarChart.webAlpha = 150
+            radarChart.setBackgroundColor(Color.TRANSPARENT)
+            radarChart.animateXY(1500, 1500)
 
 
 
@@ -83,16 +85,17 @@ class RadarChartViewFragment : Fragment() {
 
             // 4) Build and style the dataset
             val set = RadarDataSet(entries,"").apply {
-                color = MaterialColors.getColor(radarChart, androidx.appcompat.R.attr.colorPrimary)
-                fillColor = MaterialColors.getColor(radarChart, androidx.appcompat.R.attr.colorPrimary)
+                color = MaterialColors.getColor(radarChart, com.google.android.material.R.attr.colorSecondary)
+                fillColor = MaterialColors.getColor(radarChart, com.google.android.material.R.attr.colorSecondary)
                 setDrawFilled(true)
-                fillAlpha = 50
+                fillAlpha = 85
                 lineWidth = 2f
                 isDrawHighlightCircleEnabled = true
                 highlightCircleInnerRadius = 1f
                 highlightCircleOuterRadius = 3f
-                highlightCircleFillColor = MaterialColors.getColor(radarChart, androidx.appcompat.R.attr.colorPrimary)
+                highlightCircleFillColor = MaterialColors.getColor(radarChart, com.google.android.material.R.attr.colorSecondary)
                 setDrawHighlightIndicators(false)
+
             }
 
             // 5) Wrap in RadarData and style values
@@ -106,7 +109,7 @@ class RadarChartViewFragment : Fragment() {
             val labels = listOf("Processor", "Graphics", "Storage", "Memory", "Power")
             radarChart.xAxis.apply {
                 isEnabled = true
-                textSize = 15f
+                textSize = 12f
 
 
                 valueFormatter = object : ValueFormatter() {
@@ -138,6 +141,7 @@ class RadarChartViewFragment : Fragment() {
 
             // 8) Reveal animation
 //            radarChart.isVisible = true
+            radarChart.data.setDrawValues(false)
             revealChart(radarChart)
         } ?: run {
             Log.e("RadarChartFragment", "RadarChart view is null in setupRadarChart")
