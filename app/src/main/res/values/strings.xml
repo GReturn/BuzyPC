@@ -41,5 +41,6 @@
 
     <string name="tips_description">Track your build components here! Once you’ve got the part, simply check the box to keep track of it.</string>
     <string name="checklist_grand_total">Grand Total: PHP %1$s</string>
+    <string name="build_summary_initial_budget">Initial Budget: PHP %1$s</string>
 
 </resources>
