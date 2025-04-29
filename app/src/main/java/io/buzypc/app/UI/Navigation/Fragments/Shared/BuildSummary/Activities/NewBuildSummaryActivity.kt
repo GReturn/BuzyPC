@@ -3,17 +3,26 @@ package io.buzypc.app.UI.Navigation.Fragments.Shared.BuildSummary.Activities
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
+import android.widget.ScrollView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import io.buzypc.app.R
 import io.buzypc.app.Data.AppSession.BuzyUserAppSession
+import io.buzypc.app.Data.BuildData.Component
 import io.buzypc.app.Data.BuildData.PCBuild
 import io.buzypc.app.Data.SharedPrefManagers.BuzyUserBuildPrefManager
-import io.buzypc.app.UI.Navigation.Fragments.BuildList.BuyComponentActivity
 import io.buzypc.app.UI.Navigation.BottomNavigationActivity
+import io.buzypc.app.UI.Navigation.Fragments.NewBuild.generateUniqueBuildId
+import io.buzypc.app.UI.Navigation.Fragments.Shared.BuildSummary.BuildComponentRecyclerViewAdapter
+import io.buzypc.app.UI.Navigation.Fragments.Shared.BuildSummary.HorizontalSpaceItemDecoration
+import io.buzypc.app.UI.Utils.formatDecimalPriceToString
 import io.buzypc.app.UI.Widget.RadarChartViewFragment
 
 class NewBuildSummaryActivity : AppCompatActivity() {
@@ -21,100 +30,25 @@ class NewBuildSummaryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_new_build_summary)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.layout_summary_body)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val tvBuildName = findViewById<TextView>(R.id.tv_BuildName)
-        val tvBuildTotalPrice = findViewById<TextView>(R.id.tvTotalPrice)
-        val btnSaveButton = findViewById<Button>(R.id.btn_SaveBuild)
         val app = application as BuzyUserAppSession
 
+        // TODO: should get newBuild from our AI
+        val newBuild = PCBuild(
+            generateUniqueBuildId(this),
+            app.buildName,
+            app.pc.getTotalPrice(),
+            app.pc
+        )
+        app.selectedBuildToSummarize = newBuild
 
-        tvBuildName.text = "${(application as BuzyUserAppSession).buildName}'s Summary"
-
-        val fragmentTransaction = supportFragmentManager.beginTransaction()
-        val radarChartFragment = RadarChartViewFragment()
-
-        val priceCPU = findViewById<TextView>(R.id.tvPriceCPU)
-        val priceGPU = findViewById<TextView>(R.id.tvPriceGPU)
-        val priceMotherboard = findViewById<TextView>(R.id.tvPriceMotherboard)
-        val pricePSU = findViewById<TextView>(R.id.tvPricePSU)
-        val priceRAM = findViewById<TextView>(R.id.tvPriceRAM)
-        val priceStorage = findViewById<TextView>(R.id.tvPriceStorage)
-
-        val nameCPU = findViewById<TextView>(R.id.tvCPUName)
-        val nameGPU = findViewById<TextView>(R.id.tvGPUName)
-        val nameMotherboard = findViewById<TextView>(R.id.tvMotherboardName)
-        val nameRAM = findViewById<TextView>(R.id.tvRAMName)
-        val namePSU = findViewById<TextView>(R.id.tvPSUName)
-        val nameStorage = findViewById<TextView>(R.id.tvStorageName)
-
-        val compatCPU = findViewById<TextView>(R.id. tvCPUSCore)
-        val compatGPU= findViewById<TextView>(R.id.tvGPUSCore)
-        val compatPSU = findViewById<TextView>(R.id.tvPSUScore)
-        val compatRam = findViewById<TextView>(R.id.tvRAMScore)
-        val compatStorage = findViewById<TextView>(R.id.tvStorageScore)
-
-        val btnSeeCPUStores = findViewById<Button>(R.id.btnSeeStoresCPU)
-        val btnSeeGPUsStores = findViewById<Button>(R.id.btnSeeStoresGPU)
-        val btnSeeMotherboardStores = findViewById<Button>(R.id.btnSeeStoresMotherboard)
-        val btnSeePSUStores = findViewById<Button>(R.id.btnSeeStoresPSU)
-        val btnSeeRAMStores = findViewById<Button>(R.id.btnSeeStoresRAM)
-        val btnSeeStorageStores = findViewById<Button>(R.id.btnSeeStoresStorage)
-
-
-        btnSeeCPUStores.setOnClickListener {
-            app.component = app.pc.cpu
-            startActivity(Intent(this, BuyComponentActivity::class.java))
-        }
-
-        btnSeeGPUsStores.setOnClickListener {
-            app.component = app.pc.gpu
-            startActivity(Intent(this, BuyComponentActivity::class.java))
-        }
-
-        btnSeeMotherboardStores.setOnClickListener {
-            app.component = app.pc.motherboard
-            startActivity(Intent(this, BuyComponentActivity::class.java))
-        }
-
-        btnSeePSUStores.setOnClickListener {
-            app.component = app.pc.psu
-            startActivity(Intent(this, BuyComponentActivity::class.java))
-        }
-
-        btnSeeRAMStores.setOnClickListener {
-            app.component = app.pc.ram
-            startActivity(Intent(this, BuyComponentActivity::class.java))
-        }
-
-        btnSeeStorageStores.setOnClickListener {
-            app.component = app.pc.storageDevice
-            startActivity(Intent(this, BuyComponentActivity::class.java))
-        }
-
-
-        setCompatScore(app, compatCPU, compatGPU, compatPSU, compatRam, compatStorage)
-        setComponentPrices(app, priceCPU,priceGPU, priceMotherboard, pricePSU, priceRAM, priceStorage)
-        setComponentNames(app, nameCPU, nameGPU, nameMotherboard, namePSU, nameRAM, nameStorage)
-        setTotalPrice(app, tvBuildTotalPrice)
-
-        fragmentTransaction.replace(R.id.radarChartContainer, radarChartFragment)
-        fragmentTransaction.commit()
-
-        supportFragmentManager.executePendingTransactions() // Ensure the fragment is added immediately
-
+        val btnSaveButton = findViewById<Button>(R.id.btn_SaveBuild)
         btnSaveButton.setOnClickListener {
             val buildManager = BuzyUserBuildPrefManager(this)
-            val newBuild = PCBuild(
-                generateUniqueBuildId(this),
-                app.buildName,
-                app.pc.getTotalPrice(),
-                app.pc
-            )
-
             buildManager.addBuild(app.username, newBuild)
             app.loadBuildList()
 
@@ -133,35 +67,72 @@ class NewBuildSummaryActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-    }
-    fun setTotalPrice(app: BuzyUserAppSession, tvTotalPrice: TextView) {
-        tvTotalPrice.text = app.pc.getTotalPrice().toString()
-    }
 
-    fun setComponentPrices(app: BuzyUserAppSession, priceCPU: TextView, priceGPU: TextView, priceMotherboard: TextView, pricePSU: TextView, priceRAM: TextView, priceStorage: TextView) {
-        priceCPU.text = "PHP %.2f".format(app.pc.cpu.price)
-        priceGPU.text = "PHP %.2f".format(app.pc.gpu.price)
-        priceMotherboard.text = "PHP %.2f".format(app.pc.motherboard.price)
-        priceRAM.text = "PHP %.2f".format(app.pc.ram.price)
-        pricePSU.text = "PHP %.2f".format(app.pc.psu.price)
-        priceStorage.text = "PHP %.2f".format(app.pc.storageDevice.price)
-    }
+        // Back
+        val btnBack = findViewById<ImageView>(R.id.btn_back_navigation)
+        btnBack.setOnClickListener {
+            finish()
+            return@setOnClickListener
+        }
 
+        // Scrolling
+        val scrollView = findViewById<ScrollView>(R.id.scrollView)
+        val fab = findViewById<FloatingActionButton>(R.id.fabScrollToTop)
+        scrollView.viewTreeObserver.addOnScrollChangedListener {
+            val scrollY = scrollView.scrollY
+            val pxLimit = 200
+            if (scrollY > pxLimit) fab.show() else fab.hide()
+        }
+        fab.setOnClickListener { scrollView.smoothScrollTo(0, 0) }
+
+        // Main Build Info
+        val tvBuildName = findViewById<TextView>(R.id.tv_BuildName)
+        val tvTotalPrice = findViewById<TextView>(R.id.tv_BuildBudget)
+        tvTotalPrice.paintFlags = tvTotalPrice.paintFlags
+        tvBuildName.text = "${(application as BuzyUserAppSession).selectedBuildToSummarize.name}"
+        val initialBudget = formatDecimalPriceToString(app.pc.getTotalPrice())
+        tvTotalPrice.text = getString(R.string.build_summary_initial_budget, initialBudget)
+
+        // Component List
+        val recyclerViewComponents = findViewById<RecyclerView>(R.id.recycleComponents)
+
+        val components = ArrayList<Component>()
+        components.add(app.pc.motherboard)
+        components.add(app.pc.cpu)
+        components.add(app.pc.gpu)
+        components.add(app.pc.ram)
+        components.add(app.pc.storageDevice)
+        components.add(app.pc.psu)
+
+        val adapter = BuildComponentRecyclerViewAdapter(this, components)
+
+        recyclerViewComponents.adapter = adapter
+        recyclerViewComponents.setHasFixedSize(true)
+        recyclerViewComponents.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
+
+        recyclerViewComponents.addItemDecoration(HorizontalSpaceItemDecoration(12))
+
+        val compatCPU = findViewById<TextView>(R.id. tvCPUSCore)
+        val compatGPU= findViewById<TextView>(R.id.tvGPUSCore)
+        val compatPSU = findViewById<TextView>(R.id.tvPSUScore)
+        val compatRam = findViewById<TextView>(R.id.tvRAMScore)
+        val compatStorage = findViewById<TextView>(R.id.tvStorageScore)
+
+        // Add the RadarChartView Fragment
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        val radarChartFragment = RadarChartViewFragment()
+        fragmentTransaction.add(R.id.radarChartContainer, radarChartFragment)
+        fragmentTransaction.commit()
+
+        supportFragmentManager.executePendingTransactions() // Ensure the fragment is added immediately
+        setCompatScore(app, compatCPU, compatGPU, compatPSU, compatRam, compatStorage)
+    }
 
     fun setCompatScore(app: BuzyUserAppSession, compatCPU: TextView, compatGPU: TextView, compatPSU: TextView, compatRam: TextView, compatStorage: TextView) {
-        compatCPU.text = app.pc.cpu.compatibilityScore.toString()
-        compatGPU.text = app.pc.gpu.compatibilityScore.toString()
-        compatPSU.text = app.pc.psu.compatibilityScore.toString()
-        compatRam.text = app.pc.ram.compatibilityScore.toString()
-        compatStorage.text = app.pc.storageDevice.compatibilityScore.toString()
-    }
-
-    fun setComponentNames(app: BuzyUserAppSession, nameCPU: TextView, nameGPU: TextView, nameMotherboard: TextView, namePSU: TextView, nameRAM: TextView, nameStorage: TextView) {
-        nameCPU.text = app.pc.cpu.name
-        nameGPU.text = app.pc.gpu.name
-        nameMotherboard.text = app.pc.motherboard.name
-        namePSU.text = app.pc.psu.name
-        nameStorage.text = app.pc.storageDevice.name
-        nameRAM.text = app.pc.ram.name
+        compatCPU.text = app.pc.cpu.performanceScore.toString()
+        compatGPU.text = app.pc.gpu.performanceScore.toString()
+        compatPSU.text = app.pc.psu.performanceScore.toString()
+        compatRam.text = app.pc.ram.performanceScore.toString()
+        compatStorage.text = app.pc.storageDevice.performanceScore.toString()
     }
 }
