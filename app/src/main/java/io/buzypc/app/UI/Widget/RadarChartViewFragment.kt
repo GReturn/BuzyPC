@@ -50,15 +50,14 @@ class RadarChartViewFragment : Fragment() {
             radarChart.isRotationEnabled = false
             radarChart.legend.isEnabled = false
 
+            // the background of the chart;
             radarChart.webLineWidth = 1f
             radarChart.webColor = MaterialColors.getColor(radarChart, com.google.android.material.R.attr.colorSecondary)
             radarChart.webLineWidthInner = 1f
             radarChart.webColorInner = MaterialColors.getColor(radarChart, com.google.android.material.R.attr.colorSecondary)
-            radarChart.webAlpha = 150
+            radarChart.webAlpha = 200
             radarChart.setBackgroundColor(Color.TRANSPARENT)
             radarChart.animateXY(1500, 1500)
-
-
 
             // 2) Y‑axis bounds
             radarChart.yAxis.axisMinimum = 1f
@@ -83,19 +82,18 @@ class RadarChartViewFragment : Fragment() {
                 RadarEntry(powerCapacity)
             )
 
-            // 4) Build and style the dataset
+            // 4) Build and style the dataset (the translucent part of the chart; the foreground)
             val set = RadarDataSet(entries,"").apply {
-                color = MaterialColors.getColor(radarChart, com.google.android.material.R.attr.colorSecondary)
-                fillColor = MaterialColors.getColor(radarChart, com.google.android.material.R.attr.colorSecondary)
+                color = MaterialColors.getColor(radarChart, com.google.android.material.R.attr.colorControlNormal)
+                fillColor = MaterialColors.getColor(radarChart, com.google.android.material.R.attr.colorControlNormal)
                 setDrawFilled(true)
-                fillAlpha = 85
+                fillAlpha = 150
                 lineWidth = 2f
                 isDrawHighlightCircleEnabled = true
                 highlightCircleInnerRadius = 1f
                 highlightCircleOuterRadius = 3f
                 highlightCircleFillColor = MaterialColors.getColor(radarChart, com.google.android.material.R.attr.colorSecondary)
                 setDrawHighlightIndicators(false)
-
             }
 
             // 5) Wrap in RadarData and style values
@@ -121,7 +119,7 @@ class RadarChartViewFragment : Fragment() {
 
             // we don't need Y‑axis labels
             radarChart.yAxis.isEnabled = false
-            radarChart.xAxis.textColor = MaterialColors.getColor(radarChart, androidx.appcompat.R.attr.colorPrimary)
+            radarChart.xAxis.textColor = MaterialColors.getColor(radarChart, com.google.android.material.R.attr.colorSecondary)
             radarChart.xAxis.typeface = ResourcesCompat.getFont(requireContext(), R.font.ubuntu_bold)
 
             radarChart.xAxis.apply{
