@@ -13,6 +13,9 @@
         <item name="colorOnTertiary">@color/white</item>
         <item name="background">@color/bz_softGray</item>
 
+        <item name="colorSurface">@color/bz_softGray</item>
+        <item name="colorOnSurface">@color/bz_darkGray</item>
+
         <item name="colorControlNormal">@color/bz_honeyYellow</item>
         <item name="colorControlHighlight">@color/bz_honeyYellow_semi_transparent</item>
 
