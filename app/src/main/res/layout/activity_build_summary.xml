@@ -224,7 +224,7 @@
                     android:id="@+id/recycleComponents"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_medium"
 
                     android:clipToPadding="false"
                     android:paddingStart="@dimen/padding_normal"
