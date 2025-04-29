@@ -62,7 +62,7 @@
                     android:layout_height="match_parent">
 
                     <ImageView
-                        android:id="@+id/imgRAM"
+                        android:id="@+id/imgComponentIcon"
                         android:layout_width="45dp"
                         android:layout_height="50dp"
                         android:layout_gravity="center"
