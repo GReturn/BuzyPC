@@ -20,13 +20,13 @@
             android:name=".UI.Navigation.Fragments.BuildTracker.TrackedBuildChecklistActivity"
             android:exported="false" />
         <activity
-            android:name=".UI.Navigation.Fragments.BuildList.BuyComponentActivity"
+            android:name=".UI.Navigation.Fragments.Shared.BuildSummary.Activities.BuyComponentActivity"
             android:exported="false" />
         <activity
-            android:name=".UI.Navigation.Fragments.NewBuild.NewBuildSummaryActivity"
+            android:name=".UI.Navigation.Fragments.Shared.BuildSummary.Activities.NewBuildSummaryActivity"
             android:exported="false" />
         <activity
-            android:name=".UI.Navigation.Fragments.BuildList.BuildSummaryActivity"
+            android:name=".UI.Navigation.Fragments.Shared.BuildSummary.Activities.BuildSummaryActivity"
             android:exported="false" />
         <activity
             android:name=".UI.Navigation.BottomNavigationActivity"

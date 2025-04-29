@@ -1,4 +1,4 @@
-package io.buzypc.app.UI.Navigation.Fragments.BuildList
+package io.buzypc.app.UI.Navigation.Fragments.Shared.BuildSummary.Activities
 
 import android.content.Intent
 import android.net.Uri
