@@ -1,81 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/svComponents"
+<androidx.recyclerview.widget.RecyclerView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/recycleComponents"
+    android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingLeft="@dimen/padding_normal"
-    android:paddingRight="@dimen/padding_normal"
+
+    android:paddingStart="@dimen/padding_normal"
+    android:paddingEnd="@dimen/padding_normal"
+
     android:clipToPadding="false"
-    >
-
-    <LinearLayout
-        android:id="@+id/lyComponentCards"
-        android:orientation="horizontal"
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:columnCount="1"
-        >
-
-
-        <include layout="@layout/card_buildlist_cpu"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginVertical="10dp"
-            />
-
-        <Space
-            android:layout_width="@dimen/space_normal"
-            android:layout_height="wrap_content" />
-
-        <include layout="@layout/card_gpu"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginVertical="10dp"
-
-            />
-
-        <Space
-            android:layout_width="@dimen/space_normal"
-            android:layout_height="wrap_content" />
-
-        <include layout="@layout/card_ram"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginVertical="10dp"
-
-            />
-
-        <Space
-            android:layout_width="@dimen/space_normal"
-            android:layout_height="wrap_content" />
-
-        <include layout="@layout/card_storage"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginVertical="10dp"
-
-            />
-
-        <Space
-            android:layout_width="@dimen/space_normal"
-            android:layout_height="wrap_content" />
-
-        <include layout="@layout/card_motherboard"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginVertical="10dp"
-
-            />
-
-        <Space
-            android:layout_width="@dimen/space_normal"
-            android:layout_height="wrap_content" />
-
-        <include layout="@layout/card_psu"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginVertical="10dp"
-            />
-    </LinearLayout>
-</HorizontalScrollView>
+    />
