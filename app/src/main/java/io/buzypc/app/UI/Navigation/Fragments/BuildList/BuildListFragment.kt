@@ -9,7 +9,6 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.core.view.doOnLayout
 import androidx.fragment.app.activityViewModels
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.buzypc.app.Data.AppSession.BuzyUserAppSession
 import io.buzypc.app.Data.BuildData.PCBuild
