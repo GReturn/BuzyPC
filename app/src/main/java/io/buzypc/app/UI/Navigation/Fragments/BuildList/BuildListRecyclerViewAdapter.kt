@@ -54,6 +54,7 @@ class BuildListRecyclerViewAdapter(
                 val build = pcBuilds[position - 1]
                 holder.tvName.text = build.name
                 holder.tvBudget.text = "PHP %,.2f".format(build.budget)
+                holder.imgBtnRemove.setImageResource(R.drawable.ic_archive)
 
                 val calendar = Calendar.getInstance().apply { time = build.createdAt }
                 val month = calendar.get(Calendar.MONTH)
@@ -81,12 +82,12 @@ class BuildListRecyclerViewAdapter(
                             build.isArchived = true
                             build.isTracked = false;
 
-                            updateList(appSession.buildList)
+                            updateList(pcBuilds)
                             saveBuildList(context, appSession.buildList)
 
                             // Added !it.isArchived to filter out archived builds
                             buildListChangedListener.onBuildListChanged(
-                                appSession.buildList.none { !it.isDeleted && !it.isArchived }
+                                appSession.buildList.none { !it.isDeleted && !it.isArchived}
                             )
 
                             val buildCount = appSession.buildList.count { !it.isDeleted && !it.isArchived}
@@ -151,7 +152,6 @@ class BuildListRecyclerViewAdapter(
                     }
                 }
             }
-
             is ImageViewHolder -> {
                 holder.button.setOnClickListener {
                     onNavigateToNewBuild()

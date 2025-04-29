@@ -36,7 +36,6 @@ class SettingsFragment : Fragment() {
         val btnAboutDevelopers = view.findViewById<Button>(R.id.btn_about_developers)
         val btnPrivacyPolicy = view.findViewById<Button>(R.id.btn_privacy_policy)
         val radioBtnLightMode = view.findViewById<RadioButton>(R.id.rb_lightMode)
-        val btnViewArchivedList = view.findViewById<Button>(R.id.btn_archived_list)
         val radioBtnDarkMode = view.findViewById<RadioButton>(R.id.rb_darkMode)
         val cardLightMode = view.findViewById<com.google.android.material.card.MaterialCardView>(R.id.card_lightMode)
         val cardDarkMode = view.findViewById<com.google.android.material.card.MaterialCardView>(R.id.card_darkMode)
@@ -66,11 +65,6 @@ class SettingsFragment : Fragment() {
         }
         btnPrivacyPolicy.setOnClickListener {
             val intent = Intent(requireActivity(), PrivacyPolicyActivity::class.java)
-            startActivity(intent)
-        }
-
-        btnViewArchivedList.setOnClickListener{
-            val intent = Intent(requireActivity(), ArchiveListActivity::class.java)
             startActivity(intent)
         }
 

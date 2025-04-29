@@ -34,7 +34,6 @@
                 android:id="@+id/textView_buildsHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_normal"
 
                 android:fontFamily="@font/ubuntu_bold"
                 android:text="My Builds"
@@ -44,6 +43,19 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+
+                />
+
+            <ImageView
+                android:id="@+id/imageButton_archiveList"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_archive"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:tint="@color/bz_deepCharcoal"
                 />
 
 

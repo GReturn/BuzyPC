@@ -5,27 +5,37 @@
     android:layout_height="match_parent"
     android:backgroundTint="?attr/colorControlNormal"
     >
+    <!--    TODO
+            Add drawables on each option for visual clarity
+    -->
 
     <TextView
         android:id="@+id/tvRestore"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:text="Restore"
         android:textSize="15sp"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="center"
         android:layout_margin="20dp"
         android:fontFamily="@font/ubuntu_bold"
+        android:drawableRight="@drawable/ic_unarchive"
+        android:drawableTint="?attr/colorOnSecondary"
         />
 
     <TextView
         android:id="@+id/tvDelete"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:text="Delete"
         android:textSize="15sp"
+        android:layout_marginBottom="50dp"
         android:layout_gravity="center_horizontal"
         android:fontFamily="@font/ubuntu_bold"
         android:textColor="@color/bz_destructive_red"
+        android:drawableEnd="@drawable/ic_delete"
+        android:drawableTint="@color/bz_destructive_red"
+
+
         />
 
 

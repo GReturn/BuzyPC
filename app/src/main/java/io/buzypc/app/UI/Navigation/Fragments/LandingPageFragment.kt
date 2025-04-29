@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.button.MaterialButton
+import io.buzypc.app.Data.AppSession.BuzyUserAppSession
 import io.buzypc.app.R
 import io.buzypc.app.UI.Navigation.BottomNavigationActivity
 import io.buzypc.app.UI.Navigation.ViewModels.ListsInformationViewModel
@@ -30,9 +31,12 @@ import io.buzypc.app.UI.Utils.loadCurrentUserDetails
 
         val txtCurrentBuildList = view.findViewById<TextView>(R.id.textview_dynamic_build_list_counter)
         val txtCurrentChecklist = view.findViewById<TextView>(R.id.textview_dynamic_checklist_list_counter)
+        val app = context?.applicationContext as BuzyUserAppSession
+
 
         txtHelloUser.text = getString(R.string.hello_user, userDetails.getUsername())
 
+        listsInformationViewModel.setBuildCount(app.buildList.count{!it.isDeleted && !it.isArchived})
         listsInformationViewModel.buildListCount.observe(requireActivity()) { buildCount ->
             txtCurrentBuildList.text = getString(
                 R.string.landingpage_build_count,

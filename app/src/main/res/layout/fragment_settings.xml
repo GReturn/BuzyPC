@@ -119,22 +119,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_about_developers" />
 
-            <Button
-                android:id="@+id/btn_archived_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="50dp"
-
-                android:layout_marginTop="16dp"
-
-                android:fontFamily="@font/ubuntu_bold"
-                android:text="View Archived Builds"
-
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_privacy_policy" />
-
-
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
@@ -151,7 +135,7 @@
 
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_archived_list" />
+                app:layout_constraintTop_toBottomOf="@+id/btn_privacy_policy" />
 
 
             <RadioGroup

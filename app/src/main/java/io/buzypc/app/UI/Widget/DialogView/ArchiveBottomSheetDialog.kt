@@ -1,5 +1,6 @@
 package io.buzypc.app.UI.Widget.DialogView
 
+import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,11 +13,14 @@ import io.buzypc.app.Data.AppSession.BuzyUserAppSession
 import io.buzypc.app.Data.BuildData.PCBuild
 import io.buzypc.app.R
 import io.buzypc.app.UI.Navigation.Fragments.Settings.Archive.ArchiveViewModel
+import io.buzypc.app.UI.Navigation.Fragments.Shared.OnBuildListChangedListener
+import io.buzypc.app.UI.Utils.saveBuildList
 
 class ArchiveBottomSheetDialog(
     private val context: Context,
     private val archiveViewModel: ArchiveViewModel,
-    private val archivedBuilds: ArrayList<PCBuild>
+    private var pcBuilds: ArrayList<PCBuild>,
+    private val buildListChangedListener: OnBuildListChangedListener
 
 ) : BottomSheetDialogFragment() {
     private val appSession = context.applicationContext as BuzyUserAppSession
@@ -43,9 +47,14 @@ class ArchiveBottomSheetDialog(
                 .setOnCancelClickListener { }
                 .setOnConfirmClickListener {
                     pcBuild?.isArchived = false
-                    appSession.buildList = ArrayList(archivedBuilds.filter { !it.isDeleted && !it.isArchived })
-                    Toast.makeText(context, "Build removed from checklist.", Toast.LENGTH_SHORT)
-                        .show()
+                    pcBuilds = ArrayList(pcBuilds.filter { !it.isDeleted && it.isArchived } as ArrayList<PCBuild>)
+                    saveBuildList(context, appSession.buildList)
+                    // Added !it.isArchived to filter out archived builds
+                    buildListChangedListener.onBuildListChanged(appSession.buildList.none { !it.isDeleted && it.isArchived }
+                    )
+                    Toast.makeText(context, "Build restored.", Toast.LENGTH_SHORT).show()
+                    (context as? Activity)?.setResult(Activity.RESULT_OK)
+                    (context as? Activity)?.finish()
                     dismiss()
                 }
                 .show()
@@ -58,8 +67,12 @@ class ArchiveBottomSheetDialog(
                 .setOnCancelClickListener { }
                 .setOnConfirmClickListener {
                     pcBuild?.isDeleted = true
-                    appSession.buildList = ArrayList(archivedBuilds.filter {it.isDeleted})
+                    pcBuilds = ArrayList(pcBuilds.filter { it.isDeleted} as ArrayList<PCBuild>)
+                    saveBuildList(context, appSession.buildList)
+
                     Toast.makeText(context, "Build deleted.", Toast.LENGTH_SHORT).show()
+                    (context as? Activity)?.setResult(Activity.RESULT_OK)
+                    (context as? Activity)?.finish()
                     dismiss()
                 }
                 .show()
