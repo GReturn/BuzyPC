@@ -6,14 +6,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     >
 
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".UI.Navigation.Fragments.BuildList.BuildSummaryActivity"
+        android:layout_height="wrap_content"
+        tools:context=".UI.Navigation.Fragments.Shared.BuildSummary.Activities.BuildSummaryActivity"
         android:orientation="vertical"
         app:layout_scrollEffect="compress"
         android:fadeScrollbars="true"
@@ -24,6 +24,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <!-- Header (+ Back Button) -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -57,129 +58,217 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Title -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_xsmall"
+                >
                 <TextView
                     android:id="@+id/tv_BuildName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_medium"
+
                     android:fontFamily="@font/ubuntu_bold"
                     android:text="$buildName"
-                    android:textColor="@color/bz_darkGray"
-                    android:textSize="@dimen/font_title_large"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/font_title"
 
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_summary" />
+                    app:layout_constraintTop_toTopOf="parent" />
                 <TextView
                     android:id="@+id/tv_BuildBudget"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:fontFamily="@font/ubuntu_bold"
-                    android:text="Initial Budget: PHP %1$s"
-                    android:textColor="@color/bz_darkGray"
-                    android:textSize="@dimen/font_large"
+                    android:text="@string/build_summary_initial_budget"
+                    android:textSize="@dimen/font_normal"
+                    android:textAlignment="center"
 
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_BuildName" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="@dimen/margin_normal"
+
+                android:background="?attr/colorOnSecondary"
+                />
+
+            <!-- Performance Stats -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/padding_normal">
+                android:layout_marginHorizontal="@dimen/margin_xsmall"
+            >
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/card_performance"
                     android:layout_width="match_parent"
-                    android:layout_height="400dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_normal"
 
-                    android:backgroundTint="@color/bz_softGray"
+                    app:strokeWidth="0dp"
+                    android:backgroundTint="?attr/background"
                     app:cardCornerRadius="10dp"
+
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-
                     app:layout_constraintTop_toTopOf="parent"
-                    app:strokeColor="@color/bz_honeyYellow"
-                    app:strokeWidth="3dp"
                     >
 
                     <LinearLayout
+                        android:id="@+id/linearLayout4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        >
+
+                        <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+
+                        android:fontFamily="@font/ubuntu_bold"
+                        android:text="Performance"
+                        android:textSize="@dimen/font_title" />
+
+                        <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/margin_xsmall"
+                        android:fontFamily="@font/ubuntu"
+                        android:text="A snapshot of your system’s strengths across key metrics."
+                        android:textSize="@dimen/font_small" />
+
+                        <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginHorizontal="@dimen/margin_xsmall"
-                            android:layout_marginTop="10dp"
-
-                            android:fontFamily="@font/ubuntu_bold"
-                            android:text="Performance"
-                            android:textColor="@color/bz_darkGray"
-                            android:textSize="@dimen/font_title" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginHorizontal="@dimen/margin_xsmall"
-                            android:layout_marginTop="@dimen/margin_xsmall"
-                            android:fontFamily="@font/ubuntu"
-                            android:text="A snapshot of your system’s strengths across key metrics."
-                            android:textColor="@color/bz_darkGray"
-                            android:textSize="@dimen/font_small" />
-
-                        <FrameLayout
+                            <FrameLayout
                             android:id="@+id/radarChartContainer"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="300dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginBottom="10dp" />
 
+                            <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:fontFamily="@font/ubuntu"
+                            android:text="Performance-to-Budget Ratio: A+" />
+                        </LinearLayout>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_normal"
-
-                    app:cardCornerRadius="10dp"
-
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/card_performance">
-
-                    <include layout="@layout/build_summary_compatibility_score_view" />
-                </androidx.cardview.widget.CardView>
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_marginHorizontal="@dimen/margin_xsmall"
 
+                android:background="?attr/colorOnSecondary"
+                />
+            <!-- Components -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <include
-                    layout="@layout/view_component_grid"
+                <LinearLayout
+                    android:id="@+id/linearLayout3"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_medium"
+
+                    android:orientation="vertical"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginHorizontal="@dimen/margin_xsmall"
+
+                        android:fontFamily="@font/ubuntu_bold"
+                        android:text="Components"
+                        android:textSize="@dimen/font_title" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginHorizontal="@dimen/margin_xsmall"
+                        android:layout_marginTop="@dimen/margin_xsmall"
+                        android:fontFamily="@font/ubuntu"
+                        android:text="We've selected these components to fit your budget without compromising performance."
+                        android:textSize="@dimen/font_small" />
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycleComponents"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/margin_normal"
+
+                    android:clipToPadding="false"
+                    android:paddingStart="@dimen/padding_normal"
+                    android:paddingEnd="@dimen/padding_normal"
+
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/tvTotalPrice"
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/underline"
-                android:fontFamily="@font/ubuntu_bold"
-                android:padding="10dp"
-                android:text="TOTAL: PHP 0.00"
-                android:textAlignment="center"
-                android:textColor="?attr/colorPrimary"
-                android:textSize="20sp" />
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_marginHorizontal="@dimen/margin_xsmall"
+
+                android:background="?attr/colorOnSecondary"
+                />
+
+            <!-- Compatibility Stats -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_marginHorizontal="@dimen/margin_xsmall"
+
+                    app:strokeWidth="0dp"
+                    app:cardCornerRadius="10dp"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <include layout="@layout/build_summary_compatibility_score_view"
+                        />
+                </com.google.android.material.card.MaterialCardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </LinearLayout>
 
     </ScrollView>
@@ -193,9 +282,10 @@
         android:layout_margin="@dimen/margin_normal"
 
         android:visibility="visible"
-        app:srcCompat="@drawable/ic_arrow_upward"
+        android:src="@drawable/ic_arrow_upward"
 
         android:backgroundTint="?attr/colorControlNormal"
+        app:tint="@color/bz_darkGray"
         />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
