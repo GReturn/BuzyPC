@@ -25,6 +25,7 @@ class BuzyUserAppSession: Application() {
     lateinit var selectedBuildToSummarize: PCBuild
     lateinit var selectedBuildToViewChecklist: PCBuild
 
+    // used for See BuyComponent activity
     lateinit var component: Component
 
     fun loadBuildList() {
