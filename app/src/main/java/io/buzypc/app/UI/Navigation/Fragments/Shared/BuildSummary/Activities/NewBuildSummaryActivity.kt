@@ -89,7 +89,7 @@ class NewBuildSummaryActivity : AppCompatActivity() {
         val tvBuildName = findViewById<TextView>(R.id.tv_BuildName)
         val tvTotalPrice = findViewById<TextView>(R.id.tv_BuildBudget)
         tvTotalPrice.paintFlags = tvTotalPrice.paintFlags
-        tvBuildName.text = "${(application as BuzyUserAppSession).selectedBuildToSummarize.name}"
+        tvBuildName.text = app.selectedBuildToSummarize.name
         val initialBudget = formatDecimalPriceToString(app.pc.getTotalPrice())
         tvTotalPrice.text = getString(R.string.build_summary_initial_budget, initialBudget)
 
