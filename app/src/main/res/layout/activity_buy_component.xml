@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.Navigation.Fragments.BuildList.BuyComponentActivity"
+    tools:context=".UI.Navigation.Fragments.Shared.BuildSummary.Activities.BuyComponentActivity"
 
     android:layout_margin="@dimen/margin_medium"
     >
@@ -39,6 +39,8 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:src="@drawable/cpu_64_bit"
+
+            app:tint="@color/bz_darkGray"
             />
     </com.google.android.material.card.MaterialCardView>
     <TextView
