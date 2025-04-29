@@ -23,7 +23,7 @@
             >
 
             <ImageView
-                android:id="@+id/imgRAM"
+                android:id="@+id/imgComponentIcon"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/bz_honeyYellow"

@@ -24,7 +24,7 @@
             >
 
             <ImageView
-                android:id="@+id/imgRAM"
+                android:id="@+id/imgComponentIcon"
                 android:layout_width="80dp"
                 android:layout_height="100dp"
                 android:background="@color/bz_honeyYellow"
