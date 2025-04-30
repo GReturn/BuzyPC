@@ -30,7 +30,7 @@ class BuildComponentRecyclerViewAdapter(
         parent: ViewGroup,
         viewType: Int
     ): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.card_buildlist_cpu, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.card_buildsummary_component_item_model, parent, false)
         return ViewHolder(view)
     }
 
@@ -67,7 +67,7 @@ class BuildComponentRecyclerViewAdapter(
 
         holder.tvComponentName.text = component.name
         val price = formatDecimalPriceToPesoCurrencyString(component.price)
-        holder.tvComponentPrice.text = "PHP ${price}"
+        holder.tvComponentPrice.text = price
 
         holder.btnSeeStores.setOnClickListener {
             val appSession = context.applicationContext as BuzyUserAppSession
