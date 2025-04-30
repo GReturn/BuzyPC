@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     >
 
     <ScrollView
@@ -17,6 +17,7 @@
         android:orientation="vertical"
         app:layout_scrollEffect="compress"
         android:fadeScrollbars="true"
+        android:paddingTop="@dimen/padding_normal"
         >
 
         <LinearLayout
@@ -28,7 +29,6 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/bz_honeyYellow"
                 android:padding="@dimen/padding_normal">
 
                 <ImageView
@@ -36,13 +36,12 @@
                     android:layout_width="35dp"
                     android:layout_height="35dp"
 
-                    android:layout_marginTop="@dimen/margin_normal"
-
                     android:src="@drawable/arrow_back_24px"
                     app:layout_constraintStart_toStartOf="parent"
 
                     app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/bz_darkGray" />
+                    app:tint="?attr/colorControlNormal"
+                    />
 
                 <TextView
                     android:id="@+id/tv_summary"
@@ -50,9 +49,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/ubuntu_bold"
                     android:text="Build Summary"
-                    android:textColor="@color/bz_darkGray"
                     android:textSize="@dimen/font_title_large"
-                    android:layout_marginTop="@dimen/margin_normal"
 
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -425,6 +422,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/margin_normal"
+
+        app:layout_anchorGravity="bottom|end"
 
         android:visibility="visible"
         android:src="@drawable/ic_arrow_upward"

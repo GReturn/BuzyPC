@@ -50,7 +50,8 @@ class ArchiveBottomSheetDialog(
                     pcBuilds = ArrayList(pcBuilds.filter { !it.isDeleted && it.isArchived } as ArrayList<PCBuild>)
                     saveBuildList(context, appSession.buildList)
                     // Added !it.isArchived to filter out archived builds
-                    buildListChangedListener.onBuildListChanged(appSession.buildList.none { !it.isDeleted && it.isArchived }
+                    buildListChangedListener.onBuildListChanged(
+                        appSession.buildList.none { !it.isDeleted && it.isArchived }
                     )
                     Toast.makeText(context, "Build restored.", Toast.LENGTH_SHORT).show()
                     (context as? Activity)?.setResult(Activity.RESULT_OK)
