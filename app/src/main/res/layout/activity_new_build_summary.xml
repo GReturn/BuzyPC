@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.BuildSummaryActivity"
+    tools:context=".ui.NewBuildSummaryActivity"
     android:orientation="vertical"
     app:layout_scrollEffect="compress"
     android:fadeScrollbars="true"
@@ -61,8 +61,8 @@
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
-
         <include layout ="@layout/compatibility_score_view"/>
+
 
         <include
             layout="@layout/view_component_grid"
@@ -70,7 +70,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginHorizontal="40dp"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp"
+            />
 
         <TextView
             android:id="@+id/tvTotalPrice"
@@ -83,5 +84,21 @@
             android:padding="10dp"
             android:text="TOTAL: PHP 0.00"
             android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btn_SaveBuild"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="40dp"
+            android:layout_height="match_parent"
+            android:text="Save Build"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Find something else?"
+            android:textColor="?attr/colorControlNormal"
+            android:textAlignment="center"
+            />
     </LinearLayout>
+
 </ScrollView>

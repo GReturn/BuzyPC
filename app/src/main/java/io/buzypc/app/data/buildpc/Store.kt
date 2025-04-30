@@ -5,5 +5,5 @@ data class Store(
     val imageUrl: String,
     val vendorSite: String,
     val associatedItem: String, // Name of the PC component
-    val priceRange: Double
+    val priceRange: ClosedFloatingPointRange<Double>
 )
