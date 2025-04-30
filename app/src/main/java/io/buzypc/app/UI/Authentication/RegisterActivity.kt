@@ -48,14 +48,14 @@ class RegisterActivity : AppCompatActivity() {
             }
 
             override fun afterTextChanged(s: Editable?) {
-                if(s?.length == 10) Toast.makeText(this@RegisterActivity, "Only 10 characters allowed for username.", Toast.LENGTH_LONG).show()
+                if(s?.length == 20) Toast.makeText(this@RegisterActivity, "Only 20 characters allowed for the username.", Toast.LENGTH_LONG).show()
             }
         })
 
         btnRegister.setOnClickListener {
             val buzyAuthenticator = BuzyAuthenticator(this)
 
-            val nameRegex = "^[A-Za-z ]{3,10}$".toRegex()
+            val nameRegex = "^[A-Za-z ]{3,20}$".toRegex()
             val emailPattern = android.util.Patterns.EMAIL_ADDRESS
             val passwordMinLength = 6
 
@@ -70,7 +70,7 @@ class RegisterActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
             else if(!edittextUsername.text.matches(nameRegex)){
-                Toast.makeText(this,"Name can only contain 3-10 letters and spaces", Toast.LENGTH_LONG).show()
+                Toast.makeText(this,"Name should contain 3-20 alphabetical letters", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
             // email
