@@ -92,8 +92,7 @@
 
 
             android:fontFamily="@font/ubuntu_medium"
-            android:text="No builds archived...
-"
+            android:text="No builds archived."
             android:textColor="?attr/colorOnSecondary"/>
     </LinearLayout>
 
