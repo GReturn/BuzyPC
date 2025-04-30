@@ -1,6 +1,5 @@
 package io.buzypc.app.UI.Navigation.Fragments.Settings.Archive
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -62,11 +61,10 @@ class ArchiveListRecyclerViewAdapter (
                     context.startActivity(Intent(context, BuildSummaryActivity::class.java))
                 }
 
-                var buildCount = pcBuilds.count {!it.isDeleted && !it.isArchived}
+                val buildCount = pcBuilds.count {!it.isDeleted && !it.isArchived}
                 listsInformationViewModel.setBuildCount(buildCount)
 
-                holder.itemView.setOnLongClickListener() {
-                    val appSession = context.applicationContext as BuzyUserAppSession
+                holder.itemView.setOnLongClickListener {
                     val bottomSheet = ArchiveBottomSheetDialog(context, archiveViewModel, pcBuilds, buildListChangedListener)
                     archiveViewModel.setBuild(build)
                     bottomSheet.show(
