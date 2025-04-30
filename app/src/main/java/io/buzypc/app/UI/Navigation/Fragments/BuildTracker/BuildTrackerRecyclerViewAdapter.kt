@@ -14,9 +14,10 @@ import com.google.android.material.button.MaterialButton
 import io.buzypc.app.Data.AppSession.BuzyUserAppSession
 import io.buzypc.app.Data.BuildData.PCBuild
 import io.buzypc.app.R
-import io.buzypc.app.UI.Navigation.Fragments.BuildList.BuildSummaryActivity
+import io.buzypc.app.UI.Navigation.Fragments.Shared.BuildSummary.Activities.BuildSummaryActivity
 import io.buzypc.app.UI.Navigation.Fragments.Shared.OnBuildListChangedListener
 import io.buzypc.app.UI.Navigation.ViewModels.ListsInformationViewModel
+import io.buzypc.app.UI.Utils.formatDecimalPriceToPesoCurrencyString
 import io.buzypc.app.UI.Utils.saveBuildList
 import io.buzypc.app.UI.Widget.DialogView.CustomActionDialogView
 import io.buzypc.app.UI.Widget.DialogView.DialogType
@@ -40,7 +41,7 @@ class BuildTrackerRecyclerViewAdapter(
 
         val item = holder as ItemViewHolder
         item.tvName.text = build.name
-        item.tvBudget.text = "PHP %,.2f".format(build.budget)
+        item.tvBudget.text = formatDecimalPriceToPesoCurrencyString(build.budget)
 
 
         val initialProgress = build.getProgress().first

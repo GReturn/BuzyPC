@@ -6,6 +6,7 @@ import io.buzypc.app.Data.BuildData.Components.MotherboardComponent
 import io.buzypc.app.Data.BuildData.Components.PSUComponent
 import io.buzypc.app.Data.BuildData.Components.RAMComponent
 import io.buzypc.app.Data.BuildData.Components.StorageDeviceComponent
+import io.buzypc.app.Data.BuildData.Utils.PerformanceRatingTier
 
 data class PC(
     val motherboard: MotherboardComponent,
@@ -49,5 +50,45 @@ data class PC(
             total += component.price
         }
         return total
+    }
+
+    fun getOverallPerformanceScore(): Float {
+        val components = listOf(
+            motherboard,
+            cpu,
+            gpu,
+            storageDevice,
+            ram,
+            psu
+        )
+        val totalScore = components.sumOf { it.performanceScore.toDouble() }
+        return (totalScore / components.size).toFloat()
+    }
+
+    fun getOverallCompatibilityScore(): Float {
+        val components = listOf(
+            motherboard,
+            cpu,
+            gpu,
+            storageDevice,
+            ram,
+            psu
+        )
+        val totalScore = components.sumOf { it.compatibilityScore.toDouble() }
+        return (totalScore / components.size).toFloat()
+    }
+
+    fun getPerformanceRatingTier(): PerformanceRatingTier {
+        return mapPerformanceToRatingTier(getOverallPerformanceScore())
+    }
+
+    private fun mapPerformanceToRatingTier(score: Float): PerformanceRatingTier {
+        return when {
+            score >= 9 -> PerformanceRatingTier.ENTHUSIAST
+            score >= 7.5 -> PerformanceRatingTier.POWER
+            score >= 6 -> PerformanceRatingTier.BALANCED
+            score >= 4.5 -> PerformanceRatingTier.ESSENTIAL
+            else -> PerformanceRatingTier.ENTRY
+        }
     }
 }

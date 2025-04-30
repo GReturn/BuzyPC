@@ -1,4 +1,4 @@
-package io.buzypc.app.UI.Navigation.Fragments.BuildList
+package io.buzypc.app.UI.Navigation.Fragments.Shared.BuildSummary.Activities
 
 import android.content.Intent
 import android.net.Uri
@@ -38,7 +38,7 @@ class BuyComponentActivity : AppCompatActivity() {
         val app = application as BuzyUserAppSession
 
         val imageRes = when (app.component) {
-            app.pc.cpu           -> R.drawable.cpu_64_bit
+            app.pc.cpu           -> R.drawable.ic_build_component_cpu
             app.pc.gpu           -> R.drawable.gpu
             app.pc.motherboard   -> R.drawable.motherboard_vector
             app.pc.ram           -> R.drawable.ram_vector
