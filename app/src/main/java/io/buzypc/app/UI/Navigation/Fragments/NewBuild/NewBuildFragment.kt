@@ -46,8 +46,8 @@ class NewBuildFragment : Fragment() {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable?) {
-                if(s?.length == 10)
-                    Toast.makeText(this@NewBuildFragment.context, "Only 10 characters allowed for the build name.", Toast.LENGTH_LONG).show()
+                if(s?.length == 20)
+                    Toast.makeText(this@NewBuildFragment.context, "Only 20 characters allowed for the build name.", Toast.LENGTH_LONG).show()
             }
         })
         etBudgetInput.addTextChangedListener( object : TextWatcher {
