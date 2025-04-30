@@ -16,7 +16,7 @@ import io.buzypc.app.Data.AppSession.BuzyUserAppSession
 import io.buzypc.app.Data.BuildData.Component
 import io.buzypc.app.UI.Navigation.Fragments.Shared.BuildSummary.BuildComponentRecyclerViewAdapter
 import io.buzypc.app.UI.Navigation.Fragments.Shared.BuildSummary.HorizontalSpaceItemDecoration
-import io.buzypc.app.UI.Utils.formatDecimalPriceToString
+import io.buzypc.app.UI.Utils.formatDecimalPriceToPesoCurrencyString
 import io.buzypc.app.UI.Widget.RadarChartViewFragment
 
 class BuildSummaryActivity : AppCompatActivity() {
@@ -50,11 +50,20 @@ class BuildSummaryActivity : AppCompatActivity() {
 
         // Main Build Info
         val tvBuildName = findViewById<TextView>(R.id.tv_BuildName)
-        val tvTotalPrice = findViewById<TextView>(R.id.tv_BuildBudget)
-        tvTotalPrice.paintFlags = tvTotalPrice.paintFlags
+        val tvBudget = findViewById<TextView>(R.id.tv_BuildBudget)
+        val tvTotalCost = findViewById<TextView>(R.id.tv_TotalCost)
+        val tvSavings = findViewById<TextView>(R.id.tv_Savings)
+
+        val initialBudget = formatDecimalPriceToPesoCurrencyString(app.selectedBuildToSummarize.budget)
+        val totalCost = formatDecimalPriceToPesoCurrencyString(app.selectedBuildToSummarize.getTotalPrice())
+        val savings = formatDecimalPriceToPesoCurrencyString(
+            app.selectedBuildToSummarize.getTotalPrice() - app.selectedBuildToSummarize.budget
+        )
+
         tvBuildName.text = app.selectedBuildToSummarize.name
-        val initialBudget = formatDecimalPriceToString(app.pc.getTotalPrice())
-        tvTotalPrice.text = getString(R.string.build_summary_initial_budget, initialBudget)
+        tvBudget.text = getString(R.string.phpAmount_1_s, initialBudget)
+        tvTotalCost.text = getString(R.string.phpAmount_1_s, totalCost)
+        tvSavings.text = getString(R.string.phpAmount_1_s, savings)
 
         // Component List
         val recyclerViewComponents = findViewById<RecyclerView>(R.id.recycleComponents)
@@ -86,8 +95,12 @@ class BuildSummaryActivity : AppCompatActivity() {
         val radarChartFragment = RadarChartViewFragment()
         fragmentTransaction.add(R.id.radarChartContainer, radarChartFragment)
         fragmentTransaction.commit()
-
         supportFragmentManager.executePendingTransactions() // Ensure the fragment is added immediately
+
+        val tvPerformanceScore = findViewById<TextView>(R.id.tvPerformanceRatio)
+        val rating = app.selectedBuildToSummarize.pc.getPerformanceRatingTier().description
+        tvPerformanceScore.text = getString(R.string.performance_to_budget_ratio_1_s, rating)
+
         setCompatScore(app, compatCPU, compatGPU, compatPSU, compatRam, compatStorage)
     }
 

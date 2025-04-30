@@ -11,7 +11,7 @@ import com.google.android.material.checkbox.MaterialCheckBox
 import com.google.android.material.progressindicator.LinearProgressIndicator
 import io.buzypc.app.Data.AppSession.BuzyUserAppSession
 import io.buzypc.app.R
-import io.buzypc.app.UI.Utils.formatDecimalPriceToString
+import io.buzypc.app.UI.Utils.formatDecimalPriceToPesoCurrencyString
 import io.buzypc.app.UI.Utils.saveBuildList
 import io.buzypc.app.UI.Widget.DialogView.CustomInfoDialogView
 
@@ -51,7 +51,7 @@ class TrackedBuildChecklistActivity : AppCompatActivity() {
         }
 
         tvBuildName.text = focusedBuild.name
-        val formattedTotal = formatDecimalPriceToString(focusedBuild.getTotalPrice())
+        val formattedTotal = formatDecimalPriceToPesoCurrencyString(focusedBuild.getTotalPrice())
         tvBuildBudget.text = getString(R.string.checklist_grand_total, formattedTotal)
 
         val initialProgress = focusedBuild.getProgress().first
@@ -76,8 +76,8 @@ class TrackedBuildChecklistActivity : AppCompatActivity() {
         tvMotherboardName.text = focusedBuild.pc.motherboard.name
 
         tvMotherboardPrice.text = getString(
-            R.string.pricePHP,
-            formatDecimalPriceToString(focusedBuild.pc.motherboard.price)
+            R.string.phpAmount_1_s,
+            formatDecimalPriceToPesoCurrencyString(focusedBuild.pc.motherboard.price)
         )
 
         checkboxMotherboardBoughtStatus.isChecked = focusedBuild.pc.motherboard.isBought
@@ -98,8 +98,8 @@ class TrackedBuildChecklistActivity : AppCompatActivity() {
         tvCPUName.text = focusedBuild.pc.cpu.name
 
         tvCPUPrice.text = getString(
-            R.string.pricePHP,
-            formatDecimalPriceToString(focusedBuild.pc.cpu.price)
+            R.string.phpAmount_1_s,
+            formatDecimalPriceToPesoCurrencyString(focusedBuild.pc.cpu.price)
         )
 
         checkboxCPUBoughtStatus.isChecked = focusedBuild.pc.cpu.isBought
@@ -120,8 +120,8 @@ class TrackedBuildChecklistActivity : AppCompatActivity() {
         tvGPUName.text = focusedBuild.pc.gpu.name
 
         tvGPUPrice.text = getString(
-            R.string.pricePHP,
-            formatDecimalPriceToString(focusedBuild.pc.gpu.price)
+            R.string.phpAmount_1_s,
+            formatDecimalPriceToPesoCurrencyString(focusedBuild.pc.gpu.price)
         )
 
         checkboxGPUBoughtStatus.isChecked = focusedBuild.pc.gpu.isBought
@@ -142,8 +142,8 @@ class TrackedBuildChecklistActivity : AppCompatActivity() {
         tvRAMName.text = focusedBuild.pc.ram.name
 
         tvRAMPrice.text = getString(
-            R.string.pricePHP,
-            formatDecimalPriceToString(focusedBuild.pc.ram.price)
+            R.string.phpAmount_1_s,
+            formatDecimalPriceToPesoCurrencyString(focusedBuild.pc.ram.price)
         )
 
         checkboxRAMBoughtStatus.isChecked = focusedBuild.pc.ram.isBought
@@ -164,8 +164,8 @@ class TrackedBuildChecklistActivity : AppCompatActivity() {
         tvStorageName.text = focusedBuild.pc.storageDevice.name
 
         tvStoragePrice.text = getString(
-            R.string.pricePHP,
-            formatDecimalPriceToString(focusedBuild.pc.storageDevice.price)
+            R.string.phpAmount_1_s,
+            formatDecimalPriceToPesoCurrencyString(focusedBuild.pc.storageDevice.price)
         )
 
         checkboxStorageBoughtStatus.isChecked = focusedBuild.pc.storageDevice.isBought
@@ -186,8 +186,8 @@ class TrackedBuildChecklistActivity : AppCompatActivity() {
         tvPSUName.text = focusedBuild.pc.psu.name
 
         tvPSUPrice.text = getString(
-            R.string.pricePHP,
-            formatDecimalPriceToString(focusedBuild.pc.psu.price)
+            R.string.phpAmount_1_s,
+            formatDecimalPriceToPesoCurrencyString(focusedBuild.pc.psu.price)
         )
 
         checkboxPSUBoughtStatus.isChecked = focusedBuild.pc.psu.isBought

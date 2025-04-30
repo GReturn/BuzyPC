@@ -19,7 +19,7 @@ import io.buzypc.app.Data.BuildData.Components.RAMComponent
 import io.buzypc.app.Data.BuildData.Components.StorageDeviceComponent
 import io.buzypc.app.R
 import io.buzypc.app.UI.Navigation.Fragments.Shared.BuildSummary.Activities.BuyComponentActivity
-import io.buzypc.app.UI.Utils.formatDecimalPriceToString
+import io.buzypc.app.UI.Utils.formatDecimalPriceToPesoCurrencyString
 
 class BuildComponentRecyclerViewAdapter(
     private val context: Context,
@@ -66,7 +66,7 @@ class BuildComponentRecyclerViewAdapter(
         }
 
         holder.tvComponentName.text = component.name
-        val price = formatDecimalPriceToString(component.price)
+        val price = formatDecimalPriceToPesoCurrencyString(component.price)
         holder.tvComponentPrice.text = "PHP ${price}"
 
         holder.btnSeeStores.setOnClickListener {

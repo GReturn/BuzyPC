@@ -22,7 +22,7 @@ import io.buzypc.app.UI.Navigation.BottomNavigationActivity
 import io.buzypc.app.UI.Navigation.Fragments.NewBuild.generateUniqueBuildId
 import io.buzypc.app.UI.Navigation.Fragments.Shared.BuildSummary.BuildComponentRecyclerViewAdapter
 import io.buzypc.app.UI.Navigation.Fragments.Shared.BuildSummary.HorizontalSpaceItemDecoration
-import io.buzypc.app.UI.Utils.formatDecimalPriceToString
+import io.buzypc.app.UI.Utils.formatDecimalPriceToPesoCurrencyString
 import io.buzypc.app.UI.Widget.RadarChartViewFragment
 
 class NewBuildSummaryActivity : AppCompatActivity() {
@@ -90,8 +90,8 @@ class NewBuildSummaryActivity : AppCompatActivity() {
         val tvTotalPrice = findViewById<TextView>(R.id.tv_BuildBudget)
         tvTotalPrice.paintFlags = tvTotalPrice.paintFlags
         tvBuildName.text = app.selectedBuildToSummarize.name
-        val initialBudget = formatDecimalPriceToString(app.pc.getTotalPrice())
-        tvTotalPrice.text = getString(R.string.build_summary_initial_budget, initialBudget)
+        val initialBudget = formatDecimalPriceToPesoCurrencyString(app.pc.getTotalPrice())
+        tvTotalPrice.text = getString(R.string.phpAmount_1_s, initialBudget)
 
         // Component List
         val recyclerViewComponents = findViewById<RecyclerView>(R.id.recycleComponents)
