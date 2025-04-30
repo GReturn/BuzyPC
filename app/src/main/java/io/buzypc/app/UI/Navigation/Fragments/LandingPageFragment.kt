@@ -33,8 +33,13 @@ import io.buzypc.app.UI.Utils.loadCurrentUserDetails
         val txtCurrentChecklist = view.findViewById<TextView>(R.id.textview_dynamic_checklist_list_counter)
         val app = context?.applicationContext as BuzyUserAppSession
 
-
-        txtHelloUser.text = getString(R.string.hello_user, userDetails.getUsername())
+        val username = userDetails.getUsername() ?: "BuzyPerson"
+        val displayName = if (username.length > 13) {
+            username.substring(0, 13) + "..."
+        } else {
+            username
+        }
+        txtHelloUser.text = getString(R.string.hello_user, displayName)
 
         listsInformationViewModel.setBuildCount(app.buildList.count{!it.isDeleted && !it.isArchived})
         listsInformationViewModel.buildListCount.observe(requireActivity()) { buildCount ->

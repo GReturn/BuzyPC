@@ -38,7 +38,7 @@
 
                     android:fontFamily="@font/ubuntu_bold"
                     android:text="@string/hello_user"
-                    android:textSize="36sp"
+                    android:textSize="@dimen/font_title"
                     android:textColor="@color/bz_almostBlack"
 
                     app:layout_constraintStart_toStartOf="parent"
