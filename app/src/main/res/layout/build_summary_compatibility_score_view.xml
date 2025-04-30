@@ -19,7 +19,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Compatibility"
-            android:textColor="@color/bz_darkGray"
             android:fontFamily="@font/ubuntu_bold"
             android:textSize="@dimen/font_larger"
             />
@@ -27,7 +26,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Based on internal checks across socket, power, memory, and interface matching."
-            android:textColor="@color/bz_darkGray"
             android:fontFamily="@font/ubuntu"
             android:textSize="@dimen/font_small"
             />
