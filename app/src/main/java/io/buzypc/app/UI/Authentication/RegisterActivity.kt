@@ -12,9 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import io.buzypc.app.Data.SharedPrefManagers.BuzyAuthenticator
-import io.buzypc.app.Data.SharedPrefManagers.UserRegistryManager
 import io.buzypc.app.R
-import io.buzypc.app.UI.Utils.loadCurrentUserDetails
 
 class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

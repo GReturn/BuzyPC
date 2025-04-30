@@ -13,7 +13,6 @@ import android.widget.EditText
 import android.widget.Toast
 import io.buzypc.app.R
 import io.buzypc.app.Data.AppSession.BuzyUserAppSession
-import io.buzypc.app.UI.Navigation.Fragments.Shared.BuildSummary.Activities.NewBuildSummaryActivity
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
