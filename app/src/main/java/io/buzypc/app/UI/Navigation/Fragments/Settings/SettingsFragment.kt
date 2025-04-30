@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import io.buzypc.app.R
 import io.buzypc.app.UI.Authentication.LogoutPromptActivity
-import io.buzypc.app.UI.Navigation.Fragments.Settings.Archive.ArchiveListActivity
 import io.buzypc.app.UI.Navigation.ViewModels.StyleViewModel
 import io.buzypc.app.UI.Utils.loadCurrentUserDetails
 
