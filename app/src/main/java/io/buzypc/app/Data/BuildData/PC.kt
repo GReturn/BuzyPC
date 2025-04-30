@@ -6,7 +6,7 @@ import io.buzypc.app.Data.BuildData.Components.MotherboardComponent
 import io.buzypc.app.Data.BuildData.Components.PSUComponent
 import io.buzypc.app.Data.BuildData.Components.RAMComponent
 import io.buzypc.app.Data.BuildData.Components.StorageDeviceComponent
-import io.buzypc.app.Data.BuildData.Utils.RatingLevel
+import io.buzypc.app.Data.BuildData.Utils.PerformanceRatingTier
 
 data class PC(
     val motherboard: MotherboardComponent,
@@ -78,22 +78,17 @@ data class PC(
         return (totalScore / components.size).toFloat()
     }
 
-    fun getPerformanceRating(): RatingLevel {
-        val avgScore = getOverallPerformanceScore()
-        return mapScoreToRating(avgScore)
+    fun getPerformanceRatingTier(): PerformanceRatingTier {
+        return mapPerformanceToRatingTier(getOverallPerformanceScore())
     }
 
-    fun getCompatibilityRating(): RatingLevel {
-        val avgScore = getOverallCompatibilityScore()
-        return mapScoreToRating(avgScore)
-    }
-
-    private fun mapScoreToRating(score: Float): RatingLevel {
+    private fun mapPerformanceToRatingTier(score: Float): PerformanceRatingTier {
         return when {
-            score < 25 -> RatingLevel.POOR
-            score < 50 -> RatingLevel.AVERAGE
-            score < 75 -> RatingLevel.GOOD
-            else -> RatingLevel.EXCELLENT
+            score >= 9 -> PerformanceRatingTier.ENTHUSIAST
+            score >= 7.5 -> PerformanceRatingTier.POWER
+            score >= 6 -> PerformanceRatingTier.BALANCED
+            score >= 4.5 -> PerformanceRatingTier.ESSENTIAL
+            else -> PerformanceRatingTier.ENTRY
         }
     }
 }
