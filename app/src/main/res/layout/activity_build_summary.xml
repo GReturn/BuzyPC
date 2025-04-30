@@ -307,10 +307,10 @@
                                 android:layout_marginHorizontal="@dimen/margin_normal"
                                 android:layout_marginTop="@dimen/margin_tiny"
 
-                                android:fontFamily="@font/ubuntu_medium"
+                                android:fontFamily="@font/ubuntu_bold"
                                 android:text="@string/performance_to_budget_ratio_1_s"
                                 android:textAlignment="center"
-                                android:textColor="@color/bz_success_green"
+                                android:textColor="@color/bz_success_deep_green"
                                 />
 
                         </LinearLayout>
