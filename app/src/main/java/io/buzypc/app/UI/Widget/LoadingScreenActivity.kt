@@ -8,7 +8,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import io.buzypc.app.R
-import io.buzypc.app.UI.Navigation.Fragments.NewBuild.NewBuildSummaryActivity
+import io.buzypc.app.UI.Navigation.Fragments.Shared.BuildSummary.Activities.NewBuildSummaryActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 

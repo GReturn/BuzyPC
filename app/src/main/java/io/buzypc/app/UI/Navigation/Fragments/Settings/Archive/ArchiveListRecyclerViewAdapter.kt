@@ -8,8 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
-import android.widget.Toast
-import androidx.cardview.widget.CardView
 import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
@@ -17,14 +15,10 @@ import com.google.android.material.button.MaterialButton
 import io.buzypc.app.Data.AppSession.BuzyUserAppSession
 import io.buzypc.app.Data.BuildData.PCBuild
 import io.buzypc.app.R
-import io.buzypc.app.UI.Navigation.BottomNavigationActivity
-import io.buzypc.app.UI.Navigation.Fragments.BuildList.BuildSummaryActivity
+import io.buzypc.app.UI.Navigation.Fragments.Shared.BuildSummary.Activities.BuildSummaryActivity
 import io.buzypc.app.UI.Navigation.Fragments.Shared.OnBuildListChangedListener
 import io.buzypc.app.UI.Navigation.ViewModels.ListsInformationViewModel
-import io.buzypc.app.UI.Utils.saveBuildList
 import io.buzypc.app.UI.Widget.DialogView.ArchiveBottomSheetDialog
-import io.buzypc.app.UI.Widget.DialogView.CustomActionDialogView
-import io.buzypc.app.UI.Widget.DialogView.DialogType
 import java.util.Calendar
 
 class ArchiveListRecyclerViewAdapter (
