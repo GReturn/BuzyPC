@@ -1,7 +1,9 @@
 package io.buzypc.app.UI.Utils
 
-import java.text.DecimalFormat
+import java.text.NumberFormat
+import java.util.Locale
 
-fun formatDecimalPriceToString(price: Double): String {
-    return DecimalFormat("#,###.00").format(price)
+fun formatDecimalPriceToPesoCurrencyString(price: Double): String {
+    val format = NumberFormat.getCurrencyInstance(Locale("en", "PH"))
+    return format.format(price)
 }

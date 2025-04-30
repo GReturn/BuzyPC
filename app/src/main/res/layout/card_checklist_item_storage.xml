@@ -133,7 +133,7 @@
                     android:layout_height="wrap_content"
 
                     android:fontFamily="@font/ubuntu_bold"
-                    android:text="@string/pricePHP"
+                    android:text="@string/phpAmount_1_s"
                     android:textColor="@color/bz_darkGray"
                     android:textSize="@dimen/font_normal"
 
