@@ -41,7 +41,7 @@ class BuzyUserAppSession: Application() {
             "Z690 Motherboard",
             "ASUS",
             14250.0,
-            9.0f,
+            10f,
             9.5f,
             listOf(
                 Store(
@@ -75,7 +75,7 @@ class BuzyUserAppSession: Application() {
             "Intel Core i9-12900K",
             "Intel",
             31350.0,
-            4.5f,
+            10f,
             4.0f,
             listOf(
                 Store(
@@ -108,7 +108,7 @@ class BuzyUserAppSession: Application() {
             "GeForce RTX 3070",
             "Nvidia",
             34200.0,
-            4.2f,
+            10f,
             6.4f,
             listOf(
                 Store(
@@ -175,7 +175,7 @@ class BuzyUserAppSession: Application() {
             "Corsair Vengeance RGB Pro",
             "Corsair",
             8550.0,
-            4.4f,
+            1f,
             5.7f,
             listOf(
                 Store(
@@ -208,7 +208,7 @@ class BuzyUserAppSession: Application() {
             "Corsair RM850x",
             "Corsair",
             6840.0,
-            4.1f,
+            7.3f,
             6.2f,
             listOf(
                 Store(
