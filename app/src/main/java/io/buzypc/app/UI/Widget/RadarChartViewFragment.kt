@@ -50,26 +50,27 @@ class RadarChartViewFragment : Fragment() {
             radarChart.legend.isEnabled = false
 
             // the background of the chart;
-            radarChart.webLineWidth = 1f
+            radarChart.webLineWidth = 2f
             radarChart.webColor = MaterialColors.getColor(radarChart, com.google.android.material.R.attr.colorSecondary)
-            radarChart.webLineWidthInner = 1f
+            radarChart.webLineWidthInner = 0f
             radarChart.webColorInner = MaterialColors.getColor(radarChart, com.google.android.material.R.attr.colorSecondary)
             radarChart.webAlpha = 200
             radarChart.setBackgroundColor(Color.TRANSPARENT)
             radarChart.animateXY(1500, 1500)
 
             // 2) Y‑axis bounds
-            radarChart.yAxis.axisMinimum = 1f
-            radarChart.yAxis.axisMaximum = 4f
+            radarChart.yAxis.axisMinimum = 0f
+            radarChart.yAxis.axisMaximum = 9f
 
             // 3) Prepare your entries (Retrieve actual data)
             val app = requireActivity().application as BuzyUserAppSession
+            val focusedPC = app.selectedBuildToSummarize.pc
             Log.d("RadarChartFragment", "App Session: $app")
-            val computingPower = app.pc.cpu.performanceScore
-            val graphicsRendering = app.pc.gpu.performanceScore
-            val dataStorage = app.pc.storageDevice.performanceScore
-            val dataTransferSpeed = app.pc.ram.performanceScore
-            val powerCapacity = app.pc.psu.performanceScore
+            val computingPower = focusedPC.cpu.performanceScore
+            val graphicsRendering = focusedPC.gpu.performanceScore
+            val dataStorage = focusedPC.storageDevice.performanceScore
+            val dataTransferSpeed = focusedPC.ram.performanceScore
+            val powerCapacity = focusedPC.psu.performanceScore
 
             Log.d("RadarChartFragment", "Data: CPU=$computingPower, GPU=$graphicsRendering, Storage=$dataStorage, Network=$dataTransferSpeed, Battery=$powerCapacity")
 
@@ -119,7 +120,7 @@ class RadarChartViewFragment : Fragment() {
             // we don't need Y‑axis labels
             radarChart.yAxis.isEnabled = false
             radarChart.xAxis.textColor = MaterialColors.getColor(radarChart, com.google.android.material.R.attr.colorSecondary)
-            radarChart.xAxis.typeface = ResourcesCompat.getFont(requireContext(), R.font.ubuntu_bold)
+            radarChart.xAxis.typeface = ResourcesCompat.getFont(requireContext(), R.font.ubuntu_bold_italic)
 
             radarChart.xAxis.apply{
                 setDrawAxisLine(false)

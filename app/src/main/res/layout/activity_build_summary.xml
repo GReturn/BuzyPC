@@ -65,7 +65,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/margin_xsmall"
+                android:paddingHorizontal="@dimen/margin_xsmall"
                 >
                 <TextView
                     android:id="@+id/tv_BuildName"
@@ -74,31 +74,158 @@
                     android:layout_marginTop="@dimen/margin_medium"
 
                     android:fontFamily="@font/ubuntu_bold"
-                    android:text="$buildName"
+                    android:text="My Build"
                     android:textAlignment="center"
-                    android:textSize="@dimen/font_title"
+                    android:textSize="@dimen/font_title_large"
 
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/tv_BuildBudget"
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:fontFamily="@font/ubuntu_bold"
-                    android:text="@string/build_summary_initial_budget"
-                    android:textSize="@dimen/font_normal"
-                    android:textAlignment="center"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/margin_medium"
 
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_BuildName" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_BuildName"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                    >
+                        <TextView
+                            android:id="@+id/tv_BuildBudget_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+
+                            android:fontFamily="@font/ubuntu_bold"
+                            android:text="Budget"
+                            android:textAlignment="center"
+                            android:textSize="@dimen/font_normal"
+
+                            app:drawableStartCompat="@drawable/ic_wallet"
+                            app:drawableTint="?attr/colorOnSecondary"
+
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_BuildName" />
+                        <TextView
+                            android:id="@+id/tv_BuildBudget"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:layout_gravity="center"
+
+                            android:fontFamily="@font/ubuntu_bold"
+                            android:text="@string/phpAmount_1_s"
+                            android:textAlignment="center"
+                            android:textSize="@dimen/font_normal"
+
+
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_BuildName" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:orientation="vertical"
+
+                        >
+                        <TextView
+                            android:id="@+id/tv_TotalCost_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/ubuntu_bold"
+                            android:text="Price"
+                            android:layout_gravity="center"
+
+                            android:textAlignment="center"
+                            android:textSize="@dimen/font_normal"
+
+                            app:drawableLeftCompat="@drawable/ic_price_tag"
+                            app:drawableTint="?attr/colorOnSecondary"
+
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_BuildBudget" />
+                        <TextView
+                            android:id="@+id/tv_TotalCost"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/ubuntu_bold"
+                            android:text="@string/phpAmount_1_s"
+                            android:layout_gravity="center"
+
+                            android:textAlignment="center"
+                            android:textSize="@dimen/font_normal"
+
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_BuildBudget" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:orientation="vertical"
+
+                        >
+                        <TextView
+                            android:id="@+id/tv_Savings_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+
+                            android:fontFamily="@font/ubuntu_bold"
+                            android:text="Savings"
+                            android:textAlignment="center"
+                            android:textSize="@dimen/font_normal"
+                            android:textColor="@color/bz_success_green"
+
+                            app:drawableLeftCompat="@drawable/ic_cash_payment"
+                            app:drawableTint="@color/bz_success_green"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_TotalCost" />
+
+                        <TextView
+                            android:id="@+id/tv_Savings"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/ubuntu_bold"
+                            android:text="@string/phpAmount_1_s"
+                            android:layout_gravity="center"
+
+                            android:textAlignment="center"
+                            android:textSize="@dimen/font_normal"
+                            android:textColor="@color/bz_success_green"
+
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_TotalCost" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
+                android:layout_height="1dp"
                 android:layout_marginTop="@dimen/margin_normal"
+                android:elevation="@dimen/cardview_default_elevation"
 
                 android:background="?attr/colorOnSecondary"
                 />
@@ -139,7 +266,7 @@
 
                         android:fontFamily="@font/ubuntu_bold"
                         android:text="Performance"
-                        android:textSize="@dimen/font_title" />
+                        android:textSize="@dimen/font_larger" />
 
                         <TextView
                         android:layout_width="match_parent"
@@ -163,11 +290,29 @@
                             android:layout_marginBottom="10dp" />
 
                             <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                                android:id="@+id/tvPerformanceRatio_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
 
-                            android:fontFamily="@font/ubuntu"
-                            android:text="Performance-to-Budget Ratio: A+" />
+                                android:fontFamily="@font/ubuntu_bold"
+                                android:text="Evaluation"
+                                android:textSize="@dimen/font_large"
+                                android:textAlignment="center"
+
+                                />
+                            <TextView
+                                android:id="@+id/tvPerformanceRatio"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/margin_normal"
+                                android:layout_marginTop="@dimen/margin_tiny"
+
+                                android:fontFamily="@font/ubuntu_medium"
+                                android:text="@string/performance_to_budget_ratio_1_s"
+                                android:textAlignment="center"
+                                android:textColor="@color/bz_success_green"
+                                />
+
                         </LinearLayout>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
@@ -206,7 +351,7 @@
 
                         android:fontFamily="@font/ubuntu_bold"
                         android:text="Components"
-                        android:textSize="@dimen/font_title" />
+                        android:textSize="@dimen/font_larger" />
 
                     <TextView
                         android:layout_width="match_parent"
