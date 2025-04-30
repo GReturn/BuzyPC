@@ -69,7 +69,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -80,6 +80,7 @@
             android:layout_height="100dp"
             android:src="@drawable/ic_archive"
             android:layout_gravity="center"
+            app:tint="@color/bz_darkGray"
 
             />
         <TextView
@@ -95,78 +96,6 @@
 "
             android:textColor="?attr/colorOnSecondary"/>
     </LinearLayout>
-
-
-
-
-<!--    <ImageView-->
-<!--        android:layout_width="50dp"-->
-<!--        android:layout_height="50dp"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        android:src="@drawable/arrow_back_24px"-->
-<!--        android:layout_margin="30dp"-->
-<!--        />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/tvEmptyArchiveList"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:paddingTop="@dimen/space_small"-->
-
-<!--        android:fontFamily="@font/ubuntu_medium"-->
-<!--        android:visibility="invisible"-->
-<!--        android:text="Nothing here yet. Add your build now!"-->
-<!--        android:textColor="@color/bz_almostBlack"-->
-
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/header"-->
-<!--        />-->
-
-<!--    <LinearLayout-->
-<!--        android:id="@+id/header"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="vertical"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        android:layout_marginLeft="30dp"-->
-<!--        android:layout_marginTop="30dp"-->
-<!--        >-->
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Archived Builds"-->
-<!--            android:textSize="30sp"-->
-<!--            android:fontFamily="@font/ubuntu_bold"-->
-<!--            />-->
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Tip: Long press a build to view options"-->
-<!--            android:fontFamily="@font/ubuntu_mono"-->
-<!--            />-->
-
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/recycleView_archivedBuilds"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-
-<!--            android:clipToPadding="false"-->
-<!--            android:overScrollMode="never"-->
-<!--            android:padding="@dimen/space_small"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-
-<!--            app:layout_constraintHorizontal_bias="0.498"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/header"-->
-
-<!--            android:layout_marginTop="30dp"-->
-<!--            tools:itemCount="10" />-->
-<!--    </LinearLayout>-->
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

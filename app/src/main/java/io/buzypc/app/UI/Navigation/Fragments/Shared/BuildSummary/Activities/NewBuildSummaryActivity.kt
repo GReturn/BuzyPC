@@ -87,11 +87,21 @@ class NewBuildSummaryActivity : AppCompatActivity() {
 
         // Main Build Info
         val tvBuildName = findViewById<TextView>(R.id.tv_BuildName)
-        val tvTotalPrice = findViewById<TextView>(R.id.tv_BuildBudget)
-        tvTotalPrice.paintFlags = tvTotalPrice.paintFlags
+        val tvBudget = findViewById<TextView>(R.id.tv_BuildBudget)
+        val tvTotalCost = findViewById<TextView>(R.id.tv_TotalCost)
+        val tvSavings = findViewById<TextView>(R.id.tv_Savings)
+
+        val initialBudget = formatDecimalPriceToPesoCurrencyString(app.selectedBuildToSummarize.budget)
+        val totalCost = formatDecimalPriceToPesoCurrencyString(app.selectedBuildToSummarize.getTotalPrice())
+        val savings = formatDecimalPriceToPesoCurrencyString(
+            app.selectedBuildToSummarize.getTotalPrice() - app.selectedBuildToSummarize.budget
+        )
+
         tvBuildName.text = app.selectedBuildToSummarize.name
-        val initialBudget = formatDecimalPriceToPesoCurrencyString(app.pc.getTotalPrice())
-        tvTotalPrice.text = getString(R.string.phpAmount_1_s, initialBudget)
+        tvBudget.text = getString(R.string.phpAmount_1_s, initialBudget)
+        tvTotalCost.text = getString(R.string.phpAmount_1_s, totalCost)
+        tvSavings.text = getString(R.string.phpAmount_1_s, savings)
+
 
         // Component List
         val recyclerViewComponents = findViewById<RecyclerView>(R.id.recycleComponents)
@@ -123,6 +133,10 @@ class NewBuildSummaryActivity : AppCompatActivity() {
         val radarChartFragment = RadarChartViewFragment()
         fragmentTransaction.add(R.id.radarChartContainer, radarChartFragment)
         fragmentTransaction.commit()
+
+        val tvPerformanceScore = findViewById<TextView>(R.id.tvPerformanceRatio)
+        val rating = app.selectedBuildToSummarize.pc.getPerformanceRatingTier().description
+        tvPerformanceScore.text = getString(R.string.performance_to_budget_ratio_1_s, rating)
 
         supportFragmentManager.executePendingTransactions() // Ensure the fragment is added immediately
         setCompatScore(app, compatCPU, compatGPU, compatPSU, compatRam, compatStorage)
