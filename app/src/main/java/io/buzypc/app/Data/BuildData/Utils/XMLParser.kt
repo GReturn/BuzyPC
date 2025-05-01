@@ -66,7 +66,7 @@ fun parsePCBuild(xml: String): PC {
                         "CompatibilityScore" -> compatibilityScore = text.toFloat()
                         "IsBought" -> isBought = text.toBoolean()
 
-                        "StoreName" -> currentStore = currentStore?.copy(name = text)
+                        "Vendor" -> currentStore = currentStore?.copy(name = text)
                         "VendorSite" -> currentStore = currentStore?.copy(vendorSite = text)
                         "Min" -> currentStore = currentStore?.let {
                             val max = it.priceRange.endInclusive
