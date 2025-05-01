@@ -45,9 +45,10 @@ class NewBuildSummaryActivity : AppCompatActivity() {
             generateUniqueBuildId(this),
             app.buildName,
             app.buildBudget,
-            app.pc
+            app.currentPCToBuild
         )
         app.selectedBuildToSummarize = newBuild
+        val pcBuild = app.selectedBuildToSummarize
 
         val btnSaveButton = findViewById<Button>(R.id.btn_SaveBuild)
         btnSaveButton.setOnClickListener {
@@ -94,13 +95,13 @@ class NewBuildSummaryActivity : AppCompatActivity() {
         val tvTotalCost = findViewById<TextView>(R.id.tv_TotalCost)
         val tvSavings = findViewById<TextView>(R.id.tv_Savings)
 
-        val initialBudget = formatDecimalPriceToPesoCurrencyString(app.selectedBuildToSummarize.budget)
-        val totalCost = formatDecimalPriceToPesoCurrencyString(app.selectedBuildToSummarize.getTotalPrice())
+        val initialBudget = formatDecimalPriceToPesoCurrencyString(pcBuild.budget)
+        val totalCost = formatDecimalPriceToPesoCurrencyString(pcBuild.getTotalPrice())
         val savings = formatDecimalPriceToPesoCurrencyString(
-            app.selectedBuildToSummarize.budget - app.selectedBuildToSummarize.getTotalPrice()
+            pcBuild.budget - pcBuild.getTotalPrice()
         )
 
-        tvBuildName.text = app.selectedBuildToSummarize.name
+        tvBuildName.text = pcBuild.name
         tvBudget.text = getString(R.string.phpAmount_1_s, initialBudget)
         tvTotalCost.text = getString(R.string.phpAmount_1_s, totalCost)
         tvSavings.text = getString(R.string.phpAmount_1_s, savings)
@@ -109,12 +110,12 @@ class NewBuildSummaryActivity : AppCompatActivity() {
         val recyclerViewComponents = findViewById<RecyclerView>(R.id.recycleComponents)
 
         val components = ArrayList<Component>()
-        components.add(app.pc.motherboard)
-        components.add(app.pc.cpu)
-        components.add(app.pc.gpu)
-        components.add(app.pc.ram)
-        components.add(app.pc.storageDevice)
-        components.add(app.pc.psu)
+        components.add(pcBuild.pc.motherboard)
+        components.add(pcBuild.pc.cpu)
+        components.add(pcBuild.pc.gpu)
+        components.add(pcBuild.pc.ram)
+        components.add(pcBuild.pc.storageDevice)
+        components.add(pcBuild.pc.psu)
 
         val adapter = BuildComponentRecyclerViewAdapter(this, components)
 
@@ -138,19 +139,19 @@ class NewBuildSummaryActivity : AppCompatActivity() {
         fragmentTransaction.commit()
 
         val tvPerformanceScore = findViewById<TextView>(R.id.tvPerformanceRatio)
-        val rating = app.selectedBuildToSummarize.pc.getPerformanceRatingTier().description
+        val rating = pcBuild.pc.getPerformanceRatingTier().description
         tvPerformanceScore.text = getString(R.string.performance_to_budget_ratio_1_s, rating)
 
         supportFragmentManager.executePendingTransactions() // Ensure the fragment is added immediately
-        setCompatScore(app, compatCPU, compatGPU, compatPSU, compatRam, compatStorage)
+        setCompatScore(pcBuild, compatCPU, compatGPU, compatPSU, compatRam, compatStorage)
     }
 
-    fun setCompatScore(app: BuzyUserAppSession, compatCPU: TextView, compatGPU: TextView, compatPSU: TextView, compatRam: TextView, compatStorage: TextView) {
-        compatCPU.text = app.pc.cpu.compatibilityScore.toString()
-        compatGPU.text = app.pc.gpu.compatibilityScore.toString()
-        compatPSU.text = app.pc.psu.compatibilityScore.toString()
-        compatRam.text = app.pc.ram.compatibilityScore.toString()
-        compatStorage.text = app.pc.storageDevice.compatibilityScore.toString()
+    fun setCompatScore(pcBuild: PCBuild, compatCPU: TextView, compatGPU: TextView, compatPSU: TextView, compatRam: TextView, compatStorage: TextView) {
+        compatCPU.text = pcBuild.pc.cpu.compatibilityScore.toString()
+        compatGPU.text = pcBuild.pc.gpu.compatibilityScore.toString()
+        compatPSU.text = pcBuild.pc.psu.compatibilityScore.toString()
+        compatRam.text = pcBuild.pc.ram.compatibilityScore.toString()
+        compatStorage.text = pcBuild.pc.storageDevice.compatibilityScore.toString()
     }
 
 

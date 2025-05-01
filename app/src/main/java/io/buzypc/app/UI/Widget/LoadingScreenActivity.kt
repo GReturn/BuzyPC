@@ -48,7 +48,7 @@ class LoadingScreenActivity : AppCompatActivity() {
             saveXmlToFile(xmlResult)
 
             val generatedPC = parsePCBuild(xmlResult)
-            appSession.pc = generatedPC
+            appSession.currentPCToBuild = generatedPC
 
             // Pass the result to the next activity
             val intent = Intent(this@LoadingScreenActivity, NewBuildSummaryActivity::class.java)

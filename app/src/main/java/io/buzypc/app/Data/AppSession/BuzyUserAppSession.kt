@@ -25,7 +25,7 @@ class BuzyUserAppSession: Application() {
         buildList = loadBuildList(this)
     }
 
-    lateinit var pc: PC
+    lateinit var currentPCToBuild: PC
 //    var pc = PC(
 //        motherboard = MotherboardComponent(
 //            "Z690",
