@@ -2,6 +2,8 @@ package io.buzypc.app.UI.Navigation.Fragments.Shared.BuildSummary.Activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.ScrollView
@@ -11,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import io.buzypc.app.R
@@ -102,7 +105,6 @@ class NewBuildSummaryActivity : AppCompatActivity() {
         tvTotalCost.text = getString(R.string.phpAmount_1_s, totalCost)
         tvSavings.text = getString(R.string.phpAmount_1_s, savings)
 
-
         // Component List
         val recyclerViewComponents = findViewById<RecyclerView>(R.id.recycleComponents)
 
@@ -121,6 +123,7 @@ class NewBuildSummaryActivity : AppCompatActivity() {
         recyclerViewComponents.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
 
         recyclerViewComponents.addItemDecoration(HorizontalSpaceItemDecoration(12))
+        setAutoScroll(recyclerViewComponents, recyclerViewComponents.layoutManager as LinearLayoutManager, adapter, 3000)
 
         val compatCPU = findViewById<TextView>(R.id. tvCPUSCore)
         val compatGPU= findViewById<TextView>(R.id.tvGPUSCore)
@@ -148,5 +151,58 @@ class NewBuildSummaryActivity : AppCompatActivity() {
         compatPSU.text = app.pc.psu.performanceScore.toString()
         compatRam.text = app.pc.ram.performanceScore.toString()
         compatStorage.text = app.pc.storageDevice.performanceScore.toString()
+    }
+
+
+    // Provided by ParSa in StackOverflow: https://stackoverflow.com/a/56872365/14139842
+    // We replace the Timer with a Handler for better control on the main/UI thread.
+    private fun setAutoScroll(
+        recyclerView: RecyclerView,
+        layoutManager: LinearLayoutManager,
+        adapter: BuildComponentRecyclerViewAdapter,
+        interval: Long = 3000L,
+        pauseDuration: Long = 3000L // how long to pause after user interaction
+    ) {
+        //The LinearSnapHelper will snap the center of the target child view to the center of the
+        // attached RecyclerView , it's optional
+        val linearSnapHelper = LinearSnapHelper()
+        linearSnapHelper.attachToRecyclerView(recyclerView)
+
+        val handler = Handler(Looper.getMainLooper())
+        var autoScrollEnabled = true
+        var autoScrollRunnable: Runnable? = null
+
+        fun startAutoScroll() {
+            autoScrollRunnable?.let { handler.removeCallbacks(it) } // clear existing
+            autoScrollRunnable = object : Runnable {
+                override fun run() {
+                    if (autoScrollEnabled) {
+                        val nextPos = if (layoutManager.findLastCompletelyVisibleItemPosition() < adapter.itemCount - 1) {
+                            layoutManager.findLastCompletelyVisibleItemPosition() + 1
+                        } else {
+                            0
+                        }
+                        recyclerView.smoothScrollToPosition(nextPos)
+                    }
+                    handler.postDelayed(this, interval)
+                }
+            }
+            handler.postDelayed(autoScrollRunnable!!, interval)
+        }
+
+        // Pause on user interaction
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(rv: RecyclerView, newState: Int) {
+                if (newState != RecyclerView.SCROLL_STATE_IDLE) {
+                    autoScrollEnabled = false
+                    handler.removeCallbacks(autoScrollRunnable!!)
+                } else {
+                    autoScrollEnabled = true
+                    handler.postDelayed(autoScrollRunnable!!, pauseDuration)
+                }
+            }
+        })
+
+        startAutoScroll()
     }
 }

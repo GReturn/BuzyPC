@@ -1,6 +1,8 @@
 package io.buzypc.app.UI.Navigation.Fragments.Shared.BuildSummary.Activities
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.widget.ImageView
 import android.widget.ScrollView
 import android.widget.TextView
@@ -19,8 +21,6 @@ import io.buzypc.app.UI.Navigation.Fragments.Shared.BuildSummary.BuildComponentR
 import io.buzypc.app.UI.Navigation.Fragments.Shared.BuildSummary.HorizontalSpaceItemDecoration
 import io.buzypc.app.UI.Utils.formatDecimalPriceToPesoCurrencyString
 import io.buzypc.app.UI.Widget.RadarChartViewFragment
-import java.util.Timer
-import java.util.TimerTask
 
 class BuildSummaryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -118,30 +118,55 @@ class BuildSummaryActivity : AppCompatActivity() {
     }
 
     // Provided by ParSa in StackOverflow: https://stackoverflow.com/a/56872365/14139842
-    private fun setAutoScroll(recyclerView: RecyclerView, layoutManager: LinearLayoutManager, adapter: BuildComponentRecyclerViewAdapter, interval: Long) {
+    // We replace the Timer with a Handler for better control on the main/UI thread.
+    private fun setAutoScroll(
+        recyclerView: RecyclerView,
+        layoutManager: LinearLayoutManager,
+        adapter: BuildComponentRecyclerViewAdapter,
+        interval: Long = 3000L,
+        pauseDuration: Long = 3000L // how long to pause after user interaction
+    ) {
         //The LinearSnapHelper will snap the center of the target child view to the center of the
         // attached RecyclerView , it's optional
         val linearSnapHelper = LinearSnapHelper()
         linearSnapHelper.attachToRecyclerView(recyclerView)
 
-        val timer = Timer()
-        timer.schedule(object : TimerTask() {
-            override fun run() {
-                if (layoutManager.findLastCompletelyVisibleItemPosition() < (adapter.itemCount - 1)) {
-                    layoutManager.smoothScrollToPosition(
-                        recyclerView,
-                        RecyclerView.State(),
-                        layoutManager.findLastCompletelyVisibleItemPosition() + 1
-                    )
-                } else if (layoutManager.findLastCompletelyVisibleItemPosition() === (adapter.itemCount - 1)) {
-                    layoutManager.smoothScrollToPosition(
-                        recyclerView,
-                        RecyclerView.State(),
-                        0
-                    )
+        val handler = Handler(Looper.getMainLooper())
+        var autoScrollEnabled = true
+        var autoScrollRunnable: Runnable? = null
+
+        fun startAutoScroll() {
+            autoScrollRunnable?.let { handler.removeCallbacks(it) } // clear existing
+            autoScrollRunnable = object : Runnable {
+                override fun run() {
+                    if (autoScrollEnabled) {
+                        val nextPos = if (layoutManager.findLastCompletelyVisibleItemPosition() < adapter.itemCount - 1) {
+                            layoutManager.findLastCompletelyVisibleItemPosition() + 1
+                        } else {
+                            0
+                        }
+                        recyclerView.smoothScrollToPosition(nextPos)
+                    }
+                    handler.postDelayed(this, interval)
                 }
             }
-        }, 0, interval)
+            handler.postDelayed(autoScrollRunnable!!, interval)
+        }
+
+        // Pause on user interaction
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(rv: RecyclerView, newState: Int) {
+                if (newState != RecyclerView.SCROLL_STATE_IDLE) {
+                    autoScrollEnabled = false
+                    handler.removeCallbacks(autoScrollRunnable!!)
+                } else {
+                    autoScrollEnabled = true
+                    handler.postDelayed(autoScrollRunnable!!, pauseDuration)
+                }
+            }
+        })
+
+        startAutoScroll()
     }
 
 }
