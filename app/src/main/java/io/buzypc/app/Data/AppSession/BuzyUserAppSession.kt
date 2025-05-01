@@ -1,15 +1,8 @@
 package io.buzypc.app.Data.AppSession
 
 import android.app.Application
-import io.buzypc.app.Data.BuildData.Store
 import io.buzypc.app.Data.BuildData.Component
 import io.buzypc.app.Data.BuildData.PC
-import io.buzypc.app.Data.BuildData.Components.CPUComponent
-import io.buzypc.app.Data.BuildData.Components.GPUComponent
-import io.buzypc.app.Data.BuildData.Components.MotherboardComponent
-import io.buzypc.app.Data.BuildData.Components.PSUComponent
-import io.buzypc.app.Data.BuildData.Components.RAMComponent
-import io.buzypc.app.Data.BuildData.Components.StorageDeviceComponent
 import io.buzypc.app.Data.BuildData.PCBuild
 import io.buzypc.app.UI.Utils.loadBuildList
 
