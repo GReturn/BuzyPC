@@ -27,7 +27,8 @@
             tools:context=".UI.fragments.BuildListFragment"
 
             android:background="?attr/colorControlNormal"
-            android:padding="@dimen/space_normal"
+            android:paddingTop="@dimen/padding_large"
+            android:paddingBottom="@dimen/padding_normal"
             >
 
             <TextView
@@ -38,7 +39,7 @@
                 android:fontFamily="@font/ubuntu_bold"
                 android:text="My Builds"
                 android:textSize="@dimen/font_title_large"
-                android:textColor="@color/bz_darkGray"
+                android:textColor="@color/bz_almostBlack"
 
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -55,7 +56,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:tint="@color/bz_deepCharcoal"
+                app:tint="@color/bz_almostBlack"
+                android:layout_marginEnd="@dimen/margin_normal"
                 />
 
 

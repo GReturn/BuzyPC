@@ -49,13 +49,12 @@ class ArchiveListActivity : AppCompatActivity() {
             finish()
         }
 
-
         pcBuildList = app.buildList
 
         val archivedBuilds = pcBuildList.filter{!it.isDeleted && it.isArchived} as ArrayList<PCBuild>
         if(archivedBuilds.isEmpty()){
             lLArchiveEmptyList.visibility = View.VISIBLE
-            recyclerView.visibility = View.INVISIBLE
+            recyclerView.visibility = View.GONE
         }
 
         val adapter = ArchiveListRecyclerViewAdapter(
@@ -81,7 +80,7 @@ class ArchiveListActivity : AppCompatActivity() {
         app = application as BuzyUserAppSession
         pcBuildList = app.buildList
 
-        val archivedBuilds = pcBuildList.filter { !it.isDeleted&& it.isArchived} as ArrayList<PCBuild>
+        val archivedBuilds = pcBuildList.filter { !it.isDeleted && it.isArchived} as ArrayList<PCBuild>
         if(archivedBuilds.isEmpty()){
             emptyListMessage?.visibility = View.VISIBLE
             recyclerView?.visibility = View.GONE
