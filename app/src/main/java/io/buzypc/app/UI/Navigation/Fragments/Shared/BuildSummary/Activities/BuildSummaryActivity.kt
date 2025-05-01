@@ -9,15 +9,18 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import io.buzypc.app.R
 import io.buzypc.app.Data.AppSession.BuzyUserAppSession
 import io.buzypc.app.Data.BuildData.Component
+import io.buzypc.app.R
 import io.buzypc.app.UI.Navigation.Fragments.Shared.BuildSummary.BuildComponentRecyclerViewAdapter
 import io.buzypc.app.UI.Navigation.Fragments.Shared.BuildSummary.HorizontalSpaceItemDecoration
 import io.buzypc.app.UI.Utils.formatDecimalPriceToPesoCurrencyString
 import io.buzypc.app.UI.Widget.RadarChartViewFragment
+import java.util.Timer
+import java.util.TimerTask
 
 class BuildSummaryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -81,8 +84,10 @@ class BuildSummaryActivity : AppCompatActivity() {
         recyclerViewComponents.adapter = adapter
         recyclerViewComponents.setHasFixedSize(true)
         recyclerViewComponents.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
+        recyclerViewComponents.setHasFixedSize(true)
 
         recyclerViewComponents.addItemDecoration(HorizontalSpaceItemDecoration(12))
+        setAutoScroll(recyclerViewComponents, recyclerViewComponents.layoutManager as LinearLayoutManager, adapter, 3000)
 
         val compatCPU = findViewById<TextView>(R.id. tvCPUSCore)
         val compatGPU= findViewById<TextView>(R.id.tvGPUSCore)
@@ -110,6 +115,33 @@ class BuildSummaryActivity : AppCompatActivity() {
         compatPSU.text = app.pc.psu.performanceScore.toString()
         compatRam.text = app.pc.ram.performanceScore.toString()
         compatStorage.text = app.pc.storageDevice.performanceScore.toString()
+    }
+
+    // Provided by ParSa in StackOverflow: https://stackoverflow.com/a/56872365/14139842
+    private fun setAutoScroll(recyclerView: RecyclerView, layoutManager: LinearLayoutManager, adapter: BuildComponentRecyclerViewAdapter, interval: Long) {
+        //The LinearSnapHelper will snap the center of the target child view to the center of the
+        // attached RecyclerView , it's optional
+        val linearSnapHelper = LinearSnapHelper()
+        linearSnapHelper.attachToRecyclerView(recyclerView)
+
+        val timer = Timer()
+        timer.schedule(object : TimerTask() {
+            override fun run() {
+                if (layoutManager.findLastCompletelyVisibleItemPosition() < (adapter.itemCount - 1)) {
+                    layoutManager.smoothScrollToPosition(
+                        recyclerView,
+                        RecyclerView.State(),
+                        layoutManager.findLastCompletelyVisibleItemPosition() + 1
+                    )
+                } else if (layoutManager.findLastCompletelyVisibleItemPosition() === (adapter.itemCount - 1)) {
+                    layoutManager.smoothScrollToPosition(
+                        recyclerView,
+                        RecyclerView.State(),
+                        0
+                    )
+                }
+            }
+        }, 0, interval)
     }
 
 }
