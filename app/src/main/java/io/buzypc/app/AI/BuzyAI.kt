@@ -107,7 +107,9 @@ class BuzyAI {
             ChatRequestUserMessage("You are given a budget in Philippine Pesos: ${budget}\\n" +
                     "\\n" +
                     "Do not add any paragraphs. Without inserting a new text for BuildName " +
-                    "and maximizing on the given budget, generate a PC Build in XML " +
+                    "and maximizing on the given budget with 2-3 stores per component, " +
+                    "do not go over the budget, " +
+                    "generate a PC Build in XML " +
                     "(no need to put it in a code block. I just need a text) with the following Object structure:\\n" +
                     "\\n" +
                     "<PC>\n" +
