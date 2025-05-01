@@ -110,11 +110,11 @@ class BuildSummaryActivity : AppCompatActivity() {
     }
 
     fun setCompatScore(app: BuzyUserAppSession, compatCPU: TextView, compatGPU: TextView, compatPSU: TextView, compatRam: TextView, compatStorage: TextView) {
-        compatCPU.text = app.pc.cpu.performanceScore.toString()
-        compatGPU.text = app.pc.gpu.performanceScore.toString()
-        compatPSU.text = app.pc.psu.performanceScore.toString()
-        compatRam.text = app.pc.ram.performanceScore.toString()
-        compatStorage.text = app.pc.storageDevice.performanceScore.toString()
+        compatCPU.text = app.pc.cpu.compatibilityScore.toString()
+        compatGPU.text = app.pc.gpu.compatibilityScore.toString()
+        compatPSU.text = app.pc.psu.compatibilityScore.toString()
+        compatRam.text = app.pc.ram.compatibilityScore.toString()
+        compatStorage.text = app.pc.storageDevice.compatibilityScore.toString()
     }
 
     // Provided by ParSa in StackOverflow: https://stackoverflow.com/a/56872365/14139842
