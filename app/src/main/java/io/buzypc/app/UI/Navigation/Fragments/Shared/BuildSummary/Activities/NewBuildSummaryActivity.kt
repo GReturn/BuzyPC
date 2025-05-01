@@ -44,7 +44,7 @@ class NewBuildSummaryActivity : AppCompatActivity() {
         val newBuild = PCBuild(
             generateUniqueBuildId(this),
             app.buildName,
-            app.pc.getTotalPrice(),
+            app.buildBudget,
             app.pc
         )
         app.selectedBuildToSummarize = newBuild
@@ -97,7 +97,7 @@ class NewBuildSummaryActivity : AppCompatActivity() {
         val initialBudget = formatDecimalPriceToPesoCurrencyString(app.selectedBuildToSummarize.budget)
         val totalCost = formatDecimalPriceToPesoCurrencyString(app.selectedBuildToSummarize.getTotalPrice())
         val savings = formatDecimalPriceToPesoCurrencyString(
-            app.selectedBuildToSummarize.getTotalPrice() - app.selectedBuildToSummarize.budget
+            app.selectedBuildToSummarize.budget - app.selectedBuildToSummarize.getTotalPrice()
         )
 
         tvBuildName.text = app.selectedBuildToSummarize.name

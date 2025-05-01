@@ -60,7 +60,7 @@ class BuildSummaryActivity : AppCompatActivity() {
         val initialBudget = formatDecimalPriceToPesoCurrencyString(app.selectedBuildToSummarize.budget)
         val totalCost = formatDecimalPriceToPesoCurrencyString(app.selectedBuildToSummarize.getTotalPrice())
         val savings = formatDecimalPriceToPesoCurrencyString(
-            app.selectedBuildToSummarize.getTotalPrice() - app.selectedBuildToSummarize.budget
+            app.selectedBuildToSummarize.budget - app.selectedBuildToSummarize.getTotalPrice()
         )
 
         tvBuildName.text = app.selectedBuildToSummarize.name
