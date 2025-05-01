@@ -2,8 +2,6 @@ package io.buzypc.app.UI.Navigation.Fragments.Shared.BuildSummary.Activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.ScrollView
