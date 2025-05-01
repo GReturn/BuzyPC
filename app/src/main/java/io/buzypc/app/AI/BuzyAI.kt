@@ -17,8 +17,8 @@ class BuzyAI {
 
 //    private val key: String = Configuration.getGlobalConfiguration().get("GITHUB_TOKEN")
     private val key = Configuration.get("GITHUB_TOKEN")
-    private val endpoint = "https://models.inference.ai.azure.com"
-    private val model = "gpt-4o"
+    private val endpoint = "https://models.github.ai/inference"
+    private val model = "openai/gpt-4.1"
 
     private val client = ChatCompletionsClientBuilder()
         .credential(AzureKeyCredential(key))
@@ -122,7 +122,7 @@ class BuzyAI {
                     "        <IsBought type=\"boolean\">false</IsBought>\n" +
                     "        <Stores>\n" +
                     "            <Store>\n" +
-                    "                <StoreName type=\"string\">...</Name>\n" +
+                    "                <Vendor type=\"string\">...</Vendor>\n" +
                     "                <VendorSite type=\"string\" format=\"url\">...</VendorSite>\n" +
                     "                <PriceRange>\n" +
                     "                    <Min type=\"double\" unit=\"USD\">...</Min>\n" +
