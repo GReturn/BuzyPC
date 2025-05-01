@@ -45,7 +45,7 @@ class LoadingScreenActivity : AppCompatActivity() {
                     ""
                 }
             }
-            saveXmlToFile(xmlResult, "$buildName.xml")
+            saveXmlToFile(xmlResult)
 
             val generatedPC = parsePCBuild(xmlResult)
             appSession.pc = generatedPC
@@ -58,14 +58,13 @@ class LoadingScreenActivity : AppCompatActivity() {
             finish()
         }
     }
-    private suspend fun saveXmlToFile(xmlResult: String, fileName: String) {
+    private suspend fun saveXmlToFile(xmlResult: String) {
         withContext(Dispatchers.IO) {
             // `context` is your Activity or Application context
             val fileName = "test.xml"
-            val fileContents = xmlResult
 
             val file = File(this@LoadingScreenActivity.filesDir, fileName)
-            file.writeText(fileContents)
+            file.writeText(xmlResult)
         }
     }
 }
