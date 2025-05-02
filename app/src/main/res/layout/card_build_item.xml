@@ -80,7 +80,7 @@
                 android:textColor="@color/bz_darkGray"
                 android:textSize="@dimen/font_normal"
 
-                app:drawableStartCompat="@drawable/ic_price_tag"
+                app:drawableStartCompat="@drawable/ic_wallet"
                 app:drawableTint="@color/bz_darkGray"
 
                 app:layout_constraintStart_toStartOf="parent"
