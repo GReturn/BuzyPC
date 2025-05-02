@@ -74,19 +74,8 @@ class ProfileViewActivity : AppCompatActivity() {
         val editProfilePicButton = findViewById<ImageButton>(R.id.btn_edit_profile_picture)
         val btnEditProfile = findViewById<Button>(R.id.btn_edit_profile)
 
-        val imagePickerLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) {
-            uri: Uri? ->
-            if(uri != null) {
-                val bitmap = uriToBitmap(this, uri)
-                userDetails.saveImageToInternalStorage(this, bitmap, "profile_pic.png")
-                imageProfilePicture?.setImageBitmap(bitmap)
-            }
-        }
-
         editProfilePicButton.setOnClickListener {
-
             showChangePhotoDialog()
-//            imagePickerLauncher.launch("image/*")
             return@setOnClickListener
         }
 
@@ -326,9 +315,7 @@ class ProfileViewActivity : AppCompatActivity() {
      *
      * If a validation rule is violated, the corresponding EditText will display an error message.
      *
-     * @param name The name string to validate.
      * @param email The email string to validate.
-     * @param editTextUsername The EditText field associated with the name, used for displaying error messages.
      * @param editTextEmail The EditText field associated with the email, used for displaying error messages.
      * @return `true` if both the name and email are valid, `false` otherwise.
      */
