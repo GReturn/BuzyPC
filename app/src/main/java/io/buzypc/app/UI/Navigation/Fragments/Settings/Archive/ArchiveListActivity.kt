@@ -2,20 +2,17 @@ package io.buzypc.app.UI.Navigation.Fragments.Settings.Archive
 
 import android.app.Activity
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.doOnLayout
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import io.buzypc.app.Data.AppSession.BuzyUserAppSession
 import io.buzypc.app.Data.BuildData.PCBuild
 import io.buzypc.app.R
@@ -45,6 +42,11 @@ class ArchiveListActivity : AppCompatActivity() {
         val lLArchiveEmptyList = findViewById<LinearLayout>(R.id.lLEmptyArchiveList)
         val imgBtnBack = findViewById<ImageView>(R.id.image_back)
 
+        val fab = findViewById<FloatingActionButton>(R.id.fabScrollToTop)
+        fab.setOnClickListener {
+            recyclerView.smoothScrollToPosition(0)
+        }
+
         imgBtnBack.setOnClickListener(){
             finish()
         }
@@ -70,6 +72,27 @@ class ArchiveListActivity : AppCompatActivity() {
         )
         recyclerView.adapter = adapter
         recyclerView.layoutManager = ArchivedListLayoutManager(this,1)
+
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                if (dy > 0) {
+                    // Scrolling down
+                    if (fab.isShown) fab.hide()
+                } else if (dy < 0) {
+                    // Scrolling up
+                    if (!fab.isShown && recyclerView.canScrollVertically(-1)) {
+                        fab.show()
+                    }
+                }
+
+                // Hide when at top
+                if (!recyclerView.canScrollVertically(-1)) {
+                    fab.hide()
+                }
+            }
+        })
     }
 
     override fun onResume() {
