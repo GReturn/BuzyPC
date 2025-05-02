@@ -16,8 +16,7 @@ import com.github.mikephil.charting.charts.RadarChart
 import com.github.mikephil.charting.data.RadarData
 import com.github.mikephil.charting.data.RadarDataSet
 import com.github.mikephil.charting.data.RadarEntry
-import com.github.mikephil.charting.formatter.IAxisValueFormatter
-//import com.github.mikephil.charting.formatter.ValueFormatter
+import com.github.mikephil.charting.formatter.ValueFormatter
 import com.google.android.material.color.MaterialColors
 import io.buzypc.app.R
 import io.buzypc.app.Data.AppSession.BuzyUserAppSession
@@ -59,10 +58,6 @@ class RadarChartViewFragment : Fragment() {
             radarChart.setBackgroundColor(Color.TRANSPARENT)
             radarChart.animateXY(1500, 1500)
 
-            // 2) Y‑axis bounds
-//            radarChart.yAxis.axisMinimum = 0f
-//            radarChart.yAxis.axisMaximum = 10f
-
             // 3) Prepare your entries (Retrieve actual data)
             val app = requireActivity().application as BuzyUserAppSession
             val focusedPC = app.selectedBuildToSummarize.pc
@@ -77,19 +72,12 @@ class RadarChartViewFragment : Fragment() {
             Log.d("RadarChartFragment", "Data: CPU=$computingPower, GPU=$graphicsRendering, Storage=$dataStorage, Network=$dataTransferSpeed, Battery=$powerCapacity")
 
             val entries = listOf(
-                RadarEntry(computingPower),
-                RadarEntry(graphicsRendering),
-                RadarEntry(dataStorage),
-                RadarEntry(dataTransferSpeed),
-                RadarEntry(powerCapacity)
+                RadarEntry(clamp(computingPower)),
+                RadarEntry(clamp(graphicsRendering)),
+                RadarEntry(clamp(dataStorage)),
+                RadarEntry(clamp(dataTransferSpeed)),
+                RadarEntry(clamp(powerCapacity))
             )
-//            val scores = listOf(computingPower, graphicsRendering, dataStorage, dataTransferSpeed, powerCapacity)
-//            val maxScore = scores.maxOrNull()?.takeIf { it > 0 } ?: 1f // avoid divide-by-zero
-//
-//            val normalizedEntries = scores.map { score ->
-//                val scaledScore = (score / maxScore) * 10f
-//                RadarEntry(scaledScore)
-//            }
 
             // 4) Build and style the dataset (the translucent part of the chart; the foreground)
             val set = RadarDataSet(entries,"").apply {
@@ -117,21 +105,15 @@ class RadarChartViewFragment : Fragment() {
             radarChart.xAxis.apply {
                 isEnabled = true
                 textSize = 12f
-                valueFormatter = object : IAxisValueFormatter {
-                    override fun getFormattedValue(value: Float, axis: com.github.mikephil.charting.components.AxisBase?): String {
+                valueFormatter = object : ValueFormatter() {
+                    override fun getFormattedValue(value: Float): String {
                         return labels[value.toInt() % labels.size]
                     }
                 }
-
-//                valueFormatter = object : ValueFormatter() {
-//                    override fun getFormattedValue(value: Float): String {
-//                        return labels[value.toInt() % labels.size]
-//                    }
-//                }
             }
 
             // we don't need Y‑axis labels
-//            radarChart.yAxis.isEnabled = true
+            radarChart.yAxis.isEnabled = true
             radarChart.xAxis.textColor = MaterialColors.getColor(radarChart, com.google.android.material.R.attr.colorSecondary)
             radarChart.xAxis.typeface = ResourcesCompat.getFont(requireContext(), R.font.ubuntu_bold_italic)
 
@@ -142,13 +124,13 @@ class RadarChartViewFragment : Fragment() {
             radarChart.yAxis.apply{
 
                 granularity = 2f
-                labelCount = 5
                 axisMaximum = 10f
                 axisMinimum = 0f
                 setDrawLabels(false)
                 setDrawAxisLine(false)
                 setDrawGridLines(false)
             }
+            radarChart.yAxis.setLabelCount(6,true)
 
             // 7) Force redraw
             radarChart.data?.notifyDataChanged()
@@ -184,4 +166,6 @@ class RadarChartViewFragment : Fragment() {
         Log.d("RadarChartFragment", "onDestroyView")
         chart = null
     }
+
+    private fun clamp(value: Float): Float = value.coerceIn(0f, 10f)
 }
