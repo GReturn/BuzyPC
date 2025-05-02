@@ -19,13 +19,10 @@ fun parsePCBuild(xml: String): PC {
     parser.setInput(StringReader(xml))
 
     var currentTag: String? = null
-    var currentComponentType: String? = null
     var componentName = ""
     var componentBrand = ""
     var componentPrice = 0.0
     var performanceScore = 0f
-    var compatibilityScore = 0f
-    var isBought = false
     var stores = mutableListOf<Store>()
     var currentStore: Store? = null
 
@@ -42,16 +39,13 @@ fun parsePCBuild(xml: String): PC {
             XmlPullParser.START_TAG -> {
                 currentTag = parser.name
                 if (currentTag!!.endsWith("Component")) {
-                    currentComponentType = currentTag
                     componentName = ""
                     componentBrand = ""
                     componentPrice = 0.0
                     performanceScore = 0f
-                    compatibilityScore = 0f
-                    isBought = false
                     stores = mutableListOf()
                 } else if (currentTag == "Store") {
-                    currentStore = Store("", "", 0.0..0.0)
+                    currentStore = Store("", "")
                 }
             }
 
@@ -63,19 +57,9 @@ fun parsePCBuild(xml: String): PC {
                         "Brand" -> componentBrand = text
                         "Price" -> componentPrice = text.toDouble()
                         "PerformanceScore" -> performanceScore = text.toFloat()
-                        "CompatibilityScore" -> compatibilityScore = text.toFloat()
-                        "IsBought" -> isBought = text.toBoolean()
 
                         "Vendor" -> currentStore = currentStore?.copy(name = text)
                         "VendorSite" -> currentStore = currentStore?.copy(vendorSite = text)
-                        "Min" -> currentStore = currentStore?.let {
-                            val max = it.priceRange.endInclusive
-                            it.copy(priceRange = text.toDouble()..max)
-                        }
-                        "Max" -> currentStore = currentStore?.let {
-                            val min = it.priceRange.start
-                            it.copy(priceRange = min..text.toDouble())
-                        }
                     }
                 }
             }
@@ -88,33 +72,33 @@ fun parsePCBuild(xml: String): PC {
 
                     "MotherboardComponent" -> motherboard = MotherboardComponent(
                         componentName, componentBrand, componentPrice,
-                        performanceScore, compatibilityScore, stores.toList()
-                    ).apply { this.isBought = isBought }
+                        performanceScore, stores.toList()
+                    ).apply { this.isBought = false }
 
                     "CPUComponent" -> cpu = CPUComponent(
                         componentName, componentBrand, componentPrice,
-                        performanceScore, compatibilityScore, stores.toList()
-                    ).apply { this.isBought = isBought }
+                        performanceScore, stores.toList()
+                    ).apply { this.isBought = false }
 
                     "GPUComponent" -> gpu = GPUComponent(
                         componentName, componentBrand, componentPrice,
-                        performanceScore, compatibilityScore, stores.toList()
-                    ).apply { this.isBought = isBought }
+                        performanceScore, stores.toList()
+                    ).apply { this.isBought = false }
 
                     "StorageDeviceComponent" -> storageDevice = StorageDeviceComponent(
                         componentName, componentBrand, componentPrice,
-                        performanceScore, compatibilityScore, stores.toList()
-                    ).apply { this.isBought = isBought }
+                        performanceScore, stores.toList()
+                    ).apply { this.isBought = false }
 
                     "RAMComponent" -> ram = RAMComponent(
                         componentName, componentBrand, componentPrice,
-                        performanceScore, compatibilityScore, stores.toList()
-                    ).apply { this.isBought = isBought }
+                        performanceScore, stores.toList()
+                    ).apply { this.isBought = false }
 
                     "PSUComponent" -> psu = PSUComponent(
                         componentName, componentBrand, componentPrice,
-                        performanceScore, compatibilityScore, stores.toList()
-                    ).apply { this.isBought = isBought }
+                        performanceScore, stores.toList()
+                    ).apply { this.isBought = false }
                 }
             }
         }

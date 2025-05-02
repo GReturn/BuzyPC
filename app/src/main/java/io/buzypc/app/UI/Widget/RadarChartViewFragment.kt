@@ -16,7 +16,8 @@ import com.github.mikephil.charting.charts.RadarChart
 import com.github.mikephil.charting.data.RadarData
 import com.github.mikephil.charting.data.RadarDataSet
 import com.github.mikephil.charting.data.RadarEntry
-import com.github.mikephil.charting.formatter.ValueFormatter
+import com.github.mikephil.charting.formatter.IAxisValueFormatter
+//import com.github.mikephil.charting.formatter.ValueFormatter
 import com.google.android.material.color.MaterialColors
 import io.buzypc.app.R
 import io.buzypc.app.Data.AppSession.BuzyUserAppSession
@@ -59,12 +60,13 @@ class RadarChartViewFragment : Fragment() {
             radarChart.animateXY(1500, 1500)
 
             // 2) Y‑axis bounds
-            radarChart.yAxis.axisMinimum = 0f
-            radarChart.yAxis.axisMaximum = 9f
+//            radarChart.yAxis.axisMinimum = 0f
+//            radarChart.yAxis.axisMaximum = 10f
 
             // 3) Prepare your entries (Retrieve actual data)
             val app = requireActivity().application as BuzyUserAppSession
             val focusedPC = app.selectedBuildToSummarize.pc
+
             Log.d("RadarChartFragment", "App Session: $app")
             val computingPower = focusedPC.cpu.performanceScore
             val graphicsRendering = focusedPC.gpu.performanceScore
@@ -81,6 +83,13 @@ class RadarChartViewFragment : Fragment() {
                 RadarEntry(dataTransferSpeed),
                 RadarEntry(powerCapacity)
             )
+//            val scores = listOf(computingPower, graphicsRendering, dataStorage, dataTransferSpeed, powerCapacity)
+//            val maxScore = scores.maxOrNull()?.takeIf { it > 0 } ?: 1f // avoid divide-by-zero
+//
+//            val normalizedEntries = scores.map { score ->
+//                val scaledScore = (score / maxScore) * 10f
+//                RadarEntry(scaledScore)
+//            }
 
             // 4) Build and style the dataset (the translucent part of the chart; the foreground)
             val set = RadarDataSet(entries,"").apply {
@@ -108,25 +117,35 @@ class RadarChartViewFragment : Fragment() {
             radarChart.xAxis.apply {
                 isEnabled = true
                 textSize = 12f
-
-
-                valueFormatter = object : ValueFormatter() {
-                    override fun getFormattedValue(value: Float): String {
+                valueFormatter = object : IAxisValueFormatter {
+                    override fun getFormattedValue(value: Float, axis: com.github.mikephil.charting.components.AxisBase?): String {
                         return labels[value.toInt() % labels.size]
                     }
                 }
+
+//                valueFormatter = object : ValueFormatter() {
+//                    override fun getFormattedValue(value: Float): String {
+//                        return labels[value.toInt() % labels.size]
+//                    }
+//                }
             }
 
             // we don't need Y‑axis labels
-            radarChart.yAxis.isEnabled = false
+//            radarChart.yAxis.isEnabled = true
             radarChart.xAxis.textColor = MaterialColors.getColor(radarChart, com.google.android.material.R.attr.colorSecondary)
             radarChart.xAxis.typeface = ResourcesCompat.getFont(requireContext(), R.font.ubuntu_bold_italic)
 
-            radarChart.xAxis.apply{
+            radarChart.xAxis.apply {
                 setDrawAxisLine(false)
                 setDrawGridLines(false)
             }
             radarChart.yAxis.apply{
+
+                granularity = 2f
+                labelCount = 5
+                axisMaximum = 10f
+                axisMinimum = 0f
+                setDrawLabels(false)
                 setDrawAxisLine(false)
                 setDrawGridLines(false)
             }
@@ -139,7 +158,7 @@ class RadarChartViewFragment : Fragment() {
 
             // 8) Reveal animation
 //            radarChart.isVisible = true
-            radarChart.data.setDrawValues(false)
+            radarChart.data?.setDrawValues(false)
             revealChart(radarChart)
         } ?: run {
             Log.e("RadarChartFragment", "RadarChart view is null in setupRadarChart")

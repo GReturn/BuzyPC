@@ -8,6 +8,5 @@ class StorageDeviceComponent(
     brand: String,
     price: Double,
     performanceScore: Float,
-    compatibilityScore: Float,
     stores: List<Store>
-) : Component(name, brand, price, performanceScore, compatibilityScore, stores)
+) : Component(name, brand, price, performanceScore, stores)

@@ -118,16 +118,10 @@ class BuzyAI {
                     "        <Brand type=\"string\">...</Brand>\n" +
                     "        <Price type=\"double\" unit=\"PHP\">...</Price>\n" +
                     "        <PerformanceScore type=\"float\" range=\"0.0-10.0\">...</PerformanceScore>\n" +
-                    "        <CompatibilityScore type=\"float\" range=\"0.0-10.0\">...</CompatibilityScore>\n" +
-                    "        <IsBought type=\"boolean\">false</IsBought>\n" +
                     "        <Stores>\n" +
                     "            <Store>\n" +
                     "                <Vendor type=\"string\">...</Vendor>\n" +
                     "                <VendorSite type=\"string\" format=\"url\">...</VendorSite>\n" +
-                    "                <PriceRange>\n" +
-                    "                    <Min type=\"double\" unit=\"USD\">...</Min>\n" +
-                    "                    <Max type=\"double\" unit=\"USD\">...</Max>\n" +
-                    "                </PriceRange>\n" +
                     "            </Store>\n" +
                     "            <!-- More Store entries -->\n" +
                     "        </Stores>\n" +

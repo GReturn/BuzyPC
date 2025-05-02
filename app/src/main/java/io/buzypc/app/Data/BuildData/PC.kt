@@ -65,19 +65,6 @@ data class PC(
         return (totalScore / components.size).toFloat()
     }
 
-    fun getOverallCompatibilityScore(): Float {
-        val components = listOf(
-            motherboard,
-            cpu,
-            gpu,
-            storageDevice,
-            ram,
-            psu
-        )
-        val totalScore = components.sumOf { it.compatibilityScore.toDouble() }
-        return (totalScore / components.size).toFloat()
-    }
-
     fun getPerformanceRatingTier(): PerformanceRatingTier {
         return mapPerformanceToRatingTier(getOverallPerformanceScore())
     }

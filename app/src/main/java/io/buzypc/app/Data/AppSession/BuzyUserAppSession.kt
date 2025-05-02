@@ -40,22 +40,18 @@ class BuzyUserAppSession: Application() {
             "ASUS",
             14250.0,
             10f,
-            9.5f,
             listOf(
                 Store(
                     "Lazada",
                     "https://www.lazada.com.ph/products/asus-prime-z690-p-wifi-d4-lga-1700-atx-motherboard-i123456789.html",
-                    14000.0..14500.0 // Example price range
                 ),
                 Store(
                     "Shopee",
                     "https://shopee.ph/ASUS-Prime-Z690-P-WIFI-D4-ATX-Motherboard-i987654321.html",
-                    14100.0..14400.0 // Example price range
                 ),
                 Store(
                     "Amazon",
                     "https://www.amazon.ph/dp/B09PRVS1TS",
-                    14200.0..14600.0 // Example price range
                 )
             )
         ),
@@ -64,22 +60,18 @@ class BuzyUserAppSession: Application() {
             "Intel",
             31350.0,
             10f,
-            4.0f,
             listOf(
                 Store(
                     "Lazada",
                     "https://www.lazada.com.ph/products/intel-core-i9-12900kf-32-ghz-16-core-lga-1700-processor-i3511599892-s18092935700.html?c=&channelLpJumpArgs=&clickTrackInfo=query%253Aintel%252Bcore%252Bi9%252B12900k%252Bprocessor%253Bnid%253A3511599892%253Bsrc%253ALazadaMainSrp%253Brn%253Ab68ea62142555dd3a7294f619679f870%253Bregion%253Aph%253Bsku%253A3511599892_PH%253Bprice%253A33500%253Bclient%253Adesktop%253Bsupplier_id%253A100027113%253Bbiz_source%253Ah5_internal%253Bslot%253A0%253Butlog_bucket_id%253A470687%253Basc_category_id%253A5158%253Bitem_id%253A3511599892%253Bsku_id%253A18092935700%253Bshop_id%253A1778%253BtemplateInfo%253A107881_D_E%2523-1_A3_C%25231103_L%2523120442_A0%2523&freeshipping=1&fs_ab=2&fuse_fs=&lang=en&location=Metro%20Manila~Quezon%20City&price=3.35E%204&priceCompare=skuId%3A18092935700%3Bsource%3Alazada-search-voucher%3Bsn%3Ab68ea62142555dd3a7294f619679f870%3BoriginPrice%3A3350000%3BdisplayPrice%3A3350000%3BsinglePromotionId%3A-1%3BsingleToolCode%3A-1%3BvoucherPricePlugin%3A0%3Btimestamp%3A1744904270169&ratingscore=&request_id=b68ea62142555dd3a7294f619679f870&review=&sale=0&search=1&source=search&spm=a2o4l.searchlist.list.0&stock=1",
-                    31000.0..31500.0 // Example price range
                 ),
                 Store(
                     "Shopee",
                     "https://shopee.ph/Intel-Core-i9-12900K-Processor-i876543210.html",
-                    31200.0..31400.0 // Example price range
                 ),
                 Store(
                     "Amazon",
                     "https://www.amazon.ph/dp/B09HK68ZJY",
-                    31300.0..31600.0 // Example price range
                 )
             )
         ),
@@ -88,22 +80,18 @@ class BuzyUserAppSession: Application() {
             "Nvidia",
             34200.0,
             10f,
-            6.4f,
             listOf(
                 Store(
                     "Lazada",
                     "https://www.lazada.com.ph/products/nvidia-geforce-rtx-3070-8gb-gddr6-graphics-card-i192837465.html",
-                    34000.0..34500.0 // Example price range
                 ),
                 Store(
                     "Shopee",
                     "https://shopee.ph/NVIDIA-RTX-3070-8GB-GDDR6-Graphics-Card-i123450987.html",
-                    34100.0..34300.0 // Example price range
                 ),
                 Store(
                     "Amazon",
                     "https://www.amazon.ph/dp/B08KWPDX5L",
-                    34200.0..34600.0 // Example price range
                 )
             )
         ),
@@ -112,22 +100,18 @@ class BuzyUserAppSession: Application() {
             "Samsung",
             11400.0,
             4.7f,
-            6.3f,
             listOf(
                 Store(
                     "Lazada",
                     "https://www.lazada.com.ph/products/samsung-970-evo-plus-500gb-nvme-m2-ssd-i564738291.html",
-                    11300.0..11600.0 // Example price range
                 ),
                 Store(
                     "Shopee",
                     "https://shopee.ph/Samsung-970-Evo-Plus-500GB-M.2-SSD-i109876543.html",
-                    11400.0..11500.0 // Example price range
                 ),
                 Store(
                     "Amazon",
                     "https://www.amazon.ph/dp/B07MFZY2F2",
-                    11450.0..11700.0 // Example price range
                 )
             )
         ),
@@ -136,22 +120,18 @@ class BuzyUserAppSession: Application() {
             "Corsair",
             8550.0,
             1f,
-            5.7f,
             listOf(
                 Store(
                     "Lazada",
                     "https://www.lazada.com.ph/products/corsair-vengeance-rgb-pro-32gb-2x16gb-ddr4-3200mhz-i837261945.html",
-                    8400.0..8600.0 // Example price range
                 ),
                 Store(
                     "Shopee",
                     "https://shopee.ph/Corsair-Vengeance-RGB-Pro-32GB-2x16GB-DDR4-3200MHz-i234567890.html",
-                    8500.0..8580.0 // Example price range
                 ),
                 Store(
                     "Amazon",
                     "https://www.amazon.ph/dp/B07GTG2T7X",
-                    8550.0..8700.0 // Example price range
                 )
             )
         ),
@@ -160,22 +140,18 @@ class BuzyUserAppSession: Application() {
             "Corsair",
             6840.0,
             7.3f,
-            6.2f,
             listOf(
                 Store(
                     "Lazada",
                     "https://www.lazada.com.ph/products/corsair-rm850x-850w-80-gold-fully-modular-psu-i918273645.html",
-                    6700.0..6900.0 // Example price range
                 ),
                 Store(
                     "Shopee",
                     "https://shopee.ph/Corsair-RM850x-850W-80-Gold-Fully-Modular-PSU-i345678901.html",
-                    6800.0..6880.0 // Example price range
                 ),
                 Store(
                     "Amazon",
                     "https://www.amazon.ph/dp/B079H5WNXN",
-                    6850.0..7000.0 // Example price range
                 )
             )
         )
