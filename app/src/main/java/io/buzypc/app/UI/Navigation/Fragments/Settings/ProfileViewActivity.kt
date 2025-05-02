@@ -1,6 +1,8 @@
 package io.buzypc.app.UI.Navigation.Fragments.Settings
 
+import android.Manifest
 import android.content.Context
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.net.Uri
@@ -17,6 +19,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.button.MaterialButton
@@ -26,7 +30,21 @@ import io.buzypc.app.R
 import io.buzypc.app.UI.Utils.loadCurrentUserDetails
 
 class ProfileViewActivity : AppCompatActivity() {
+    companion object {
+        private const val REQUEST_CAMERA_PERMISSION = 1001
+    }
+
     private var isEditing = false
+
+    private val galleryLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+        uri?.let { handleImageResult(it) }
+    }
+
+    private val cameraLauncher = registerForActivityResult(ActivityResultContracts.TakePicturePreview()) { bitmap: Bitmap? ->
+        bitmap?.let { handleCameraResult(it) }
+    }
+
+    private var imageProfilePicture: ImageView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,10 +66,10 @@ class ProfileViewActivity : AppCompatActivity() {
         val btnBackNavigation = findViewById<ImageView>(R.id.btn_back_navigation)
         val btnChangePassword = findViewById<MaterialButton>(R.id.btn_change_password)
 
-        val imageProfilePicture = findViewById<ImageView>(R.id.image_profile_picture)
+        imageProfilePicture = findViewById(R.id.image_profile_picture)
         val imageBitmap = userDetails.getImageFromInternalStorage()
-        if(imageBitmap != null) imageProfilePicture.setImageBitmap(imageBitmap)
-        else imageProfilePicture.setImageResource(R.drawable.profilepic)
+        if(imageBitmap != null) imageProfilePicture?.setImageBitmap(imageBitmap)
+        else imageProfilePicture?.setImageResource(R.drawable.profilepic)
 
         val editProfilePicButton = findViewById<ImageButton>(R.id.btn_edit_profile_picture)
         val btnEditProfile = findViewById<Button>(R.id.btn_edit_profile)
@@ -61,12 +79,14 @@ class ProfileViewActivity : AppCompatActivity() {
             if(uri != null) {
                 val bitmap = uriToBitmap(this, uri)
                 userDetails.saveImageToInternalStorage(this, bitmap, "profile_pic.png")
-                imageProfilePicture.setImageBitmap(bitmap)
+                imageProfilePicture?.setImageBitmap(bitmap)
             }
         }
 
         editProfilePicButton.setOnClickListener {
-            imagePickerLauncher.launch("image/*")
+
+            showChangePhotoDialog()
+//            imagePickerLauncher.launch("image/*")
             return@setOnClickListener
         }
 
@@ -167,6 +187,65 @@ class ProfileViewActivity : AppCompatActivity() {
 
         dialog.show()
     }
+
+    private fun showChangePhotoDialog() {
+        // Inflate the custom layout
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_change_profile_pic_choice, null)
+
+        // Initialize buttons
+        val btnCamera = dialogView.findViewById<MaterialButton>(R.id.btnCamera)
+        val btnGallery = dialogView.findViewById<MaterialButton>(R.id.btnGallery)
+
+        // Create the dialog
+        val dialog = MaterialAlertDialogBuilder(this, R.style.CustomAlertDialog)
+            .setView(dialogView)
+            .setCancelable(true)
+            .create()
+
+        // Button click handlers
+        btnCamera.setOnClickListener {
+            launchCamera()
+            dialog.dismiss()
+        }
+
+        btnGallery.setOnClickListener {
+            galleryLauncher.launch("image/*")
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
+    private fun handleImageResult(uri: Uri) {
+        val userDetails = loadCurrentUserDetails(this)
+        val bitmap = uriToBitmap(this, uri)
+        userDetails.saveImageToInternalStorage(this, bitmap, "profile_pic.png")
+        imageProfilePicture?.setImageBitmap(bitmap)
+    }
+
+    private fun handleCameraResult(bitmap: Bitmap) {
+        val userDetails = loadCurrentUserDetails(this)
+        userDetails.saveImageToInternalStorage(this, bitmap, "profile_pic.png")
+        imageProfilePicture?.setImageBitmap(bitmap)
+    }
+
+    private fun launchCamera() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+            cameraLauncher.launch(null)
+        } else {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), REQUEST_CAMERA_PERMISSION)
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == REQUEST_CAMERA_PERMISSION && grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            launchCamera()
+        } else {
+            Toast.makeText(this, "Camera permission denied", Toast.LENGTH_SHORT).show()
+        }
+    }
+
 
     /**
      * Validates a password change request.
