@@ -24,6 +24,7 @@ import io.buzypc.app.UI.Navigation.Fragments.NewBuild.generateUniqueBuildId
 import io.buzypc.app.UI.Navigation.Fragments.Shared.BuildSummary.BuildComponentRecyclerViewAdapter
 import io.buzypc.app.UI.Navigation.Fragments.Shared.BuildSummary.HorizontalSpaceItemDecoration
 import io.buzypc.app.UI.Utils.formatDecimalPriceToPesoCurrencyString
+import io.buzypc.app.UI.Widget.DialogView.CustomInfoDialogView
 import io.buzypc.app.UI.Widget.RadarChartViewFragment
 import java.util.Timer
 import java.util.TimerTask
@@ -49,6 +50,15 @@ class NewBuildSummaryActivity : AppCompatActivity() {
         )
         app.selectedBuildToSummarize = newBuild
         val pcBuild = app.selectedBuildToSummarize
+        val savingsAmount = pcBuild.budget - pcBuild.getTotalPrice()
+
+        if (savingsAmount < 0) {
+            CustomInfoDialogView(this)
+                .setTitle("Budget Exceeded")
+                .setDescription("The total cost of this build exceeds your budget by ${formatDecimalPriceToPesoCurrencyString(-savingsAmount)}. You may choose to keep this build or choose another.")
+                .setOnConfirmClickListener { }
+                .show()
+        }
 
         val btnSaveButton = findViewById<Button>(R.id.btn_SaveBuild)
         btnSaveButton.setOnClickListener {
@@ -97,9 +107,7 @@ class NewBuildSummaryActivity : AppCompatActivity() {
 
         val initialBudget = formatDecimalPriceToPesoCurrencyString(pcBuild.budget)
         val totalCost = formatDecimalPriceToPesoCurrencyString(pcBuild.getTotalPrice())
-        val savings = formatDecimalPriceToPesoCurrencyString(
-            pcBuild.budget - pcBuild.getTotalPrice()
-        )
+        val savings = formatDecimalPriceToPesoCurrencyString(savingsAmount)
 
         tvBuildName.text = pcBuild.name
         tvBudget.text = getString(R.string.phpAmount_1_s, initialBudget)
