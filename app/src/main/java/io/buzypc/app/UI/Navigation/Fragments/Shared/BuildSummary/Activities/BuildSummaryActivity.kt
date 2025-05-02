@@ -91,12 +91,6 @@ class BuildSummaryActivity : AppCompatActivity() {
         recyclerViewComponents.addItemDecoration(HorizontalSpaceItemDecoration(12))
         setAutoScroll(recyclerViewComponents, recyclerViewComponents.layoutManager as LinearLayoutManager, adapter, 3000)
 
-        val compatCPU = findViewById<TextView>(R.id. tvCPUSCore)
-        val compatGPU= findViewById<TextView>(R.id.tvGPUSCore)
-        val compatPSU = findViewById<TextView>(R.id.tvPSUScore)
-        val compatRam = findViewById<TextView>(R.id.tvRAMScore)
-        val compatStorage = findViewById<TextView>(R.id.tvStorageScore)
-
         // Add the RadarChartView Fragment
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         val radarChartFragment = RadarChartViewFragment()
@@ -107,17 +101,8 @@ class BuildSummaryActivity : AppCompatActivity() {
         val tvPerformanceScore = findViewById<TextView>(R.id.tvPerformanceRatio)
         val rating = pcBuild.pc.getPerformanceRatingTier().description
         tvPerformanceScore.text = getString(R.string.performance_to_budget_ratio_1_s, rating)
-
-        setCompatScore(pcBuild, compatCPU, compatGPU, compatPSU, compatRam, compatStorage)
     }
 
-    fun setCompatScore(pcBuild: PCBuild, compatCPU: TextView, compatGPU: TextView, compatPSU: TextView, compatRam: TextView, compatStorage: TextView) {
-        compatCPU.text = pcBuild.pc.cpu.compatibilityScore.toString()
-        compatGPU.text = pcBuild.pc.gpu.compatibilityScore.toString()
-        compatPSU.text = pcBuild.pc.psu.compatibilityScore.toString()
-        compatRam.text = pcBuild.pc.ram.compatibilityScore.toString()
-        compatStorage.text = pcBuild.pc.storageDevice.compatibilityScore.toString()
-    }
 
     // Provided by ParSa in StackOverflow: https://stackoverflow.com/a/56872365/14139842
     private fun setAutoScroll(
