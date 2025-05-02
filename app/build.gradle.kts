@@ -75,7 +75,8 @@ dependencies {
     implementation(libs.androidx.cardview)
 
     // Radar Chart
-    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+//    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+    implementation("com.github.AppDevNext:AndroidChart:3.1.0.27")
 
     // JSON Serialization
     implementation("com.google.code.gson:gson:2.13.0")
