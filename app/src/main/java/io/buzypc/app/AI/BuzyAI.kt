@@ -107,7 +107,8 @@ class BuzyAI {
             ChatRequestUserMessage("You are given a budget in Philippine Pesos: ${budget}\\n" +
                     "\\n" +
                     "Do not add any paragraphs. Without inserting a new text for BuildName " +
-                    "and maximizing on the given budget using these stores and their links (no need to query for searches): " +
+                    "and maximizing on the given budget using these stores and their links " +
+                    "(do not append any search queries with these links): " +
                     "(Lazada, https://www.lazada.com.ph/), " +
                     "(PC QuickBuys, https://shop.pcquickbuys.com/), " +
                     "(Octagon, https://www.octagon.com.ph/), " +
