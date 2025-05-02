@@ -107,8 +107,15 @@ class BuzyAI {
             ChatRequestUserMessage("You are given a budget in Philippine Pesos: ${budget}\\n" +
                     "\\n" +
                     "Do not add any paragraphs. Without inserting a new text for BuildName " +
-                    "and maximizing on the given budget with 2-3 stores per component, " +
-                    "do not go over the budget, " +
+                    "and maximizing on the given budget using these stores and their links (no need to query for searches): " +
+                    "(Lazada, https://www.lazada.com.ph/), " +
+                    "(PC QuickBuys, https://shop.pcquickbuys.com/), " +
+                    "(Octagon, https://www.octagon.com.ph/), " +
+                    "(PC Express, https://pcx.com.ph/), " +
+                    "(Shopee, https://shopee.ph/), " +
+                    "(EasyPC, https://easypc.com.ph/), " +
+                    "(ThinkingTools, https://www.tti.com.ph/). " +
+                    "Do not go over the budget, " +
                     "generate a PC Build in XML " +
                     "(no need to put it in a code block. I just need a text) with the following Object structure:\\n" +
                     "\\n" +
