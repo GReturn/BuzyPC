@@ -1,11 +1,23 @@
 package io.buzypc.app.UI.Widget
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.content.Context
 import android.content.Intent
+import android.graphics.Path
+import android.graphics.drawable.Animatable
+import android.graphics.drawable.Animatable2
+import android.graphics.drawable.AnimatedVectorDrawable
+import android.graphics.drawable.Drawable
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.util.Log
+import android.view.animation.LinearInterpolator
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -21,6 +33,7 @@ import io.buzypc.app.AI.BuzyAI
 import io.buzypc.app.Data.AppSession.BuzyUserAppSession
 import io.buzypc.app.Data.BuildData.Utils.parsePCBuild
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
 import java.io.File
 
 class LoadingScreenActivity : AppCompatActivity() {
@@ -92,8 +105,32 @@ class LoadingScreenActivity : AppCompatActivity() {
             }
         }
 
+        // UI Here
+        val loadingAnimation = findViewById<ImageView>(R.id.loading_animation)
+        val drawable = loadingAnimation.drawable
+        if (drawable is AnimatedVectorDrawable) {
+            drawable.registerAnimationCallback(object : Animatable2.AnimationCallback() {
+                override fun onAnimationEnd(drawable: Drawable?) {
+                    drawable?.let { (it as AnimatedVectorDrawable).start() }
+                }
+            })
+            drawable.start()
+        }
+
+        val loadingText = findViewById<TextView>(R.id.loading_text)
+        val baseText = "Building PC"
+        var dotCount = 0
+        lifecycleScope.launch {
+            while (isActive) {
+                val dots = ".".repeat(dotCount)
+                loadingText.text = "$baseText$dots"
+                dotCount = (dotCount + 1) % 4
+                delay(500)
+            }
+        }
 
     }
+
     private suspend fun saveXmlToFile(xmlResult: String) {
         withContext(Dispatchers.IO) {
             // `context` is your Activity or Application context
