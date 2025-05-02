@@ -192,7 +192,7 @@
                             android:textSize="@dimen/font_normal"
                             android:textColor="@color/bz_success_green"
 
-                            app:drawableLeftCompat="@drawable/ic_cash_payment"
+                            android:drawableStart="@drawable/ic_cash_payment"
                             app:drawableTint="@color/bz_success_green"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tv_TotalCost" />

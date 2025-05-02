@@ -6,6 +6,7 @@ import android.widget.ScrollView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import io.buzypc.app.Data.AppSession.BuzyUserAppSession
 import io.buzypc.app.Data.BuildData.Component
-import io.buzypc.app.Data.BuildData.PCBuild
 import io.buzypc.app.R
 import io.buzypc.app.UI.Navigation.Fragments.Shared.BuildSummary.BuildComponentRecyclerViewAdapter
 import io.buzypc.app.UI.Navigation.Fragments.Shared.BuildSummary.HorizontalSpaceItemDecoration
@@ -57,18 +57,29 @@ class BuildSummaryActivity : AppCompatActivity() {
         val tvBuildName = findViewById<TextView>(R.id.tv_BuildName)
         val tvBudget = findViewById<TextView>(R.id.tv_BuildBudget)
         val tvTotalCost = findViewById<TextView>(R.id.tv_TotalCost)
+        val tvSavingsTitle = findViewById<TextView>(R.id.tv_Savings_title)
         val tvSavings = findViewById<TextView>(R.id.tv_Savings)
+
+        val savingsAmount = pcBuild.budget - pcBuild.getTotalPrice()
 
         val initialBudget = formatDecimalPriceToPesoCurrencyString(pcBuild.budget)
         val totalCost = formatDecimalPriceToPesoCurrencyString(pcBuild.getTotalPrice())
-        val savings = formatDecimalPriceToPesoCurrencyString(
-            pcBuild.budget - pcBuild.getTotalPrice()
-        )
+        val savings = formatDecimalPriceToPesoCurrencyString(savingsAmount)
 
         tvBuildName.text = pcBuild.name
         tvBudget.text = getString(R.string.phpAmount_1_s, initialBudget)
         tvTotalCost.text = getString(R.string.phpAmount_1_s, totalCost)
         tvSavings.text = getString(R.string.phpAmount_1_s, savings)
+
+        if(savingsAmount < 0) {
+            val redColor = ContextCompat.getColor(this, R.color.bz_destructive_red)
+
+            tvSavingsTitle.setTextColor(redColor)
+            tvSavings.setTextColor(redColor)
+
+            tvSavingsTitle.compoundDrawableTintList = ContextCompat
+                .getColorStateList(this, R.color.bz_destructive_red)
+        }
 
         // Component List
         val recyclerViewComponents = findViewById<RecyclerView>(R.id.recycleComponents)

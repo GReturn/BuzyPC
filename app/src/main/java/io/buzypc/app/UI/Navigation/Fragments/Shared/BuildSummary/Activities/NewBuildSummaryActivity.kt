@@ -8,6 +8,7 @@ import android.widget.ScrollView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -53,13 +54,6 @@ class NewBuildSummaryActivity : AppCompatActivity() {
         val pcBuild = app.selectedBuildToSummarize
         val savingsAmount = pcBuild.budget - pcBuild.getTotalPrice()
 
-        if (savingsAmount < 0) {
-            CustomInfoDialogView(this)
-                .setTitle("Budget Exceeded")
-                .setDescription("The total cost of this build exceeds your budget by ${formatDecimalPriceToPesoCurrencyString(-savingsAmount)}. You may choose to keep this build or find another.")
-                .setOnConfirmClickListener { }
-                .show()
-        }
 
         val btnSaveButton = findViewById<Button>(R.id.btn_SaveBuild)
         btnSaveButton.setOnClickListener {
@@ -110,6 +104,7 @@ class NewBuildSummaryActivity : AppCompatActivity() {
         val tvBuildName = findViewById<TextView>(R.id.tv_BuildName)
         val tvBudget = findViewById<TextView>(R.id.tv_BuildBudget)
         val tvTotalCost = findViewById<TextView>(R.id.tv_TotalCost)
+        val tvSavingsTitle = findViewById<TextView>(R.id.tv_Savings_title)
         val tvSavings = findViewById<TextView>(R.id.tv_Savings)
 
         val initialBudget = formatDecimalPriceToPesoCurrencyString(pcBuild.budget)
@@ -120,6 +115,24 @@ class NewBuildSummaryActivity : AppCompatActivity() {
         tvBudget.text = getString(R.string.phpAmount_1_s, initialBudget)
         tvTotalCost.text = getString(R.string.phpAmount_1_s, totalCost)
         tvSavings.text = getString(R.string.phpAmount_1_s, savings)
+
+        if (savingsAmount < 0) {
+            val redColor = ContextCompat.getColor(this, R.color.bz_destructive_red)
+
+            tvSavingsTitle.setTextColor(redColor)
+            tvSavings.setTextColor(redColor)
+
+            tvSavingsTitle.compoundDrawableTintList = ContextCompat
+                .getColorStateList(this, R.color.bz_destructive_red)
+
+            CustomInfoDialogView(this)
+                .setTitle("Budget Exceeded")
+                .setDescription("The total cost of this build exceeds your budget by " +
+                        "${formatDecimalPriceToPesoCurrencyString(-savingsAmount)}. " +
+                        "You may choose to keep this build or find another.")
+                .setOnConfirmClickListener { }
+                .show()
+        }
 
         // Component List
         val recyclerViewComponents = findViewById<RecyclerView>(R.id.recycleComponents)
