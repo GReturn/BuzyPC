@@ -359,7 +359,7 @@
                         android:layout_marginHorizontal="@dimen/margin_xsmall"
                         android:layout_marginTop="@dimen/margin_xsmall"
                         android:fontFamily="@font/ubuntu"
-                        android:text="We've selected these components to fit your budget without compromising performance."
+                        android:text="We've selected these components to fit your budget without compromising on performance."
                         android:textSize="@dimen/font_small" />
 
                 </LinearLayout>
