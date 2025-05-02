@@ -13,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import io.buzypc.app.R
 import io.buzypc.app.Data.AppSession.BuzyUserAppSession
@@ -55,7 +56,7 @@ class NewBuildSummaryActivity : AppCompatActivity() {
         if (savingsAmount < 0) {
             CustomInfoDialogView(this)
                 .setTitle("Budget Exceeded")
-                .setDescription("The total cost of this build exceeds your budget by ${formatDecimalPriceToPesoCurrencyString(-savingsAmount)}. You may choose to keep this build or choose another.")
+                .setDescription("The total cost of this build exceeds your budget by ${formatDecimalPriceToPesoCurrencyString(-savingsAmount)}. You may choose to keep this build or find another.")
                 .setOnConfirmClickListener { }
                 .show()
         }
@@ -85,6 +86,12 @@ class NewBuildSummaryActivity : AppCompatActivity() {
         // Back
         val btnBack = findViewById<ImageView>(R.id.btn_back_navigation)
         btnBack.setOnClickListener {
+            finish()
+            return@setOnClickListener
+        }
+
+        val btnFindSomethingElse = findViewById<MaterialButton>(R.id.btn_findSomethingElse)
+        btnFindSomethingElse.setOnClickListener {
             finish()
             return@setOnClickListener
         }
