@@ -153,6 +153,7 @@
             </LinearLayout>
 
             <ImageView
+                android:id="@+id/image_rafael"
                 android:layout_width="424px"
                 android:layout_height="500px"
                 android:background="@drawable/devraf_stroke"

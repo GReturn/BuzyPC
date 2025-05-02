@@ -14,6 +14,7 @@ import io.buzypc.app.Data.BuildData.Store
 import io.buzypc.app.UI.Utils.loadBuildList
 
 class BuzyUserAppSession: Application() {
+    var useAI = true
     var username: String = ""
     var theme: String = ""
 
