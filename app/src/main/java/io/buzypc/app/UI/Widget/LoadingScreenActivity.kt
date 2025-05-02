@@ -1,8 +1,12 @@
 package io.buzypc.app.UI.Widget
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -32,35 +36,51 @@ class LoadingScreenActivity : AppCompatActivity() {
         val appSession = applicationContext as BuzyUserAppSession
 
         // TODO set this to false if not yet ready for final version
-        val shouldConnectToAI = false
+        val shouldConnectToAI = appSession.useAI
 
         if(shouldConnectToAI) {
             val ai = BuzyAI()
             lifecycleScope.launch {
-                // This will run on a background thread
+
+                if (!this@LoadingScreenActivity.isInternetAvailable()) {
+                    Log.e("LoadingScreenActivity", "No internet connection available.")
+                    Toast.makeText(this@LoadingScreenActivity, "No internet connection.", Toast.LENGTH_SHORT).show()
+                    return@launch
+                }
+
                 val buildName = appSession.buildName
                 val budget = appSession.buildBudget
 
                 // Generate the PC build (this might take some time)
                 val xmlResult = withContext(Dispatchers.IO) {
-                    try {
-                        ai.generatePCBuildXML(buildName, budget)
-                    } catch (e: Exception) {
-                        Log.e("LoadingScreenActivity", "Error generating build", e)
-                        ""
+                    var result = ""
+                    var attempt = 0
+                    val maxRetries = 5
+                    while (result.isBlank() && attempt < maxRetries) {
+                        try {
+                            result = ai.generatePCBuildXML(buildName, budget)
+                        } catch (e: Exception) {
+                            Log.e("LoadingScreenActivity", "Attempt ${attempt + 1} failed: ${e.message}")
+                        }
+                        attempt++
                     }
+                    result
                 }
-                saveXmlToFile(xmlResult)
 
-                val generatedPC = parsePCBuild(xmlResult)
-                appSession.currentPCToBuild = generatedPC
+                if (xmlResult.isNotBlank()) {
+                    saveXmlToFile(xmlResult)
+                    val generatedPC = parsePCBuild(xmlResult)
+                    appSession.currentPCToBuild = generatedPC
 
-                // Pass the result to the next activity
-                val intent = Intent(this@LoadingScreenActivity, NewBuildSummaryActivity::class.java)
-                Log.d("LoadingScreenActivity", "Done generating PC build. Starting NewBuildSummaryActivity.")
-
-                startActivity(intent)
-                finish()
+                    val intent = Intent(this@LoadingScreenActivity, NewBuildSummaryActivity::class.java)
+                    Log.d("LoadingScreenActivity", "Done generating PC build. Starting NewBuildSummaryActivity.")
+                    startActivity(intent)
+                    finish()
+                } else {
+                    Log.e("LoadingScreenActivity", "Failed to generate PC build after multiple attempts.")
+                    Toast.makeText(this@LoadingScreenActivity, "Failed to generate build after multiple attempts. Please try again.", Toast.LENGTH_LONG).show()
+                    finish()
+                }
             }
         }
         else {
@@ -82,5 +102,12 @@ class LoadingScreenActivity : AppCompatActivity() {
             val file = File(this@LoadingScreenActivity.filesDir, fileName)
             file.writeText(xmlResult)
         }
+    }
+
+    private fun Context.isInternetAvailable(): Boolean {
+        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val network = connectivityManager.activeNetwork ?: return false
+        val capabilities = connectivityManager.getNetworkCapabilities(network) ?: return false
+        return capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
     }
 }
