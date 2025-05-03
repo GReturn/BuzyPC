@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.core.view.doOnLayout
 import androidx.fragment.app.activityViewModels
@@ -17,6 +18,7 @@ import io.buzypc.app.UI.Navigation.Fragments.Shared.OnBuildListChangedListener
 import io.buzypc.app.UI.Navigation.ViewModels.ListsInformationViewModel
 import io.buzypc.app.UI.Utils.LayoutManagers.AnimatedGridLayoutManager
 import io.buzypc.app.UI.Utils.LayoutManagers.BuildTrackerListLayoutManager
+import io.buzypc.app.UI.Widget.DialogView.BuildSortHelper
 
 class TrackerFragment : Fragment() {
     private lateinit var app: BuzyUserAppSession
@@ -89,6 +91,13 @@ class TrackerFragment : Fragment() {
                 }
             }
         })
+
+        val imageButtonSort = view.findViewById<ImageView>(R.id.imageButton_sortList)
+        imageButtonSort.setOnClickListener {
+            BuildSortHelper.showSortDialogWithLayout(requireContext(), trackedBuilds) {
+                adapter.notifyDataSetChanged()
+            }
+        }
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
