@@ -1,6 +1,7 @@
 package io.buzypc.app.UI.Navigation.Fragments.Settings
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,12 +10,16 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import io.buzypc.app.R
 import io.buzypc.app.UI.Authentication.LogoutPromptActivity
 import io.buzypc.app.UI.Navigation.ViewModels.StyleViewModel
 import io.buzypc.app.UI.Utils.loadCurrentUserDetails
+import io.buzypc.app.UI.Utils.saveBuildList
+import io.buzypc.app.UI.Widget.DialogView.CustomActionDialogView
+import io.buzypc.app.UI.Widget.DialogView.DialogType
 
 class SettingsFragment : Fragment() {
     private val styleViewModel: StyleViewModel by activityViewModels()
@@ -34,6 +39,8 @@ class SettingsFragment : Fragment() {
         val btnEditAccount = view.findViewById<Button>(R.id.btn_edit_account)
         val btnAboutDevelopers = view.findViewById<Button>(R.id.btn_about_developers)
         val btnPrivacyPolicy = view.findViewById<Button>(R.id.btn_privacy_policy)
+        val btnFeedback = view.findViewById<Button>(R.id.btn_feedback)
+
         val radioBtnLightMode = view.findViewById<RadioButton>(R.id.rb_lightMode)
         val radioBtnDarkMode = view.findViewById<RadioButton>(R.id.rb_darkMode)
         val cardLightMode = view.findViewById<com.google.android.material.card.MaterialCardView>(R.id.card_lightMode)
@@ -65,6 +72,18 @@ class SettingsFragment : Fragment() {
         btnPrivacyPolicy.setOnClickListener {
             val intent = Intent(requireActivity(), PrivacyPolicyActivity::class.java)
             startActivity(intent)
+        }
+        btnFeedback.setOnClickListener {
+            CustomActionDialogView(requireActivity(), DialogType.CONFIRMATION)
+                .setTitle("Exiting BuzyPC")
+                .setDescription("By proceeding, you will be redirected to your web browser to answer an online form. Confirm?")
+                .setOnCancelClickListener { }
+                .setOnConfirmClickListener {
+                    val googleFormUrl = "https://forms.gle/9ZrjSQnHW6vcPvTv9"
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(googleFormUrl))
+                    startActivity(intent)
+                }
+                .show()
         }
 
         // Theme Selection
