@@ -31,6 +31,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import io.buzypc.app.AI.BuzyAI
 import io.buzypc.app.Data.AppSession.BuzyUserAppSession
+import io.buzypc.app.Data.BuildData.PC
+import io.buzypc.app.Data.BuildData.Utils.ParseFailureException
 import io.buzypc.app.Data.BuildData.Utils.parsePCBuild
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
@@ -64,34 +66,49 @@ class LoadingScreenActivity : AppCompatActivity() {
                 val buildName = appSession.buildName
                 val budget = appSession.buildBudget
 
-                // Generate the PC build (this might take some time)
-                val xmlResult = withContext(Dispatchers.IO) {
-                    var result = ""
-                    var attempt = 0
-                    val maxRetries = 5
-                    while (result.isBlank() && attempt < maxRetries) {
-                        try {
-                            result = ai.generatePCBuildXML(buildName, budget)
-                        } catch (e: Exception) {
-                            Log.e("LoadingScreenActivity", "Attempt ${attempt + 1} failed: ${e.message}")
+                var generatedPC: PC? = null
+                var attempt = 0
+                val maxTotalAttempts = 5 // Total attempts including both generation and parsing
+
+                while (generatedPC == null && attempt < maxTotalAttempts) {
+                    attempt++
+                    try {
+                        // Generate new XML
+                        val xmlResult = withContext(Dispatchers.IO) {
+                            ai.generatePCBuildXML(buildName, budget)
                         }
-                        attempt++
+
+                        if (xmlResult.isNotBlank()) {
+                            // Try to parse the new XML
+                            generatedPC = parsePCBuild(xmlResult)
+
+                            saveXmlToFile(xmlResult)
+                            appSession.currentPCToBuild = generatedPC
+                        }
+                    } catch (e: ParseFailureException) {
+                        Log.e("LoadingScreenActivity", "Attempt $attempt failed: Parsing error - ${e.message}")
+                    } catch (e: Exception) {
+                        Log.e("LoadingScreenActivity", "Attempt $attempt failed: ${e.message}")
                     }
-                    result
+
+                    // Short delay between attempts if needed
+                    if (generatedPC == null && attempt < maxTotalAttempts) {
+                        delay(1000)
+                    }
                 }
 
-                if (xmlResult.isNotBlank()) {
-                    saveXmlToFile(xmlResult)
-                    val generatedPC = parsePCBuild(xmlResult)
-                    appSession.currentPCToBuild = generatedPC
-
+                if (generatedPC != null) {
                     val intent = Intent(this@LoadingScreenActivity, NewBuildSummaryActivity::class.java)
                     Log.d("LoadingScreenActivity", "Done generating PC build. Starting NewBuildSummaryActivity.")
                     startActivity(intent)
                     finish()
                 } else {
-                    Log.e("LoadingScreenActivity", "Failed to generate PC build after multiple attempts.")
-                    Toast.makeText(this@LoadingScreenActivity, "Failed to generate build after multiple attempts. Please try again.", Toast.LENGTH_LONG).show()
+                    Log.e("LoadingScreenActivity", "Failed to generate valid PC build after $maxTotalAttempts attempts.")
+                    Toast.makeText(
+                        this@LoadingScreenActivity,
+                        "Failed to generate valid build after multiple attempts. Please try again.",
+                        Toast.LENGTH_LONG
+                    ).show()
                     finish()
                 }
             }
