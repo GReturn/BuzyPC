@@ -47,14 +47,15 @@ class LoadingScreenActivity : AppCompatActivity() {
         val shouldConnectToAI = appSession.useAI
 
         if(shouldConnectToAI) {
-            val ai = BuzyAI()
             lifecycleScope.launch {
-
                 if (!this@LoadingScreenActivity.isInternetAvailable()) {
                     Log.e("LoadingScreenActivity", "No internet connection available.")
                     Toast.makeText(this@LoadingScreenActivity, "No internet connection.", Toast.LENGTH_SHORT).show()
+                    finish()
                     return@launch
                 }
+
+                val ai = BuzyAI()
 
                 val buildName = appSession.buildName
                 val budget = appSession.buildBudget
