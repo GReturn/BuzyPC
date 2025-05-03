@@ -17,10 +17,7 @@ XML is used for UI layouts and Kotlin for logic. Jetpack Compose is **not** used
 ## Tech Stack
 - **Language**: Kotlin
 - **UI Framework**: XML-based layouts
-- **Architecture**: MVVM (Model-View-ViewModel)
-- **Dependency Injection**: Hilt
-- **Networking**: Retrofit
-- **Testing**: JUnit
+- **AI**: GPT-4.1
 
 ---
 
