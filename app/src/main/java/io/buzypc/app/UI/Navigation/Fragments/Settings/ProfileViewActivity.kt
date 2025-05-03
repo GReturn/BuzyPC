@@ -17,6 +17,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -35,6 +36,7 @@ class ProfileViewActivity : AppCompatActivity() {
     }
 
     private var isEditing = false
+    private var backPressedTime = 0L
 
     private val galleryLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         uri?.let { handleImageResult(it) }
@@ -54,7 +56,7 @@ class ProfileViewActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
+        handleOnBackPress()
         val userDetails = loadCurrentUserDetails(this)
 
         val tvUsername = findViewById<TextView>(R.id.textview_username)
@@ -123,9 +125,61 @@ class ProfileViewActivity : AppCompatActivity() {
 
                     isEditing = false
                 }
+                else {
+                    Toast.makeText(this, "Invalid email", Toast.LENGTH_SHORT).show()
+                }
             }
             return@setOnClickListener
         }
+    }
+
+    private fun handleOnBackPress() {
+
+        onBackPressedDispatcher.addCallback(this@ProfileViewActivity, object : OnBackPressedCallback(true) {
+            val editTextEmail = findViewById<EditText>(R.id.edittext_email)
+            val editProfilePicButton = findViewById<ImageButton>(R.id.btn_edit_profile_picture)
+            val btnEditProfile = findViewById<Button>(R.id.btn_edit_profile)
+            val btnBackNavigation = findViewById<ImageView>(R.id.btn_back_navigation)
+            val userDetails = loadCurrentUserDetails(this@ProfileViewActivity)
+
+            override fun handleOnBackPressed() {
+                if(!isEditing) {
+                    finish()
+                    return
+                }
+
+                if (backPressedTime + 2000 > System.currentTimeMillis()) {
+
+                    val updatedEmail = editTextEmail.text.toString().trim()
+
+                    if(validate(updatedEmail, editTextEmail)) {
+                        editTextEmail.setText(updatedEmail)
+
+                        editTextEmail.isEnabled = false
+                        editProfilePicButton.visibility = View.GONE
+                        editTextEmail.background = null
+                        editTextEmail.setPadding(0,0,0,0)
+                        btnEditProfile.text = "Edit Profile"
+
+                        btnBackNavigation.visibility = View.VISIBLE
+
+                        btnEditProfile.setCompoundDrawablesWithIntrinsicBounds( R.drawable.baseline_edit_24, 0, 0, 0)
+
+                        userDetails.saveProfile(updatedEmail)
+                        Toast.makeText(this@ProfileViewActivity, "User profile has been saved", Toast.LENGTH_SHORT).show()
+
+                        isEditing = false
+                    }
+                    else {
+                        Toast.makeText(this@ProfileViewActivity, "Invalid email", Toast.LENGTH_SHORT).show()
+                    }
+
+                } else {
+                    Toast.makeText(this@ProfileViewActivity, "Currently editing profile. Press back again to save.", Toast.LENGTH_SHORT).show()
+                    backPressedTime = System.currentTimeMillis()
+                }
+            }
+        })
     }
 
     /**
