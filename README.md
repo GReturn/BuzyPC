@@ -1,3 +1,4 @@
+![BuzyPC-banner.png](BuzyPC-banner.png)
 # BuzyPC
 
 ## Project Overview
