@@ -1,5 +1,6 @@
 package io.buzypc.app.UI.Navigation.Fragments.BuildList
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -21,6 +22,7 @@ import io.buzypc.app.UI.Navigation.Fragments.Settings.Archive.ArchiveListActivit
 import io.buzypc.app.UI.Navigation.Fragments.Shared.OnBuildListChangedListener
 import io.buzypc.app.UI.Navigation.ViewModels.ListsInformationViewModel
 import io.buzypc.app.UI.Utils.LayoutManagers.BuildListLayoutManager
+import io.buzypc.app.UI.Widget.DialogView.BuildSortHelper
 
 class BuildListFragment : Fragment() {
     private lateinit var app: BuzyUserAppSession
@@ -143,6 +145,13 @@ class BuildListFragment : Fragment() {
                 }
             }
         })
+
+        val imageButtonSort = view.findViewById<ImageView>(R.id.imageButton_sortList)
+        imageButtonSort.setOnClickListener {
+            BuildSortHelper.showSortDialogWithLayout(requireContext(), allBuilds) {
+                adapter.notifyDataSetChanged()
+            }
+        }
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {

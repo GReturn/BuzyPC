@@ -53,12 +53,22 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/ic_archive"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/bz_almostBlack" />
+
+            <ImageView
+                android:id="@+id/imageButton_sortList"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_sort"
+
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:tint="@color/bz_almostBlack"
-                android:layout_marginEnd="@dimen/margin_normal"
-                />
+                app:tint="@color/bz_almostBlack" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
