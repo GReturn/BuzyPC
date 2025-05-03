@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "io.buzypc.app"
-        minSdk = 25
+        minSdk = 26
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -38,9 +38,29 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    packaging {
+        resources {
+            // Exclude all META-INF/INDEX.LIST files
+            excludes.add("META-INF/INDEX.LIST")
+        }
+    }
+    packagingOptions {
+        resources {
+            exclude("META-INF/**")
+        }
+    }
 }
 
 dependencies {
+    // for environment variables
+    implementation("io.github.cdimascio:dotenv-kotlin:6.5.1")
+
+    // for BuzyAI
+    implementation("com.azure:azure-ai-inference:1.0.0-beta.4") {
+        exclude(group = "io.netty")
+    }
+
     // Splash Screen
     implementation("androidx.core:core-splashscreen:1.0.1")
 
@@ -68,7 +88,9 @@ dependencies {
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.animation.core.android)
-    testImplementation(libs.junit)
+    testImplementation(libs.junit) {
+        exclude("io.netty:netty-all:4.1.67.Final")
+    }
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }

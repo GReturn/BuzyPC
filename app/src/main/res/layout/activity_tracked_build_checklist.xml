@@ -171,7 +171,8 @@
             app:showAnimationBehavior="inward"
             app:trackColor="@color/bz_softGray"
             app:trackCornerRadius="10dp"
-            app:trackThickness="@dimen/space_xsmall" />
+            app:trackThickness="@dimen/space_xsmall"
+            />
 
     </LinearLayout>
 

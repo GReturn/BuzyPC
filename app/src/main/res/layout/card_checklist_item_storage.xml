@@ -110,6 +110,7 @@
                 android:textColor="@color/bz_darkGray"
                 android:textSize="@dimen/font_normal"
                 android:maxLines="2"
+                android:ellipsize="end"
 
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView_componentLabel" />

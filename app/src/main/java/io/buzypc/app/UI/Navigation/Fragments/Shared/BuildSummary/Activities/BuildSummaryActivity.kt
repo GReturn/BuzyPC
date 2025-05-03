@@ -1,13 +1,12 @@
 package io.buzypc.app.UI.Navigation.Fragments.Shared.BuildSummary.Activities
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.widget.ImageView
 import android.widget.ScrollView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,6 +20,8 @@ import io.buzypc.app.UI.Navigation.Fragments.Shared.BuildSummary.BuildComponentR
 import io.buzypc.app.UI.Navigation.Fragments.Shared.BuildSummary.HorizontalSpaceItemDecoration
 import io.buzypc.app.UI.Utils.formatDecimalPriceToPesoCurrencyString
 import io.buzypc.app.UI.Widget.RadarChartViewFragment
+import java.util.Timer
+import java.util.TimerTask
 
 class BuildSummaryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +34,7 @@ class BuildSummaryActivity : AppCompatActivity() {
             insets
         }
         val app = application as BuzyUserAppSession
+        val pcBuild = app.selectedBuildToSummarize
 
         // Back
         val btnBack = findViewById<ImageView>(R.id.btn_back_navigation)
@@ -55,29 +57,40 @@ class BuildSummaryActivity : AppCompatActivity() {
         val tvBuildName = findViewById<TextView>(R.id.tv_BuildName)
         val tvBudget = findViewById<TextView>(R.id.tv_BuildBudget)
         val tvTotalCost = findViewById<TextView>(R.id.tv_TotalCost)
+        val tvSavingsTitle = findViewById<TextView>(R.id.tv_Savings_title)
         val tvSavings = findViewById<TextView>(R.id.tv_Savings)
 
-        val initialBudget = formatDecimalPriceToPesoCurrencyString(app.selectedBuildToSummarize.budget)
-        val totalCost = formatDecimalPriceToPesoCurrencyString(app.selectedBuildToSummarize.getTotalPrice())
-        val savings = formatDecimalPriceToPesoCurrencyString(
-            app.selectedBuildToSummarize.budget - app.selectedBuildToSummarize.getTotalPrice()
-        )
+        val savingsAmount = pcBuild.budget - pcBuild.getTotalPrice()
 
-        tvBuildName.text = app.selectedBuildToSummarize.name
+        val initialBudget = formatDecimalPriceToPesoCurrencyString(pcBuild.budget)
+        val totalCost = formatDecimalPriceToPesoCurrencyString(pcBuild.getTotalPrice())
+        val savings = formatDecimalPriceToPesoCurrencyString(savingsAmount)
+
+        tvBuildName.text = pcBuild.name
         tvBudget.text = getString(R.string.phpAmount_1_s, initialBudget)
         tvTotalCost.text = getString(R.string.phpAmount_1_s, totalCost)
         tvSavings.text = getString(R.string.phpAmount_1_s, savings)
+
+        if(savingsAmount < 0) {
+            val redColor = ContextCompat.getColor(this, R.color.bz_destructive_red)
+
+            tvSavingsTitle.setTextColor(redColor)
+            tvSavings.setTextColor(redColor)
+
+            tvSavingsTitle.compoundDrawableTintList = ContextCompat
+                .getColorStateList(this, R.color.bz_destructive_red)
+        }
 
         // Component List
         val recyclerViewComponents = findViewById<RecyclerView>(R.id.recycleComponents)
 
         val components = ArrayList<Component>()
-        components.add(app.pc.motherboard)
-        components.add(app.pc.cpu)
-        components.add(app.pc.gpu)
-        components.add(app.pc.ram)
-        components.add(app.pc.storageDevice)
-        components.add(app.pc.psu)
+        components.add(pcBuild.pc.motherboard)
+        components.add(pcBuild.pc.cpu)
+        components.add(pcBuild.pc.gpu)
+        components.add(pcBuild.pc.ram)
+        components.add(pcBuild.pc.storageDevice)
+        components.add(pcBuild.pc.psu)
 
         val adapter = BuildComponentRecyclerViewAdapter(this, components)
 
@@ -89,12 +102,6 @@ class BuildSummaryActivity : AppCompatActivity() {
         recyclerViewComponents.addItemDecoration(HorizontalSpaceItemDecoration(12))
         setAutoScroll(recyclerViewComponents, recyclerViewComponents.layoutManager as LinearLayoutManager, adapter, 3000)
 
-        val compatCPU = findViewById<TextView>(R.id. tvCPUSCore)
-        val compatGPU= findViewById<TextView>(R.id.tvGPUSCore)
-        val compatPSU = findViewById<TextView>(R.id.tvPSUScore)
-        val compatRam = findViewById<TextView>(R.id.tvRAMScore)
-        val compatStorage = findViewById<TextView>(R.id.tvStorageScore)
-
         // Add the RadarChartView Fragment
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         val radarChartFragment = RadarChartViewFragment()
@@ -103,70 +110,42 @@ class BuildSummaryActivity : AppCompatActivity() {
         supportFragmentManager.executePendingTransactions() // Ensure the fragment is added immediately
 
         val tvPerformanceScore = findViewById<TextView>(R.id.tvPerformanceRatio)
-        val rating = app.selectedBuildToSummarize.pc.getPerformanceRatingTier().description
+        val rating = pcBuild.pc.getPerformanceRatingTier().description
         tvPerformanceScore.text = getString(R.string.performance_to_budget_ratio_1_s, rating)
-
-        setCompatScore(app, compatCPU, compatGPU, compatPSU, compatRam, compatStorage)
     }
 
-    fun setCompatScore(app: BuzyUserAppSession, compatCPU: TextView, compatGPU: TextView, compatPSU: TextView, compatRam: TextView, compatStorage: TextView) {
-        compatCPU.text = app.pc.cpu.performanceScore.toString()
-        compatGPU.text = app.pc.gpu.performanceScore.toString()
-        compatPSU.text = app.pc.psu.performanceScore.toString()
-        compatRam.text = app.pc.ram.performanceScore.toString()
-        compatStorage.text = app.pc.storageDevice.performanceScore.toString()
-    }
 
     // Provided by ParSa in StackOverflow: https://stackoverflow.com/a/56872365/14139842
-    // We replace the Timer with a Handler for better control on the main/UI thread.
     private fun setAutoScroll(
         recyclerView: RecyclerView,
         layoutManager: LinearLayoutManager,
         adapter: BuildComponentRecyclerViewAdapter,
-        interval: Long = 3000L,
-        pauseDuration: Long = 3000L // how long to pause after user interaction
+        interval: Long
     ) {
         //The LinearSnapHelper will snap the center of the target child view to the center of the
         // attached RecyclerView , it's optional
         val linearSnapHelper = LinearSnapHelper()
         linearSnapHelper.attachToRecyclerView(recyclerView)
 
-        val handler = Handler(Looper.getMainLooper())
-        var autoScrollEnabled = true
-        var autoScrollRunnable: Runnable? = null
+        val timer = Timer()
+        timer.schedule(object : TimerTask() {
+            override fun run() {
+                recyclerView.post {
+                    val lastVisiblePosition = layoutManager.findLastVisibleItemPosition()
+                    val itemCount = adapter.itemCount
 
-        fun startAutoScroll() {
-            autoScrollRunnable?.let { handler.removeCallbacks(it) } // clear existing
-            autoScrollRunnable = object : Runnable {
-                override fun run() {
-                    if (autoScrollEnabled) {
-                        val nextPos = if (layoutManager.findLastCompletelyVisibleItemPosition() < adapter.itemCount - 1) {
-                            layoutManager.findLastCompletelyVisibleItemPosition() + 1
-                        } else {
-                            0
-                        }
-                        recyclerView.smoothScrollToPosition(nextPos)
+                    if (lastVisiblePosition == RecyclerView.NO_POSITION || itemCount == 0) return@post
+
+                    val nextPosition = if (lastVisiblePosition < itemCount - 1) {
+                        lastVisiblePosition + 1
+                    } else {
+                        0
                     }
-                    handler.postDelayed(this, interval)
+
+                    recyclerView.smoothScrollToPosition(nextPosition)
                 }
             }
-            handler.postDelayed(autoScrollRunnable!!, interval)
-        }
-
-        // Pause on user interaction
-        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(rv: RecyclerView, newState: Int) {
-                if (newState != RecyclerView.SCROLL_STATE_IDLE) {
-                    autoScrollEnabled = false
-                    handler.removeCallbacks(autoScrollRunnable!!)
-                } else {
-                    autoScrollEnabled = true
-                    handler.postDelayed(autoScrollRunnable!!, pauseDuration)
-                }
-            }
-        })
-
-        startAutoScroll()
+        }, 0, interval)
     }
 
 }

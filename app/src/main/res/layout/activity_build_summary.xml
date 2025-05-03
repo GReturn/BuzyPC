@@ -192,7 +192,7 @@
                             android:textSize="@dimen/font_normal"
                             android:textColor="@color/bz_success_green"
 
-                            app:drawableLeftCompat="@drawable/ic_cash_payment"
+                            android:drawableStart="@drawable/ic_cash_payment"
                             app:drawableTint="@color/bz_success_green"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tv_TotalCost" />
@@ -359,7 +359,7 @@
                         android:layout_marginHorizontal="@dimen/margin_xsmall"
                         android:layout_marginTop="@dimen/margin_xsmall"
                         android:fontFamily="@font/ubuntu"
-                        android:text="We've selected these components to fit your budget without compromising performance."
+                        android:text="We've selected these components to fit your budget without compromising on performance."
                         android:textSize="@dimen/font_small" />
 
                 </LinearLayout>
@@ -393,7 +393,10 @@
             <!-- Compatibility Stats -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+
+                android:paddingBottom="74dp"
+                >
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
@@ -403,6 +406,7 @@
 
                     app:strokeWidth="0dp"
                     app:cardCornerRadius="10dp"
+                    android:backgroundTint="@android:color/transparent"
 
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

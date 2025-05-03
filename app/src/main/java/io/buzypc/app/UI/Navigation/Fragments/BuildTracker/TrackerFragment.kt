@@ -6,10 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.core.view.doOnLayout
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import io.buzypc.app.Data.AppSession.BuzyUserAppSession
 import io.buzypc.app.Data.BuildData.PCBuild
 import io.buzypc.app.R
@@ -41,6 +41,11 @@ class TrackerFragment : Fragment() {
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycleView_builds)
         val emptyListMessage = view.findViewById<LinearLayout>(R.id.layout_emptyList)
 
+        val fab = view.findViewById<FloatingActionButton>(R.id.fabScrollToTop)
+        fab.setOnClickListener {
+            recyclerView.smoothScrollToPosition(0)
+        }
+
         trackedBuilds = pcBuildList.filter { it.isTracked && !it.isDeleted && !it.isArchived} as ArrayList<PCBuild>
         if(trackedBuilds.isEmpty()){
             emptyListMessage.visibility = View.VISIBLE
@@ -63,6 +68,27 @@ class TrackerFragment : Fragment() {
         )
         recyclerView.adapter = adapter
         recyclerView.layoutManager = BuildTrackerListLayoutManager(requireContext(),1)
+
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                if (dy > 0) {
+                    // Scrolling down
+                    if (fab.isShown) fab.hide()
+                } else if (dy < 0) {
+                    // Scrolling up
+                    if (!fab.isShown && recyclerView.canScrollVertically(-1)) {
+                        fab.show()
+                    }
+                }
+
+                // Hide when at top
+                if (!recyclerView.canScrollVertically(-1)) {
+                    fab.hide()
+                }
+            }
+        })
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {

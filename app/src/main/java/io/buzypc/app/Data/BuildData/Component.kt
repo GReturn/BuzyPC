@@ -5,7 +5,6 @@ open class Component(
     val brand: String,
     val price: Double,
     val performanceScore: Float,
-    val compatibilityScore: Float,
     val stores: List<Store>,
 
     var isBought: Boolean = false

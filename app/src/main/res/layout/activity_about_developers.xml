@@ -8,7 +8,7 @@
     <LinearLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_margin="@dimen/margin_normal"
         android:gravity="center_horizontal"
@@ -153,6 +153,7 @@
             </LinearLayout>
 
             <ImageView
+                android:id="@+id/image_rafael"
                 android:layout_width="424px"
                 android:layout_height="500px"
                 android:background="@drawable/devraf_stroke"

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="300dp"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:backgroundTint="@color/bz_softGray"
     app:cardCornerRadius="10dp"
-
     app:strokeWidth="0dp"
+
+    android:backgroundTint="@android:color/transparent"
     >
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,38 +28,78 @@
             android:text="Based on internal checks across socket, power, memory, and interface matching."
             android:fontFamily="@font/ubuntu"
             android:textSize="@dimen/font_small"
+            android:layout_marginTop="@dimen/margin_xsmall"
             />
+        <!-- Compatibility Table -->
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="1"
+
+            android:layout_marginHorizontal="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/margin_normal"
+            >
+
+            <TableRow>
+                <TextView android:text="✔ CPU + Motherboard Socket"
+                    android:fontFamily="@font/ubuntu"
+                    android:textSize="@dimen/font_small"/>
+                <TextView android:text="+30 pts"
+                    android:gravity="end"
+                    android:fontFamily="@font/ubuntu_bold"
+                    android:textSize="@dimen/font_small"/>
+            </TableRow>
+
+            <TableRow>
+                <TextView android:text="✔ RAM Type Match"
+                    android:fontFamily="@font/ubuntu"
+                    android:textSize="@dimen/font_small"/>
+                <TextView android:text="+20 pts"
+                    android:gravity="end"
+                    android:fontFamily="@font/ubuntu_bold"
+                    android:textSize="@dimen/font_small"/>
+            </TableRow>
+
+            <TableRow>
+                <TextView android:text="✔ RAM Slot + Speed Support"
+                    android:fontFamily="@font/ubuntu"
+                    android:textSize="@dimen/font_small"/>
+                <TextView android:text="+10 pts"
+                    android:gravity="end"
+                    android:fontFamily="@font/ubuntu_bold"
+                    android:textSize="@dimen/font_small"/>
+            </TableRow>
+
+            <TableRow>
+                <TextView android:text="✔ Storage Interface Match"
+                    android:fontFamily="@font/ubuntu"
+                    android:textSize="@dimen/font_small"/>
+                <TextView android:text="+10 pts"
+                    android:gravity="end"
+                    android:fontFamily="@font/ubuntu_bold"
+                    android:textSize="@dimen/font_small"/>
+            </TableRow>
+
+            <TableRow>
+                <TextView android:text="✔ PSU Wattage OK"
+                    android:fontFamily="@font/ubuntu"
+                    android:textSize="@dimen/font_small"/>
+                <TextView android:text="+20 pts"
+                    android:gravity="end"
+                    android:fontFamily="@font/ubuntu_bold"
+                    android:textSize="@dimen/font_small"/>
+            </TableRow>
+
+            <TableRow>
+                <TextView android:text="✔ BIOS CPU Support"
+                    android:fontFamily="@font/ubuntu"
+                    android:textSize="@dimen/font_small"/>
+                <TextView android:text="+10 pts"
+                    android:gravity="end"
+                    android:fontFamily="@font/ubuntu_bold"
+                    android:textSize="@dimen/font_small"/>
+            </TableRow>
+        </TableLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:orientation="vertical"
-        >
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center_horizontal"
-            >
-            <include
-                layout = "@layout/card_compat_cpu"
-
-                />
-            <include layout = "@layout/card_compat_gpu"/>
-            <include layout = "@layout/card_compat_psu"/>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center_horizontal"
-            >
-            <include layout = "@layout/card_compat_ram"/>
-            <include layout = "@layout/card_compat_storage"/>
-        </LinearLayout>
-    </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

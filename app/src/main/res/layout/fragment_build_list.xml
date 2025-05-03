@@ -121,6 +121,20 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabScrollToTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/margin_normal"
 
+        app:layout_anchorGravity="bottom|end"
+
+        android:visibility="gone"
+        android:src="@drawable/ic_arrow_upward"
+
+        android:backgroundTint="?attr/colorControlNormal"
+        app:tint="@color/bz_darkGray"
+        />
 
 </FrameLayout>

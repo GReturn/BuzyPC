@@ -64,6 +64,24 @@
 
     </LinearLayout>
 
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabScrollToTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/margin_normal"
+
+        android:backgroundTint="?attr/colorControlNormal"
+
+        android:src="@drawable/ic_arrow_upward"
+        android:visibility="gone"
+
+        app:layout_anchorGravity="bottom|end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@color/bz_darkGray" />
+
     <LinearLayout
         android:id="@+id/lLEmptyArchiveList"
         android:layout_width="wrap_content"
