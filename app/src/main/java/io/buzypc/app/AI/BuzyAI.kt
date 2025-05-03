@@ -106,8 +106,11 @@ class BuzyAI {
             ChatRequestSystemMessage("You are computer specialist in Cebu City, Philippines."),
             ChatRequestUserMessage("You are given a budget in Philippine Pesos: ${budget}\\n" +
                     "\\n" +
-                    "Do not add any paragraphs. Without inserting a new text for BuildName " +
-                    "and maximizing on the given budget using these stores and their links " +
+                    "Do not add any paragraphs. Without inserting a new text for BuildName. " +
+                    "Your goal is to generate a high-performance and well-balanced PC build that uses as much of the budget as possible without exceeding it. " +
+                    "The build should prioritize gaming and productivity performance. Always aim to reach **98–100%** of the total budget, without going over. " +
+                    "Do not make conservative choices or leave large unused budget amounts.\n\n" +
+                    "Use these stores and their links " +
                     "(do not append any search queries with these links): " +
                     "(Lazada, https://www.lazada.com.ph/), " +
                     "(PC QuickBuys, https://shop.pcquickbuys.com/), " +
