@@ -54,25 +54,33 @@
                 android:id="@+id/radio_budget_low_high"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Budget (Low to High)" />
+                android:text="Budget (Low to High)"
+                android:fontFamily="@font/ubuntu_medium"
+                />
 
             <RadioButton
                 android:id="@+id/radio_budget_high_low"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Budget (High to Low)" />
+                android:text="Budget (High to Low)"
+                android:fontFamily="@font/ubuntu_medium"
+                />
 
             <RadioButton
                 android:id="@+id/radio_name_az"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Name (A to Z)" />
+                android:text="Name (A to Z)"
+                android:fontFamily="@font/ubuntu_medium"
+                />
 
             <RadioButton
                 android:id="@+id/radio_name_za"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Name (Z to A)" />
+                android:text="Name (Z to A)"
+                android:fontFamily="@font/ubuntu_medium"
+                />
         </RadioGroup>
     </LinearLayout>
 
