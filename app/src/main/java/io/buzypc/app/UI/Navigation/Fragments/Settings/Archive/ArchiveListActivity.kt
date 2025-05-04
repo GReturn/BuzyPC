@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.doOnLayout
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import io.buzypc.app.Data.AppSession.BuzyUserAppSession
@@ -71,7 +72,8 @@ class ArchiveListActivity : AppCompatActivity() {
             }
         )
         recyclerView.adapter = adapter
-        recyclerView.layoutManager = ArchivedListLayoutManager(this,1)
+//        recyclerView.layoutManager = ArchivedListLayoutManager(this,1)
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -112,10 +114,10 @@ class ArchiveListActivity : AppCompatActivity() {
             recyclerView?.visibility = View.VISIBLE
         }
 
-        recyclerView?.layoutAnimation = null
-        recyclerView?.doOnLayout {
-            (recyclerView.layoutManager as AnimatedGridLayoutManager).animateItemsIn()
-        }
+//        recyclerView?.layoutAnimation = null
+//        recyclerView?.doOnLayout {
+//            (recyclerView.layoutManager as AnimatedGridLayoutManager).animateItemsIn()
+//        }
     }
 
 }

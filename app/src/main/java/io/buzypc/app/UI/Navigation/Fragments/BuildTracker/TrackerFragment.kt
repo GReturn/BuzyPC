@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.core.view.doOnLayout
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import io.buzypc.app.Data.AppSession.BuzyUserAppSession
@@ -69,7 +70,8 @@ class TrackerFragment : Fragment() {
             }
         )
         recyclerView.adapter = adapter
-        recyclerView.layoutManager = BuildTrackerListLayoutManager(requireContext(),1)
+//        recyclerView.layoutManager = BuildTrackerListLayoutManager(requireContext(),1)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -115,10 +117,10 @@ class TrackerFragment : Fragment() {
             recyclerView?.visibility = View.VISIBLE
         }
 
-        recyclerView?.layoutAnimation = null
-        recyclerView?.doOnLayout {
-            (recyclerView.layoutManager as AnimatedGridLayoutManager).animateItemsIn()
-        }
+//        recyclerView?.layoutAnimation = null
+//        recyclerView?.doOnLayout {
+//            (recyclerView.layoutManager as AnimatedGridLayoutManager).animateItemsIn()
+//        }
     }
 
     override fun onCreateView(
