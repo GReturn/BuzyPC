@@ -200,6 +200,10 @@ class NewBuildSummaryActivity : AppCompatActivity() {
                         newBuildName.error = "Name can’t be empty"
                         return@setOnClickListener
                     }
+                    if(name.length > 20){
+                        newBuildName.error = "20 characters max"
+                        return@setOnClickListener
+                    }
                     pcBuild.name = newBuildName.text.toString()
                     buildManager.renameBuild(app.username, pcBuild)
                     app.selectedBuildToSummarize.name = name
