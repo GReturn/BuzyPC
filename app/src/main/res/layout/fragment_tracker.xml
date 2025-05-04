@@ -37,13 +37,13 @@
 
                 android:fontFamily="@font/ubuntu_bold"
                 android:text="My Checklist"
-                android:textSize="@dimen/font_title_large"
                 android:textColor="@color/bz_almostBlack"
+                android:textSize="@dimen/font_title_large"
 
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                />
+                app:layout_constraintTop_toTopOf="parent" />
 
 
             <ImageView
