@@ -1,9 +1,14 @@
 package io.buzypc.app.UI.Navigation.Fragments.Shared.BuildSummary.Activities
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.widget.Button
 import android.widget.ImageView
+import android.widget.PopupMenu
 import android.widget.ScrollView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -12,13 +17,17 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.textfield.TextInputEditText
 import io.buzypc.app.Data.AppSession.BuzyUserAppSession
 import io.buzypc.app.Data.BuildData.Component
+import io.buzypc.app.Data.SharedPrefManagers.BuzyUserBuildPrefManager
 import io.buzypc.app.R
 import io.buzypc.app.UI.Navigation.Fragments.Shared.BuildSummary.BuildComponentRecyclerViewAdapter
 import io.buzypc.app.UI.Navigation.Fragments.Shared.BuildSummary.HorizontalSpaceItemDecoration
 import io.buzypc.app.UI.Utils.formatDecimalPriceToPesoCurrencyString
+import io.buzypc.app.UI.Utils.loadCurrentUserDetails
 import io.buzypc.app.UI.Widget.RadarChartViewFragment
 import java.util.Timer
 import java.util.TimerTask
@@ -59,6 +68,7 @@ class BuildSummaryActivity : AppCompatActivity() {
         val tvTotalCost = findViewById<TextView>(R.id.tv_TotalCost)
         val tvSavingsTitle = findViewById<TextView>(R.id.tv_Savings_title)
         val tvSavings = findViewById<TextView>(R.id.tv_Savings)
+        val tvElipses = findViewById<TextView>(R.id.tv_elipses)
 
         val savingsAmount = pcBuild.budget - pcBuild.getTotalPrice()
 
@@ -79,6 +89,48 @@ class BuildSummaryActivity : AppCompatActivity() {
 
             tvSavingsTitle.compoundDrawableTintList = ContextCompat
                 .getColorStateList(this, R.color.bz_destructive_red)
+        }
+
+        tvElipses.setOnClickListener(){
+            val pm = PopupMenu(this@BuildSummaryActivity, tvElipses)
+            pm.menuInflater.inflate(R.menu.build_summary_menu, pm.menu)
+            pm.setOnMenuItemClickListener {
+                val buildManager = BuzyUserBuildPrefManager(this)
+                val app = application as BuzyUserAppSession
+                val pcBuild = app.selectedBuildToSummarize
+                val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_build_summary_rename_build, null)
+                val newBuildName = dialogView.findViewById<TextInputEditText>(R.id.edittext_rename_build)
+
+                val btnConfirm = dialogView.findViewById<Button>(R.id.btnConfirm)
+                val btnCancel = dialogView.findViewById<Button>(R.id.btnCancel)
+
+                val dialog = MaterialAlertDialogBuilder(this, R.style.CustomAlertDialog)
+                    .setView(dialogView)
+                    .setCancelable(false)
+                    .create()
+
+                btnConfirm.setOnClickListener {
+                    val name = newBuildName.text.toString().trim()
+                    if (name.isBlank()) {
+                        newBuildName.error = "Name can’t be empty"
+                        return@setOnClickListener
+                    }
+                    pcBuild.name = newBuildName.text.toString()
+                    buildManager.renameBuild(app.username, pcBuild)
+                    app.selectedBuildToSummarize.name = name
+                    tvBuildName.text = name
+                    Toast.makeText(this, "Build renamed successfully!", Toast.LENGTH_SHORT).show()
+                    dialog.dismiss()
+                }
+
+                btnCancel.setOnClickListener {
+                    dialog.dismiss()
+                }
+
+                dialog.show()
+                true
+            }
+            pm.show()
         }
 
         // Component List
@@ -146,6 +198,10 @@ class BuildSummaryActivity : AppCompatActivity() {
                 }
             }
         }, 0, interval)
+    }
+
+    private fun showRenameBuildDialog() {
+
     }
 
 }

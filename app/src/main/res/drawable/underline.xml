@@ -8,7 +8,7 @@
 
         >
         <shape android:shape="line"
-                android:tint="?attr/colorControlNormal"
+                android:tint="?attr/colorPrimary"
             >
             <stroke
                 android:width="1.5dp"

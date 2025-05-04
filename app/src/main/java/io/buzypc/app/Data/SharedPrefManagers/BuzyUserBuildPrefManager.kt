@@ -47,5 +47,13 @@ class BuzyUserBuildPrefManager(
         return getBuildList(username).find { it.id == buildId }
     }
 
+    fun renameBuild(username: String, renamedBuild: PCBuild){
+        val list = getBuildList(username)
+        list.replaceAll { existing ->
+            if (existing.id == renamedBuild.id) renamedBuild else existing
+        }
+        saveBuildList(username, list)
+    }
+
     private fun getKey(username: String): String = "pc_build_list_$username"
 }
