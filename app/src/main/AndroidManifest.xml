@@ -6,7 +6,6 @@
         android:name="android.hardware.camera"
         android:required="false" />
 
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -22,6 +21,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BuzyPC"
         tools:targetApi="31">
+        <activity
+            android:name=".UI.Authentication.ForgotPasswordActivity"
+            android:exported="false" />
         <activity
             android:name=".UI.Navigation.Fragments.Settings.Archive.ArchiveListActivity"
             android:exported="false" />
@@ -59,8 +61,7 @@
         <activity
             android:name=".UI.Authentication.RegisterActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"
-            />
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".UI.Authentication.LoginActivity"
             android:exported="true"

@@ -271,6 +271,10 @@ class ProfileViewActivity : AppCompatActivity() {
             Toast.makeText(this, "Incorrect current password!", Toast.LENGTH_SHORT).show()
             return false
         }
+        if(newPassword.length < 6) {
+            Toast.makeText(this, "Password must have at least 6 characters!", Toast.LENGTH_LONG).show()
+            return false
+        }
         if(newPassword != confirmPassword) {
             Toast.makeText(this, "New passwords do not match!", Toast.LENGTH_SHORT).show()
             return false

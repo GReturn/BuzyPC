@@ -1,9 +1,15 @@
 package io.buzypc.app.UI.Authentication
 
 import android.content.Intent
+import android.graphics.Paint
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.UnderlineSpan
+import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -11,9 +17,12 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.textfield.TextInputEditText
 import io.buzypc.app.R
 import io.buzypc.app.Data.AppSession.BuzyUserAppSession
 import io.buzypc.app.Data.SharedPrefManagers.BuzyAuthenticator
+import io.buzypc.app.Data.SharedPrefManagers.BuzyUserBuildPrefManager
 import io.buzypc.app.Data.SharedPrefManagers.SessionManager
 import io.buzypc.app.UI.Navigation.BottomNavigationActivity
 import io.buzypc.app.UI.Utils.loadCurrentUserDetails
@@ -29,7 +38,6 @@ class LoginActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
         autoLogin()
         setAppTheme()
 
@@ -39,6 +47,10 @@ class LoginActivity : AppCompatActivity() {
         val edittextPassword = findViewById<EditText>(R.id.password)
         val btnLogin = findViewById<Button>(R.id.loginButton)
         val btnRegister = findViewById<Button>(R.id.registerButton)
+        val tvForgotPassword = findViewById<TextView>(R.id.tv_forgotPassword)
+        val span = SpannableString("Forgot Password?")
+        span.setSpan(UnderlineSpan(), 0, span.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        tvForgotPassword.text = span
 
         btnLogin.setOnClickListener {
             val enteredUsername = edittextUsername.text.toString()
@@ -90,6 +102,45 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
             return@setOnClickListener
+        }
+
+        tvForgotPassword.setOnClickListener(){
+            val buzyAuthenticator = BuzyAuthenticator(this)
+            val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_login_activity_forgot_password, null)
+            val tvValidUsername = dialogView.findViewById<TextInputEditText>(R.id.edittext_valid_username)
+
+
+
+            val btnConfirm = dialogView.findViewById<Button>(R.id.btnConfirm)
+            val btnCancel = dialogView.findViewById<Button>(R.id.btnCancel)
+
+            val dialog = MaterialAlertDialogBuilder(this, R.style.CustomAlertDialog)
+                .setView(dialogView)
+                .setCancelable(false)
+                .create()
+
+            btnConfirm.setOnClickListener {
+                if(tvValidUsername.toString().isEmpty()){
+                    tvValidUsername.error = "Name can’t be empty"
+                    return@setOnClickListener
+                }
+                if(buzyAuthenticator.isUserRegistered(tvValidUsername.text.toString())){
+                    (application as BuzyUserAppSession).username = tvValidUsername.text.toString()
+                    startActivity(Intent(this, ForgotPasswordActivity::class.java));
+                }
+                else{
+                    tvValidUsername.error = "Unregistered username"
+                    return@setOnClickListener
+                }
+                dialog.dismiss()
+
+            }
+
+            btnCancel.setOnClickListener {
+                dialog.dismiss()
+            }
+
+            dialog.show()
         }
     }
 
