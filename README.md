@@ -17,7 +17,7 @@ XML is used for UI layouts and Kotlin for logic. Jetpack Compose is **not** used
 
 ## Screenshots
 
-<img src="readme/BuzyPC%20Preview.png" width="300">
+<img src="readme/BuzyPC%20Preview.png">
 
 ---
 
