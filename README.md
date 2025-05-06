@@ -1,4 +1,4 @@
-![BuzyPC-banner.png](BuzyPC-banner.png)
+![BuzyPC-banner.png](readme/BuzyPC-banner.png)
 # BuzyPC
 
 ## Project Overview
@@ -9,8 +9,15 @@ XML is used for UI layouts and Kotlin for logic. Jetpack Compose is **not** used
 
 ## Table of Contents
 - [Tech Stack](#tech-stack)
+- [Screenshots](#screenshots)
 - [Contributing](#contributing)
 - [Final Message](#final-message)
+
+---
+
+## Screenshots
+
+<img src="readme/BuzyPC%20Preview.png.png" width="300">
 
 ---
 
