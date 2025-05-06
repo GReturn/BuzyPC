@@ -8,8 +8,8 @@ This project is a mock-up of what the true application should expectedly functio
 XML is used for UI layouts and Kotlin for logic. Jetpack Compose is **not** used in this project. 
 
 ## Table of Contents
-- [Tech Stack](#tech-stack)
 - [Screenshots](#screenshots)
+- [Tech Stack](#tech-stack)
 - [Contributing](#contributing)
 - [Final Message](#final-message)
 
